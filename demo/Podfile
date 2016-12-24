@@ -1,0 +1,33 @@
+source 'https://github.com/CocoaPods/Specs.git'
+source 'https://github.com/baijia/specs.git'
+
+platform :ios, '8.0'
+# inhibit_all_warnings!
+
+target 'BJLiveCore' do
+    
+    # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+    # use_frameworks!
+    
+    # dev
+    pod 'BJLiveCore'
+    
+    # demo
+    pod 'BJHL-Kit-iOS'
+    pod 'Masonry'
+    pod 'M9Dev'
+    
+    # debug
+    pod 'FLEX', '~> 2.0', :configurations => ['Debug']
+    
+    target 'BJLiveCoreTests' do
+        inherit! :search_paths
+        # Pods for testing
+    end
+    
+    target 'BJLiveCoreUITests' do
+        inherit! :search_paths
+        # Pods for testing
+    end
+    
+end
