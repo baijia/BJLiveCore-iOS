@@ -2,6 +2,11 @@
 # Created by https://www.gitignore.io/api/macos,xcode,objective-c,swift
 
 
+### custom ###
+
+distribute
+
+
 ### macOS ###
 *.DS_Store
 .AppleDouble
