@@ -45,7 +45,7 @@ typedef NS_ENUM(NSInteger, BJLUserRole) {
     /** 助教 */
     BJLUserRole_assistant = 2,
     /** 游客 */
-    BJLUserRole_guest = 3
+    BJLUserRole_guest = 3 // 内部使用
 };
 
 /** 教室类型 */

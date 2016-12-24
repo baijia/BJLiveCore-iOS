@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 /** 在线人数 */
 @property (nonatomic, readonly) NSInteger onlineUsersTotalCount;
 /** 在线用户，分页加载
+ 连接教室后会自动加载一次、掉线后清空、重新连接后再次自动加载一次
  参考 `- loadMoreOnlineUsersWithCount:` */
 @property (nonatomic, readonly, nullable, copy) NSArray<NSObject<BJLOnlineUser> *> *onlineUsers;
 /** 是否有更多在线用户未加载 */
@@ -25,8 +26,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly, nullable) NSObject<BJLOnlineUser> *onlineTeacher;
 
 /** 加载更多在线用户
- 加载成功更新 `onlineUsers`，内部不主动调用此方法 */
-- (nullable BJLError *)loadMoreOnlineUsersWithCount:(NSInteger)count; // count 最多 30
+ 连接教室后会自动调用加载一次、掉线后清空 `onlineUsers`、重新连接后再次自动调用加载一次
+ 加载成功更新 `onlineUsers` */
+// count: 传 0 默认 20、最多 30
+- (nullable BJLError *)loadMoreOnlineUsersWithCount:(NSInteger)count;
 
 /** 有用户进入房间
  同时更新 `onlineUsers` */

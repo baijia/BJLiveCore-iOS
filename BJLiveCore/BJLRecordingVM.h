@@ -18,9 +18,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) NSInteger inputVolumeLevel; // [0 - 9]
 
 /** 开关音视频
+ 上课状态才能打开音视频
  上层自行检查麦克风、摄像头开关权限
  上层可通过 BJLSpeakingRequestVM 实现学生发言需要举手的逻辑 */
-- (void)setRecordingAudio:(BOOL)recordingAudio recordingVideo:(BOOL)recordingVideo;
+- (nullable BJLError *)setRecordingAudio:(BOOL)recordingAudio recordingVideo:(BOOL)recordingVideo;
 - (void)restartRecording;
 
 /** 音视频被远程开关通知 */

@@ -15,11 +15,14 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BJLPlayingVM : BJLBaseVM
 
 /** 音视频用户列表
+ 包含 `videoPlayingUser`
+ 连接教室后会自动加载、掉线后清空、重新连接后再次自动加载
  所有音频直接播放、视频需要调用 `updateVideoPlayingUser:` 打开
- 包含 `videoPlayingUser` */
+ 参考 `loadPlayingUsers` */
 @property (nonatomic, readonly, nullable, copy) NSArray<NSObject<BJLOnlineUser> *> *playingUsers;
 
-/** 加载音视频用户列表，内部不主动调用此方法
+/** 加载音视频用户列表
+ 连接教室后会自动调用、掉线后清空 `playingUsers`、重新连接后再次自动调用
  加载成功后更新 `playingUsers`、`videoPlayingUser`
  */
 - (void)loadPlayingUsers;

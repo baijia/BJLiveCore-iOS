@@ -11,8 +11,8 @@
 @protocol BJLSlideshowUI <NSObject>
 
 @property (nonatomic) BJLSlideshowContentMode contentMode;
-@property (nonatomic) BOOL blackboardEnabled;
+@property (nonatomic) BOOL whiteboardEnabled;
 
-- (void)clearBlackboard;
+- (void)clearWhiteboard;
 
 @end

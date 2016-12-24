@@ -53,23 +53,35 @@ _Pragma("GCC diagnostic pop")
 
 /**
  *  M9TuplePack & M9TupleUnpack
+ *  define:
+ *      - (BJLTuple<void (^)(BOOL state1, BOOL state2> *)states;
  *  pack:
- *      return BJLTuplePack(val1, val2, ...);
+ *      BOOL state1 = self.state1, state2 = self.state2;
+ *      return BJLTuplePack(state1, state2);
  *  unpack:
- *      BJLTuple *tuple = [self aTuple];
- *      BJLTupleUnpack(tuple) = ^(Type1 var1, Type2 var2, ...) {
+ *      BJLTupleUnpack(tuple) = ^(BOOL state1, BOOL state2) {
  *          // ...
  *      };
- *  !!!: maybe need weakify & strongify in both pack & unpack
+ */
+/* !!!: BJLTuplePack(self.state)
+ *  1. BJLTuplePack 中使用到的对象将被 tuple 持有、直到 tuple 被释放，例如上面的 self；
+ *  2. self.state 的值将在拆包时读取、而不是打包时；
+ *      BJLTuple *tuple = BJLTuplePack(self.state1, self.state2);
+ *  因此【强烈建议】定义临时变量提前读取属性值，以避免出现不可预期的结果！
+ *      BOOL state1 = self.state1, state2 = self.state2;
+ *      BJLTuple *tuple = BJLTuplePack(state1, state2);
  */
 #define BJLTuplePack(...)       ({[BJLTuple tupleWithPack:^(BJLTupleUnpackBlock unpack) { \
                                     if (unpack) unpack(__VA_ARGS__); \
                                 }];})
+/**
+ *  这里不需要 weakify&strongify，unpack block 会被立即执行
+ */
 #define BJLTupleUnpack(TUPLE)   (TUPLE ?: [BJLTuple new]).unpack
 typedef void (^BJLTupleUnpackBlock)(/* ... */);
 typedef void (^BJLTuplePackBlock)(BJLTupleUnpackBlock unpack);
 @interface BJLTuple<BJLTupleUnpackTypeGeneric> : NSObject
-@property (nonatomic, /* writeonly, */ setter=unpack:) BJLTupleUnpackBlock unpack;
+@property (nonatomic, /* writeonly, */ setter=unpack:) id/*<BJLTupleUnpackTypeGeneric>*/ unpack;
 + (instancetype)tupleWithPack:(BJLTuplePackBlock)pack;
 @end
 

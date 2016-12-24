@@ -11,7 +11,6 @@
 #import "BJLBlockHelper.h"
 
 #import "BJLConstants.h"
-#import "BJLFeatureConfig.h"
 
 /** VM **/
 
@@ -29,13 +28,9 @@
 #import "BJLSlideshowVM.h"
 // #import "BJLSlideshowView.h"
 
-#import "BJLChatVM.h"
-
-#import "BJLHelpVM.h"
 #import "BJLServerRecordingVM.h"
-#import "BJLGiftVM.h"
-// 评价 VM
-// 公告 VM
+
+#import "BJLChatVM.h"
 
 /** UI */
 
@@ -62,30 +57,22 @@ typedef NS_ENUM(NSInteger, BJLRoomExitReason) {
  @param roomID          教室 ID
  @param user            用户
  @param apiSign         API sign
- @param deployType      部署环境，仅 Debug 模式下有效
- @param featureConfig   TODO: 功能配置，参考 BJLRoomVM.featureConfig
  @return                教室
  */
 + (__kindof instancetype)roomWithID:(NSString *)roomID
                             apiSign:(NSString *)apiSign
-                               user:(BJLUser *)user
-                         deployType:(BJLDeployType)deployType
-                      featureConfig:(nullable BJLFeatureConfig *)featureConfig;
+                               user:(BJLUser *)user;
 
 /**
  通过参加码创建教室
  @param roomSecret      教室参加码，目前只支持老师、学生角色
  @param userName        用户名
  @param userAvatar      用户头像 URL
- @param deployType      部署环境，仅 Debug 模式下有效
- @param featureConfig   TODO: 功能配置，参考 BJLRoomVM.featureConfig
  @return                教室
  */
 + (__kindof instancetype)roomWithSecret:(NSString *)roomSecret
                                userName:(NSString *)userName
-                             userAvatar:(nullable NSString *)userAvatar
-                             deployType:(BJLDeployType)deployType
-                          featureConfig:(nullable BJLFeatureConfig *)featureConfig;
+                             userAvatar:(nullable NSString *)userAvatar;
 
 /** 进入教室 */
 - (void)enter;
@@ -96,7 +83,7 @@ typedef NS_ENUM(NSInteger, BJLRoomExitReason) {
 /** 成功进入教室 */
 - (BJLOEvent)roomDidEnter;
 /**
- 退出教室事件，参考 BJLErrorDomain
+ 进入教室失败/退出教室事件，参考 `BJLErrorCode`
  */
 - (BJLOEvent)roomWillExitWithError:(BJLError *)error;
 - (BJLOEvent)roomDidExitWithError:(BJLError *)error;
@@ -107,26 +94,22 @@ typedef NS_ENUM(NSInteger, BJLRoomExitReason) {
  nullable：
     所有 VM 属性都可为空
     - loadingVM 在 loading 时非空，成功/失败后为空；
-    - 其它 VM 在 loading 前为空，在 loading 过程中初始化，退出教室后为空（loading 失败自动退出）；
+    - 其它 VM 在 loading 前为空，在 loading 过程中初始化，`roomDidEnter` 之后全部可用，退出教室后为空（loading 失败自动退出）；
     - 当前端/后端配置关闭某功能、对应 VM 可能为空，参考 BJLRoomVM.featureConfig；
  KVO：
-    所有 VM 支持 KVO，在检测到 VM 变为非 nil 时、或者 `roomDidEnter` 之后才能有效添加 observer；
-    所有 VM 的所有属性支持 KVO，除非额外注释说明；
+    所有 VM 及其所有属性支持 KVO，除非额外注释说明；
  block:
-    这里需要较多的使用 block 进行 KVO、事件监听，RAC 是一个很好的选择，但为了避免依赖过多的开源库而被放弃；
-    RAC 最多需要同时引入 ReactiveCocoa、ReactiveObjCBridge、ReactiveSwift 和 ReactiveObjC；
+    这里需要较多的使用 block 进行 KVO、事件监听，RAC 本是个很好的选择，但为避免依赖过多的开源库而被放弃；
     使用 block 进行 KVO - NSObject+BJLBlockKVO.h；
     使用 block 进行事件监听 - NSObject+BJLBlockNTO.h；
     tuple pack&unpack - NSObject+BJL_M9Dev.h；
     参考 BJLiveUI；
  */
 
-/**** 核心功能 ****/
-
 /** 进教室的 loading 状态 */
 @property (nonatomic, readonly, nullable) BJLLoadingVM *loadingVM;
 
-/** 功能设置，教室信息、状态，用户信息，公告等 */
+/** 教室信息、状态，用户信息，公告等 */
 @property (nonatomic, readonly, nullable) BJLRoomVM *roomVM;
 
 /** 在线用户 */
@@ -140,37 +123,30 @@ typedef NS_ENUM(NSInteger, BJLRoomExitReason) {
 
 /** 音视频 采集 - 个人 */
 @property (nonatomic, readonly, nullable) BJLRecordingVM *recordingVM;
+/** 视频采集视图 - 个人
+ 尺寸、位置随意设定，建议横屏 4:3、竖屏 3:4 */
 @property (nonatomic, readonly, nullable) UIView *recordingView;
 
 /** 音视频 播放 - 他人 */
 @property (nonatomic, readonly, nullable) BJLPlayingVM *playingVM;
+/** 视频播放视图 - 他人
+ 尺寸、位置随意设定，建议横屏 4:3、竖屏 3:4 */
 @property (nonatomic, readonly, nullable) UIView *playingView;
 
 /** 课件管理 */
 @property (nonatomic, readonly, nullable) BJLSlideVM *slideVM;
 
-/** 课件显示 */
+/** 课件显示、控制 */
 // @property (nonatomic, readonly, nullable) BJLSlideshowVM *slideshowVM;
+/** 课件、画笔视图
+ 尺寸、位置随意设定 */
 @property (nonatomic, readonly, nullable) UIViewController<BJLSlideshowUI> *slideshowViewController;
-
-/** 聊天/弹幕 */
-@property (nonatomic, readonly, nullable) BJLChatVM *chatVM;
-
-/**** 辅助功能 ****/
-
-/** 电话求助 */
-@property (nonatomic, readonly, nullable) BJLHelpVM *helpVM;
 
 /** 云端录制 */
 @property (nonatomic, readonly, nullable) BJLServerRecordingVM *serverRecordingVM;
 
-/** 打赏 */
-@property (nonatomic, readonly, nullable) BJLGiftVM *giftVM;
-
-#pragma mark properties
-
-@property (nonatomic, readonly, nullable) BJLFeatureConfig *featureConfig;
-@property (nonatomic, readonly) BJLDeployType deployType;
+/** 聊天/弹幕 */
+@property (nonatomic, readonly, nullable) BJLChatVM *chatVM;
 
 @end
 

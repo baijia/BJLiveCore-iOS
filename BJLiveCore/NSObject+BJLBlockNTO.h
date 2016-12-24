@@ -19,7 +19,7 @@
     #define BJLOEventSend(DATA) [self bjl_notifyObserversWithEvent:NSStringFromSelector(_cmd) data:DATA]
 #endif
 
-typedef void (^BJLObserverBlock)(id data, id object, BJLOEventType event);
+typedef void (^BJLObserverBlock)(id data/* , id object, BJLOEventType event */);
 
 /**
  *  BJLBlock Observation implemented via a special NSNotificationCenter

@@ -14,8 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BJLChatVM : BJLBaseVM
 
-// TODO: MingLQ - 禁言
-
 /** 所有消息
  TODO: 连接服务器后自动加载历史消息并存储到本地 */
 @property (nonatomic, readonly, nullable, copy) NSArray<NSObject<BJLMessage> *> *receivedMessages;
@@ -29,6 +27,13 @@ NS_ASSUME_NONNULL_BEGIN
 /** 收到消息
  同时更新 `receivedMessages` */
 - (BJLOEvent)didReceiveMessage:(NSObject<BJLMessage> *)message;
+
+/** 禁言状态 */
+@property (nonatomic, readonly) BOOL forbidAll;
+
+/** 老师: 设置禁言状态
+ 设置成功后修改 `forbidAll` */
+- (nullable BJLError *)sendForbidAll:(BOOL)forbidAll;
 
 @end
 

@@ -33,24 +33,24 @@ extern NSErrorDomain const BJLErrorDomain;
 extern NSString * const BJLErrorSourceErrorKey;
 
 typedef NS_ENUM(NSInteger, BJLErrorCode) {
-    BJLErrorCode_success = 0,
+    BJLErrorCode_success = 0,       // 成功
     /* common */
-    BJLErrorCode_networkError,
-    BJLErrorCode_cancelled,
-    BJLErrorCode_invalidUserRole,
-    BJLErrorCode_invalidCalling,
-    BJLErrorCode_invalidArguments,
-    BJLErrorCode_areYouRobot,
+    BJLErrorCode_networkError,      // 网络请求出错
+    BJLErrorCode_cancelled,         // 主动调用取消
+    BJLErrorCode_invalidUserRole,   // 非法用户角色
+    BJLErrorCode_invalidCalling,    // 非法调用
+    BJLErrorCode_invalidArguments,  // 参数错误
+    BJLErrorCode_areYouRobot,       // 操作过于频繁
     /* exit room */
-    BJLErrorCode_exitRoom_enterRoomFailed,
-    BJLErrorCode_exitRoom_anotherRoomEntered,
-    BJLErrorCode_exitRoom_exitRoom,
-    BJLErrorCode_exitRoom_loginConflict,
+    BJLErrorCode_exitRoom_enterRoomFailed,      // 进教室失败
+    BJLErrorCode_exitRoom_anotherRoomEntered,   // 进入另一教室、导致当前教室退出
+    BJLErrorCode_exitRoom_exitRoom,             // 主动调用退出
+    BJLErrorCode_exitRoom_loginConflict,        // 用户在其它设备登录
     /* !!!: 
      1、在此之前增加错误码；
-     2、不要手动指定错误码；
+     2、不要设置错误码取值；
      3、同步增删 BJLErrorDescriptions； */
-    BJLErrorCode_unknown
+    BJLErrorCode_unknown    // 未知错误
 };
 
 extern NSString * const BJLErrorDescriptions[];

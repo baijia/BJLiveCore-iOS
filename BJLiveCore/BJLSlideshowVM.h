@@ -42,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable BJLSlidePage *)slidePageWithDocumentID:(NSString *)documentID pageIndex:(NSInteger)pageIndex;
 
 /** 加载所有课件
- 加载成功后更新 `allDocuments`，内部不主动调用此方法，但 BJLSlideshowUI 可能会调用 */
+ 加载成功后更新 `allDocuments`，内部不主动调用此方法 TODO: MingLQ - 主动调用，但 BJLSlideshowUI 可能会调用 */
 - (void)loadAllDocuments;
 
 /** 添加课件通知

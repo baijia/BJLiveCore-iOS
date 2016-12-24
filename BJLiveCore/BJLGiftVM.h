@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly, nullable, copy) NSArray<NSObject<BJLReceivedGift> *> *receivedGifts;
 
 /** 加载所有打赏记录
- 加载成功后更新 `receivedGifts`，内部不主动调用此方法 */
+ 加载成功后更新 `receivedGifts`，内部不主动调用此方法 TODO: MingLQ - 主动调用 */
 - (void)loadReceivedGifts;
 
 /**

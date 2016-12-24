@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) BOOL speakingEnabled;
 
 /** 学生: 发送发言申请
+ 上课状态才能举手
  发言申请被允许/拒绝时会收到通知 `speakingRequestDidReply:` */
 - (nullable BJLError *)sendSpeakingRequest;
 /** 学生: 取消发言申请/结束发言
