@@ -1,0 +1,39 @@
+//
+//  BJLGiftVM.h
+//  Pods
+//
+//  Created by MingLQ on 2016-12-06.
+//
+//
+
+#import "BJLBaseVM.h"
+
+#import "BJLGift.h"
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface BJLGiftVM : BJLBaseVM
+
+/** 所有打赏记录
+ 参考 `- loadReceivedGifts` */
+@property (nonatomic, readonly, nullable, copy) NSArray<NSObject<BJLReceivedGift> *> *receivedGifts;
+
+/** 加载所有打赏记录
+ 加载成功后更新 `receivedGifts`，内部不主动调用此方法 */
+- (void)loadReceivedGifts;
+
+/**
+ 打赏
+ 成功后会收到打赏通知，只支持学生给老师打赏
+ @param teacher 打赏对象，老师在教室内时使用老师信息、否则使用 teacher
+ @param gift    礼物
+ */
+- (nullable BJLError *)sendGift:(BJLGift *)gift toTeacher:(NSObject<BJLUser> *)teacher;
+
+/** 收到打赏通知
+ 同时更新 `receivedGifts` */
+- (BJLOEvent)didReceiveGift:(NSObject<BJLReceivedGift> *)receivedGift;
+
+@end
+
+NS_ASSUME_NONNULL_END
