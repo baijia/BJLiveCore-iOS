@@ -193,7 +193,6 @@ BJLTupleUnpack(tuple) = ^(BOOL state1, BOOL state2) {
 ## API
 - [BJLConstants.h](https://github.com/baijia/BJLiveCore-iOS/blob/master/BJLiveCore/BJLConstants.h) 枚举
 - [NSError+BJLError.h](https://github.com/baijia/BJLiveCore-iOS/blob/master/BJLiveCore/NSError+BJLError.h) 错误码
-
 - [BJLRoom.h](https://github.com/baijia/BJLiveCore-iOS/blob/master/BJLiveCore/BJLRoom.h) 教室管理
 - [BJLLoadingVM.h](https://github.com/baijia/BJLiveCore-iOS/blob/master/BJLiveCore/BJLLoadingVM.h) 进教室的 loading 状态
 - [BJLRoomVM.h](https://github.com/baijia/BJLiveCore-iOS/blob/master/BJLiveCore/BJLRoomVM.h) 教室信息、状态，用户信息，公告等
