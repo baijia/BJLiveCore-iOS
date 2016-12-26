@@ -75,8 +75,6 @@ weakdef(self);
            }
            [self didEnterRoom]; // 处理进教室后的逻辑
        }];
-```
-```objc
 [self bjl_observe:self.room
             event:@selector(roomWillExitWithError:)
        usingBlock:^(BJLError *error, id object, BJLOEventType event) {
@@ -121,6 +119,7 @@ for (NSObject<BJLOnlineUser> *user in self.room.playingVM.playingUsers) {
 ```
 - 举手后老师同意/拒绝发言申请
 ```objc
+weakdef(self);
 [self bjl_observe:self.room.speakingRequestVM
             event:@selector(receivedSpeakingRequestFromUser:)
        usingBlock:^(NSObject<BJLUser> *user, id object, BJLOEventType event) {
@@ -130,6 +129,7 @@ for (NSObject<BJLOnlineUser> *user in self.room.playingVM.playingUsers) {
 ```
 - 老师同意后学生开始发言
 ```objc
+weakdef(self);
 [self bjl_observe:self.room.speakingRequestVM
             event:@selector(speakingRequestDidReply:)
        usingBlock:^(NSObject<BJLSpeakingReply> *reply, id object, BJLOEventType event) {
