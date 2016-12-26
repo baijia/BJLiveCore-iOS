@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
   # # s.resources = 'BJLiveCore-#{s.version}/*.bundle'
 
   # git
-  s.source = { :git => 'https://github.com/baijia/BJLiveCore-iOS.git', :tag => '#{s.version}' }
+  s.source = { :git => 'https://github.com/baijia/BJLiveCore-iOS.git', :tag => s.version.to_s }
   s.public_header_files = 'BJLiveCore/*.h'
   s.source_files = 'BJLiveCore/*.h'
   s.vendored_libraries = 'BJLiveCore/*.a'

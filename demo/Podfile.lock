@@ -25,7 +25,7 @@ PODS:
     - SDWebImage
   - BJHL-Websocket-iOS (0.3.2):
     - PocketSocket
-  - BJLiveCore (0.0.2):
+  - BJLiveCore (0.0.3):
     - BJHL-AVSDK-iOS (>= 0.1.9)
     - BJHL-Foundation-iOS
     - BJHL-Websocket-iOS (>= 0.3.2)
@@ -128,7 +128,7 @@ SPEC CHECKSUMS:
   BJHL-Foundation-iOS: 2e7d9269405c036111c32b4ecd0a06e9ecb4e00e
   BJHL-Kit-iOS: f4fd89af592b8b0f3c5ff8eefcc977130123a40f
   BJHL-Websocket-iOS: d268c2d08cb22d461a0b961781566e488c004c1d
-  BJLiveCore: a44b5b2ee80dfaf570a87964972c26686b15eb36
+  BJLiveCore: 05352c4179a487768d42abb91aaf02e855e34587
   CocoaLumberjack: aa9dcab71bdf9eaf2a63bbd9ddc87863efe45457
   FLEX: bd1a39e55b56bb413b6f1b34b3c10a0dc44ef079
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a

@@ -172,6 +172,8 @@ weakdef(self);
 ```objc
 // 定义: 此方法返回一个包含两个 BOOL 型变量的元组
 - (BJLTuple<void (^)(BOOL state1, BOOL state2> *)states;
+```
+```objc
 // 拆包: 这个 block 会被立即执行，因此这里不需要 weakify&strongify
 BJLTupleUnpack(tuple) = ^(BOOL state1, BOOL state2) {
     NSLog(@"state1: %d, state2: %d", state1, state2);
