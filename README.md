@@ -37,7 +37,7 @@ pod 'BJLiveCore'
 ```
 
 ## Hello World
-参考 `BJLiveCoreDemo` 工程中的 `BJRoomViewController`；
+参考 demo 中的 `BJRoomViewController`；
 - 引入头文件
 ```objc
 #import <BJLiveCore/BJLiveCore.h>
@@ -52,7 +52,7 @@ self.room = [BJLRoom roomWithSecret:roomSecret
                            userName:userName
                          userAvatar:nil];
 ```
-- 监听进入教室的事件
+- 监听进入、退出教室的事件
 ```objc
 weakdef(self);
 [self bjl_observe:self.room
@@ -75,6 +75,8 @@ weakdef(self);
            }
            [self didEnterRoom]; // 处理进教室后的逻辑
        }];
+```
+```objc
 [self bjl_observe:self.room
             event:@selector(roomWillExitWithError:)
        usingBlock:^(BJLError *error, id object, BJLOEventType event) {
@@ -90,16 +92,24 @@ weakdef(self);
 ```
 - 老师发布音视频
 ```objc
+// UI
+[self.recordingView addSubview:self.room.recordingView];
+[self.room.recordingView mas_makeConstraints:^(MASConstraintMaker *make) {
+    make.edges.equalTo(self.recordingView);
+}];
+// 采集
 [self.room.recordingVM setRecordingAudio:YES recordingVideo:YES];
 ```
 - 学生获取音视频发言列表、打开老师视频
 ```objc
+// UI
+[self.playingView addSubview:self.room.playingView];
+[self.room.playingView mas_makeConstraints:^(MASConstraintMaker *make) {
+    make.edges.equalTo(self.playingView);
+}];
+// 播放
 for (NSObject<BJLOnlineUser> *user in self.room.playingVM.playingUsers) {
     if (user.isTeacher) {
-        [self.playingView addSubview:self.room.playingView];
-        [self.room.playingView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.playingView);
-        }];
         [self.room.playingVM updateVideoPlayingUserWithID:user.ID];
         break;
     }
