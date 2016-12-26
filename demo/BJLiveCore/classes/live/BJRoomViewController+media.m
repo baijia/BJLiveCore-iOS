@@ -25,7 +25,7 @@
     weakdef(self);
     
     if (self.room.roomVM.loginUser.isTeacher) {
-        // 有学生举手
+        // 有学生请求发言
         [self bjl_observe:self.room.speakingRequestVM
                     event:@selector(receivedSpeakingRequestFromUser:)
                usingBlock:^(NSObject<BJLUser> *user/* , id object, BJLOEventType event */) {
@@ -33,6 +33,20 @@
                    // 自动同意
                    [self.room.speakingRequestVM replySpeakingRequestToUserID:user.ID allowed:YES];
                    [self.console printFormat:@"%@ 请求发言、已同意", user.name];
+               }];
+    }
+    else {
+        // 发言请求被处理
+        [self bjl_observe:self.room.speakingRequestVM
+                    event:@selector(speakingRequestDidReply:)
+               usingBlock:^(NSObject<BJLSpeakingReply> *reply) {
+                   strongdef(self);
+                   [self.console printFormat:@"发言申请已被%@", reply.speakingEnabled ? @"允许" : @"拒绝"];
+                   if (reply.speakingEnabled) {
+                       [self.room.recordingVM setRecordingAudio:YES
+                                                 recordingVideo:NO];
+                       [self.console printFormat:@"麦克风已打开"];
+                   }
                }];
     }
 }
@@ -49,6 +63,27 @@
     [[self.recordingView rac_signalForControlEvents:UIControlEventTouchUpInside]
      subscribeNext:^(id x) {
          strongdef(self);
+         
+         if (!self.room.speakingRequestVM.speakingEnabled) {
+             UIAlertController *actionSheet = [UIAlertController
+                                               alertControllerWithTitle:self.recordingView.currentTitle
+                                               message:@"要发言先举手"
+                                               preferredStyle:UIAlertControllerStyleActionSheet];
+             [actionSheet addAction:[UIAlertAction
+                                     actionWithTitle:@"举手"
+                                     style:UIAlertActionStyleDefault
+                                     handler:^(UIAlertAction * _Nonnull action) {
+                                         [self.room.speakingRequestVM sendSpeakingRequest];
+                                     }]];
+             [actionSheet addAction:[UIAlertAction
+                                     actionWithTitle:@"取消"
+                                     style:UIAlertActionStyleCancel
+                                     handler:nil]];
+             [self presentViewController:actionSheet
+                                animated:YES
+                              completion:nil];
+             return;
+         }
          
          BJLRecordingVM *recordingVM = self.room.recordingVM;
          if (!recordingVM) {
@@ -68,6 +103,12 @@
                                  handler:^(UIAlertAction * _Nonnull action) {
                                      [recordingVM setRecordingAudio:!recordingAudio
                                                      recordingVideo:recordingVideo];
+                                     if (!self.room.roomVM.loginUser.isTeacher
+                                         && !recordingVM.recordingAudio
+                                         && !recordingVM.recordingVideo) {
+                                         [self.room.speakingRequestVM stopSpeaking];
+                                         [self.console printLine:@"同时关闭音视频，发言结束"];
+                                     }
                                  }]];
          
          [actionSheet addAction:[UIAlertAction
@@ -76,6 +117,12 @@
                                  handler:^(UIAlertAction * _Nonnull action) {
                                      [recordingVM setRecordingAudio:recordingAudio
                                                      recordingVideo:!recordingVideo];
+                                     if (!self.room.roomVM.loginUser.isTeacher
+                                         && !recordingVM.recordingAudio
+                                         && !recordingVM.recordingVideo) {
+                                         [self.room.speakingRequestVM stopSpeaking];
+                                         [self.console printLine:@"同时关闭音视频，发言结束"];
+                                     }
                                  }]];
          
          if (recordingAudio == recordingVideo) {
@@ -86,6 +133,12 @@
                                      handler:^(UIAlertAction * _Nonnull action) {
                                          [recordingVM setRecordingAudio:!recording
                                                          recordingVideo:!recording];
+                                         if (!self.room.roomVM.loginUser.isTeacher
+                                             && !recordingVM.recordingAudio
+                                             && !recordingVM.recordingVideo) {
+                                             [self.room.speakingRequestVM stopSpeaking];
+                                             [self.console printLine:@"同时关闭音视频，发言结束"];
+                                         }
                                      }]];
          }
          
@@ -217,91 +270,89 @@
         make.edges.equalTo(self.slideshowAndWhiteboardView);
     }];
     
-    if (self.room.roomVM.loginUser.isTeacher) {
-        UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
-        [self.slideshowAndWhiteboardView addSubview:infoButton];
-        [infoButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.bottom.equalTo(self.slideshowAndWhiteboardView).offset(- 5);
-        }];
-        
-        [[infoButton rac_signalForControlEvents:UIControlEventTouchUpInside]
-         subscribeNext:^(id x) {
-             strongdef(self);
-             
-             UIAlertController *actionSheet = [UIAlertController
-                                               alertControllerWithTitle:@"课件&画板"
-                                               message:nil
-                                               preferredStyle:UIAlertControllerStyleActionSheet];
-             
+    UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
+    [self.slideshowAndWhiteboardView addSubview:infoButton];
+    [infoButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.bottom.equalTo(self.slideshowAndWhiteboardView).offset(- 5);
+    }];
+    
+    [[infoButton rac_signalForControlEvents:UIControlEventTouchUpInside]
+     subscribeNext:^(id x) {
+         strongdef(self);
+         
+         UIAlertController *actionSheet = [UIAlertController
+                                           alertControllerWithTitle:@"课件&画板"
+                                           message:nil
+                                           preferredStyle:UIAlertControllerStyleActionSheet];
+         
+         [actionSheet addAction:[UIAlertAction
+                                 actionWithTitle:@"上传课件"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * _Nonnull action) {
+                                     [self.room.slideVM addDocument:({
+                                         BJLDocumentPageInfo *pageInfo = [BJLDocumentPageInfo new];
+                                         pageInfo.isAlbum = NO;
+                                         pageInfo.pageCount = 0;
+                                         pageInfo.pageURLString = @"https://img.genshuixue.com/baijiacloud/25760197_xg3ypq77.png";
+                                         pageInfo.width = 550;
+                                         pageInfo.height = 280;
+                                         BJLDocument *document = [BJLDocument new];
+                                         document.fileID = @"25760197";
+                                         document.fileName = @"1482134071749";
+                                         document.fileExtension = @".png";
+                                         document.pageInfo = pageInfo;
+                                         document;
+                                     })];
+                                     [self.room.slideVM addDocument:({
+                                         BJLDocumentPageInfo *pageInfo = [BJLDocumentPageInfo new];
+                                         pageInfo.isAlbum = NO;
+                                         pageInfo.pageCount = 0;
+                                         pageInfo.pageURLString = @"https://img.genshuixue.com/baijiacloud/25760479_kypu8tvk.png";
+                                         pageInfo.width = 627;
+                                         pageInfo.height = 830;
+                                         BJLDocument *document = [BJLDocument new];
+                                         document.fileID = @"25760479";
+                                         document.fileName = @"1482134268462";
+                                         document.fileExtension = @".png";
+                                         document.pageInfo = pageInfo;
+                                         document;
+                                     })];
+                                 }]];
+         
+         BOOL isFit = self.room.slideshowViewController.contentMode == BJLSlideshowContentMode_scaleAspectFit;
+         [actionSheet addAction:[UIAlertAction
+                                 actionWithTitle:isFit ? @"完整显示" : @"铺满显示"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * _Nonnull action) {
+                                     self.room.slideshowViewController.contentMode = isFit ? BJLSlideshowContentMode_scaleAspectFill : BJLSlideshowContentMode_scaleAspectFit;
+                                 }]];
+         
+         BOOL whiteboardEnabled = self.room.slideshowViewController.whiteboardEnabled;
+         [actionSheet addAction:[UIAlertAction
+                                 actionWithTitle:whiteboardEnabled ? @"结束标记" : @"开始标记"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * _Nonnull action) {
+                                     self.room.slideshowViewController.whiteboardEnabled = !whiteboardEnabled;
+                                 }]];
+         
+         if (whiteboardEnabled) {
              [actionSheet addAction:[UIAlertAction
-                                     actionWithTitle:@"上传课件"
-                                     style:UIAlertActionStyleDefault
+                                     actionWithTitle:@"擦除标记"
+                                     style:UIAlertActionStyleDestructive
                                      handler:^(UIAlertAction * _Nonnull action) {
-                                         [self.room.slideVM addDocument:({
-                                             BJLDocumentPageInfo *pageInfo = [BJLDocumentPageInfo new];
-                                             pageInfo.isAlbum = NO;
-                                             pageInfo.pageCount = 0;
-                                             pageInfo.pageURLString = @"https://img.genshuixue.com/baijiacloud/25760197_xg3ypq77.png";
-                                             pageInfo.width = 550;
-                                             pageInfo.height = 280;
-                                             BJLDocument *document = [BJLDocument new];
-                                             document.fileID = @"25760197";
-                                             document.fileName = @"1482134071749";
-                                             document.fileExtension = @".png";
-                                             document.pageInfo = pageInfo;
-                                             document;
-                                         })];
-                                         [self.room.slideVM addDocument:({
-                                             BJLDocumentPageInfo *pageInfo = [BJLDocumentPageInfo new];
-                                             pageInfo.isAlbum = NO;
-                                             pageInfo.pageCount = 0;
-                                             pageInfo.pageURLString = @"https://img.genshuixue.com/baijiacloud/25760479_kypu8tvk.png";
-                                             pageInfo.width = 627;
-                                             pageInfo.height = 830;
-                                             BJLDocument *document = [BJLDocument new];
-                                             document.fileID = @"25760479";
-                                             document.fileName = @"1482134268462";
-                                             document.fileExtension = @".png";
-                                             document.pageInfo = pageInfo;
-                                             document;
-                                         })];
+                                         [self.room.slideshowViewController clearWhiteboard];
                                      }]];
-             
-             BOOL isFit = self.room.slideshowViewController.contentMode == BJLSlideshowContentMode_scaleAspectFit;
-             [actionSheet addAction:[UIAlertAction
-                                     actionWithTitle:isFit ? @"完整显示" : @"铺满显示"
-                                     style:UIAlertActionStyleDefault
-                                     handler:^(UIAlertAction * _Nonnull action) {
-                                         self.room.slideshowViewController.contentMode = isFit ? BJLSlideshowContentMode_scaleAspectFill : BJLSlideshowContentMode_scaleAspectFit;
-                                     }]];
-             
-             BOOL whiteboardEnabled = self.room.slideshowViewController.whiteboardEnabled;
-             [actionSheet addAction:[UIAlertAction
-                                     actionWithTitle:whiteboardEnabled ? @"结束标记" : @"开始标记"
-                                     style:UIAlertActionStyleDefault
-                                     handler:^(UIAlertAction * _Nonnull action) {
-                                         self.room.slideshowViewController.whiteboardEnabled = !whiteboardEnabled;
-                                     }]];
-             
-             if (whiteboardEnabled) {
-                 [actionSheet addAction:[UIAlertAction
-                                         actionWithTitle:@"擦除标记"
-                                         style:UIAlertActionStyleDestructive
-                                         handler:^(UIAlertAction * _Nonnull action) {
-                                             [self.room.slideshowViewController clearWhiteboard];
-                                         }]];
-             }
-             
-             [actionSheet addAction:[UIAlertAction
-                                     actionWithTitle:@"取消"
-                                     style:UIAlertActionStyleCancel
-                                     handler:nil]];
-             
-             [self presentViewController:actionSheet
-                                animated:YES
-                              completion:nil];
-         }];
-    }
+         }
+         
+         [actionSheet addAction:[UIAlertAction
+                                 actionWithTitle:@"取消"
+                                 style:UIAlertActionStyleCancel
+                                 handler:nil]];
+         
+         [self presentViewController:actionSheet
+                            animated:YES
+                          completion:nil];
+     }];
 }
 
 @end
