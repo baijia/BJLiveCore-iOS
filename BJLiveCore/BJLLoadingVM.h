@@ -20,6 +20,9 @@ typedef NS_ENUM(NSInteger, BJLLoadingStep) {
 };
 typedef BJLLoadingStep BJLLoadingSteps;
 static BJLLoadingSteps const BJLLoadingSteps_all = NSIntegerMax;
+static BJLLoadingSteps const BJLLoadingSteps_reconnect = (BJLLoadingSteps_all
+                                                          ^ (BJLLoadingStep_loadRoomInfo
+                                                             | BJLLoadingStep_loadFeatureConfig));
 
 /**
  - stepOver: 单步完成，无错误 ignorable
@@ -51,8 +54,6 @@ BJLLoadingSuspendCallback suspendCallback);
     isContinue: ignorable 为 YES 时表示是否忽略该错误、执行下一步骤，否则表示是否重试当前步骤
  */
 @property (nonatomic, nullable, copy) BJLLoadingSuspendBlock suspendBlock;
-
-// TODO: MingLQ - 断开重连
 
 /** 加载进度 */
 - (BJLOEvent)loadingUpdateProgress:(CGFloat)progress; // progress: 0.0 ~ 1.0
