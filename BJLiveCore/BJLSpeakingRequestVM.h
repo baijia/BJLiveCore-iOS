@@ -39,7 +39,8 @@ NS_ASSUME_NONNULL_BEGIN
  更新学生的 `speakingEnabled`
  老师可以收到所有人发言状态的变更，比如学生自己取消、助教协助允许/拒绝 */
 - (BJLOEvent)speakingRequestDidReply:(NSObject<BJLSpeakingReply> *)reply;
-/** 发言状态被开启、关闭 */
+/** 发言状态被开启、关闭
+ NSNumber<BOOL> *enabled */
 - (BJLOEvent)speakingDidRemoteEnabled:(NSNumber *)enabled;
 
 @end
