@@ -14,8 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BJLChatVM : BJLBaseVM
 
-/** 所有消息
- TODO: 连接服务器后自动加载历史消息并存储到本地 */
+/** 所有消息 */
 @property (nonatomic, readonly, nullable, copy) NSArray<NSObject<BJLMessage> *> *receivedMessages;
 
 /**
