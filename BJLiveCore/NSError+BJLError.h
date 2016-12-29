@@ -14,13 +14,13 @@ NS_ASSUME_NONNULL_BEGIN
  BJLError 可用属性
  .domain                    BJLErrorDomain
  .code                      BJLErrorCode - 错误码
- .localizedDescription      BJLErrorDescriptions[BJLErrorCode] - 错误描述
- .localizedFailureReason    NSString *reason - 错误原因，可能为空
+ .localizedDescription      NSString * - 错误描述
+ .localizedFailureReason    NSString * - 错误原因，可能为空
  .bjl_sourceError           NSError * - 引起当前错误的错误，可能为空
  */
 @protocol BJLError <NSObject>
 
-@property (nonatomic, readonly) NSError *bjl_sourceError;
+@property (nonatomic, readonly, nullable) NSError *bjl_sourceError;
 
 @end
 
@@ -42,10 +42,8 @@ typedef NS_ENUM(NSInteger, BJLErrorCode) {
     BJLErrorCode_invalidArguments,  // 参数错误
     BJLErrorCode_areYouRobot,       // 操作过于频繁
     /* exit room */
-    BJLErrorCode_exitRoom_enterRoomFailed,      // 进教室失败
-    BJLErrorCode_exitRoom_anotherRoomEntered,   // 进入另一教室、导致当前教室退出
-    BJLErrorCode_exitRoom_exitRoom,             // 主动调用退出
-    BJLErrorCode_exitRoom_loginConflict,        // 用户在其它设备登录
+    BJLErrorCode_exitRoom_disconnected,     // 连接断开
+    BJLErrorCode_exitRoom_loginConflict,    // 用户在其它设备登录
     /* !!!: 
      1、在此之前增加错误码；
      2、不要设置错误码取值；

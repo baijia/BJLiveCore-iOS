@@ -95,8 +95,9 @@ typedef NS_ENUM(NSInteger, BJLRoomExitReason) {
 - (void)exit;
 
 /**
- 进入教室失败/退出教室事件，参考 `BJLErrorCode`
- */
+ 退出教室 - 正常/异常
+ 正常退出 error 为 nil，否则为异常退出
+ 参考 `BJLErrorCode` */
 - (BJLOEvent)roomWillExitWithError:(nullable BJLError *)error;
 - (BJLOEvent)roomDidExitWithError:(nullable BJLError *)error;
 
