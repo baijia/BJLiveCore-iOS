@@ -55,12 +55,16 @@ BJLLoadingSuspendCallback suspendCallback);
 // TODO: MingLQ - 断开重连
 
 /** 加载进度 */
-- (BJLOEvent)loadingDidUpdateProgress:(CGFloat)progress; // progress: 0.0 ~ 1.0
+- (BJLOEvent)loadingUpdateProgress:(CGFloat)progress; // progress: 0.0 ~ 1.0
 /** 加载成功 */
-- (BJLOEvent)loadingDidSuccess;
+- (BJLOEvent)loadingSuccess;
 /** 加载失败 */
 // TODO: MingLQ - 错误，要明确步骤、原因
-- (BJLOEvent)loadingDidFailureWithError:(nullable BJLError *)error;
+- (BJLOEvent)loadingFailureWithError:(nullable BJLError *)error;
+
+- (BJLOEvent)loadingDidUpdateProgress:(CGFloat)progress DEPRECATED_MSG_ATTRIBUTE("use `loadingUpdateProgress:` instead");
+- (BJLOEvent)loadingDidSuccess DEPRECATED_MSG_ATTRIBUTE("use `loadingSuccess` instead");
+- (BJLOEvent)loadingDidFailureWithError:(nullable BJLError *)error DEPRECATED_MSG_ATTRIBUTE("use `loadingFailureWithError:` instead");
 
 @end
 

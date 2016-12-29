@@ -77,16 +77,18 @@ typedef NS_ENUM(NSInteger, BJLRoomExitReason) {
 /** 进入教室 */
 - (void)enter;
 
+/** 进入教室 - 成功/失败 */
+- (BJLOEvent)enterRoomSuccess;
+- (BJLOEvent)enterRoomFailureWithError:(BJLError *)error;
+- (BJLOEvent)roomDidEnter DEPRECATED_MSG_ATTRIBUTE("use `enterRoomSuccess` instead");
 /** 退出教室 */
 - (void)exit;
 
-/** 成功进入教室 */
-- (BJLOEvent)roomDidEnter;
 /**
  进入教室失败/退出教室事件，参考 `BJLErrorCode`
  */
-- (BJLOEvent)roomWillExitWithError:(BJLError *)error;
-- (BJLOEvent)roomDidExitWithError:(BJLError *)error;
+- (BJLOEvent)roomWillExitWithError:(nullable BJLError *)error;
+- (BJLOEvent)roomDidExitWithError:(nullable BJLError *)error;
 
 #pragma mark view-model
 
@@ -94,7 +96,7 @@ typedef NS_ENUM(NSInteger, BJLRoomExitReason) {
  nullable：
     所有 VM 属性都可为空
     - loadingVM 在 loading 时非空，成功/失败后为空；
-    - 其它 VM 在 loading 前为空，在 loading 过程中初始化，`roomDidEnter` 之后全部可用，退出教室后为空（loading 失败自动退出）；
+    - 其它 VM 在 loading 前为空，在 loading 过程中初始化，`enterRoomSuccess` 之后全部可用，退出教室后为空（loading 失败自动退出）；
     - 当前端/后端配置关闭某功能、对应 VM 可能为空，参考 BJLRoomVM.featureConfig；
  KVO：
     所有 VM 及其所有属性支持 KVO，除非额外注释说明；
