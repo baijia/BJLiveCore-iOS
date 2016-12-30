@@ -48,6 +48,13 @@
                        [self.console printFormat:@"麦克风已打开"];
                    }
                }];
+        // 发言状态被开启、关闭
+        [self bjl_observe:self.room.speakingRequestVM
+                    event:@selector(speakingDidRemoteEnabled:)
+               usingBlock:^(NSNumber *enabled) {
+                   strongdef(self);
+                   [self.console printFormat:@"发言状态被%@", enabled.boolValue ? @"开启" : @"关闭"];
+               }];
     }
 }
 
@@ -64,17 +71,21 @@
      subscribeNext:^(id x) {
          strongdef(self);
          
-         if (!self.room.speakingRequestVM.speakingEnabled) {
+         if (!self.room.roomVM.loginUser.isTeacher
+             && !self.room.speakingRequestVM.speakingEnabled) {
+             BOOL hasTeacher = !!self.room.onlineUsersVM.onlineTeacher;
              UIAlertController *actionSheet = [UIAlertController
                                                alertControllerWithTitle:self.recordingView.currentTitle
-                                               message:@"要发言先举手"
+                                               message:hasTeacher ? @"要发言先举手" : @"老师没在教室，不能举手"
                                                preferredStyle:UIAlertControllerStyleActionSheet];
-             [actionSheet addAction:[UIAlertAction
-                                     actionWithTitle:@"举手"
-                                     style:UIAlertActionStyleDefault
-                                     handler:^(UIAlertAction * _Nonnull action) {
-                                         [self.room.speakingRequestVM sendSpeakingRequest];
-                                     }]];
+             if (hasTeacher) {
+                 [actionSheet addAction:[UIAlertAction
+                                         actionWithTitle:@"举手"
+                                         style:UIAlertActionStyleDefault
+                                         handler:^(UIAlertAction * _Nonnull action) {
+                                             [self.room.speakingRequestVM sendSpeakingRequest];
+                                         }]];
+             }
              [actionSheet addAction:[UIAlertAction
                                      actionWithTitle:@"取消"
                                      style:UIAlertActionStyleCancel
@@ -167,6 +178,16 @@
                                      }]];
          }
          
+         BJLMediaVM *mediaVM = self.room.mediaVM;
+         [actionSheet addAction:[UIAlertAction
+                                 actionWithTitle:(mediaVM.upLinkType == BJLLinkType_TCP
+                                                  ? @"TCP > UDP" : @"UDP > TCP")
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * _Nonnull action) {
+                                     mediaVM.upLinkType = (mediaVM.upLinkType == BJLLinkType_TCP
+                                                           ? BJLLinkType_UDP : BJLLinkType_TCP);
+                                 }]];
+         
          [actionSheet addAction:[UIAlertAction
                                  actionWithTitle:@"取消"
                                  style:UIAlertActionStyleCancel
@@ -227,7 +248,7 @@
              }
          }
          for (NSObject<BJLOnlineUser> *user in playingVM.playingUsers) {
-             if ([user.ID isEqualToString:videoPlayingUser.ID]) {
+             if (videoPlayingUser && [user.ID isEqualToString:videoPlayingUser.ID]) {
                  continue;
              }
              if (user.videoOn) {
@@ -250,6 +271,16 @@
              }
          }
          
+         BJLMediaVM *mediaVM = self.room.mediaVM;
+         [actionSheet addAction:[UIAlertAction
+                                 actionWithTitle:(mediaVM.downLinkType == BJLLinkType_TCP
+                                                  ? @"TCP > UDP" : @"UDP > TCP")
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * _Nonnull action) {
+                                     mediaVM.downLinkType = (mediaVM.downLinkType == BJLLinkType_TCP
+                                                             ? BJLLinkType_UDP : BJLLinkType_TCP);
+                                 }]];
+         
          [actionSheet addAction:[UIAlertAction
                                  actionWithTitle:@"取消"
                                  style:UIAlertActionStyleCancel
@@ -263,6 +294,10 @@
 
 - (void)makeSlideshowAndWhiteboardEvents {
     weakdef(self);
+    
+    self.room.slideshowViewController.studentCanPreviewForward = YES;
+    self.room.slideshowViewController.studentCanRemoteControl = YES;
+    self.room.slideshowViewController.placeholderImage = [UIImage imageWithColor:[UIColor lightGrayColor]];
     
     [self addChildViewController:self.room.slideshowViewController
                        superview:self.slideshowAndWhiteboardView];
@@ -328,21 +363,20 @@
                                  }]];
          
          BOOL whiteboardEnabled = self.room.slideshowViewController.whiteboardEnabled;
+         if (whiteboardEnabled) {
+             [actionSheet addAction:[UIAlertAction
+                                     actionWithTitle:@"擦除标记"
+                                     style:UIAlertActionStyleDefault
+                                     handler:^(UIAlertAction * _Nonnull action) {
+                                         [self.room.slideshowViewController clearWhiteboard];
+                                     }]];
+         }
          [actionSheet addAction:[UIAlertAction
                                  actionWithTitle:whiteboardEnabled ? @"结束标记" : @"开始标记"
                                  style:UIAlertActionStyleDefault
                                  handler:^(UIAlertAction * _Nonnull action) {
                                      self.room.slideshowViewController.whiteboardEnabled = !whiteboardEnabled;
                                  }]];
-         
-         if (whiteboardEnabled) {
-             [actionSheet addAction:[UIAlertAction
-                                     actionWithTitle:@"擦除标记"
-                                     style:UIAlertActionStyleDestructive
-                                     handler:^(UIAlertAction * _Nonnull action) {
-                                         [self.room.slideshowViewController clearWhiteboard];
-                                     }]];
-         }
          
          [actionSheet addAction:[UIAlertAction
                                  actionWithTitle:@"取消"

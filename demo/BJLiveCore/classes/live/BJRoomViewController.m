@@ -16,6 +16,8 @@
 #import "BJAppearance.h"
 #import "BJAppConfig.h"
 
+#import <YYModel/YYModel.h>
+
 static CGFloat const margin = 10.0;
 
 @interface BJRoomViewController ()
@@ -51,7 +53,7 @@ static CGFloat const margin = 10.0;
     weakdef(self);
     
     [self bjl_observe:self.room
-                event:@selector(roomDidEnter)
+                event:@selector(enterRoomSuccess)
            usingBlock:^(id data/* , id object, BJLOEventType event */) {
                strongdef(self);
                if (self.room.roomVM.loginUser.isTeacher) {
@@ -74,7 +76,7 @@ static CGFloat const margin = 10.0;
            usingBlock:^(BJLError *error/* , id object, BJLOEventType event */) {
                strongdef(self);
                
-               if (error.code == BJLErrorCode_exitRoom_exitRoom) {
+               if (!error) {
                    [self goBack];
                    return;
                }
@@ -99,7 +101,42 @@ static CGFloat const margin = 10.0;
                [self presentViewController:alert animated:YES completion:nil];
            }];
     
-    [self makeLoadingEvents];
+    [self bjl_KVObserve:self.room
+                 getter:@selector(loadingVM)
+                 filter:^BOOL(id old, id now) {
+                     // strongdef(self);
+                     return !!now;
+                 }
+             usingBlock:^BOOL(id old, BJLLoadingVM *now) {
+                 strongdef(self);
+                 [self makeEventsForLoadingVM:now];
+                 return YES;
+             }];
+    
+    [self.room setReloadingBlock:^(BJLLoadingVM * _Nonnull reloadingVM, void (^ _Nonnull callback)(BOOL)) {
+        @strongify(self);
+        [self.console printLine:@"网络连接断开"];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"网络连接断开"
+                                                                       message:@"重连 或 退出？"
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction
+                          actionWithTitle:@"重连"
+                          style:UIAlertActionStyleDefault
+                          handler:^(UIAlertAction * _Nonnull action) {
+                              [self.console printLine:@"网络连接断开，正在重连 ..."];
+                              [self makeEventsForLoadingVM:reloadingVM];
+                              [self.console printLine:@"网络连接断开：重连"];
+                              callback(YES);
+                          }]];
+        [alert addAction:[UIAlertAction
+                          actionWithTitle:@"退出"
+                          style:UIAlertActionStyleCancel
+                          handler:^(UIAlertAction * _Nonnull action) {
+                              [self.console printLine:@"网络连接断开：退出"];
+                              callback(NO);
+                          }]];
+        [self presentViewController:alert animated:YES completion:nil];
+    }];
     
     [self.room enter];
 }
@@ -262,9 +299,10 @@ static CGFloat const margin = 10.0;
                      // strongdef(self);
                      return old.integerValue != now.integerValue;
                  }
-             usingBlock:^(id old, id now) {
+             usingBlock:^BOOL(id old, id now) {
                  strongdef(self);
                  [self.console printFormat:@"liveStarted: %@", NSStringFromBOOL(self.room.roomVM.liveStarted)];
+                 return YES;
              }];
     // }
     
@@ -273,83 +311,73 @@ static CGFloat const margin = 10.0;
     [self makeChatEvents];
 }
 
-- (void)makeLoadingEvents {
-    weakdef(self);
+- (void)makeEventsForLoadingVM:(BJLLoadingVM *)loadingVM {
+    weakdef(self/* , loadingVM */);
     
-    [self bjl_KVObserve:self.room
-                 getter:@selector(loadingVM)
-                 filter:^BOOL(id old, id now) {
-                     // strongdef(self);
-                     return !!now;
-                 }
-             usingBlock:^(id old, id now) {
-                 strongdef(self);
-                 
-                 self.room.loadingVM.suspendBlock = ^(BJLLoadingStep step,
-                                                      BJLLoadingSuspendReason reason,
-                                                      BJLError *error,
-                                                      BOOL ignorable,
-                                                      BJLLoadingSuspendCallback suspendCallback) {
-                     strongdef(self);
-                     
-                     if (reason == BJLLoadingSuspendReason_stepOver) {
-                         [self.console printFormat:@"loading step over: %td", step];
-                         suspendCallback(YES);
-                         return;
-                     }
-                     [self.console printFormat:@"loading step suspend: %td", step];
-                     
-                     NSString *message = nil;
-                     if (reason == BJLLoadingSuspendReason_askForWWANNetwork) {
-                         message = @"WWAN 网络";
-                     }
-                     else if (reason == BJLLoadingSuspendReason_errorOccurred) {
-                         message = error ? [NSString stringWithFormat:@"%@ - %@",
-                                            error.localizedDescription,
-                                            error.localizedFailureReason] : @"错误";
-                     }
-                     if (message) {
-                         UIAlertController *alert = [UIAlertController
-                                                     alertControllerWithTitle:ignorable ? @"提示" : @"错误"
-                                                     message:message
-                                                     preferredStyle:UIAlertControllerStyleAlert];
-                         [alert addAction:[UIAlertAction
-                                           actionWithTitle:ignorable ? @"继续" : @"重试"
-                                           style:UIAlertActionStyleDefault
-                                           handler:^(UIAlertAction * _Nonnull action) {
-                                               suspendCallback(YES);
-                                           }]];
-                         [alert addAction:[UIAlertAction
-                                           actionWithTitle:@"取消"
-                                           style:UIAlertActionStyleCancel
-                                           handler:^(UIAlertAction * _Nonnull action) {
-                                               suspendCallback(NO);
-                                           }]];
-                         [self presentViewController:alert animated:YES completion:nil];
-                     }
-                 };
-                 
-                 [self bjl_observe:self.room.loadingVM
-                             event:@selector(loadingDidUpdateProgress:)
-                        usingBlock:^(NSNumber *progress/* , id object, BJLOEventType event */) {
-                            strongdef(self);
-                            [self.console printFormat:@"loading progress: %f", progress.doubleValue];
-                        }];
-                 
-                 [self bjl_observe:self.room.loadingVM
-                             event:@selector(loadingDidSuccess)
-                        usingBlock:^(id data/* , id object, BJLOEventType event */) {
-                            strongdef(self);
-                            [self.console printLine:@"loading success"];
-                        }];
-                 
-                 [self bjl_observe:self.room.loadingVM
-                             event:@selector(loadingDidFailureWithError:)
-                        usingBlock:^(BJLError *error/* , id object, BJLOEventType event */) {
-                            strongdef(self);
-                            [self.console printLine:@"loading failure"];
-                        }];
-             }];
+    loadingVM.suspendBlock = ^(BJLLoadingStep step,
+                               BJLLoadingSuspendReason reason,
+                               BJLError *error,
+                               BOOL ignorable,
+                               BJLLoadingSuspendCallback suspendCallback) {
+        strongdef(self/* , loadingVM */);
+        
+        if (reason == BJLLoadingSuspendReason_stepOver) {
+            [self.console printFormat:@"loading step over: %td", step];
+            suspendCallback(YES);
+            return;
+        }
+        [self.console printFormat:@"loading step suspend: %td", step];
+        
+        NSString *message = nil;
+        if (reason == BJLLoadingSuspendReason_askForWWANNetwork) {
+            message = @"WWAN 网络";
+        }
+        else if (reason == BJLLoadingSuspendReason_errorOccurred) {
+            message = error ? [NSString stringWithFormat:@"%@ - %@",
+                               error.localizedDescription,
+                               error.localizedFailureReason] : @"错误";
+        }
+        if (message) {
+            UIAlertController *alert = [UIAlertController
+                                        alertControllerWithTitle:ignorable ? @"提示" : @"错误"
+                                        message:message
+                                        preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:[UIAlertAction
+                              actionWithTitle:ignorable ? @"继续" : @"重试"
+                              style:UIAlertActionStyleDefault
+                              handler:^(UIAlertAction * _Nonnull action) {
+                                  suspendCallback(YES);
+                              }]];
+            [alert addAction:[UIAlertAction
+                              actionWithTitle:@"取消"
+                              style:UIAlertActionStyleCancel
+                              handler:^(UIAlertAction * _Nonnull action) {
+                                  suspendCallback(NO);
+                              }]];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+    };
+    
+    [self bjl_observe:loadingVM
+                event:@selector(loadingUpdateProgress:)
+           usingBlock:^(NSNumber *progress/* , id object, BJLOEventType event */) {
+               strongdef(self/* , loadingVM */);
+               [self.console printFormat:@"loading progress: %f", progress.doubleValue];
+           }];
+    
+    [self bjl_observe:loadingVM
+                event:@selector(loadingSuccess)
+           usingBlock:^(id data/* , id object, BJLOEventType event */) {
+               strongdef(self/* , loadingVM */);
+               [self.console printLine:@"loading success"];
+           }];
+    
+    [self bjl_observe:loadingVM
+                event:@selector(loadingFailureWithError:)
+           usingBlock:^(BJLError *error/* , id object, BJLOEventType event */) {
+               strongdef(self/* , loadingVM */);
+               [self.console printLine:@"loading failure"];
+           }];
 }
 
 - (void)makeChatEvents {
@@ -363,10 +391,34 @@ static CGFloat const margin = 10.0;
            }];
 }
 
+- (void)startPrintAVDebugInfo {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:_cmd object:nil];
+    
+    [self.console printFormat:@"---- av - %f ----", [NSDate timeIntervalSinceReferenceDate]];
+    for (NSString *info in [self.room.mediaVM avDebugInfo]) {
+        [self.console printLine:info];
+    }
+    
+    [self performSelector:_cmd withObject:nil afterDelay:1.0];
+}
+
+- (void)stopPrintAVDebugInfo {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(startPrintAVDebugInfo) object:nil];
+}
+
 #pragma mark - events
 
 - (void)makeEvents {
     weakdef(self);
+    
+    [[self.textField.rac_textSignal
+      map:^id(NSString *text) {
+          return @(!!text.length);
+      }]
+     subscribeNext:^(NSNumber *enabled) {
+         strongdef(self);
+         self.doneButton.enabled = enabled.boolValue;
+     }];
     
     [[self.backButton rac_signalForControlEvents:UIControlEventTouchUpInside]
      subscribeNext:^(id x) {
@@ -390,7 +442,20 @@ static CGFloat const margin = 10.0;
 
 - (void)sendMessage {
     [self.view endEditing:YES];
-    [self.room.chatVM sendMessage:self.textField.text];
+    if (!self.textField.text.length) {
+        return;
+    }
+    if ([self.textField.text isEqualToString:@"-av"]) {
+        self.textField.text = nil;
+        [self startPrintAVDebugInfo];
+        return;
+    }
+    if (!self.room.chatVM.forbidAll) {
+        [self.room.chatVM sendMessage:self.textField.text];
+    }
+    else {
+        [self.console printLine:@"禁言状态不能发送消息"];
+    }
     self.textField.text = nil;
 }
 

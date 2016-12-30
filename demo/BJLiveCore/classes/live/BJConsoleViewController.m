@@ -67,6 +67,9 @@ static NSString * const BJConsoleDefaultIdentifier = @"default";
     
     [self.tableView registerClass:[UITableViewCell class]
            forCellReuseIdentifier:BJConsoleDefaultIdentifier];
+    
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 44.0;
 }
 
 - (CGFloat)atTheBottomOfTableView {

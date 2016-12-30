@@ -19,21 +19,23 @@
                      // strongdef(self);
                      return old.integerValue != now.integerValue;
                  }
-             usingBlock:^(id old, id now) {
+             usingBlock:^BOOL(id old, id now) {
                  strongdef(self);
                  [self.console printFormat:@"onlineUsers count: %@", now];
+                 return YES;
              }];
     
     [self bjl_KVObserve:self.room.onlineUsersVM
                  getter:@selector(onlineTeacher)
-             usingBlock:^(id old, NSObject<BJLOnlineUser> *now) {
+             usingBlock:^BOOL(id old, NSObject<BJLOnlineUser> *now) {
                  strongdef(self);
                  [self.console printFormat:@"onlineUsers teacher: %@", now.name];
+                 return YES;
              }];
     
     [self bjl_KVObserve:self.room.onlineUsersVM
                  getter:@selector(onlineUsers)
-             usingBlock:^(id old, NSArray<NSObject<BJLOnlineUser> *> *now) {
+             usingBlock:^BOOL(id old, NSArray<NSObject<BJLOnlineUser> *> *now) {
                  strongdef(self);
                  NSMutableArray *userNames = [NSMutableArray new];
                  for (NSObject<BJLOnlineUser> *user in now) {
@@ -41,6 +43,7 @@
                  }
                  [self.console printFormat:@"onlineUsers all: %@",
                   [userNames componentsJoinedByString:@", "]];
+                 return YES;
              }];
     
     [self bjl_observe:self.room.onlineUsersVM

@@ -150,7 +150,7 @@
          // @strongify(self);
      }];
     
-    [alertController presentFromViewController:self.window.rootViewController
+    [alertController presentFromViewController:[UIViewController topViewController]
                                       animated:YES
                                     completion:nil];
 }
