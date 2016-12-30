@@ -2,6 +2,7 @@ BJLiveCore
 ==========
 
 ## 功能简介
+
 - 教室：直播间；
 - 老师：主讲人，拥有最高权限；
 - 助教：管理员，拥有部分老师的权限，**移动端不支持助教登录**；
@@ -14,6 +15,7 @@ BJLiveCore
 - 白板、课件、画笔：课件第一页是白板，后面是老师上传的课件，白板和每一页课件都支持画笔；
 
 ## 工程设置
+
 - 隐私权限  
 在 `Info.plist` 中添加麦克风、摄像头、相册访问描述；
 ```text
@@ -25,6 +27,7 @@ Privacy - Photo Library Usage Description
 在 `Project > Target > Capabilities` 中打开 `Background Modes` 开关、选中 `Audio, AirPlay, and Picture in Picture`；
 
 ## 集成 SDK
+
 BJLiveCore 会依赖一些第三方库，建议使用 CocoaPods 方式集成；
 - Podfile 中设置 source
 ```ruby
@@ -37,6 +40,7 @@ pod 'BJLiveCore'
 ```
 
 ## Hello World
+
 参考 demo 中的 `BJRoomViewController`；
 - 引入头文件
 ```objc
@@ -141,6 +145,7 @@ weakdef(self);
 ```
 
 ## 设计
+
 - `BJLRoom` 是直播功能的入口，用于处理创建、进入、退出教室；
 - 调用 `enter` 方法后 `room` 变成 `active` 状态，之前的教室将被强制退出，退出后变为 `inactive` 状态；
 - 教室内各个功能通过对应的 `ViewModel`（以下简称 `VM`）来管理，所有 VM 都可为空；
@@ -150,6 +155,7 @@ weakdef(self);
 - 无法通过 `KVO` 实现的事件（如有用户退出教室）可通过 `Event` 方式监听，返回类型值为 `BJLOEvent` 的方法表示可监听；
 
 ## Block 的使用
+
 为了开发方便，这里大量的使用了 `block`（`RAC` 本是个很好的选择，但为避免依赖过多的第三方库而被放弃）：  
 - KVO，参考 `NSObject+BJLBlockKVO.h`
 ```objc
@@ -159,9 +165,10 @@ weakdef(self);
              filter:^BOOL(NSNumber *old, NSNumber *now) { // 过滤
                  return old.boolValue != now.boolValue;
              }
-         usingBlock:^(NSNumber *old, NSNumber *now) { // 处理
+         usingBlock:^BOOL(NSNumber *old, NSNumber *now) { // 处理
              strongdef(self);
              [self.console printFormat:@"liveStarted: %@", NSStringFromBOOL(now.boolValue)];
+             return YES;
          }];
 ```
 - 事件监听，参考 `NSObject+BJLBlockNTO.h`
@@ -191,6 +198,9 @@ BJLTupleUnpack(tuple) = ^(BOOL state1, BOOL state2) {
 ```
 
 ## API
+
+**[ChangeLog](https://github.com/baijia/BJLiveCore-iOS/blob/master/CHANGELOG.md)**
+
 - [BJLConstants.h](https://github.com/baijia/BJLiveCore-iOS/blob/master/BJLiveCore/BJLConstants.h) 枚举
 - [NSError+BJLError.h](https://github.com/baijia/BJLiveCore-iOS/blob/master/BJLiveCore/NSError+BJLError.h) 错误码
 - [BJLRoom.h](https://github.com/baijia/BJLiveCore-iOS/blob/master/BJLiveCore/BJLRoom.h) 教室管理
@@ -205,3 +215,4 @@ BJLTupleUnpack(tuple) = ^(BOOL state1, BOOL state2) {
 - [BJLSlideshowUI.h](https://github.com/baijia/BJLiveCore-iOS/blob/master/BJLiveCore/BJLSlideshowUI.h) 课件、画笔视图
 - [BJLServerRecordingVM.h](https://github.com/baijia/BJLiveCore-iOS/blob/master/BJLiveCore/BJLServerRecordingVM.h) 云端录制
 - [BJLChatVM.h](https://github.com/baijia/BJLiveCore-iOS/blob/master/BJLiveCore/BJLChatVM.h) 聊天/弹幕
+
