@@ -9,8 +9,8 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.ios.deployment_target    = '7.0'
-  # s.frameworks = 'AssetsLibrary', 'CoreGraphics', 'Foundation', 'UIKit', 'Photos'
-  s.frameworks = 'CoreGraphics', 'Foundation', 'UIKit'
+  # s.frameworks = ['AssetsLibrary', 'CoreGraphics', 'Foundation', 'UIKit', 'Photos']
+  s.frameworks = ['CoreGraphics', 'Foundation', 'UIKit']
 
   # s.ios.vendored_frameworks  = 'BJLiveCore-#{s.version}/BJLiveCore.framework'
 
