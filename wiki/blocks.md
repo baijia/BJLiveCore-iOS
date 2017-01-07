@@ -1,7 +1,11 @@
 Blocks
 ======
 
-为了开发方便，这里大量的使用了 `block`（`RAC` 本是个很好的选择，但为避免依赖过多的第三方库而被放弃）；
+为了开发方便，这里大量的使用了 `block`，`RAC` 本是个很好的选择，但为避免依赖过多的第三方库而被放弃 - 由于历史遗留问题，项目中暂时还没有摆脱对 `RAC` 的依赖、但在计划之内；
+
+`NSObject+BJLObserving.h` 简易地实现了 RAC 的部分功能，比如 `KVO`、`filter`、通过方法调用部分地替代 `RACSubject`、`tuple`；
+
+相比 `RAC` 也有一些优势，比如轻量 - 只有一对 .h&.m 文件、没有过多地使用 `method-swizzling`，比如 self 和被监听对象 dealloc 时都会自动取消监听；
 
 ##### 1. Block KVO
 
@@ -71,7 +75,7 @@ weakdef(self);
          }];
 ```
 
-- 支持两种方式取消某次监听；
+- 支持两种方式取消某次监听，self 和被监听对象 dealloc 时都会自动取消监听；
 ```objc
 weakdef(self);
 id<BJLObservation> observation =

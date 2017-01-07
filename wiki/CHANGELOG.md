@@ -13,10 +13,12 @@ Change Log
 ##### 1. 重新实现 Block KVO
 
 - KVO 调用方式：
+
+属性名支持代码自动完成，而不再是 selector 或者 keypath，从而避免出错；
 ```objc
 weakdef(self);
 [self bjl_kvo:BJLMakeProperty(self.room.roomVM, // 对象
-                              liveStarted) // 属性名，支持代码自动完成，而不再是 selector 或者 keypath
+                              liveStarted) // 属性名
        filter:^BOOL(NSNumber *old, NSNumber *now) { // 过滤
            return old.boolValue != now.boolValue;  // 返回 NO 丢弃
        }
@@ -62,6 +64,8 @@ id<BJLObservation> observation =
 ##### 2. 重新实现 Block 监听方法调用
 
 - 监听方法调用，支持 filter - 可选：
+
+`BJLMakeMethod(TARGET, METHOD)` 会断言 TARGET 是否实现了 METHOD 方法，以便发现错误；
 ```objc
 weakdef(self);
 [self bjl_observe:BJLMakeMethod(self.room, // 对象

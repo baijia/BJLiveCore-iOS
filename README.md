@@ -151,58 +151,12 @@ weakdef(self);
 - 所有 VM 及其所有属性支持 `KVO` 以便监听状态变化，除非额外注释说明；
 - 无法通过 `KVO` 实现的事件（如有用户退出教室）可监听方法调用，返回类型值为 `BJLObservable` 的方法表示可监听；
 
-## Block 的使用
+## WIKI
 
-为了开发方便，这里大量的使用了 `block`（`RAC` 本是个很好的选择，但为避免依赖过多的第三方库而被放弃）：  
-- KVO，参考 `NSObject+BJLObserving.h`
-```objc
-weakdef(self);
-[self bjl_kvo:BJLMakeProperty(self.room.roomVM, // 对象
-                              liveStarted) // 属性
-       filter:^BOOL(NSNumber *old, NSNumber *now) { // 过滤
-           return old.boolValue != now.boolValue;  // 返回 NO 丢弃
-       }
-     observer:^BOOL(NSNumber *old, NSNumber *now) { // 处理
-       strongdef(self);
-       [self.console printFormat:@"liveStarted: %@", NSStringFromBOOL(now.boolValue)];
-       return YES; // 返回 NO 停止监听
-   }];
-```
-- 监听方法调用，参考 `NSObject+BJLBlockNTO.h`
-> 支持使用 **简单类型参数** 和 **多个参数**，使用 `BOOL`、`char`、`short`、`float` 等类型会产生警告，将 block 强转为 `BJLMethodFilter` 或 `BJLMethodObserver` 既可解决；
-```objc
-- (BJLObservable)roomWillExitWithError:(BJLError *)error;
-```
-```objc
-weakdef(self);
-[self bjl_observe:BJLMakeMethod(self.room, // 对象
-                                roomWillExitWithError:) // 方法
-           filter:(BJLMethodFilter)^BOOL(BJLError *error) { // 过滤
-               return !!error; // 返回 NO 丢弃
-           }];
-         observer:(BJLMethodObserver)^BOOL(BJLError *error) { // 处理
-             strongdef(self);
-             [self.console printFormat:@"roomWillExitWithError: %@", error];
-             return YES; // 返回 NO 停止监听
-         }];
-```
-- 模拟元组，参考 `NSObject+BJL_M9Dev.h`
-> 支持使用 **简单类型参数** 和 **多个参数**；
-```objc
-// 定义: 此方法返回一个包含两个 BOOL 型变量的元组
-- (BJLTuple<void (^)(BOOL state1, BOOL state2> *)states;
-```
-```objc
-// 拆包: 这个 block 会被立即执行，因此这里不需要 weakify&strongify
-BJLTupleUnpack(tuple) = ^(BOOL state1, BOOL state2) {
-    NSLog(@"state1: %d, state2: %d", state1, state2);
-};
-```
+- **[ChangeLog](https://github.com/baijia/BJLiveCore-iOS/blob/master/wiki/CHANGELOG.md)**
+- **[Block 的使用](https://github.com/baijia/BJLiveCore-iOS/blob/master/wiki/blocks.md)**
 
 ## API
-
-**[ChangeLog](https://github.com/baijia/BJLiveCore-iOS/blob/master/wiki/CHANGELOG.md)**
-**[Blocks](https://github.com/baijia/BJLiveCore-iOS/blob/master/wiki/blocks.md)**
 
 - [BJLConstants.h](https://github.com/baijia/BJLiveCore-iOS/blob/master/BJLiveCore/BJLConstants.h) 枚举
 - [NSError+BJLError.h](https://github.com/baijia/BJLiveCore-iOS/blob/master/BJLiveCore/NSError+BJLError.h) 错误码
