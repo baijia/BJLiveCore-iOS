@@ -48,14 +48,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 添加课件通知
  同时更新 `allDocuments` */
-- (BJLOEvent)didAddDocument:(NSObject<BJLDocument> *)document;
+- (BJLObservable)didAddDocument:(NSObject<BJLDocument> *)document;
 
 /** 删除课件通知
  同时更新 `allDocuments` */
-- (BJLOEvent)didDeleteDocument:(NSObject<BJLDocument> *)document;
+- (BJLObservable)didDeleteDocument:(NSObject<BJLDocument> *)document;
 
 /** 翻页课件通知 */
-- (BJLOEvent)didTurnToSlidePage:(BJLSlidePage *)slidePage;
+- (BJLObservable)didTurnToSlidePage:(BJLSlidePage *)slidePage;
 
 @end
 

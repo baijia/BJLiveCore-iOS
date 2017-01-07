@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 检查云端录课不可用的通知
  包括网络请求失败 */
-- (BJLOEvent)requestServerRecordingDidFailed:(NSString *)message;
+- (BJLObservable)requestServerRecordingDidFailed:(NSString *)message;
 
 @end
 

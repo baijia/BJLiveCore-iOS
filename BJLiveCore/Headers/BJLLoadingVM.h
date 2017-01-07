@@ -56,16 +56,16 @@ BJLLoadingSuspendCallback suspendCallback);
 @property (nonatomic, nullable, copy) BJLLoadingSuspendBlock suspendBlock;
 
 /** 加载进度 */
-- (BJLOEvent)loadingUpdateProgress:(CGFloat)progress; // progress: 0.0 ~ 1.0
+- (BJLObservable)loadingUpdateProgress:(CGFloat)progress; // progress: 0.0 ~ 1.0
 /** 加载成功 */
-- (BJLOEvent)loadingSuccess;
+- (BJLObservable)loadingSuccess;
 /** 加载失败 */
 // TODO: MingLQ - 错误，要明确步骤、原因
-- (BJLOEvent)loadingFailureWithError:(nullable BJLError *)error;
+- (BJLObservable)loadingFailureWithError:(nullable BJLError *)error;
 
-- (BJLOEvent)loadingDidUpdateProgress:(CGFloat)progress DEPRECATED_MSG_ATTRIBUTE("use `loadingUpdateProgress:` instead");
-- (BJLOEvent)loadingDidSuccess DEPRECATED_MSG_ATTRIBUTE("use `loadingSuccess` instead");
-- (BJLOEvent)loadingDidFailureWithError:(nullable BJLError *)error DEPRECATED_MSG_ATTRIBUTE("use `loadingFailureWithError:` instead");
+- (BJLObservable)loadingDidUpdateProgress:(CGFloat)progress DEPRECATED_MSG_ATTRIBUTE("use `loadingUpdateProgress:` instead");
+- (BJLObservable)loadingDidSuccess DEPRECATED_MSG_ATTRIBUTE("use `loadingSuccess` instead");
+- (BJLObservable)loadingDidFailureWithError:(nullable BJLError *)error DEPRECATED_MSG_ATTRIBUTE("use `loadingFailureWithError:` instead");
 
 @end
 

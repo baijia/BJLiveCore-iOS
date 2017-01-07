@@ -32,10 +32,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 有用户进入房间
  同时更新 `onlineUsers` */
-- (BJLOEvent)onlineUserDidEnter:(NSObject<BJLOnlineUser> *)user;
+- (BJLObservable)onlineUserDidEnter:(NSObject<BJLOnlineUser> *)user;
 /** 有用户退出房间
  同时更新 `onlineUsers` */
-- (BJLOEvent)onlineUserDidExit:(NSObject<BJLOnlineUser> *)user;
+- (BJLObservable)onlineUserDidExit:(NSObject<BJLOnlineUser> *)user;
 
 @end
 

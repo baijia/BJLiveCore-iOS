@@ -78,9 +78,9 @@ typedef NS_ENUM(NSInteger, BJLRoomExitReason) {
 - (void)enter;
 
 /** 进入教室 - 成功/失败 */
-- (BJLOEvent)enterRoomSuccess;
-- (BJLOEvent)enterRoomFailureWithError:(BJLError *)error;
-- (BJLOEvent)roomDidEnter DEPRECATED_MSG_ATTRIBUTE("use `enterRoomSuccess` instead");
+- (BJLObservable)enterRoomSuccess;
+- (BJLObservable)enterRoomFailureWithError:(BJLError *)error;
+- (BJLObservable)roomDidEnter DEPRECATED_MSG_ATTRIBUTE("use `enterRoomSuccess` instead");
 
 /** 断开、重连
  网络连接断开时回调，回调 callback 确认是否重连、可通过 `reloadingVM` 监听重连的进度和结果
@@ -98,8 +98,8 @@ typedef NS_ENUM(NSInteger, BJLRoomExitReason) {
  退出教室 - 正常/异常
  正常退出 error 为 nil，否则为异常退出
  参考 `BJLErrorCode` */
-- (BJLOEvent)roomWillExitWithError:(nullable BJLError *)error;
-- (BJLOEvent)roomDidExitWithError:(nullable BJLError *)error;
+- (BJLObservable)roomWillExitWithError:(nullable BJLError *)error;
+- (BJLObservable)roomDidExitWithError:(nullable BJLError *)error;
 
 #pragma mark view-model
 
@@ -113,8 +113,8 @@ typedef NS_ENUM(NSInteger, BJLRoomExitReason) {
     所有 VM 及其所有属性支持 KVO，除非额外注释说明；
  block:
     这里需要较多的使用 block 进行 KVO、事件监听，RAC 本是个很好的选择，但为避免依赖过多的开源库而被放弃；
-    使用 block 进行 KVO - NSObject+BJLBlockKVO.h；
-    使用 block 进行事件监听 - NSObject+BJLBlockNTO.h；
+    使用 block 进行 KVO - NSObject+BJLObserving.h；
+    使用 block 监听方法调用 - NSObject+BJLObserving.h；
     tuple pack&unpack - NSObject+BJL_M9Dev.h；
     参考 BJLiveUI；
  */

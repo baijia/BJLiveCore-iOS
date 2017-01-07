@@ -16,15 +16,13 @@ BJLiveCore
 
 ## 工程设置
 
-- 隐私权限  
-在 `Info.plist` 中添加麦克风、摄像头、相册访问描述；
-```text
+- 隐私权限：在 `Info.plist` 中添加麦克风、摄像头、相册访问描述；
+```
 Privacy - Microphone Usage Description
 Privacy - Camera Usage Description
 Privacy - Photo Library Usage Description
 ```
-- 后台任务  
-在 `Project > Target > Capabilities` 中打开 `Background Modes` 开关、选中 `Audio, AirPlay, and Picture in Picture`；
+- 后台任务：在 `Project > Target > Capabilities` 中打开 `Background Modes` 开关、选中 `Audio, AirPlay, and Picture in Picture`；
 
 ## 集成 SDK
 
@@ -59,34 +57,33 @@ self.room = [BJLRoom roomWithSecret:roomSecret
 - 监听进入、退出教室的事件
 ```objc
 weakdef(self);
-[self bjl_observe:self.room
-            event:@selector(roomDidEnter)
-       usingBlock:^(id data, id object, BJLOEventType event) {
-           strongdef(self);
-           if (self.room.roomVM.loginUser.isTeacher) {
-               [self.room.roomVM sendLiveStarted:YES]; // 通知学生上课
-           }
-           else {
-               [self bjl_KVObserve:self.room.roomVM
-                            getter:@selector(liveStarted)
-                            filter:^BOOL(NSNumber *old, NSNumber *now) {
-                                return old.boolValue != now.boolValue;
-                            }
-                        usingBlock:^(NSNumber *old, NSNumber *now) {
-                            strongdef(self);
-                            [self.console printFormat:@"liveStarted: %@", NSStringFromBOOL(now.boolValue)];
-                        }];
-           }
-           [self didEnterRoom]; // 处理进教室后的逻辑
-       }];
-[self bjl_observe:self.room
-            event:@selector(roomWillExitWithError:)
-       usingBlock:^(BJLError *error, id object, BJLOEventType event) {
-           strongdef(self);
-           if (self.room.roomVM.loginUser.isTeacher) {
-               [self.room.roomVM sendLiveStarted:NO]; // 通知学生下课
-           }
-       }];
+[self bjl_observe:BJLMakeMethod(self.room, roomDidEnter)
+         observer:^BOOL(id data) {
+             strongdef(self);
+             if (self.room.roomVM.loginUser.isTeacher) {
+                 [self.room.roomVM sendLiveStarted:YES]; // 通知学生上课
+             }
+             else {
+                 [self bjl_kvo:BJLMakeProperty(self.room.roomVM, liveStarted)
+                        filter:^BOOL(NSNumber *old, NSNumber *now) {
+                            return old.boolValue != now.boolValue;
+                        }
+                      observer:^(NSNumber *old, NSNumber *now) {
+                        strongdef(self);
+                        [self.console printFormat:@"liveStarted: %@", NSStringFromBOOL(now.boolValue)];
+                    }];
+             }
+             [self didEnterRoom]; // 处理进教室后的逻辑
+             return YES;
+         }];
+[self bjl_observe:BJLMakeMethod(self.room, roomWillExitWithError:)
+         observer:^BOOL(BJLError *error) {
+             strongdef(self);
+             if (self.room.roomVM.loginUser.isTeacher) {
+                 [self.room.roomVM sendLiveStarted:NO]; // 通知学生下课
+             }
+             return YES;
+         }];
 ```
 - 进入教室
 ```objc
@@ -124,24 +121,24 @@ for (NSObject<BJLOnlineUser> *user in self.room.playingVM.playingUsers) {
 - 举手后老师同意/拒绝发言申请
 ```objc
 weakdef(self);
-[self bjl_observe:self.room.speakingRequestVM
-            event:@selector(receivedSpeakingRequestFromUser:)
-       usingBlock:^(NSObject<BJLUser> *user, id object, BJLOEventType event) {
-           strongdef(self);
-           [self.room.speakingRequestVM replySpeakingRequestToUserID:user.ID allowed:YES]; // 同意举手
-       }];
+[self bjl_observe:BJLMakeMethod(self.room.speakingRequestVM, receivedSpeakingRequestFromUser:)
+         observer:^BOOL(NSObject<BJLUser> *user) {
+             strongdef(self);
+             [self.room.speakingRequestVM replySpeakingRequestToUserID:user.ID allowed:YES]; // 同意举手
+             return YES;
+         }];
 ```
 - 老师同意后学生开始发言
 ```objc
 weakdef(self);
-[self bjl_observe:self.room.speakingRequestVM
-            event:@selector(speakingRequestDidReply:)
-       usingBlock:^(NSObject<BJLSpeakingReply> *reply, id object, BJLOEventType event) {
-           strongdef(self);
-           if (reply.speakingEnabled) {
-               [self.room.recordingVM setRecordingAudio:YES recordingVideo:NO]; // 发布音频
-           }
-       }];
+[self bjl_observe:BJLMakeMethod(self.room.speakingRequestVM, speakingRequestDidReply:)
+         observer:^BOOL(NSObject<BJLSpeakingReply> *reply) {
+             strongdef(self);
+             if (reply.speakingEnabled) {
+                 [self.room.recordingVM setRecordingAudio:YES recordingVideo:NO]; // 发布音频
+             }
+             return YES;
+         }];
 ```
 
 ## 设计
@@ -152,40 +149,45 @@ weakdef(self);
 - 调用 `enter` 方法后 `room.loadingVM` 将被初始化，可用于显示加载度、成功和失败等；
 - 成功进教室后其它 VM 将被初始化，在 `roomDidEnter` 时可用；
 - 所有 VM 及其所有属性支持 `KVO` 以便监听状态变化，除非额外注释说明；
-- 无法通过 `KVO` 实现的事件（如有用户退出教室）可通过 `Event` 方式监听，返回类型值为 `BJLOEvent` 的方法表示可监听；
+- 无法通过 `KVO` 实现的事件（如有用户退出教室）可监听方法调用，返回类型值为 `BJLObservable` 的方法表示可监听；
 
 ## Block 的使用
 
 为了开发方便，这里大量的使用了 `block`（`RAC` 本是个很好的选择，但为避免依赖过多的第三方库而被放弃）：  
-- KVO，参考 `NSObject+BJLBlockKVO.h`
+- KVO，参考 `NSObject+BJLObserving.h`
 ```objc
 weakdef(self);
-[self bjl_KVObserve:self.room.roomVM // 对象
-             getter:@selector(liveStarted) // 属性对应的 selector，属性名和 getter 方法名不一样可使用带有 keypath: 的方法
-             filter:^BOOL(NSNumber *old, NSNumber *now) { // 过滤
-                 return old.boolValue != now.boolValue;
-             }
-         usingBlock:^BOOL(NSNumber *old, NSNumber *now) { // 处理
+[self bjl_kvo:BJLMakeProperty(self.room.roomVM, // 对象
+                              liveStarted) // 属性
+       filter:^BOOL(NSNumber *old, NSNumber *now) { // 过滤
+           return old.boolValue != now.boolValue;  // 返回 NO 丢弃
+       }
+     observer:^BOOL(NSNumber *old, NSNumber *now) { // 处理
+       strongdef(self);
+       [self.console printFormat:@"liveStarted: %@", NSStringFromBOOL(now.boolValue)];
+       return YES; // 返回 NO 停止监听
+   }];
+```
+- 监听方法调用，参考 `NSObject+BJLBlockNTO.h`
+> 支持使用 **简单类型参数** 和 **多个参数**，使用 `BOOL`、`char`、`short`、`float` 等类型会产生警告，将 block 强转为 `BJLMethodFilter` 或 `BJLMethodObserver` 既可解决；
+```objc
+- (BJLObservable)roomWillExitWithError:(BJLError *)error;
+```
+```objc
+weakdef(self);
+[self bjl_observe:BJLMakeMethod(self.room, // 对象
+                                roomWillExitWithError:) // 方法
+           filter:(BJLMethodFilter)^BOOL(BJLError *error) { // 过滤
+               return !!error; // 返回 NO 丢弃
+           }];
+         observer:(BJLMethodObserver)^BOOL(BJLError *error) { // 处理
              strongdef(self);
-             [self.console printFormat:@"liveStarted: %@", NSStringFromBOOL(now.boolValue)];
-             return YES;
+             [self.console printFormat:@"roomWillExitWithError: %@", error];
+             return YES; // 返回 NO 停止监听
          }];
 ```
-- 事件监听，参考 `NSObject+BJLBlockNTO.h`
-```objc
-- (BJLOEvent)roomWillExitWithError:(BJLError *)error; // 定义事件
-```
-```objc
-// 监听事件
-weakdef(self);
-[self bjl_observe:self.room // 对象
-            event:@selector(roomWillExitWithError:) // 事件 selector
-       usingBlock:^(BJLError *error) { // 处理
-           strongdef(self);
-           [self.console printFormat:@"roomWillExitWithError: %@", error];
-       }];
-```
 - 模拟元组，参考 `NSObject+BJL_M9Dev.h`
+> 支持使用 **简单类型参数** 和 **多个参数**；
 ```objc
 // 定义: 此方法返回一个包含两个 BOOL 型变量的元组
 - (BJLTuple<void (^)(BOOL state1, BOOL state2> *)states;
@@ -199,7 +201,8 @@ BJLTupleUnpack(tuple) = ^(BOOL state1, BOOL state2) {
 
 ## API
 
-**[ChangeLog](https://github.com/baijia/BJLiveCore-iOS/blob/master/CHANGELOG.md)**
+**[ChangeLog](https://github.com/baijia/BJLiveCore-iOS/blob/master/wiki/CHANGELOG.md)**
+**[Blocks](https://github.com/baijia/BJLiveCore-iOS/blob/master/wiki/blocks.md)**
 
 - [BJLConstants.h](https://github.com/baijia/BJLiveCore-iOS/blob/master/BJLiveCore/BJLConstants.h) 枚举
 - [NSError+BJLError.h](https://github.com/baijia/BJLiveCore-iOS/blob/master/BJLiveCore/NSError+BJLError.h) 错误码

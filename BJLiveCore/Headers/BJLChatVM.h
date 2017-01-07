@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 收到消息
  同时更新 `receivedMessages` */
-- (BJLOEvent)didReceiveMessage:(NSObject<BJLMessage> *)message;
+- (BJLObservable)didReceiveMessage:(NSObject<BJLMessage> *)message;
 
 /** 禁言状态 */
 @property (nonatomic, readonly) BOOL forbidAll;

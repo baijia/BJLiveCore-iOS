@@ -31,17 +31,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly, nullable, copy) NSArray<NSObject<BJLUser> *> *speakingRequestUsers;
 
 /** 老师: 收到发言申请 */
-- (BJLOEvent)receivedSpeakingRequestFromUser:(NSObject<BJLUser> *)user;
+- (BJLObservable)receivedSpeakingRequestFromUser:(NSObject<BJLUser> *)user;
 /** 老师: 允许/拒绝发言申请 */
 - (nullable BJLError *)replySpeakingRequestToUserID:(NSString *)userID allowed:(BOOL)allowed;
 
 /** 学生&老师: 发言申请被允许/拒绝
  更新学生的 `speakingEnabled`
  老师可以收到所有人发言状态的变更，比如学生自己取消、助教协助允许/拒绝 */
-- (BJLOEvent)speakingRequestDidReply:(NSObject<BJLSpeakingReply> *)reply;
-/** 发言状态被开启、关闭
- NSNumber<BOOL> *enabled */
-- (BJLOEvent)speakingDidRemoteEnabled:(NSNumber *)enabled;
+- (BJLObservable)speakingRequestDidReply:(NSObject<BJLSpeakingReply> *)reply;
+/** 发言状态被开启、关闭 */
+- (BJLObservable)speakingDidRemoteEnabled:(BOOL)enabled;
 
 @end
 

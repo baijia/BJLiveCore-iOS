@@ -40,8 +40,8 @@ NS_ASSUME_NONNULL_BEGIN
  *         [self displayUser:now audioAction:audioAction videoAction:videoAction];
  *     }
  */
-- (BJLOEvent)playingUserDidUpdate:(BJLTuple<void (^)(NSObject<BJLOnlineUser> *old,
-                                                     NSObject<BJLOnlineUser> *now)> *)tuple;
+- (BJLObservable)playingUserDidUpdate:(BJLTuple<void (^)(NSObject<BJLOnlineUser> *old,
+                                                         NSObject<BJLOnlineUser> *now)> *)tuple;
 
 #pragma mark -
 

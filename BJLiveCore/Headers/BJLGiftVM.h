@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 收到打赏通知
  同时更新 `receivedGifts` */
-- (BJLOEvent)didReceiveGift:(NSObject<BJLReceivedGift> *)receivedGift;
+- (BJLObservable)didReceiveGift:(NSObject<BJLReceivedGift> *)receivedGift;
 
 @end
 

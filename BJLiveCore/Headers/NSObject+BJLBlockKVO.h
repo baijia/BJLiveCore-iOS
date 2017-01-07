@@ -8,54 +8,43 @@
 
 #import <Foundation/Foundation.h>
 
-#define BJLKeyPathMake(sel) NSStringFromSelector(@selector(sel))
+#import "NSObject+BJLObserving.h"
 
-/** @return NO to ignore */
-typedef BOOL (^BJLKVOFilter)(id old, id now);
+NS_ASSUME_NONNULL_BEGIN
 
-/** @return mapped value
-typedef id   (^BJLKVOMap)   (id old, id now); */
+#define BJLKeyPathMake(SEL) NSStringFromSelector(@selector(SEL))
 
-/** @return BJLKVO_STOP(aka NO) to stop observing */
-#define BJLKVO_GOON YES
-#define BJLKVO_STOP NO
-typedef BOOL (^BJLKVOBlock) (id old, id now);
+#define BJLKVO_GOON !BJLStopObserving
+#define BJLKVO_STOP BJLStopObserving
 
 /**
- KVO with block
+ !!!: DEPRECATED
+ @see NSObject+BJLObserving.h
  */
 @interface NSObject (BJLBlockKVObserver)
 
-/**
- @param object  object
- @param getter  getter of property, use keyPath if the getter is different from its property name
- @param options default old | now | initial
- @param filter  call block if filter returns YES or filter is nil, retaind by self and object
- @param block   retaind by self and object
- */
 - (void)bjl_KVObserve:(NSObject *)object
                getter:(SEL)getter
-           usingBlock:(BJLKVOBlock)block;
+           usingBlock:(BJLPropertyObserver)block DEPRECATED_MSG_ATTRIBUTE("@see `NSObject+BJLObserving.h`");
 - (void)bjl_KVObserve:(NSObject *)object
                getter:(SEL)getter
-               filter:(BJLKVOFilter)filter
-           usingBlock:(BJLKVOBlock)block;
+               filter:(nullable BJLPropertyFilter)filter
+           usingBlock:(BJLPropertyObserver)block DEPRECATED_MSG_ATTRIBUTE("@see `NSObject+BJLObserving.h`");
 - (void)bjl_KVObserve:(NSObject *)object
                getter:(SEL)getter
               options:(NSKeyValueObservingOptions)options
-               filter:(BJLKVOFilter)filter
-           usingBlock:(BJLKVOBlock)block;
+               filter:(nullable BJLPropertyFilter)filter
+           usingBlock:(BJLPropertyObserver)block DEPRECATED_MSG_ATTRIBUTE("@see `NSObject+BJLObserving.h`");
 
 - (void)bjl_KVObserve:(NSObject *)object
            forKeyPath:(NSString *)keyPath
               options:(NSKeyValueObservingOptions)options
-           usingBlock:(BJLKVOBlock)block;
+           usingBlock:(BJLPropertyObserver)block DEPRECATED_MSG_ATTRIBUTE("@see `NSObject+BJLObserving.h`");
 
-/**
- auto called before either self or the observing object is deallocated
- */
-- (void)bjl_stopAllKVObserving;
-- (void)bjl_stopKVObserving:(NSObject *)object;
-- (void)bjl_stopKVObserving:(NSObject *)object forKeyPath:(NSString *)keyPath;
+- (void)bjl_stopAllKVObserving DEPRECATED_MSG_ATTRIBUTE("@see `NSObject+BJLObserving.h`");
+- (void)bjl_stopKVObserving:(nullable NSObject *)object DEPRECATED_MSG_ATTRIBUTE("@see `NSObject+BJLObserving.h`");
+- (void)bjl_stopKVObserving:(nullable NSObject *)object forKeyPath:(nullable NSString *)keyPath NS_UNAVAILABLE;
 
 @end
+
+NS_ASSUME_NONNULL_END

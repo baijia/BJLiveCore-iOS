@@ -8,36 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
-#define BJLOEvent void
+#import "NSObject+BJLObserving.h"
 
-#define BJLOEventType_isSEL 1
-#if BJLOEventType_isSEL
-    typedef SEL BJLOEventType;
-    #define BJLOEventSend(DATA) [self bjl_notifyObserversWithEvent:_cmd data:DATA]
-#else
-    typedef NSString *BJLOEventType NS_EXTENSIBLE_STRING_ENUM;
-    #define BJLOEventSend(DATA) [self bjl_notifyObserversWithEvent:NSStringFromSelector(_cmd) data:DATA]
-#endif
-
-typedef void (^BJLObserverBlock)(id data/* , id object, BJLOEventType event */);
+NS_ASSUME_NONNULL_BEGIN
 
 /**
- *  BJLBlock Observation implemented via a special NSNotificationCenter
+ !!!: DEPRECATED
+ @see NSObject+BJLObserving.h
  */
-
 @interface NSObject (BJLBlockObserver)
 
-- (void)bjl_observe:(id)object event:(BJLOEventType)event usingBlock:(BJLObserverBlock)block;
+- (void)bjl_observe:(id)object event:(SEL)event usingBlock:(BJLMethodObserver)block DEPRECATED_MSG_ATTRIBUTE("@see `NSObject+BJLObserving.h`");
 
-// auto called when dealloc
-- (void)bjl_stopObserving:(id)object event:(BJLOEventType)event;
-- (void)bjl_stopAllObserving;
-
-@end
-
-@interface NSObject (BJLBlockObservable)
-
-- (void)bjl_notifyObserversWithEvent:(BJLOEventType)event;
-- (void)bjl_notifyObserversWithEvent:(BJLOEventType)event data:(id)data;
+- (void)bjl_stopObserving:(nullable id)object event:(nullable SEL)event NS_UNAVAILABLE;
+- (void)bjl_stopAllObserving DEPRECATED_MSG_ATTRIBUTE("@see `NSObject+BJLObserving.h`");
 
 @end
+
+NS_ASSUME_NONNULL_END

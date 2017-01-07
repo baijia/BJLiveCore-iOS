@@ -57,22 +57,22 @@ _Pragma("GCC diagnostic pop")
  *      - (BJLTuple<void (^)(BOOL state1, BOOL state2> *)states;
  *  pack:
  *      BOOL state1 = self.state1, state2 = self.state2;
- *      return BJLTuplePack(state1, state2);
+ *      return BJLTuplePack(void (^)(BOOL, BOOL), state1, state2);
  *  unpack:
  *      BJLTupleUnpack(tuple) = ^(BOOL state1, BOOL state2) {
  *          // ...
  *      };
  */
-/* !!!: BJLTuplePack(self.state)
+/* !!!: BJLTuplePack(void (^)(BOOL), self.state)
  *  1. BJLTuplePack 中使用到的对象将被 tuple 持有、直到 tuple 被释放，例如上面的 self；
  *  2. self.state 的值将在拆包时读取、而不是打包时；
- *      BJLTuple *tuple = BJLTuplePack(self.state1, self.state2);
+ *      BJLTuple *tuple = BJLTuplePack(void (^)(BOOL, BOOL), self.state1, self.state2);
  *  因此【强烈建议】定义临时变量提前读取属性值，以避免出现不可预期的结果！
  *      BOOL state1 = self.state1, state2 = self.state2;
- *      BJLTuple *tuple = BJLTuplePack(state1, state2);
+ *      BJLTuple *tuple = BJLTuplePack(void (^)(BOOL, BOOL), state1, state2);
  */
-#define BJLTuplePack(...)       ({[BJLTuple tupleWithPack:^(BJLTupleUnpackBlock unpack) { \
-                                    if (unpack) unpack(__VA_ARGS__); \
+#define BJLTuplePack(TYPE, ...) ({[BJLTuple tupleWithPack:^(BJLTupleUnpackBlock unpack) { \
+                                    if (unpack) ((TYPE)unpack)(__VA_ARGS__); \
                                 }];})
 /**
  *  这里不需要 weakify&strongify，unpack block 会被立即执行
