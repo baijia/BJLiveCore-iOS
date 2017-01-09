@@ -26,10 +26,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)restartRecording;
 
 /** 音视频被远程开关通知 */
+- (BJLObservable)recordingDidRemoteChangedRecordingAudio:(BOOL)recordingAudio
+                                          recordingVideo:(BOOL)recordingVideo
+                                   recordingAudioChanged:(BOOL)recordingAudioChanged
+                                   recordingVideoChanged:(BOOL)recordingVideoChanged;
 - (BJLObservable)recordingDidRemoteChanged:(BJLTuple<void (^)(BOOL recordingAudio,
                                                               BOOL recordingVideo,
                                                               BOOL recordingAudioChanged,
-                                                              BOOL recordingVideoChanged)> *)tuple;
+                                                              BOOL recordingVideoChanged)> *)tuple DEPRECATED_MSG_ATTRIBUTE("use `recordingDidRemoteChangedRecordingAudio:recordingVideo:recordingAudioChanged:recordingVideoChanged:`");
 
 #pragma mark - 音视频采集设置
 

@@ -30,7 +30,11 @@ NS_ASSUME_NONNULL_BEGIN
  - 某个用户主动开关自己的音视频时发送此通知、不包含意外掉线等情况
  - 正在播放的视频用户 关闭视频时 `videoPlayingUser` 将被设置为 nil、同时发送此通知
  - `loadPlayingUsers` 导致批量更新 `playingUsers` 时『不』发送此通知
- - BJLTuple 用于将多个封装到一个参数里，使用 BJLTupleUnpack + unpack-block 还原，例如：
+ */
+- (BJLObservable)playingUserDidUpdate:(NSObject<BJLOnlineUser> *)now
+                                  old:(NSObject<BJLOnlineUser> *)old;
+/**
+ BJLTuple 用于将多个封装到一个参数里，使用 BJLTupleUnpack + unpack-block 还原，例如：
  *     BJLTupleUnpack(tuple) = ^(NSObject<BJLOnlineUser> *old, NSObject<BJLOnlineUser> *now) {
  *         BOOL audioChanged = old.audioOn != now.audioOn;
  *         NSString *audioAction = audioChanged ? (now.audioOn ? @"打开音频" : @"关闭音频") : nil;
@@ -41,7 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
  *     }
  */
 - (BJLObservable)playingUserDidUpdate:(BJLTuple<void (^)(NSObject<BJLOnlineUser> *old,
-                                                         NSObject<BJLOnlineUser> *now)> *)tuple;
+                                                         NSObject<BJLOnlineUser> *now)> *)tuple DEPRECATED_MSG_ATTRIBUTE("use `playingUserDidUpdate:old:`");
 
 #pragma mark -
 

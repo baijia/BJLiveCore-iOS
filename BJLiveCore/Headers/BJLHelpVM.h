@@ -16,7 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable BJLError *)requestForHelpWithUserPhoneNumber:(NSString *)userPhoneNumber;
 
 /** 求助成功/失败回调 */
-- (BJLObservable)requestForHelpDidFinished:(BOOL)success;
+- (BJLObservable)requestForHelpFinished:(BOOL)success;
+- (BJLObservable)requestForHelpDidFinished:(NSNumber *)success DEPRECATED_MSG_ATTRIBUTE("use `requestForHelpFinished:`");
 
 @end
 
