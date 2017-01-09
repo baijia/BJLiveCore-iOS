@@ -8,7 +8,7 @@ Change Log
 
 - 此版本对 Block 的使用进行了全面升级，解决了使用中暴露出来的严重问题、改善了 API 调用，因此集成 SDK 的代码需要做一些升级；
 - 原有使用 Block 进行 `KVO` 和 `监听方法调用` 的相关方法被标记 `DEPRECATED`，个别方法因为不合理被直接废弃、有更好的替代实现；
-- 新方法参考的定义及使用，可参考 `NSObject+BJLObserving.h`、[README](https://github.com/baijia/BJLiveCore-iOS/blob/master/README.md) 以及 [Demo](https://github.com/baijia/BJLiveCore-iOS) 中的源码；
+- 新方法参考的定义及使用，可参考 `NSObject+BJLObserving.h`、[Block 的使用](https://github.com/baijia/BJLiveCore-iOS/blob/master/wiki/blocks.md) 以及 [Demo](https://github.com/baijia/BJLiveCore-iOS) 中的源码；
 
 ##### 1. 重新实现 Block KVO
 
