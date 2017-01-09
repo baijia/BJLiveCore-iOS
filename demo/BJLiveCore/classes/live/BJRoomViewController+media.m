@@ -26,35 +26,34 @@
     
     if (self.room.roomVM.loginUser.isTeacher) {
         // 有学生请求发言
-        [self bjl_observe:self.room.speakingRequestVM
-                    event:@selector(receivedSpeakingRequestFromUser:)
-               usingBlock:^(NSObject<BJLUser> *user/* , id object, BJLOEventType event */) {
-                   strongdef(self);
-                   // 自动同意
-                   [self.room.speakingRequestVM replySpeakingRequestToUserID:user.ID allowed:YES];
-                   [self.console printFormat:@"%@ 请求发言、已同意", user.name];
-               }];
+        [self bjl_observe:BJLMakeMethod(self.room.speakingRequestVM, receivedSpeakingRequestFromUser:)
+                 observer:^BOOL(NSObject<BJLUser> *user) {
+                     strongdef(self);
+                     // 自动同意
+                     [self.room.speakingRequestVM replySpeakingRequestToUserID:user.ID allowed:YES];
+                     [self.console printFormat:@"%@ 请求发言、已同意", user.name];
+                     return YES;
+                 }];
     }
     else {
         // 发言请求被处理
-        [self bjl_observe:self.room.speakingRequestVM
-                    event:@selector(speakingRequestDidReply:)
-               usingBlock:^(NSObject<BJLSpeakingReply> *reply) {
-                   strongdef(self);
-                   [self.console printFormat:@"发言申请已被%@", reply.speakingEnabled ? @"允许" : @"拒绝"];
-                   if (reply.speakingEnabled) {
-                       [self.room.recordingVM setRecordingAudio:YES
-                                                 recordingVideo:NO];
-                       [self.console printFormat:@"麦克风已打开"];
-                   }
-               }];
+        [self bjl_observe:BJLMakeMethod(self.room.speakingRequestVM, speakingRequestDidReply:)
+                 observer:^BOOL(NSObject<BJLSpeakingReply> *reply) {
+                     strongdef(self);
+                     [self.console printFormat:@"发言申请已被%@", reply.speakingEnabled ? @"允许" : @"拒绝"];
+                     if (reply.speakingEnabled) {
+                         [self.room.recordingVM setRecordingAudio:YES
+                                                   recordingVideo:NO];
+                         [self.console printFormat:@"麦克风已打开"];
+                     }
+                     return YES;
+                 }];
         // 发言状态被开启、关闭
-        [self bjl_observe:self.room.speakingRequestVM
-                    event:@selector(speakingDidRemoteEnabled:)
-               usingBlock:^(NSNumber *enabled) {
-                   strongdef(self);
-                   [self.console printFormat:@"发言状态被%@", enabled.boolValue ? @"开启" : @"关闭"];
-               }];
+        [self bjl_observe:BJLMakeMethod(self.room.speakingRequestVM, speakingBeRemoteEnabled:)
+                 observer:(BJLMethodObserver)^BOOL(BOOL enabled) {
+                     [self.console printFormat:@"发言状态被%@", enabled ? @"开启" : @"关闭"];
+                     return YES;
+                 }];
     }
 }
 
@@ -108,6 +107,23 @@
                                            message:nil
                                            preferredStyle:UIAlertControllerStyleActionSheet];
          
+         if (recordingAudio == recordingVideo) {
+             BOOL recording = recordingAudio;
+             [actionSheet addAction:[UIAlertAction
+                                     actionWithTitle:recording ? @"全部关闭" : @"全部打开"
+                                     style:UIAlertActionStyleDefault
+                                     handler:^(UIAlertAction * _Nonnull action) {
+                                         [recordingVM setRecordingAudio:!recording
+                                                         recordingVideo:!recording];
+                                         if (!self.room.roomVM.loginUser.isTeacher
+                                             && !recordingVM.recordingAudio
+                                             && !recordingVM.recordingVideo) {
+                                             [self.room.speakingRequestVM stopSpeaking];
+                                             [self.console printLine:@"同时关闭音视频，发言结束"];
+                                         }
+                                     }]];
+         }
+         
          [actionSheet addAction:[UIAlertAction
                                  actionWithTitle:recordingAudio ? @"关闭麦克风" : @"打开麦克风"
                                  style:UIAlertActionStyleDefault
@@ -135,23 +151,6 @@
                                          [self.console printLine:@"同时关闭音视频，发言结束"];
                                      }
                                  }]];
-         
-         if (recordingAudio == recordingVideo) {
-             BOOL recording = recordingAudio;
-             [actionSheet addAction:[UIAlertAction
-                                     actionWithTitle:recording ? @"全部关闭" : @"全部打开"
-                                     style:UIAlertActionStyleDefault
-                                     handler:^(UIAlertAction * _Nonnull action) {
-                                         [recordingVM setRecordingAudio:!recording
-                                                         recordingVideo:!recording];
-                                         if (!self.room.roomVM.loginUser.isTeacher
-                                             && !recordingVM.recordingAudio
-                                             && !recordingVM.recordingVideo) {
-                                             [self.room.speakingRequestVM stopSpeaking];
-                                             [self.console printLine:@"同时关闭音视频，发言结束"];
-                                         }
-                                     }]];
-         }
          
          if (recordingVideo) {
              [actionSheet addAction:[UIAlertAction
@@ -200,9 +199,6 @@
 }
 
 - (void)makePlayingEvents {
-    // 加载正在发言的用户
-    [self.room.playingVM loadPlayingUsers];
-    
     self.room.playingView.userInteractionEnabled = NO;
     [self.playingView addSubview:self.room.playingView];
     [self.room.playingView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -210,6 +206,23 @@
     }];
     
     weakdef(self);
+    
+    [self bjl_observe:BJLMakeMethod(self.room.playingVM, playingUserDidUpdate:)
+             observer:^BOOL(BJLTuple *tuple) {
+                 BJLTupleUnpack(tuple) = ^(NSObject<BJLOnlineUser> *old,
+                                           NSObject<BJLOnlineUser> *now) {
+                     strongdef(self);
+                     [self.console printFormat:@"playingUserDidUpdate: %@ >> %@", old, now];
+                 };
+                 return YES;
+             }];
+    [self bjl_observe:BJLMakeMethod(self.room.playingVM, playingUserDidUpdate:old:)
+             observer:^BOOL(NSObject<BJLOnlineUser> *now,
+                            NSObject<BJLOnlineUser> *old) {
+                 strongdef(self);
+                 [self.console printFormat:@"playingUserDidUpdate:old: %@ >> %@", old, now];
+                 return YES;
+             }];
     
     [[self.playingView rac_signalForControlEvents:UIControlEventTouchUpInside]
      subscribeNext:^(id x) {

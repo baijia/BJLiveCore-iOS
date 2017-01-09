@@ -52,66 +52,66 @@ static CGFloat const margin = 10.0;
     
     weakdef(self);
     
-    [self bjl_observe:self.room
-                event:@selector(enterRoomSuccess)
-           usingBlock:^(id data/* , id object, BJLOEventType event */) {
-               strongdef(self);
-               if (self.room.roomVM.loginUser.isTeacher) {
-                   [self.room.roomVM sendLiveStarted:YES]; // 上课
-               }
-               [self didEnterRoom];
-           }];
-    
-    [self bjl_observe:self.room
-                event:@selector(roomWillExitWithError:)
-           usingBlock:^(BJLError *error/* , id object, BJLOEventType event */) {
-               strongdef(self);
-               if (self.room.roomVM.loginUser.isTeacher) {
-                   [self.room.roomVM sendLiveStarted:NO]; // 下课
-               }
-           }];
-    
-    [self bjl_observe:self.room
-                event:@selector(roomDidExitWithError:)
-           usingBlock:^(BJLError *error/* , id object, BJLOEventType event */) {
-               strongdef(self);
-               
-               if (!error) {
-                   [self goBack];
-                   return;
-               }
-               
-               NSString *message = error ? [NSString stringWithFormat:@"%@ - %@",
-                                            error.localizedDescription,
-                                            error.localizedFailureReason] : @"错误";
-               UIAlertController *alert = [UIAlertController
-                                           alertControllerWithTitle:@"错误"
-                                           message:message
-                                           preferredStyle:UIAlertControllerStyleAlert];
-               [alert addAction:[UIAlertAction
-                                 actionWithTitle:@"退出"
-                                 style:UIAlertActionStyleDestructive
-                                 handler:^(UIAlertAction * _Nonnull action) {
-                                     [self goBack];
-                                 }]];
-               [alert addAction:[UIAlertAction
-                                 actionWithTitle:@"知道了"
-                                 style:UIAlertActionStyleCancel
-                                 handler:nil]];
-               [self presentViewController:alert animated:YES completion:nil];
-           }];
-    
-    [self bjl_KVObserve:self.room
-                 getter:@selector(loadingVM)
-                 filter:^BOOL(id old, id now) {
-                     // strongdef(self);
-                     return !!now;
-                 }
-             usingBlock:^BOOL(id old, BJLLoadingVM *now) {
+    [self bjl_observe:BJLMakeMethod(self.room, enterRoomSuccess)
+             observer:^BOOL(id data) {
                  strongdef(self);
-                 [self makeEventsForLoadingVM:now];
+                 if (self.room.roomVM.loginUser.isTeacher) {
+                     [self.room.roomVM sendLiveStarted:YES]; // 上课
+                 }
+                 [self didEnterRoom];
                  return YES;
              }];
+    
+    [self bjl_observe:BJLMakeMethod(self.room, roomWillExitWithError:)
+             observer:^BOOL(BJLError *error) {
+                 strongdef(self);
+                 if (self.room.roomVM.loginUser.isTeacher) {
+                     [self.room.roomVM sendLiveStarted:NO]; // 下课
+                 }
+                 return YES;
+             }];
+    
+    [self bjl_observe:BJLMakeMethod(self.room, roomDidExitWithError:)
+             observer:^BOOL(BJLError *error) {
+                 strongdef(self);
+                 
+                 if (!error) {
+                     [self goBack];
+                     return YES;
+                 }
+                 
+                 NSString *message = error ? [NSString stringWithFormat:@"%@ - %@",
+                                              error.localizedDescription,
+                                              error.localizedFailureReason] : @"错误";
+                 UIAlertController *alert = [UIAlertController
+                                             alertControllerWithTitle:@"错误"
+                                             message:message
+                                             preferredStyle:UIAlertControllerStyleAlert];
+                 [alert addAction:[UIAlertAction
+                                   actionWithTitle:@"退出"
+                                   style:UIAlertActionStyleDestructive
+                                   handler:^(UIAlertAction * _Nonnull action) {
+                                       [self goBack];
+                                   }]];
+                 [alert addAction:[UIAlertAction
+                                   actionWithTitle:@"知道了"
+                                   style:UIAlertActionStyleCancel
+                                   handler:nil]];
+                 [self presentViewController:alert animated:YES completion:nil];
+                 
+                 return YES;
+             }];
+    
+    [self bjl_kvo:BJLMakeProperty(self.room, loadingVM)
+                       filter:^BOOL(id old, id now) {
+                           // strongdef(self);
+                           return !!now;
+                       }
+                     observer:^BOOL(id old, BJLLoadingVM *now) {
+                         strongdef(self);
+                         [self makeEventsForLoadingVM:now];
+                         return YES;
+                     }];
     
     [self.room setReloadingBlock:^(BJLLoadingVM * _Nonnull reloadingVM, void (^ _Nonnull callback)(BOOL)) {
         @strongify(self);
@@ -293,17 +293,16 @@ static CGFloat const margin = 10.0;
     
     // if (!self.room.roomVM.loginUser.isTeacher) {
     weakdef(self);
-    [self bjl_KVObserve:self.room.roomVM
-                 getter:@selector(liveStarted)
-                 filter:^BOOL(NSNumber *old, NSNumber *now) {
-                     // strongdef(self);
-                     return old.integerValue != now.integerValue;
-                 }
-             usingBlock:^BOOL(id old, id now) {
-                 strongdef(self);
-                 [self.console printFormat:@"liveStarted: %@", NSStringFromBOOL(self.room.roomVM.liveStarted)];
-                 return YES;
-             }];
+    [self bjl_kvo:BJLMakeProperty(self.room.roomVM, liveStarted)
+                       filter:^BOOL(NSNumber *old, NSNumber *now) {
+                           // strongdef(self);
+                           return old.integerValue != now.integerValue;
+                       }
+                     observer:^BOOL(id old, id now) {
+                         strongdef(self);
+                         [self.console printFormat:@"liveStarted: %@", NSStringFromBOOL(self.room.roomVM.liveStarted)];
+                         return YES;
+                     }];
     // }
     
     [self makeUserEvents];
@@ -358,37 +357,37 @@ static CGFloat const margin = 10.0;
         }
     };
     
-    [self bjl_observe:loadingVM
-                event:@selector(loadingUpdateProgress:)
-           usingBlock:^(NSNumber *progress/* , id object, BJLOEventType event */) {
-               strongdef(self/* , loadingVM */);
-               [self.console printFormat:@"loading progress: %f", progress.doubleValue];
-           }];
+    [self bjl_observe:BJLMakeMethod(loadingVM, loadingUpdateProgress:)
+             observer:(BJLMethodObserver)^BOOL(CGFloat progress) {
+                 strongdef(self/* , loadingVM */);
+                 [self.console printFormat:@"loading progress: %f", progress];
+                 return YES;
+             }];
     
-    [self bjl_observe:loadingVM
-                event:@selector(loadingSuccess)
-           usingBlock:^(id data/* , id object, BJLOEventType event */) {
-               strongdef(self/* , loadingVM */);
-               [self.console printLine:@"loading success"];
-           }];
+    [self bjl_observe:BJLMakeMethod(loadingVM, loadingSuccess)
+             observer:^BOOL(id data) {
+                 strongdef(self/* , loadingVM */);
+                 [self.console printLine:@"loading success"];
+                 return YES;
+             }];
     
-    [self bjl_observe:loadingVM
-                event:@selector(loadingFailureWithError:)
-           usingBlock:^(BJLError *error/* , id object, BJLOEventType event */) {
-               strongdef(self/* , loadingVM */);
-               [self.console printLine:@"loading failure"];
-           }];
+    [self bjl_observe:BJLMakeMethod(loadingVM, loadingFailureWithError:)
+             observer:^BOOL(BJLError *error) {
+                 strongdef(self/* , loadingVM */);
+                 [self.console printLine:@"loading failure"];
+                 return YES;
+             }];
 }
 
 - (void)makeChatEvents {
     weakdef(self);
     
-    [self bjl_observe:self.room.chatVM
-                event:@selector(didReceiveMessage:)
-           usingBlock:^(NSObject<BJLMessage> *message/* , id object, BJLOEventType event */) {
-               strongdef(self);
-               [self.console printFormat:@"chat %@: %@", message.fromUser.name, message.content];
-           }];
+    [self bjl_observe:BJLMakeMethod(self.room.chatVM, didReceiveMessage:)
+             observer:^BOOL(NSObject<BJLMessage> *message) {
+                 strongdef(self);
+                 [self.console printFormat:@"chat %@: %@", message.fromUser.name, message.content];
+                 return YES;
+             }];
 }
 
 - (void)startPrintAVDebugInfo {
