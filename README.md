@@ -153,23 +153,23 @@ weakdef(self);
 
 ## WIKI
 
-- **[ChangeLog](https://github.com/baijia/BJLiveCore-iOS/blob/master/wiki/CHANGELOG.md)**
-- **[Block 的使用](https://github.com/baijia/BJLiveCore-iOS/blob/master/wiki/blocks.md)**
+- **[ChangeLog](./wiki/CHANGELOG.md)**
+- **[Block 的使用](./wiki/blocks.md)**
 
 ## API
 
-- [BJLConstants.h](https://github.com/baijia/BJLiveCore-iOS/blob/master/BJLiveCore/BJLConstants.h) 枚举
-- [NSError+BJLError.h](https://github.com/baijia/BJLiveCore-iOS/blob/master/BJLiveCore/NSError+BJLError.h) 错误码
-- [BJLRoom.h](https://github.com/baijia/BJLiveCore-iOS/blob/master/BJLiveCore/BJLRoom.h) 教室管理
-- [BJLLoadingVM.h](https://github.com/baijia/BJLiveCore-iOS/blob/master/BJLiveCore/BJLLoadingVM.h) 进教室的 loading 状态
-- [BJLRoomVM.h](https://github.com/baijia/BJLiveCore-iOS/blob/master/BJLiveCore/BJLRoomVM.h) 教室信息、状态，用户信息，公告等
-- [BJLOnlineUsersVM.h](https://github.com/baijia/BJLiveCore-iOS/blob/master/BJLiveCore/BJLOnlineUsersVM.h) 在线用户
-- [BJLSpeakingRequestVM.h](https://github.com/baijia/BJLiveCore-iOS/blob/master/BJLiveCore/BJLSpeakingRequestVM.h) 发言申请/处理
-- [BJLMediaVM.h](https://github.com/baijia/BJLiveCore-iOS/blob/master/BJLiveCore/BJLMediaVM.h) 音视频设置
-- [BJLRecordingVM.h](https://github.com/baijia/BJLiveCore-iOS/blob/master/BJLiveCore/BJLRecordingVM.h) 音视频采集 - 个人
-- [BJLPlayingVM.h](https://github.com/baijia/BJLiveCore-iOS/blob/master/BJLiveCore/BJLPlayingVM.h) 音视频播放 - 他人
-- [BJLSlideVM.h](https://github.com/baijia/BJLiveCore-iOS/blob/master/BJLiveCore/BJLSlideVM.h) 课件管理
-- [BJLSlideshowUI.h](https://github.com/baijia/BJLiveCore-iOS/blob/master/BJLiveCore/BJLSlideshowUI.h) 课件、画笔视图
-- [BJLServerRecordingVM.h](https://github.com/baijia/BJLiveCore-iOS/blob/master/BJLiveCore/BJLServerRecordingVM.h) 云端录制
-- [BJLChatVM.h](https://github.com/baijia/BJLiveCore-iOS/blob/master/BJLiveCore/BJLChatVM.h) 聊天/弹幕
+- [BJLConstants.h](./BJLiveCore/BJLConstants.h) 枚举
+- [NSError+BJLError.h](./BJLiveCore/NSError+BJLError.h) 错误码
+- [BJLRoom.h](./BJLiveCore/BJLRoom.h) 教室管理
+- [BJLLoadingVM.h](./BJLiveCore/BJLLoadingVM.h) 进教室的 loading 状态
+- [BJLRoomVM.h](./BJLiveCore/BJLRoomVM.h) 教室信息、状态，用户信息，公告等
+- [BJLOnlineUsersVM.h](./BJLiveCore/BJLOnlineUsersVM.h) 在线用户
+- [BJLSpeakingRequestVM.h](./BJLiveCore/BJLSpeakingRequestVM.h) 发言申请/处理
+- [BJLMediaVM.h](./BJLiveCore/BJLMediaVM.h) 音视频设置
+- [BJLRecordingVM.h](./BJLiveCore/BJLRecordingVM.h) 音视频采集 - 个人
+- [BJLPlayingVM.h](./BJLiveCore/BJLPlayingVM.h) 音视频播放 - 他人
+- [BJLSlideVM.h](./BJLiveCore/BJLSlideVM.h) 课件管理
+- [BJLSlideshowUI.h](./BJLiveCore/BJLSlideshowUI.h) 课件、画笔视图
+- [BJLServerRecordingVM.h](./BJLiveCore/BJLServerRecordingVM.h) 云端录制
+- [BJLChatVM.h](./BJLiveCore/BJLChatVM.h) 聊天/弹幕
 

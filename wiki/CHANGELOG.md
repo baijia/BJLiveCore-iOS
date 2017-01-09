@@ -8,7 +8,7 @@ Change Log
 
 - 此版本对 Block 的使用进行了全面升级，解决了使用中暴露出来的严重问题、改善了 API 调用，因此集成 SDK 的代码需要做一些升级；
 - 原有使用 Block 进行 `KVO` 和 `监听方法调用` 的相关方法被标记 `DEPRECATED`，个别方法因为不合理被直接废弃、有更好的替代实现；
-- 新方法参考的定义及使用，可参考 `NSObject+BJLObserving.h`、[Block 的使用](https://github.com/baijia/BJLiveCore-iOS/blob/master/wiki/blocks.md) 以及 [Demo](https://github.com/baijia/BJLiveCore-iOS) 中的源码；
+- 新方法参考的定义及使用，可参考 `NSObject+BJLObserving.h`、[Block 的使用](./blocks.md) 以及 [Demo](https://github.com/baijia/BJLiveCore-iOS) 中的源码；
 
 ##### 1. 重新实现 Block KVO
 
@@ -203,7 +203,7 @@ id<BJLObservation> observation =
 
 - **优化错处理，主动退出教室时 `error` 为 `nil`**，删除原来表示主动退出教室的错误码 ~~`BJLErrorCode_exitRoom_exitRoom`~~；
 
-- **简化错误码**，参考 [NSError+BJLError.h](https://github.com/baijia/BJLiveCore-iOS/blob/master/BJLiveCore/NSError+BJLError.h)；
+- **简化错误码**，参考 [NSError+BJLError.h](../BJLiveCore/NSError+BJLError.h)；
 
 - **内部不主动调用的一些方法，改为进入教室后、掉线重连成功后自动调用一次**，包括
 ```objc
@@ -230,7 +230,7 @@ id<BJLObservation> observation =
 - (BJLOEvent)requestServerRecordingDidFailed:(NSString *)message;
 ```
 
-- 课件显示支持更多参数设置，参考 [BJLSlideshowUI.h](https://github.com/baijia/BJLiveCore-iOS/blob/master/BJLiveCore/BJLSlideshowUI.h)；
+- 课件显示支持更多参数设置，参考 [BJLSlideshowUI.h](../BJLiveCore/BJLSlideshowUI.h)；
 
 - `BJLMediaVM` 支持获取音视频流调试信息；
 ```objc
