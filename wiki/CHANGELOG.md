@@ -203,7 +203,7 @@ id<BJLObservation> observation =
 
 - **优化错处理，主动退出教室时 `error` 为 `nil`**，删除原来表示主动退出教室的错误码 ~~`BJLErrorCode_exitRoom_exitRoom`~~；
 
-- **简化错误码**，参考 [NSError+BJLError.h](../BJLiveCore/NSError+BJLError.h)；
+- **简化错误码**，参考 [NSError+BJLError.h](../BJLiveCore/Headers/NSError+BJLError.h)；
 
 - **内部不主动调用的一些方法，改为进入教室后、掉线重连成功后自动调用一次**，包括
 ```objc
@@ -230,7 +230,7 @@ id<BJLObservation> observation =
 - (BJLOEvent)requestServerRecordingDidFailed:(NSString *)message;
 ```
 
-- 课件显示支持更多参数设置，参考 [BJLSlideshowUI.h](../BJLiveCore/BJLSlideshowUI.h)；
+- 课件显示支持更多参数设置，参考 [BJLSlideshowUI.h](../BJLiveCore/Headers/BJLSlideshowUI.h)；
 
 - `BJLMediaVM` 支持获取音视频流调试信息；
 ```objc
