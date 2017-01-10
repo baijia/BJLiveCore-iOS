@@ -71,9 +71,11 @@ _Pragma("GCC diagnostic pop")
  *      BOOL state1 = self.state1, state2 = self.state2;
  *      BJLTuple *tuple = BJLTuplePack(void (^)(BOOL, BOOL), state1, state2);
  */
-#define BJLTuplePack(TYPE, ...) ({[BJLTuple tupleWithPack:^(BJLTupleUnpackBlock unpack) { \
-                                    if (unpack) ((TYPE)unpack)(__VA_ARGS__); \
-                                }];})
+#define BJLTuplePack(TYPE, ...) _BJLTuplePack(void (^)TYPE, ...)
+#define _BJLTuplePack(TYPE, ...) \
+({[BJLTuple tupleWithPack:^(BJLTupleUnpackBlock unpack) { \
+    if (unpack) ((TYPE)unpack)(__VA_ARGS__); \
+}];})
 /**
  *  这里不需要 weakify&strongify，unpack block 会被立即执行
  */

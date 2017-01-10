@@ -32,7 +32,8 @@ typedef BOOL (^BJLMethodObserver)();
 })
 
 typedef void BJLObservable;
-#define BJLMethodNotify(TYPE, ...) do { \
+#define BJLMethodNotify(TYPE, ...) _BJLMethodNotify(BOOL (^)TYPE, __VA_ARGS__)
+#define _BJLMethodNotify(TYPE, ...) do { \
     _Pragma("clang diagnostic push") \
     _Pragma("clang diagnostic ignored \"-Wdeprecated-declarations\"") \
     [self bjl_notifyMethodForSelector:_cmd callback:^BOOL(BJLMethodFilter filter, BJLMethodObserver observer) { \

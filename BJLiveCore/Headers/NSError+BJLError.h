@@ -73,12 +73,8 @@ NS_INLINE BJLError * _Nullable BJLErrorMake(BJLErrorCode errorCode, NSString * _
     return BJLErrorMakeFromError(errorCode, reason, nil);
 }
 
-#define BJLError_static_returnIfRobot(LIMIT) { \
+#define BJLError_returnIfRobot(LIMIT) { \
     static NSTimeInterval LAST = 0; \
-    BJLError_returnIfRobot(LAST, LIMIT); \
-}
-
-#define BJLError_returnIfRobot(LAST, LIMIT) { \
     NSTimeInterval NOW = [NSDate timeIntervalSinceReferenceDate]; \
     if (NOW - LAST < LIMIT) { \
         return BJLErrorMake(BJLErrorCode_areYouRobot, \
