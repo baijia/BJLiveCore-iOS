@@ -50,6 +50,15 @@ pod 'BJLiveCore'
 ```
 - 创建教室
 ```objc
+// 教室 ID 方式
+BJLUser *user = [BJLUser userWithNumber:userNumber
+                                   name:userName
+                                 avatar:userAvatar
+                                   role:userRole];
+self.room = [BJLRoom roomWithID:roomID
+                        apiSign:apiSign
+                           user:user];
+// 参加码方式
 self.room = [BJLRoom roomWithSecret:roomSecret
                            userName:userName
                          userAvatar:nil];
