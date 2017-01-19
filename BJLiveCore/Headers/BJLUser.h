@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) NSString *number, *name, *ID;
 @property (nonatomic, readonly, nullable) NSString *avatar;
 @property (nonatomic, readonly) BJLUserRole role;
+@property (nonatomic, readonly) BJLClientType clientType;
 
 @property (nonatomic, readonly) BOOL isTeacher, isStudent, isAssistant, isGuest;
 @property (nonatomic, readonly) BOOL isManager; // isTeacher || isAssistant

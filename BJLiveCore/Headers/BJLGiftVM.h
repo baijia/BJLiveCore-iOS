@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  打赏
  成功后会收到打赏通知，只支持学生给老师打赏
- @param teacher 打赏对象，老师在教室内时使用老师信息、否则使用 teacher
+ @param teacher 打赏对象，老师在教室内时使用老师信息、否则使用传入的 `teacher`
  @param gift    礼物
  */
 - (nullable BJLError *)sendGift:(BJLGift *)gift toTeacher:(NSObject<BJLUser> *)teacher;

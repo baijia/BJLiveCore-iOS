@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "NSError+BJLError.h"
-
 NS_ASSUME_NONNULL_BEGIN
 
 /** 毫秒 */
@@ -54,6 +52,20 @@ typedef NS_ENUM(NSInteger, BJLRoomType) {
     BJLRoomType_1to1 = 1,
     /** 多人班课 */
     BJLRoomType_1toN = 2
+};
+
+/** 客户端类型 */
+typedef NS_ENUM(NSUInteger, BJLClientType) {
+    /** PC 网页 */
+    BJLClient_PCWeb = 0,
+    /** PC 客户端 */
+    BJLClient_PCApp = 1,
+    /** M 站 */
+    BJLClient_MobileWeb = 2,
+    /** iOS 客户端 */
+    BJLClient_iOSApp = 3,
+    /** Android 客户端 */
+    BJLClient_AndroidApp = 4
 };
 
 /** 媒体类型限制 */
@@ -111,8 +123,11 @@ typedef NS_ENUM(NSInteger, BJLVideoBeautifyLevel) {
     BJLVideoBeautifyLevel_max = BJLVideoBeautifyLevel5
 };
 
+/** 课件显示模式 */
 typedef NS_ENUM(NSInteger, BJLSlideshowContentMode) {
+    /** 完整 */
     BJLSlideshowContentMode_scaleAspectFit,
+    /** 铺满 */
     BJLSlideshowContentMode_scaleAspectFill
 };
 

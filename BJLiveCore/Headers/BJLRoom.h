@@ -12,6 +12,10 @@
 
 #import "BJLConstants.h"
 
+/** Model **/
+
+#import "BJLUser.h"
+
 /** VM **/
 
 #import "BJLLoadingVM.h"
@@ -45,8 +49,9 @@ typedef NS_ENUM(NSInteger, BJLRoomExitReason) {
 };
 
 /**
- 教室
- 可同时存在多个实例，但最多只有一个教室处于进入状态，后执行 enter 的教室会把之前的教室踢掉
+ 直播教室
+ 可同时存在多个实例，但最多只有一个教室处于进入状态，后执行 `enter` 的教室会把之前的教室踢掉
+ 不建议退出教室后再次调用 `enter` 方法，未经测试、结果不可预期
  */
 @interface BJLRoom : NSObject
 

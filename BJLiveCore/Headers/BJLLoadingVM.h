@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSInteger, BJLLoadingStep) {
+typedef NS_OPTIONS(NSInteger, BJLLoadingStep) {
     BJLLoadingStep_checkNetwork         = 1 << 0,
     BJLLoadingStep_loadRoomInfo         = 1 << 1,
     BJLLoadingStep_loadFeatureConfig    = 1 << 2,
