@@ -3,7 +3,7 @@
 //  LivePlayerApp
 //
 //  Created by MingLQ on 2016-08-19.
-//  Copyright © 2016年 GSX. All rights reserved.
+//  Copyright © 2016年 Baijia Cloud. All rights reserved.
 //
 
 #import "AppDelegate.h"

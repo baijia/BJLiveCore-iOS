@@ -3,7 +3,7 @@
 //  LivePlayerApp
 //
 //  Created by MingLQ on 2016-08-20.
-//  Copyright © 2016年 GSX. All rights reserved.
+//  Copyright © 2016年 Baijia Cloud. All rights reserved.
 //
 
 #import "BJAppearance.h"
@@ -11,15 +11,15 @@
 @implementation UIColor (BJColors)
 
 + (instancetype)bj_brandColor {
-    return [self bjck_colorWithHexString:@"#1694FF"];
+    return [self bjl_colorWithHexString:@"#1694FF"];
 }
 
 + (instancetype)bj_grayBackgroundColor {
-    return [self bjck_colorWithHexString:@"#F2F4F5"];
+    return [self bjl_colorWithHexString:@"#F2F4F5"];
 }
 
 + (instancetype)bj_grayBorderColor {
-    return [self bjck_colorWithHexString:@"#C1C1C1"]; // #DCDDDE
+    return [self bjl_colorWithHexString:@"#C1C1C1"]; // #DCDDDE
 }
 
 + (instancetype)bj_navigationBarTintColor {
@@ -27,23 +27,23 @@
 }
 
 + (instancetype)bj_darkGrayTextColor {
-    return [self bjck_colorWithHexString:@"#3D3D3D"];
+    return [self bjl_colorWithHexString:@"#3D3D3D"];
 }
 
 + (instancetype)bj_midGrayTextColor {
-    return [self bjck_colorWithHexString:@"#6D6E6E"];
+    return [self bjl_colorWithHexString:@"#6D6E6E"];
 }
 
 + (instancetype)bj_lightGrayTextColor {
-    return [self bjck_colorWithHexString:@"#9D9E9E"];
+    return [self bjl_colorWithHexString:@"#9D9E9E"];
 }
 
 + (instancetype)bj_linkTextColor {
-    return [self bjck_colorWithHexString:@"#1694FF"];
+    return [self bjl_colorWithHexString:@"#1694FF"];
 }
 
 + (instancetype)bj_redColor {
-    return [self bjck_colorWithHexString:@"#EF3232"];
+    return [self bjl_colorWithHexString:@"#EF3232"];
 }
 
 @end

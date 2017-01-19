@@ -3,7 +3,7 @@
 //  BJLiveCore
 //
 //  Created by MingLQ on 2016-12-18.
-//  Copyright © 2016 GSX. All rights reserved.
+//  Copyright © 2016 Baijia Cloud. All rights reserved.
 //
 
 #import <MobileCoreServices/MobileCoreServices.h>
@@ -280,6 +280,21 @@
                                              [playingVM remoteUpdatePlayingUserWithID:user.ID
                                                                               audioOn:NO
                                                                               videoOn:NO];
+                                         }]];
+                 NSInteger seconds = 1;
+                 [actionSheet addAction:[UIAlertAction
+                                         actionWithTitle:([NSString stringWithFormat:@"禁言 %td 分钟 %@", seconds, user.name])
+                                         style:UIAlertActionStyleDestructive
+                                         handler:^(UIAlertAction * _Nonnull action) {
+                                             [self.room.chatVM sendForbidUser:user
+                                                                     duration:seconds * 60.0];
+                                         }]];
+                 [actionSheet addAction:[UIAlertAction
+                                         actionWithTitle:([NSString stringWithFormat:@"解除禁言 %@", user.name])
+                                         style:UIAlertActionStyleDestructive
+                                         handler:^(UIAlertAction * _Nonnull action) {
+                                             [self.room.chatVM sendForbidUser:user
+                                                                     duration:0.0];
                                          }]];
              }
          }

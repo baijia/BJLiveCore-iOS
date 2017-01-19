@@ -13,7 +13,6 @@ target 'BJLiveCore' do
     pod 'BJLiveCore'
     
     # demo
-    pod 'BJHL-Kit-iOS'
     pod 'Masonry'
     pod 'M9Dev'
     

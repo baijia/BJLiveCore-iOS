@@ -3,7 +3,7 @@
 //  BJLiveCore
 //
 //  Created by MingLQ on 2016-12-18.
-//  Copyright © 2016 GSX. All rights reserved.
+//  Copyright © 2016 Baijia Cloud. All rights reserved.
 //
 
 #import <M9Dev/M9Dev.h>
@@ -42,6 +42,10 @@ static CGFloat const margin = 10.0;
     [self makeConsole];
     
     [self makeEvents];
+}
+
+- (void)dealloc {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
 }
 
 - (void)enterRoomWithSecret:(NSString *)roomSecret
@@ -449,7 +453,7 @@ static CGFloat const margin = 10.0;
         [self startPrintAVDebugInfo];
         return;
     }
-    if (!self.room.chatVM.forbidAll) {
+    if (!self.room.chatVM.forbidAll && !self.room.chatVM.forbidMe) {
         [self.room.chatVM sendMessage:self.textField.text];
     }
     else {
