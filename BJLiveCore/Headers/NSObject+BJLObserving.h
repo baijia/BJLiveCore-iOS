@@ -42,6 +42,7 @@ typedef void BJLObservable;
 _Pragma("clang diagnostic pop") \
 } \
 while (NO)
+// #define BJLMethodNotify_NoArgs() BJLMethodNotify((), nil)
 
 /**
  KVO with block.

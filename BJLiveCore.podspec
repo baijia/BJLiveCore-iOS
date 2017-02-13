@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'BJLiveCore'
-  s.version = '0.1.1'
+  s.version = '0.1.2'
   s.summary = 'BJLiveCore SDK.'
   s.license = 'MIT'
   s.authors = {"MingLQ"=>"minglq.9@gmail.com"}
@@ -39,7 +39,6 @@ Pod::Spec.new do |s|
   # DEPRECATED
   s.dependency 'LKDBHelper'
   s.dependency 'LTInfiniteScrollView'
-  s.dependency 'Masonry'
   s.dependency 'SDWebImage'
   s.dependency 'ReactiveCocoa', '~> 2.0'
 

@@ -3,7 +3,7 @@
 //  BJLiveCore
 //
 //  Created by 杨磊 on 16/7/18.
-//
+//  Copyright © 2016 Baijia Cloud. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

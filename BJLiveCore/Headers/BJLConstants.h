@@ -3,7 +3,7 @@
 //  BJLiveCore
 //
 //  Created by MingLQ on 2016-11-26.
-//
+//  Copyright © 2016 Baijia Cloud. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 毫秒 */
 
-typedef long BJLMilliseconds;
+typedef long long BJLMilliseconds;
 
 #define BJL_MSEC_PER_SEC            1000ull
 #define BJLMillisecondsSince1970    BJLMillisecondsFromTimeInterval(NSTimeIntervalSince1970)

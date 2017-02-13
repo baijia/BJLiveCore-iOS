@@ -1,9 +1,9 @@
 //
 //  NSObject+BJL_M9Dev.h
-//  Pods
+//  BJLiveCore
 //
 //  Created by MingLQ on 2016-04-20.
-//
+//  Copyright © 2016 Baijia Cloud. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

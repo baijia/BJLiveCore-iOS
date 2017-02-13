@@ -3,7 +3,7 @@
 //  BJLiveCore
 //
 //  Created by MingLQ on 2016-11-15.
-//
+//  Copyright © 2016 Baijia Cloud. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -41,9 +41,9 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol BJLSpeakingUser <BJLOnlineUser>
 
 @property (nonatomic, readonly) NSString *classID;
-@property (nonatomic, readonly) LPLinkType linkType;
+@property (nonatomic, readonly) _LPLinkType linkType;
 @property (nonatomic, readonly) NSInteger publishIndex;
-@property (nonatomic, readonly) LPIpAddress *publishServer;
+@property (nonatomic, readonly) _LPIpAddress *publishServer;
 
 @end // */
 

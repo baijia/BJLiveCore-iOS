@@ -1,9 +1,9 @@
 //
 //  UIKit+BJL_M9Dev.h
-//  Pods
+//  BJLiveCore
 //
 //  Created by MingLQ on 2016-04-21.
-//
+//  Copyright © 2016 Baijia Cloud. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -76,10 +76,33 @@ typedef BOOL (^BJL_M9ResponderFindingBlock)(UIResponder *responder, BOOL *stop);
 
 @interface UIViewController (BJL_M9Dev)
 
-- (void)bjl_addChildViewController:(UIViewController *)childController superview:(UIView *)superview;
+- (void)bjl_addChildViewController:(UIViewController *)childViewController superview:(UIView *)superview;
+- (void)bjl_addChildViewController:(UIViewController *)childViewController superview:(UIView *)superview atIndex:(NSInteger)index;
+- (void)bjl_addChildViewController:(UIViewController *)childViewController superview:(UIView *)superview belowSubview:(UIView *)siblingSubview;
+- (void)bjl_addChildViewController:(UIViewController *)childViewController superview:(UIView *)superview aboveSubview:(UIView *)siblingSubview;
 - (void)bjl_removeFromParentViewControllerAndSuperiew;
 
 - (void)bjl_dismissAllViewControllersAnimated:(BOOL)animated completion:(void (^)(void))completion;
+
+@end
+
+#pragma mark -
+
+@interface UINavigationController (BJL_M9Dev)
+
+@property(nonatomic, strong, readonly, nullable) UIViewController *bjl_rootViewController;
+
+- (void)bjl_pushViewController:(nullable UIViewController *)viewController
+                      animated:(BOOL)animated
+                    completion:(void (^ __nullable)(void))completion;
+
+- (nullable UIViewController *)bjl_popViewControllerAnimated:(BOOL)animated
+                                                  completion:(void (^ __nullable)(void))completion;
+- (nullable NSArray *)bjl_popToViewController:(UIViewController *)viewController
+                                     animated:(BOOL)animated
+                                   completion:(void (^ __nullable)(void))completion;
+- (nullable NSArray *)bjl_popToRootViewControllerAnimated:(BOOL)animated
+                                               completion:(void (^ __nullable)(void))completion;
 
 @end
 
@@ -118,8 +141,10 @@ typedef BOOL (^BJL_M9ResponderFindingBlock)(UIResponder *responder, BOOL *stop);
 
 // @"#FFFFFF"
 + (UIColor *)bjl_colorWithHexString:(NSString *)hexString;
++ (UIColor *)bjl_colorWithHexString:(NSString *)hexString alpha:(CGFloat)alpha;
 // 0xFFFFFF
 + (UIColor *)bjl_colorWithHex:(unsigned)hex;
++ (UIColor *)bjl_colorWithHex:(unsigned)hex alpha:(CGFloat)alpha;
 
 @end
 
