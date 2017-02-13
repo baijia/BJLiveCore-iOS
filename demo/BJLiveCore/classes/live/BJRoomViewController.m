@@ -127,7 +127,6 @@ static CGFloat const margin = 10.0;
                           actionWithTitle:@"重连"
                           style:UIAlertActionStyleDefault
                           handler:^(UIAlertAction * _Nonnull action) {
-                              [self.console printLine:@"网络连接断开，正在重连 ..."];
                               [self makeEventsForLoadingVM:reloadingVM];
                               [self.console printLine:@"网络连接断开：重连"];
                               callback(YES);

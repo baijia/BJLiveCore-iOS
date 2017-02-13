@@ -19,7 +19,7 @@ PODS:
     - CocoaLumberjack (~> 2.0)
   - BJHL-Websocket-iOS (0.3.2):
     - PocketSocket
-  - BJLiveCore (0.1.1):
+  - BJLiveCore (0.1.2):
     - BJHL-AVSDK-iOS (>= 0.1.9)
     - BJHL-Foundation-iOS
     - BJHL-Websocket-iOS (>= 0.3.2)
@@ -28,7 +28,6 @@ PODS:
     - LKDBHelper
     - LogStat
     - LTInfiniteScrollView
-    - Masonry
     - ReactiveCocoa (~> 2.0)
     - SDWebImage
     - YYModel
@@ -117,7 +116,7 @@ SPEC CHECKSUMS:
   BJHL-AVSDK-iOS: 9580e24e667c7007ffe91fd2e6c9c9fb9a9f1a56
   BJHL-Foundation-iOS: 2e7d9269405c036111c32b4ecd0a06e9ecb4e00e
   BJHL-Websocket-iOS: d268c2d08cb22d461a0b961781566e488c004c1d
-  BJLiveCore: ca8e4f4acb9ecd2c36d5bad0dbacf6a880a12ac7
+  BJLiveCore: f16553a5db4ea47396eefa202f88b15d503663e6
   CocoaLumberjack: aa9dcab71bdf9eaf2a63bbd9ddc87863efe45457
   FLEX: bd1a39e55b56bb413b6f1b34b3c10a0dc44ef079
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
