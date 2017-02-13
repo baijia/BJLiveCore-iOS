@@ -92,7 +92,7 @@ typedef NS_ENUM(NSInteger, BJLRoomState) {
  网络连接断开时回调，回调 callback 确认是否重连、可通过 `reloadingVM` 监听重连的进度和结果
  默认（不设置此回调）在断开时自动重连、重连过程中遇到错误将 `异常退出`
  !!!: 重连过程中通过其它 VM 发起的网络请求会被丢弃
- @param reloadingVM         重连的 loading 状态
+ @param reloadingVM         重连 VM
  @param callback(reload)    调用 callback 是 reload 参数传 YES 重连，NO 将导致 `异常退出`
  */
 - (void)setReloadingBlock:(void (^)(BJLLoadingVM *reloadingVM,
