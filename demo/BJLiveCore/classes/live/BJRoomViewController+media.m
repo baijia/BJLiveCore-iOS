@@ -24,7 +24,7 @@
 - (void)makeSpeakingEvents {
     weakdef(self);
     
-    if (self.room.roomVM.loginUser.isTeacher) {
+    if (self.room.loginUser.isTeacher) {
         // 有学生请求发言
         [self bjl_observe:BJLMakeMethod(self.room.speakingRequestVM, receivedSpeakingRequestFromUser:)
                  observer:^BOOL(NSObject<BJLUser> *user) {
@@ -49,7 +49,7 @@
                      return YES;
                  }];
         // 发言状态被开启、关闭
-        [self bjl_observe:BJLMakeMethod(self.room.speakingRequestVM, speakingBeRemoteEnabled:)
+        [self bjl_observe:BJLMakeMethod(self.room.speakingRequestVM, speakingDidRemoteEnabled:)
                  observer:(BJLMethodObserver)^BOOL(BOOL enabled) {
                      [self.console printFormat:@"发言状态被%@", enabled ? @"开启" : @"关闭"];
                      return YES;
@@ -70,7 +70,7 @@
      subscribeNext:^(id x) {
          strongdef(self);
          
-         if (!self.room.roomVM.loginUser.isTeacher
+         if (!self.room.loginUser.isTeacher
              && !self.room.speakingRequestVM.speakingEnabled) {
              BOOL hasTeacher = !!self.room.onlineUsersVM.onlineTeacher;
              UIAlertController *actionSheet = [UIAlertController
@@ -115,7 +115,7 @@
                                      handler:^(UIAlertAction * _Nonnull action) {
                                          [recordingVM setRecordingAudio:!recording
                                                          recordingVideo:!recording];
-                                         if (!self.room.roomVM.loginUser.isTeacher
+                                         if (!self.room.loginUser.isTeacher
                                              && !recordingVM.recordingAudio
                                              && !recordingVM.recordingVideo) {
                                              [self.room.speakingRequestVM stopSpeaking];
@@ -130,7 +130,7 @@
                                  handler:^(UIAlertAction * _Nonnull action) {
                                      [recordingVM setRecordingAudio:!recordingAudio
                                                      recordingVideo:recordingVideo];
-                                     if (!self.room.roomVM.loginUser.isTeacher
+                                     if (!self.room.loginUser.isTeacher
                                          && !recordingVM.recordingAudio
                                          && !recordingVM.recordingVideo) {
                                          [self.room.speakingRequestVM stopSpeaking];
@@ -144,7 +144,7 @@
                                  handler:^(UIAlertAction * _Nonnull action) {
                                      [recordingVM setRecordingAudio:recordingAudio
                                                      recordingVideo:!recordingVideo];
-                                     if (!self.room.roomVM.loginUser.isTeacher
+                                     if (!self.room.loginUser.isTeacher
                                          && !recordingVM.recordingAudio
                                          && !recordingVM.recordingVideo) {
                                          [self.room.speakingRequestVM stopSpeaking];
@@ -249,7 +249,7 @@
                                      handler:^(UIAlertAction * _Nonnull action) {
                                          [playingVM updateVideoPlayingUserWithID:nil];
                                      }]];
-             if (self.room.roomVM.loginUser.isTeacher) {
+             if (self.room.loginUser.isTeacher) {
                  [actionSheet addAction:[UIAlertAction
                                          actionWithTitle:([NSString stringWithFormat:@"关闭发言 %@", videoPlayingUser.name])
                                          style:UIAlertActionStyleDestructive
@@ -272,7 +272,7 @@
                                              [playingVM updateVideoPlayingUserWithID:user.ID];
                                          }]];
              }
-             if (self.room.roomVM.loginUser.isTeacher) {
+             if (self.room.loginUser.isTeacher) {
                  [actionSheet addAction:[UIAlertAction
                                          actionWithTitle:([NSString stringWithFormat:@"关闭发言 %@", user.name])
                                          style:UIAlertActionStyleDestructive

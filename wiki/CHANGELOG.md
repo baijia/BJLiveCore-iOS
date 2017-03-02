@@ -4,13 +4,43 @@ Change Log
 - 标记为 **粗体** 的改动需要特别留意；
 - 被标记 `DEPRECATED` 的代码 **将在 `1.0` 版本移除**；
 
+## 0.2.0
+
+- **`BJLRoom` 的 `vmsAvailable` 属性原来在 `enterRoomSuccess` 时才变成 YES，为了避免错过一些事件现在改为在 `enterRoomSuccess` 之前**；  
+需要注意现在 `vmsAvailable` 变为 YES 时 vm 并没有与 server 建立连接，vm 的状态、数据没有与服务端同步，调用 vm 方法时发起的网络请求会被丢弃、甚至产生不可预期的错误，断开重连时类似；  
+如果不想影响到原来逻辑、仍然想通过 KVO 监听进教室可简单地将使用 `vmsAvailable` 的地方改为 `inRoom`；
+
+- **`BJLRoom` 增加 `inRoom` 属性，在 `enterRoomSuccess` 是变为 YES、`roomDidExitWithError:` 是变为 NO，断开重连过程中仍然为 YES**；  
+`inRoom` 变为 YES 时 vm 的状态、数据已经和服务端同步，并可调用 vm 方法；
+
+- `BJLRoom` 增加 `roomInfo`、`loginUser` 属性，原 `BJLRoomVM` 的这两个属性标记为 `DEPRECATED`，将移除；
+
+- 完善注释，特别是 `BJLRoom`，请仔细阅读；
+
+- `BJLRoom` 增加 `slideshowVM` 用于监听课件相关信息；
+
+- `BJLRoomVM` 支持点名答到功能；
+
+- `BJLRoomVM` 支持客户定制信令；
+
+- `BJLChatVM` 收发消息支持 `channel`；
+
+- 对一些可能增量更新的数组属性增加了覆盖更新回调，只有覆盖更新才调用，增量更新不调用；
+```objc
+- [BJLChatVM receivedMessagesDidOverwrite:] // receivedMessages
+- [BJLGiftVM receivedGiftsDidOverwrite:] // receivedGifts
+- [BJLOnlineUsersVM onlineUsersDidOverwrite:] // onlineUsers
+- [BJLPlayingVM playingUsersDidOverwrite:] // playingUsers
+- [BJLSlideshowVM allDocumentsDidOverwrite:] // allDocuments
+````
+
 ## 0.1.4
 
 - BUG 修复；
 
 ## 0.1.3
 
-- 改进 VM 初始化的监听方式，增加 vmsAvailable 属性、并且可 KVO 监听；
+- 改进 vm 初始化的监听方式，增加 vmsAvailable 属性、并且可 KVO 监听；
 - 减少对开源库的依赖 之 Masonry；
 - 内部逻辑优化；
 - BUG 修复；

@@ -59,7 +59,7 @@ static CGFloat const margin = 10.0;
     [self bjl_observe:BJLMakeMethod(self.room, enterRoomSuccess)
              observer:^BOOL(id data) {
                  strongdef(self);
-                 if (self.room.roomVM.loginUser.isTeacher) {
+                 if (self.room.loginUser.isTeacher) {
                      [self.room.roomVM sendLiveStarted:YES]; // 上课
                  }
                  [self didEnterRoom];
@@ -69,7 +69,7 @@ static CGFloat const margin = 10.0;
     [self bjl_observe:BJLMakeMethod(self.room, roomWillExitWithError:)
              observer:^BOOL(BJLError *error) {
                  strongdef(self);
-                 if (self.room.roomVM.loginUser.isTeacher) {
+                 if (self.room.loginUser.isTeacher) {
                      [self.room.roomVM sendLiveStarted:NO]; // 下课
                  }
                  return YES;
@@ -127,13 +127,14 @@ static CGFloat const margin = 10.0;
                           actionWithTitle:@"重连"
                           style:UIAlertActionStyleDefault
                           handler:^(UIAlertAction * _Nonnull action) {
+                              [self.console printLine:@"网络连接断开，正在重连 ..."];
                               [self makeEventsForLoadingVM:reloadingVM];
                               [self.console printLine:@"网络连接断开：重连"];
                               callback(YES);
                           }]];
         [alert addAction:[UIAlertAction
                           actionWithTitle:@"退出"
-                          style:UIAlertActionStyleCancel
+                          style:UIAlertActionStyleDestructive
                           handler:^(UIAlertAction * _Nonnull action) {
                               [self.console printLine:@"网络连接断开：退出"];
                               callback(NO);
@@ -286,15 +287,15 @@ static CGFloat const margin = 10.0;
 
 - (void)didEnterRoom {
     [self.console printFormat:@"roomInfo ID: %@, title: %@",
-     self.room.roomVM.roomInfo.ID,
-     self.room.roomVM.roomInfo.title];
+     self.room.roomInfo.ID,
+     self.room.roomInfo.title];
     
     [self.console printFormat:@"loginUser ID: %@, number: %@, name: %@",
-     self.room.roomVM.loginUser.ID,
-     self.room.roomVM.loginUser.number,
-     self.room.roomVM.loginUser.name];
+     self.room.loginUser.ID,
+     self.room.loginUser.number,
+     self.room.loginUser.name];
     
-    // if (!self.room.roomVM.loginUser.isTeacher) {
+    // if (!self.room.loginUser.isTeacher) {
     weakdef(self);
     [self bjl_kvo:BJLMakeProperty(self.room.roomVM, liveStarted)
                        filter:^BOOL(NSNumber *old, NSNumber *now) {

@@ -56,6 +56,55 @@
                  [self.console printFormat:@"onlineUsers out: %@", user.name];
                  return YES;
              }];
+    
+    [self bjl_observe:BJLMakeMethod(self.room.roomVM, didReceiveRollcallWithTimeout:)
+             observer:^BOOL(NSTimeInterval timeout) {
+                 strongdef(self);
+                 
+                 UIAlertController *actionSheet = [UIAlertController
+                                                   alertControllerWithTitle:@"老师点名"
+                                                   message:[NSString stringWithFormat:@"请在 %td 秒内答到", (NSInteger)timeout]
+                                                   preferredStyle:UIAlertControllerStyleAlert];
+                 
+                 [actionSheet addAction:[UIAlertAction
+                                         actionWithTitle:@"答到"
+                                         style:UIAlertActionStyleDefault
+                                         handler:^(UIAlertAction * _Nonnull action) {
+                                             BJLError *error = [self.room.roomVM answerToRollcall];
+                                             if (error) {
+                                                 [self.console printFormat:@"答到失败: %@", [error localizedFailureReason]];
+                                             }
+                                         }]];
+                 
+                 [actionSheet addAction:[UIAlertAction
+                                         actionWithTitle:@"无视"
+                                         style:UIAlertActionStyleCancel
+                                         handler:nil]];
+                 
+                 [self presentViewController:actionSheet
+                                    animated:YES
+                                  completion:nil];
+                 
+                 return YES;
+             }];
+    
+    [self bjl_observe:BJLMakeMethod(self.room.roomVM, didReceiveCustomizedSignal:value:)
+             observer:^BOOL(NSString *key, id value) {
+                 strongdef(self);
+                 [self.console printFormat:@"客户定制信令: %@ - %@", key, value];
+                 return YES;
+             }];
+    
+    [self bjl_kvo:BJLMakeProperty(self.room.roomVM, rollcallTimeRemaining)
+           filter:^BOOL(NSNumber * _Nullable old, NSNumber * _Nullable now) {
+               // strongdef(self);
+               return now.doubleValue != old.doubleValue;
+           }
+         observer:^BOOL(NSNumber * _Nullable old, NSNumber * _Nullable now) {
+             strongdef(self);
+             [self.console printFormat:@"答到倒计时: %f", now.doubleValue];
+             return YES;
+         }];
 }
 
 @end

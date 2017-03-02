@@ -69,7 +69,7 @@ weakdef(self);
 [self bjl_observe:BJLMakeMethod(self.room, roomDidEnter)
          observer:^BOOL(id data) {
              strongdef(self);
-             if (self.room.roomVM.loginUser.isTeacher) {
+             if (self.room.loginUser.isTeacher) {
                  [self.room.roomVM sendLiveStarted:YES]; // 通知学生上课
              }
              else {
@@ -88,7 +88,7 @@ weakdef(self);
 [self bjl_observe:BJLMakeMethod(self.room, roomWillExitWithError:)
          observer:^BOOL(BJLError *error) {
              strongdef(self);
-             if (self.room.roomVM.loginUser.isTeacher) {
+             if (self.room.loginUser.isTeacher) {
                  [self.room.roomVM sendLiveStarted:NO]; // 通知学生下课
              }
              return YES;
@@ -155,8 +155,8 @@ weakdef(self);
 - `BJLRoom` 是直播功能的入口，用于处理创建、进入、退出教室；
 - 调用 `enter` 方法后 `room` 变成 `active` 状态，之前的教室将被强制退出，退出后变为 `inactive` 状态；
 - 教室内各个功能通过对应的 `ViewModel`（以下简称 `VM`）来管理，所有 VM 都可为空；
-- 调用 `enter` 方法后 `room.loadingVM` 将被初始化，可用于显示加载度、成功和失败等；
-- 成功进教室后其它 VM 将被初始化，在 `roomDidEnter` 时可用；
+- 调用 `enter` 方法后 `room.loadingVM` 将被初始化，可用于显示加载度、成功和失败等，成功/失败后为空；
+- 其它 VM 在 loading 过程被初始化，当 `vmsAvailable` 变为 YES 时 **可开始监听 VM 的属性、方法调用**，在进入教室后、`inRoom` 变为 YES 时可用 —— **可调用方法、发起请求**；
 - 所有 VM 及其所有属性支持 `KVO` 以便监听状态变化，除非额外注释说明；
 - 无法通过 `KVO` 实现的事件（如有用户退出教室）可监听方法调用，返回类型值为 `BJLObservable` 的方法表示可监听；
 
