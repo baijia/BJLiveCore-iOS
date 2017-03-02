@@ -8,10 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
+/**
+ TODO:
+ 1. bjl_kvo:@[a, b], bjl_observe:@[a, b]
+ 2. default filter: ifChanged
+ */
+
 @protocol BJLObservation;
 @class BJLPropertyMeta, BJLMethodMeta;
-
-NS_ASSUME_NONNULL_BEGIN
 
 typedef BOOL (^BJLPropertyFilter)(id _Nullable old, id _Nullable now);
 typedef BOOL (^BJLPropertyObserver)(id _Nullable old, id _Nullable now);
@@ -42,7 +48,7 @@ typedef void BJLObservable;
 _Pragma("clang diagnostic pop") \
 } \
 while (NO)
-// #define BJLMethodNotify_NoArgs() BJLMethodNotify((), nil)
+// #define BJLMethodNotify_NoArgs() BJLMethodNotify((void))
 
 /**
  KVO with block.

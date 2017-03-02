@@ -16,13 +16,10 @@ typedef NS_OPTIONS(NSInteger, BJLLoadingStep) {
     BJLLoadingStep_loadFeatureConfig    = 1 << 2,
     BJLLoadingStep_connectMasterServer  = 1 << 3,
     BJLLoadingStep_connectRoomServer    = 1 << 4,
-    BJLLoadingStep_connectChatServer    = 1 << 5
+    BJLLoadingStep_connectChatServer    = 1 << 5,
+    BJLLoadingStep_all                  = NSIntegerMax,
+    BJLLoadingStep_reconnect            = (BJLLoadingStep_all ^ (BJLLoadingStep_loadRoomInfo | BJLLoadingStep_loadFeatureConfig))
 };
-typedef BJLLoadingStep BJLLoadingSteps;
-static BJLLoadingSteps const BJLLoadingSteps_all = NSIntegerMax;
-static BJLLoadingSteps const BJLLoadingSteps_reconnect = (BJLLoadingSteps_all
-                                                          ^ (BJLLoadingStep_loadRoomInfo
-                                                             | BJLLoadingStep_loadFeatureConfig));
 
 /**
  - stepOver: 单步完成，无错误 ignorable

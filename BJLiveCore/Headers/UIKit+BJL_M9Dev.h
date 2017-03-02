@@ -49,13 +49,11 @@ static inline CGRect bjl_fitFrameWithScale(CGRect frame, CGFloat scale) {
 
 #pragma mark -
 
-typedef BOOL (^BJL_M9ResponderFindingBlock)(UIResponder *responder, BOOL *stop);
-
 @interface UIResponder (BJL_M9Dev)
 
 - (UIResponder *)bjl_closestResponderOfClass:(Class)clazz; // NOT include self
 - (UIResponder *)bjl_closestResponderOfClass:(Class)clazz includeSelf:(BOOL)includeSelf;
-- (UIResponder *)bjl_findResponderWithBlock:(BJL_M9ResponderFindingBlock)enumerateBlock;
+- (UIResponder *)bjl_findResponderWithBlock:(BOOL (^)(UIResponder *responder, BOOL *stop))enumerateBlock;
 
 @end
 
@@ -76,13 +74,20 @@ typedef BOOL (^BJL_M9ResponderFindingBlock)(UIResponder *responder, BOOL *stop);
 
 @interface UIViewController (BJL_M9Dev)
 
+- (void)bjl_addChildViewController:(UIViewController *)childViewController;
 - (void)bjl_addChildViewController:(UIViewController *)childViewController superview:(UIView *)superview;
 - (void)bjl_addChildViewController:(UIViewController *)childViewController superview:(UIView *)superview atIndex:(NSInteger)index;
 - (void)bjl_addChildViewController:(UIViewController *)childViewController superview:(UIView *)superview belowSubview:(UIView *)siblingSubview;
 - (void)bjl_addChildViewController:(UIViewController *)childViewController superview:(UIView *)superview aboveSubview:(UIView *)siblingSubview;
+- (void)bjl_addChildViewController:(UIViewController *)childViewController addSubview:(void (^)(UIView *parentView, UIView *childView))addSubview;
 - (void)bjl_removeFromParentViewControllerAndSuperiew;
 
 - (void)bjl_dismissAllViewControllersAnimated:(BOOL)animated completion:(void (^)(void))completion;
+
++ (UIViewController *)bjl_gotoRootViewControllerAnimated:(BOOL)animated completion:(void (^)(void))completion;
+
++ (UIViewController *)bjl_topViewController;
++ (UIViewController *)bjl_rootViewController;
 
 @end
 

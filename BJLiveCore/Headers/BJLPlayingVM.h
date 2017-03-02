@@ -16,13 +16,21 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 音视频用户列表
  包含 `videoPlayingUser`
- 所有音频直接播放、视频需要调用 `updateVideoPlayingUser:` 打开
- 参考 `loadPlayingUsers` */
+ ???: 包含未开音视频的老师、管理员，需要自行判断用户音视频开关
+ 所有音频直接播放，视频需要调用 `updateVideoPlayingUser:` 打开
+ SDK 会处理音视频打断、恢复、前后台切换等情况
+ 参考 `loadPlayingUsers`
+ */
 @property (nonatomic, readonly, nullable, copy) NSArray<NSObject<BJLOnlineUser> *> *playingUsers;
+
+/** `playingUsers` 被覆盖更新
+ 覆盖更新才调用，增量更新不调用
+ */
+- (BJLObservable)playingUsersDidOverwrite:(nullable NSArray<NSObject<BJLOnlineUser> *> *)playingUsers;
 
 /** 加载音视频用户列表
  连接教室后、掉线重新连接后自动调用
- 加载成功后更新 `playingUsers`、`videoPlayingUser`
+ 加载成功后更新 `playingUsers`、`videoPlayingUser` 并调用 `playingUsersDidOverwrite:`
  */
 - (void)loadPlayingUsers;
 
@@ -49,7 +57,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark -
 
-/** 正在播放的视频用户 */
+/** 正在播放的视频用户
+ 断开重连、暂停恢复等操作不自动重置 `videoPlayingUser`，除非对方用户掉线、离线等 */
 @property (nonatomic, readonly, nullable) NSObject<BJLOnlineUser> *videoPlayingUser;
 
 /** 设置播放用户的视频

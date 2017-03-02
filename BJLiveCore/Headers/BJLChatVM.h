@@ -17,11 +17,21 @@ NS_ASSUME_NONNULL_BEGIN
 /** 所有消息 */
 @property (nonatomic, readonly, nullable, copy) NSArray<NSObject<BJLMessage> *> *receivedMessages;
 
+/** `receivedMessages` 被覆盖更新
+ 覆盖更新才调用，增量更新不调用
+ 首次连接 server 或断开重连会导致覆盖更新
+ */
+- (BJLObservable)receivedMessagesDidOverwrite:(nullable NSArray<NSObject<BJLMessage> *> *)receivedMessages;
+
 /**
  发消息
  成功后会收到消息通知
+ @param content 消息
+ @param channel 频道
+ 参考 `BJLMessage`
  */
 - (nullable BJLError *)sendMessage:(NSString *)content;
+- (nullable BJLError *)sendMessage:(NSString *)content channel:(nullable NSString *)channel;
 
 /** 收到消息
  同时更新 `receivedMessages` */

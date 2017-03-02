@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol BJLMessage <NSObject>
 
 @property (nonatomic, readonly) NSString *ID, *content;
+@property (nonatomic, readonly, nullable) NSString *channel;
 @property (nonatomic, readonly) NSTimeInterval timeInterval; // seconds since 1970
 @property (nonatomic, readonly) NSObject<BJLUser> *fromUser;
 

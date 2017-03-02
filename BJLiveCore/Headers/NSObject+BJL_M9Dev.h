@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <YYModel/YYModel.h>
 
 // @see M9Dev - https://github.com/iwill/
 
@@ -23,6 +22,24 @@
     statements \
     set; \
 })
+
+/** dispatch */
+static inline dispatch_time_t bjl_dispatch_time_in_seconds(NSTimeInterval seconds) {
+    return dispatch_time(DISPATCH_TIME_NOW, (int64_t)(seconds * NSEC_PER_SEC));
+}
+static inline void bjl_dispatch_after_seconds(NSTimeInterval seconds, dispatch_queue_t queue, dispatch_block_t block) {
+    dispatch_after(bjl_dispatch_time_in_seconds(seconds), queue ?: dispatch_get_main_queue(), block);
+}
+static inline void bjl_dispatch_sync_main_queue(dispatch_block_t block) {
+    if ([NSThread isMainThread]) block();
+    else dispatch_sync(dispatch_get_main_queue(), block);
+}
+static inline void bjl_dispatch_async_main_queue(dispatch_block_t block) {
+    dispatch_async(dispatch_get_main_queue(), block);
+}
+static inline void bjl_dispatch_async_background_queue(dispatch_block_t block) {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), block);
+}    
 
 // safe range
 static inline NSRange BJL_NSMakeSafeRange(NSUInteger loc, NSUInteger len, NSUInteger length) {
@@ -125,6 +142,16 @@ typedef void (^BJLTuplePackBlock)(BJLTupleUnpackBlock unpack);
 
 @end
 
+#pragma mark -
+
+@interface NSTimer (BJL_M9Dev)
+
++ (NSTimer *)bjl_timerWithTimeInterval:(NSTimeInterval)interval repeats:(BOOL)repeats block:(void (^)(NSTimer *timer))block;
++ (NSTimer *)bjl_scheduledTimerWithTimeInterval:(NSTimeInterval)interval repeats:(BOOL)repeats block:(void (^)(NSTimer *timer))block;
+
+@end
+
+/*
 #pragma mark - YYModel
 
 @interface NSObject (BJL_M9Dev_YYModel)
@@ -132,4 +159,4 @@ typedef void (^BJLTuplePackBlock)(BJLTupleUnpackBlock unpack);
 + (NSArray *)bjl_modelArrayWithJSON:(id)json;
 + (NSDictionary *)bjl_modelDictionaryWithJSON:(id)json;
 
-@end
+@end */

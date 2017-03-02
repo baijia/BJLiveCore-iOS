@@ -129,6 +129,8 @@ typedef NS_ENUM(NSInteger, BJLSlideshowContentMode) {
     BJLSlideshowContentMode_scaleAspectFit,
     /** 铺满 */
     BJLSlideshowContentMode_scaleAspectFill
+    /** 拉伸 */
+    // BJLSlideshowContentMode_scaleToFill
 };
 
 /** 礼物类型 */

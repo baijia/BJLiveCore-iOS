@@ -28,7 +28,7 @@ typedef NSError<BJLError> BJLError;
 
 #pragma mark -
 
-extern NSErrorDomain const BJLErrorDomain;
+extern const NSErrorDomain BJLErrorDomain;
 
 extern NSString * const BJLErrorSourceErrorKey;
 

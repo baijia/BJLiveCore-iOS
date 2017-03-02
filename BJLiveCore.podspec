@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'BJLiveCore'
-  s.version = '0.1.4'
+  s.version = '0.2.0'
   s.summary = 'BJLiveCore SDK.'
   s.license = 'MIT'
   s.authors = {"MingLQ"=>"minglq.9@gmail.com"}

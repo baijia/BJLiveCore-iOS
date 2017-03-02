@@ -15,12 +15,20 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BJLGiftVM : BJLBaseVM
 
 /** 所有打赏记录
- 参考 `- loadReceivedGifts` */
+ 参考 `loadReceivedGifts`
+ */
 @property (nonatomic, readonly, nullable, copy) NSArray<NSObject<BJLReceivedGift> *> *receivedGifts;
+
+/** `receivedGifts` 被覆盖更新
+ 覆盖更新才调用，增量更新不调用
+ 首次连接 server 或断开重连会导致覆盖更新
+ */
+- (BJLObservable)receivedGiftsDidOverwrite:(nullable NSArray<NSObject<BJLReceivedGift> *> *)receivedGifts;
 
 /** 加载所有打赏记录
  连接教室后、掉线重新连接后自动调用加载
- 加载成功后更新 `receivedGifts` */
+ 加载成功后更新 `receivedGifts`、调用 `receivedMessagesDidOverwrite:`
+ */
 - (void)loadReceivedGifts;
 
 /**
