@@ -166,6 +166,7 @@ typedef NS_ENUM(NSInteger, BJLRoomState) {
 
 /** vm、view 初始化状态，值为 YES 时 vm 可用
  在进教室 成功/失败 之前，vm、view 就已经可用，开始监听 vm 的属性、方法调用以及显示 view，但是之后可能进教室成功、也可能失败
+ !!!: 但此时 `loadingVM` 以外的 vm 并没有与 server 建立连接，vm 的状态、数据没有与服务端同步，调用 vm 方法时发起的网络请求会被丢弃、甚至产生不可预期的错误，断开重连时类似
  KVO 此属性时 option 包含 initial(默认)，即使开始 KVO 时值已经是 YES 也会执行 KVO 回调，参考 NSObject+BJLObserving.h
  */
 @property (nonatomic, readonly) BOOL vmsAvailable;

@@ -4,6 +4,11 @@ Change Log
 - 标记为 **粗体** 的改动需要特别留意；
 - 被标记 `DEPRECATED` 的代码 **将在 `1.0` 版本移除**；
 
+## 0.2.1
+
+- 解决进教室时加载的消息是倒序的问题；
+- 解决非 iOS10 系统上的崩溃问题；
+
 ## 0.2.0
 
 - **`BJLRoom` 的 `vmsAvailable` 属性原来在 `enterRoomSuccess` 时才变成 YES，为了避免错过一些事件现在改为在 `enterRoomSuccess` 之前**；  
