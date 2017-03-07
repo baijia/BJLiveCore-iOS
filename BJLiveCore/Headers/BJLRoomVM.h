@@ -10,6 +10,7 @@
 
 #import "BJLRoomInfo.h"
 #import "BJLUser.h"
+#import "BJLSurvey.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -25,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
  自由模式/举手模式 */
 @property (nonatomic, readonly) BJLSpeakType speakType;
 
-#pragma mark -
+#pragma mark - 上课状态
 
 /** 上课状态 */
 @property (nonatomic, readonly) BOOL liveStarted;
@@ -34,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
  设置成功后修改 `liveStarted` */
 - (nullable BJLError *)sendLiveStarted:(BOOL)liveStarted;
 
-#pragma mark -
+#pragma mark - 公告
 
 /** 教室公告 */
 @property (nonatomic, readonly, nullable, copy) NSString *noticeText;
@@ -46,7 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
  设置成功后修改 `noticeText` */
 - (nullable BJLError *)sendNoticeText:(NSString *)noticeText;
 
-#pragma mark -
+#pragma mark - 点名
 
 /** 点名倒计时
  每秒更新 */
@@ -65,7 +66,47 @@ NS_ASSUME_NONNULL_BEGIN
 /** 学生: 答到 */
 - (nullable BJLError *)answerToRollcall;
 
-#pragma mark -
+#pragma mark - 测验
+
+/** 请求历史题目 */
+- (void)loadSurveyHistory;
+
+/** 收到历史题目以及当前用户的答题情况
+ */
+- (BJLObservable)didReceiveSurveyHistory:(NSArray<BJLSurvey *> *)surveyHistory
+                              rightCount:(NSInteger)rightCount
+                              wrongCount:(NSInteger)wrongCount;
+
+/** 老师: 发送题目 - 暂未实现
+- (nullable BJLError *)sendSurvey:(BJLSurvey *)survey; */
+
+/** 学生: 收到新题目 */
+- (BJLObservable)didReceiveSurvey:(BJLSurvey *)survey;
+
+/**
+ 学生: 答题
+ @param answers `BJLSurveyOption` 的 `key`
+ @param result   与每个 `BJLSurveyOption` 的 `isAnswer` 比对得出，如果一个题目下所有 `BJLSurveyOption` 的 `isAnswer` 都是 NO 表示此题目没有标准答案
+ @param order   `BJLSurvey` 的 `order`
+ */
+- (nullable BJLError *)sendSurveyAnswers:(NSArray<NSString *> *)answers
+                                  result:(BJLSurveyResult)result
+                                   order:(NSInteger)order;
+
+/** 收到答题统计
+ @param results `NSDictionary` 的 key-value 分别是 `BJLSurveyOption` 的 `key` 和选择该选项的人数
+ @param order   `BJLSurvey` 的 `order`
+ */
+- (BJLObservable)didReceiveSurveyResults:(NSDictionary<NSString *, NSNumber *> *)results
+                                   order:(NSInteger)order;
+
+/** 老师: 收到答题用户统计 - 暂未实现
+ @param results `NSDictionary` 的 key-value 分别是 `BJLSurveyOption` 的 `key` 和选择该选项的名单
+ @param order   `BJLSurvey` 的 `order`
+- (BJLObservable)didReceiveSurveyUserResults:(NSDictionary<NSString *, NSArray<NSString *> *> *)results
+                                       order:(NSInteger)order; */
+
+#pragma mark - 定制信令
 
 /**
  收到定制信令

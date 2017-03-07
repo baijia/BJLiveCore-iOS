@@ -44,6 +44,8 @@ typedef NS_ENUM(NSInteger, BJLErrorCode) {
     /* exit room */
     BJLErrorCode_exitRoom_disconnected,     // 连接断开
     BJLErrorCode_exitRoom_loginConflict,    // 用户在其它设备登录
+    /* others */
+    BJLErrorCode_serverRecording_not_liveStarted,   // 非上课状态，不能录课
     /* !!!: 
      1、在此之前增加错误码；
      2、不要设置错误码取值；

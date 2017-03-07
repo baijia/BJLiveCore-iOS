@@ -14,14 +14,23 @@
 #define bjl_return ;
 
 // value to string
-#define bjl_NSStringFromValue(value) [@(value) description]
+#define bjl_NSStringFromValue(VALUE) [@(VALUE) description]
 
 // set struct
-#define bjl_SetStruct(_struct, statements) ({ \
-    __typeof__(_struct) set = _struct; \
-    statements \
+#define bjl_SetStruct(_STRUCT, STATEMENTS) ({ \
+    __typeof__(_STRUCT) set = _STRUCT; \
+    STATEMENTS \
     set; \
 })
+
+#define bjl_va_each(TYPE, FIRST, BLOCK) { \
+    va_list args; \
+    va_start(args, FIRST); \
+    for (TYPE arg = FIRST; !!arg; arg = va_arg(args, TYPE)) { \
+        BLOCK(arg); \
+    } \
+    va_end(args); \
+}
 
 /** dispatch */
 static inline dispatch_time_t bjl_dispatch_time_in_seconds(NSTimeInterval seconds) {
@@ -74,7 +83,7 @@ _Pragma("GCC diagnostic pop")
  *      - (BJLTuple<void (^)(BOOL state1, BOOL state2> *)states;
  *  pack:
  *      BOOL state1 = self.state1, state2 = self.state2;
- *      return BJLTuplePack(void (^)(BOOL, BOOL), state1, state2);
+ *      return BJLTuplePack((BOOL, BOOL), state1, state2);
  *  unpack:
  *      BJLTupleUnpack(tuple) = ^(BOOL state1, BOOL state2) {
  *          // ...
@@ -88,7 +97,7 @@ _Pragma("GCC diagnostic pop")
  *      BOOL state1 = self.state1, state2 = self.state2;
  *      BJLTuple *tuple = BJLTuplePack(void (^)(BOOL, BOOL), state1, state2);
  */
-#define BJLTuplePack(TYPE, ...) _BJLTuplePack(void (^)TYPE, ...)
+#define BJLTuplePack(TYPE, ...) _BJLTuplePack(void (^)TYPE, __VA_ARGS__)
 #define _BJLTuplePack(TYPE, ...) \
 ({[BJLTuple tupleWithPack:^(BJLTupleUnpackBlock unpack) { \
     if (unpack) ((TYPE)unpack)(__VA_ARGS__); \
@@ -99,12 +108,18 @@ _Pragma("GCC diagnostic pop")
 #define BJLTupleUnpack(TUPLE)   (TUPLE ?: [BJLTuple new]).unpack
 typedef void (^BJLTupleUnpackBlock)(/* ... */);
 typedef void (^BJLTuplePackBlock)(BJLTupleUnpackBlock unpack);
+// - (BJLTuple<BJLTupleGeneric(NSString *string, NSInteger integer, ...)> *)aTuple;
+#define BJLTupleGeneric         void (^)
+// - (BJLTupleType(NSString *string, NSInteger integer))aTuple;
+#define BJLTupleType(...)       BJLTuple<void (^)(__VA_ARGS__)> *
 @interface BJLTuple<BJLTupleUnpackTypeGeneric> : NSObject
-@property (nonatomic, /* writeonly, */ setter=unpack:) id/*<BJLTupleUnpackTypeGeneric>*/ unpack;
+@property (nonatomic/* , writeonly */, assign, setter=unpack:) id/*<BJLTupleUnpackTypeGeneric>*/ unpack;
 + (instancetype)tupleWithPack:(BJLTuplePackBlock)pack;
 @end
 
 #pragma mark -
+
+#define bjlcast(OBJECT, CLASS) ({ (CLASS *)([OBJECT isKindOfClass:[CLASS class]] ? OBJECT : nil); })
 
 @interface NSObject (BJL_M9Dev)
 

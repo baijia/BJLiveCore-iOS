@@ -111,35 +111,6 @@ static inline CGRect bjl_fitFrameWithScale(CGRect frame, CGFloat scale) {
 
 @end
 
-#pragma mark - iOS7AutoCellSizing
-
-@interface NSObject (bjl_iOS7AutoCellSizing)
-
-+ (void)bjl_enable_iOS7AutoCellSizing;
-
-@end
-
-@protocol BJL_iOS7AutoCellSizingTableViewDelegate <UITableViewDelegate>
-
-@property (nonatomic, strong) NSMutableDictionary *bjl_iOS7_cellsForCalculatingHeight;
-
-- (NSString *)  bjl_iOS7_tableView:(UITableView *)tableView
-  reuseIdentifierForRowAtIndexPath:(NSIndexPath *)indexPath;
-
-/**
- *  WARNING: Don't call the table view's dequeueReusableCellWithIdentifier: method here
- *  because this will result in a memory leak as the cell is created but never returned from the
- *  tableView:cellForRowAtIndexPath: method!
- */
-- (UITableViewCell *)bjl_iOS7_tableView:(UITableView *)tableView
-                  cellForRowAtIndexPath:(NSIndexPath *)indexPath;
-
-- (void)bjl_iOS7_tableView:(UITableView *)tableView
-                updateCell:(UITableViewCell *)cell
-         forRowAtIndexPath:(NSIndexPath *)indexPath;
-
-@end
-
 #pragma mark -
 
 @interface UIColor (BJL_M9Dev)

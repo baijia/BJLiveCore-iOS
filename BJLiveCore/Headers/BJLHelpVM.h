@@ -17,7 +17,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 求助成功/失败回调 */
 - (BJLObservable)requestForHelpFinished:(BOOL)success;
-- (BJLObservable)requestForHelpDidFinished:(NSNumber *)success DEPRECATED_MSG_ATTRIBUTE("use `requestForHelpFinished:`");
 
 @end
 
