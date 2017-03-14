@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable BJLError *)requestForHelpWithUserPhoneNumber:(NSString *)userPhoneNumber;
 
 /** 求助成功/失败回调 */
-- (BJLObservable)requestForHelpFinished:(BOOL)success;
+- (BJLObservable)requestForHelpDidFinish:(BOOL)success;
 
 @end
 

@@ -4,6 +4,21 @@ Change Log
 - 标记为 **粗体** 的改动需要特别留意；
 - 被标记 `DEPRECATED` 的代码 **将在 `1.0` 版本移除**；
 
+## 0.2.3
+
+- 公告支持设置链接，参考 `BJLRoomVM`；
+- 增加进教室房间已满的错误码 `BJLErrorCode_enterRoom_roomIsFull`；
+- 升级 AVSDK、解决声音从听筒发出的问题；
+- 解决收不到拒绝举手的回调的问题；
+- 解决 PPT 图片可能加载多个清晰度、以及清晰度较低的问题；
+- ；
+
+## 0.2.2
+
+- 增加未上课时不能开启录课的错误码 `BJLErrorCode_serverRecording_not_liveStarted`；
+- 增加测验功能，参考 `BJLRoomVM`；
+- 解决 `BJLTuple` 的 BUG；
+
 ## 0.2.1
 
 - 解决进教室时加载的消息是倒序的问题；

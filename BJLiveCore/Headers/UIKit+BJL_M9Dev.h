@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 // #import <Masonry/Masonry.h>
 
+static inline UIEdgeInsets BJLEdgeInset(CGFloat inset) {
+    return UIEdgeInsetsMake(inset, inset, inset, inset);
+}
+
 static inline CGFloat bjl_screenFloor(CGFloat size) {
     CGFloat scale = [UIScreen mainScreen].scale;
     return floor(size * scale) / scale;

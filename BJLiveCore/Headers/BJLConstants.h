@@ -147,4 +147,9 @@ typedef NS_ENUM(NSInteger, BJLGiftType) {
     BJLGiftType_barleyTea = 5
 };
 
+typedef NS_ENUM(NSInteger, BJLTextMaxLength) {
+    BJLTextMaxLength_chat = 140,
+    BJLTextMaxLength_notice = 140
+};
+
 NS_ASSUME_NONNULL_END

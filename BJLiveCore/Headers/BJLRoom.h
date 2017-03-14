@@ -55,30 +55,33 @@ NS_ASSUME_NONNULL_BEGIN
  - tuple pack&unpack，参考 NSObject+BJL_M9Dev.h
  更多应用实例参考 BJLiveUI - https://github.com/baijia/BJLiveUI-iOS
  
+ vm: view-model
+ vm 用于管理各功能模块的状态、数据等，参考 `BJLRoom` 的各 vm 属性
+ 
  lifecycle:
  0. 创建教室
  通过 `roomWithID:apiSign:user:` 或 `roomWithSecret:userName:userAvatar:` 方法获得 `BJLRoom`
+ 此时 `roomInfo`、`loginUser` 以及包括 `loadingVM` 在内所有 vm、view 为都为 nil，`vmsAvailable`、`inRoom` 为 NO
  1. 进入教室
  调用 `enter` 进入教室，开始 loading
  2. loading
- `loadingVM` 从 loading 开始可用，直到结束变为 nil
- loading 每一步的正常完成、询问、出错都有回调，回调中可实现出错重试等逻辑，参考 `loadingVM.suspendBlock`
- 3. vm: view-model
- vm 用于管理各功能模块的状态、数据等，参考 `BJLRoom` 的各 vm 属性
- 3.1. 初始化 `BJLRoom` 时所有 vm、view 为 nil，在进教室成功或失败之前 `vmsAvailable` 变为 YES 时各 vm、view 可用
- 因此可以在 `vmsAvailable` 变为 YES 时开始监听 vm 的属性、方法调用以及显示 view
- !!!: 但此时 `loadingVM` 以外的 vm 并没有与 server 建立连接，vm 的状态、数据没有与服务端同步，调用 vm 方法时发起的网络请求会被丢弃、甚至产生不可预期的错误，断开重连时类似
- 3.2. 进教室成功后所有初始化工作已经结束，vm 的状态、数据已经和服务端同步，并可调用 vm 方法，参考 `vmsAvailable`、`enterRoomSuccess`
- 3.3. 退出教室后各 vm 变为 nil，所有添加过的监听将被自动移除
- 3.4. 因用户角色、帐户权限、客户端配置等原因，部分功能对应 vm 可能一直为 nil
- 4. 进教室成功、失败
+ `loadingVM` 从 loading 开始可用，直到结束变为 nil，参考 `BJLLoadingVM`
+ loading 每一步的正常完成、询问、出错都有回调，回调中可实现出错重试等逻辑，`loadingVM.suspendBlock`
+ 2.1. 检查网络是否可用、是否是 WWAN 网络
+ 2.2. 获取教室、用户及教室配置等信息，成功后 `roomInfo` 和 `loginUser` 变为可用、但 vm、view 为 nil
+ 2.3. 建立服务器连接，`vmsAvailable` 在开始连接之前变为 YES、各 vm、view 变为非 nil，可开始监听 vm 的属性、方法调用以及显示 view，
+ 但 vm 的状态、数据没有与服务端同步，调用 vm 方法时发起的网络请求会被丢弃、甚至产生不可预期的错误，断开重连时类似
+ 2.4. 进入教室成功、loading 状态结束，`loadingVM` 变为 nil、`inRoom` 变为 YES、调用 `enterRoomSuccess`，
+ 此时 vm 的数据已经和服务端同步、可调用 vm 方法
+ 因用户角色、帐户权限、客户端配置等原因，部分功能对应 vm 可能一直为 nil
+ 3. 进教室成功、失败
  进教室成功、失败分别调用 `enterRoomSuccess`、`enterRoomFailureWithError:`，失败原因参考 `BJLError`
- 5. 断开、重连
+ 4. 断开、重连
  参考 `setReloadingBlock:`
- 6. 主动/异常退出
- 主动退出调用 `exit`
- 异常退出包括断开重连、在其它设备登录、主动退出等
+ 5. 主动/异常退出
+ 主动退出调用 `exit`、异常退出包括断开重连、在其它设备登录、主动退出等
  除进教室失败以外的退出都会调用 `roomWillExitWithError:` 和 `roomDidExitWithError:`，主动退出时 error 为 nil
+ 退出教室后各 vm、view、`vmsAvailable`、`inRoom` 均被重置
  */
 
 /*
@@ -156,10 +159,11 @@ typedef NS_ENUM(NSInteger, BJLRoomState) {
 #pragma mark metainfo
 
 /** 教室信息
- BJLiveCore 内部【不】读取此处 roomInfo */
+ BJLiveCore 内部【不】读取此处 `roomInfo` */
 @property (nonatomic, readonly, nullable, copy) NSObject<BJLRoomInfo> *roomInfo;
 /** 当前登录用户信息
- BJLiveCore 内部【不】读取此处 loginUser */
+ BJLiveCore 内部【不】读取此处 `loginUser`
+ */
 @property (nonatomic, readonly, nullable, copy) NSObject<BJLUser> *loginUser;
 
 #pragma mark view & view-model

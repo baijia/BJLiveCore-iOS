@@ -10,6 +10,7 @@
 
 #import "BJLRoomInfo.h"
 #import "BJLUser.h"
+#import "BJLNotice.h"
 #import "BJLSurvey.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -38,14 +39,20 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - 公告
 
 /** 教室公告 */
-@property (nonatomic, readonly, nullable, copy) NSString *noticeText;
+@property (nonatomic, readonly, nullable, copy) BJLNotice *notice;
+@property (nonatomic, readonly, nullable, copy) NSString *noticeText DEPRECATED_MSG_ATTRIBUTE("use `notice` instead");
 
 /** 获取教室公告
- 获取成功后修改 `noticeText` */
-- (void)loadNoticeText;
+ 连接教室后、掉线重新连接后自动调用加载
+ 获取成功后修改 `notice` */
+- (void)loadNotice;
+- (void)loadNoticeText DEPRECATED_MSG_ATTRIBUTE("use `loadNotice` instead");
 /** 老师: 设置教室公告
- 设置成功后修改 `noticeText` */
-- (nullable BJLError *)sendNoticeText:(NSString *)noticeText;
+ 最多 BJLTextMaxLength_notice 个字符
+ `noticeText` = `noticeText.length` ? `noticeText` : `linkURL.absoluteString`
+ 设置成功后修改 `notice` */
+- (nullable BJLError *)sendNoticeWithText:(nullable NSString *)noticeText linkURL:(nullable NSURL *)linkURL;
+- (nullable BJLError *)sendNoticeText:(nullable NSString *)noticeText DEPRECATED_MSG_ATTRIBUTE("use `sendNoticeWithText:linkURL:` instead");
 
 #pragma mark - 点名
 

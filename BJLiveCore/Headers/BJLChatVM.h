@@ -25,8 +25,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  发消息
+ 最多 BJLTextMaxLength_chat 个字符
  成功后会收到消息通知
- @param content 消息
+ @param content 消息，不能是空字符串或 nil
  @param channel 频道
  参考 `BJLMessage`
  */

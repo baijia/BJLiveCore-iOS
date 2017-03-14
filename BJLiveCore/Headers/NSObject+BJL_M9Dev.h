@@ -16,6 +16,9 @@
 // value to string
 #define bjl_NSStringFromValue(VALUE) [@(VALUE) description]
 
+// null - TODO: replace @""
+#define bjl_NSNull [NSNull null]
+
 // set struct
 #define bjl_SetStruct(_STRUCT, STATEMENTS) ({ \
     __typeof__(_STRUCT) set = _STRUCT; \

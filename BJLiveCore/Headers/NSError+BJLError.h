@@ -42,6 +42,7 @@ typedef NS_ENUM(NSInteger, BJLErrorCode) {
     BJLErrorCode_invalidArguments,  // 参数错误
     BJLErrorCode_areYouRobot,       // 操作过于频繁
     /* exit room */
+    BJLErrorCode_enterRoom_roomIsFull,      // 房间已满
     BJLErrorCode_exitRoom_disconnected,     // 连接断开
     BJLErrorCode_exitRoom_loginConflict,    // 用户在其它设备登录
     /* others */
