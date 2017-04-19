@@ -11,6 +11,7 @@
 
 @protocol BJLResponse;
 
+// TODO: BJLNetworking with <BJLResponseGeneric: id<BJLResponse>>
 #define BJLNetworking    [AFHTTPSessionManager bj_manager]
 
 extern NSString * const BJAnonymousAuthTokenURL;
