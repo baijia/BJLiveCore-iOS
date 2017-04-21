@@ -4,6 +4,11 @@ Change Log
 - 标记为 **粗体** 的改动需要特别留意；
 - 被标记 `DEPRECATED` 的代码 **将在 `1.0` 版本移除**；
 
+## 0.2.4.2
+
+- 支持激光笔；
+- `BJLDocument` 和 `BJLDocumentPageInfo` 由 protocol 改为具体实现，同时修改 `BJLSlideVM` 和 `BJLSlideshowVM` 中相关的方法、属性；
+
 ## 0.2.4
 
 - 解决上课状态错误问题；

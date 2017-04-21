@@ -147,3 +147,54 @@ static inline CGRect bjl_fitFrameWithScale(CGRect frame, CGFloat scale) {
 - (MASConstraint *(^)(CGFloat))bjl_inset;
 
 @end */
+
+#pragma mark - AliIMG
+
+/**
+ Ali image aspect scale url params
+ @param width   * scale <> 1-4096
+ @param height  * scale <> 1-4096
+ @param fill    fill, or fit
+ @param ext     ext
+ @return        url params
+ e.g.
+ http://image-demo.img-cn-hangzhou.aliyuncs.com/example.jpg@100h_100w_0c_1e_1l_2o_2x.jpg - fill > 300*200
+ http://image-demo.img-cn-hangzhou.aliyuncs.com/example.jpg@100h_100w_0c_0e_1l_2o_2x.jpg - fit  > 200*134
+ @see
+ https://help.aliyun.com/document_detail/32223.html?spm=5176.doc32228.6.969.IvVprX
+ https://help.aliyun.com/document_detail/32231.html?spm=5176.doc32223.6.977.fTzBHO
+ https://help.aliyun.com/document_detail/32244.html?spm=5176.doc32223.2.2.fTzBHO
+ */
+
+NS_INLINE NSString *BJLAliIMGURLParams_aspectScale(BOOL fill, NSInteger width, NSInteger height, NSString * _Nullable ext) {
+    static const NSInteger limit = 4096;
+    NSInteger scale = round([UIScreen mainScreen].scale);
+    NSInteger max = MAX(width, height) * scale;
+    if (max > limit) {
+        CGFloat limitScale = (CGFloat)limit / max;
+        width = floor(width * limitScale);
+        height = floor(height * limitScale);
+    }
+    width = MAX(1, width);
+    height = MAX(1, height);
+    NSString *params = [NSString stringWithFormat:@"@%tdw_%tdh_%tdx_0c_%de_1l_2o",
+                        width, height, scale, fill];
+    return ext.length ? [params stringByAppendingPathExtension:ext] : params;
+}
+
+NS_INLINE NSString *BJLAliIMGURLString_aspectScale(BOOL fill, NSInteger width, NSInteger height, NSString *urlString) {
+    NSUInteger atLocation = [urlString rangeOfString:@"@"].location;
+    if (atLocation != NSNotFound) {
+        urlString = [urlString substringToIndex:atLocation];
+    }
+    NSString *params = BJLAliIMGURLParams_aspectScale(fill, width, height, [urlString pathExtension]);
+    return urlString.length ? [urlString stringByAppendingString:params] : params;
+}
+
+NS_INLINE NSString *BJLAliIMG_aspectFill(CGSize size, NSString *urlString) {
+    return BJLAliIMGURLString_aspectScale(YES, ceil(size.width), ceil(size.height), urlString);
+}
+
+NS_INLINE NSString *BJLAliIMG_aspectFit(CGSize size, NSString *urlString) {
+    return BJLAliIMGURLString_aspectScale(NO, ceil(size.width), ceil(size.height), urlString);
+}

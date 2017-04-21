@@ -34,15 +34,15 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BJLSlideshowVM : BJLBaseVM
 
 /** 所有课件 */
-@property (nonatomic, readonly, nullable, copy) NSArray<NSObject<BJLDocument> *> *allDocuments;
+@property (nonatomic, readonly, nullable, copy) NSArray<BJLDocument *> *allDocuments;
 
 /** `allDocuments` 被覆盖更新
  覆盖更新才调用，增量更新不调用
  */
-- (BJLObservable)allDocumentsDidOverwrite:(nullable NSArray<NSObject<BJLDocument> *> *)allDocuments;
+- (BJLObservable)allDocumentsDidOverwrite:(nullable NSArray<BJLDocument *> *)allDocuments;
 
 /** 通过 documentID 获取 document */
-- (nullable NSObject<BJLDocument> *)documentWithID:(NSString *)documentID;
+- (nullable BJLDocument *)documentWithID:(NSString *)documentID;
 /** 通过 documentID、pageIndex 获取 slide page */
 - (nullable BJLSlidePage *)slidePageWithDocumentID:(NSString *)documentID pageIndex:(NSInteger)pageIndex;
 
@@ -54,11 +54,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 添加课件通知
  同时更新 `allDocuments` */
-- (BJLObservable)didAddDocument:(NSObject<BJLDocument> *)document;
+- (BJLObservable)didAddDocument:(BJLDocument *)document;
 
 /** 删除课件通知
  同时更新 `allDocuments` */
-- (BJLObservable)didDeleteDocument:(NSObject<BJLDocument> *)document;
+- (BJLObservable)didDeleteDocument:(BJLDocument *)document;
 
 /** 翻页课件通知 */
 - (BJLObservable)didTurnToSlidePage:(BJLSlidePage *)slidePage;
