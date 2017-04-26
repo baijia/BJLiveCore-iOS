@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'BJLiveCore'
-  s.version = '0.2.4.2'
+  s.version = '0.2.4.3'
   s.summary = 'BJLiveCore SDK.'
   s.license = 'MIT'
   s.authors = {"MingLQ"=>"minglq.9@gmail.com"}
@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
   # s.vendored_libraries = 'BJLiveCore-#{s.version}/**/*.a'
   # # s.resources = 'BJLiveCore-#{s.version}/**/*.bundle'
 
-  s.dependency 'BJHL-AVSDK-iOS', '>= 0.1.10'
+  s.dependency 'BJHL-AVSDK-iOS', '>= 0.1.11'
   s.dependency 'BJHL-Foundation-iOS'
   s.dependency 'BJHL-Websocket-iOS', '>= 0.3.2'
   s.dependency "libextobjc/EXTScope"
