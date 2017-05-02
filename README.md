@@ -14,16 +14,6 @@ BJLiveCore
 - 聊天/弹幕：目前只支持群发；
 - 白板、课件、画笔：课件第一页是白板，后面是老师上传的课件，白板和每一页课件都支持画笔；
 
-## 工程设置
-
-- 隐私权限：在 `Info.plist` 中添加麦克风、摄像头、相册访问描述；
-```
-Privacy - Microphone Usage Description
-Privacy - Camera Usage Description
-Privacy - Photo Library Usage Description
-```
-- 后台任务：在 `Project > Target > Capabilities` 中打开 `Background Modes` 开关、选中 `Audio, AirPlay, and Picture in Picture`；
-
 ## 集成 SDK
 
 BJLiveCore 会依赖一些第三方库，建议使用 CocoaPods 方式集成；
@@ -36,6 +26,16 @@ source 'https://github.com/baijia/specs.git'
 ```ruby
 pod 'BJLiveCore'
 ```
+
+## 工程设置
+
+- 隐私权限：在 `Info.plist` 中添加麦克风、摄像头、相册访问描述；
+```
+Privacy - Microphone Usage Description       用于语音上课、发言
+Privacy - Camera Usage Description           用于视频上课、发言，拍照上传课件、聊天发图
+Privacy - Photo Library Usage Description    用于上传课件、聊天发图
+```
+- 后台任务：在 `Project > Target > Capabilities` 中打开 `Background Modes` 开关、选中 `Audio, AirPlay, and Picture in Picture`；
 
 ## Hello World
 
