@@ -348,40 +348,6 @@
                                            message:nil
                                            preferredStyle:UIAlertControllerStyleActionSheet];
          
-         [actionSheet addAction:[UIAlertAction
-                                 actionWithTitle:@"上传课件"
-                                 style:UIAlertActionStyleDefault
-                                 handler:^(UIAlertAction * _Nonnull action) {
-                                     [self.room.slideVM addDocument:({
-                                         BJLDocumentPageInfo *pageInfo = [BJLDocumentPageInfo new];
-                                         pageInfo.isAlbum = NO;
-                                         pageInfo.pageCount = 0;
-                                         pageInfo.pageURLString = @"https://img.genshuixue.com/baijiacloud/25760197_xg3ypq77.png";
-                                         pageInfo.width = 550;
-                                         pageInfo.height = 280;
-                                         BJLDocument *document = [BJLDocument new];
-                                         document.fileID = @"25760197";
-                                         document.fileName = @"1482134071749";
-                                         document.fileExtension = @".png";
-                                         document.pageInfo = pageInfo;
-                                         document;
-                                     })];
-                                     [self.room.slideVM addDocument:({
-                                         BJLDocumentPageInfo *pageInfo = [BJLDocumentPageInfo new];
-                                         pageInfo.isAlbum = NO;
-                                         pageInfo.pageCount = 0;
-                                         pageInfo.pageURLString = @"https://img.genshuixue.com/baijiacloud/25760479_kypu8tvk.png";
-                                         pageInfo.width = 627;
-                                         pageInfo.height = 830;
-                                         BJLDocument *document = [BJLDocument new];
-                                         document.fileID = @"25760479";
-                                         document.fileName = @"1482134268462";
-                                         document.fileExtension = @".png";
-                                         document.pageInfo = pageInfo;
-                                         document;
-                                     })];
-                                 }]];
-         
          BOOL isFit = self.room.slideshowViewController.contentMode == BJLSlideshowContentMode_scaleAspectFit;
          [actionSheet addAction:[UIAlertAction
                                  actionWithTitle:isFit ? @"完整显示" : @"铺满显示"

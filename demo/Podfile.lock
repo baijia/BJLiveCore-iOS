@@ -14,13 +14,13 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - BJHL-AVSDK-iOS (0.1.9)
-  - BJHL-Foundation-iOS (1.2.11):
-    - CocoaLumberjack (~> 2.0)
+  - BJHL-AVSDK-iOS (0.1.11)
+  - BJHL-Foundation-iOS (1.3.2):
+    - CocoaLumberjack (= 2.3.0)
   - BJHL-Websocket-iOS (0.3.2):
     - PocketSocket
-  - BJLiveCore (0.1.4):
-    - BJHL-AVSDK-iOS (>= 0.1.9)
+  - BJLiveCore (0.2.4.3):
+    - BJHL-AVSDK-iOS (>= 0.1.11)
     - BJHL-Foundation-iOS
     - BJHL-Websocket-iOS (>= 0.3.2)
     - JRSwizzle
@@ -31,13 +31,13 @@ PODS:
     - ReactiveCocoa (~> 2.0)
     - SDWebImage
     - YYModel
-  - CocoaLumberjack (2.4.0):
-    - CocoaLumberjack/Default (= 2.4.0)
-    - CocoaLumberjack/Extensions (= 2.4.0)
-  - CocoaLumberjack/Core (2.4.0)
-  - CocoaLumberjack/Default (2.4.0):
+  - CocoaLumberjack (2.3.0):
+    - CocoaLumberjack/Default (= 2.3.0)
+    - CocoaLumberjack/Extensions (= 2.3.0)
+  - CocoaLumberjack/Core (2.3.0)
+  - CocoaLumberjack/Default (2.3.0):
     - CocoaLumberjack/Core
-  - CocoaLumberjack/Extensions (2.4.0):
+  - CocoaLumberjack/Extensions (2.3.0):
     - CocoaLumberjack/Default
   - FLEX (2.4.0)
   - FMDB (2.6.2):
@@ -47,34 +47,34 @@ PODS:
   - libextobjc/EXTScope (0.4.1):
     - libextobjc/RuntimeExtensions
   - libextobjc/RuntimeExtensions (0.4.1)
-  - LKDBHelper (2.4.1):
+  - LKDBHelper (2.4.2):
     - FMDB
   - LogStat (0.6.0):
     - AFNetworking
     - LKDBHelper
   - LTInfiniteScrollView (4.3.2)
-  - M9Dev (0.0.29):
+  - M9Dev (0.0.30):
     - JRSwizzle
     - libextobjc/EXTScope
-    - M9Dev/Libraries (= 0.0.29)
-    - M9Dev/M9Dev (= 0.0.29)
+    - M9Dev/Libraries (= 0.0.30)
+    - M9Dev/M9Dev (= 0.0.30)
     - Masonry
     - NSString-UrlEncode
     - Reachability
-  - M9Dev/Libraries (0.0.29):
+  - M9Dev/Libraries (0.0.30):
     - JRSwizzle
     - libextobjc/EXTScope
-    - M9Dev/Libraries/BlocksKit (= 0.0.29)
+    - M9Dev/Libraries/BlocksKit (= 0.0.30)
     - Masonry
     - NSString-UrlEncode
     - Reachability
-  - M9Dev/Libraries/BlocksKit (0.0.29):
+  - M9Dev/Libraries/BlocksKit (0.0.30):
     - JRSwizzle
     - libextobjc/EXTScope
     - Masonry
     - NSString-UrlEncode
     - Reachability
-  - M9Dev/M9Dev (0.0.29):
+  - M9Dev/M9Dev (0.0.30):
     - JRSwizzle
     - libextobjc/EXTScope
     - M9Dev/Libraries
@@ -113,19 +113,19 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  BJHL-AVSDK-iOS: 9580e24e667c7007ffe91fd2e6c9c9fb9a9f1a56
-  BJHL-Foundation-iOS: 2e7d9269405c036111c32b4ecd0a06e9ecb4e00e
+  BJHL-AVSDK-iOS: 7f47615bce905d8cec6d48ad23fec5c35f6c4769
+  BJHL-Foundation-iOS: 2dc339ded83d6c1fae1ce51f7ffcb315b19f8db2
   BJHL-Websocket-iOS: d268c2d08cb22d461a0b961781566e488c004c1d
-  BJLiveCore: 0b29254c3969abf6218c19681373af426997226d
-  CocoaLumberjack: aa9dcab71bdf9eaf2a63bbd9ddc87863efe45457
+  BJLiveCore: 6d4cc0636749231eb702dcb9b9da89aee2ffdd9c
+  CocoaLumberjack: 97fab7ee5f507fe54445cca7ea80f926729cfd15
   FLEX: bd1a39e55b56bb413b6f1b34b3c10a0dc44ef079
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   JRSwizzle: dd5ead5d913a0f29e7f558200165849f006bb1e3
   libextobjc: a650fc1bf489a3d3a9bc2e621efa3e1006fc5471
-  LKDBHelper: 531581fa6a7d0f14236cc028ce0d277bca73436a
+  LKDBHelper: ab67373b32f47463bf5f838d730f225824f4492a
   LogStat: b3af561bbe5691bdd8df624a3e570419e5b30f9f
   LTInfiniteScrollView: 6ce2fcaf6d030a9e45a164ba9dcdb1b325a30d03
-  M9Dev: dc5da07886193929fe19dfd76005a8397c8da19b
+  M9Dev: 56d9ab1b80a96ae08325c168a9c4023674922993
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
   NSString-UrlEncode: 92dcb01cac33ef036cda76baf0e4378b18779e47
   PocketSocket: 9c6867d66fb4f962af96b9b07f4b45bb561b2c2a
