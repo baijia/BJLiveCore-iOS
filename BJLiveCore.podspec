@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.description = 'BJLiveCore SDK for iOS.'
   s.requires_arc = true
 
-  s.ios.deployment_target    = '7.0'
+  s.ios.deployment_target    = '8.0'
   # s.frameworks = ['AssetsLibrary', 'CoreGraphics', 'Foundation', 'UIKit', 'Photos']
   s.frameworks = ['CoreGraphics', 'Foundation', 'UIKit']
 
