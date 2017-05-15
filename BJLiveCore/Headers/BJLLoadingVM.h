@@ -36,7 +36,7 @@ typedef void (^BJLLoadingSuspendCallback)(BOOL isContinue);
 typedef void (^BJLLoadingSuspendBlock)(
 BJLLoadingStep step,
 BJLLoadingSuspendReason reason,
-BJLError *error,
+BJLError * _Nullable error,
 BOOL ignorable,
 BJLLoadingSuspendCallback suspendCallback);
 
