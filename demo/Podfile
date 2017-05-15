@@ -10,8 +10,9 @@ target 'BJLiveCore' do
     # use_frameworks!
     
     # dev
-    # pod 'BJLiveCore'
-    pod 'BJLiveCore', :path => '../'
+    pod 'BJLiveCore'
+    # pod 'BJLiveCore', '0.2.4.5-beta'
+    # pod 'BJLiveCore', :path => '../'
     
     # demo
     pod 'Masonry'

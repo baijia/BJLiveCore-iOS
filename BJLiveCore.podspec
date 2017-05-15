@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
   s.vendored_libraries = 'BJLiveCore/**/*.a'
   # s.resources = 'BJLiveCore/**/*.bundle'
   s.subspec 'BJHLMediaPlayer' do |ss|
-    ss.frameworks = ['VideoToolbox', 'GLKit']
+    ss.frameworks = ['AVFoundation', 'VideoToolbox', 'GLKit']
     ss.libraries  = ['icucore', 'c++', 'stdc++.6']
     ss.vendored_frameworks = "BJLiveCore/BJHLMediaPlayer.framework"
   end
