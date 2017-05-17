@@ -7,57 +7,69 @@
 //
 
 #import <UIKit/UIKit.h>
-// #import <Masonry/Masonry.h>
 
-static inline UIEdgeInsets BJLEdgeInset(CGFloat inset) {
-    return UIEdgeInsetsMake(inset, inset, inset, inset);
-}
+NS_ASSUME_NONNULL_BEGIN
 
-static inline CGFloat bjl_screenFloor(CGFloat size) {
+#define BJLOnePixel ({ \
+    static CGFloat _BJLOnePixel; \
+    static dispatch_once_t onceToken; \
+    dispatch_once(&onceToken, ^{ \
+        _BJLOnePixel = 1.0 / [UIScreen mainScreen].scale; \
+    }); \
+    _BJLOnePixel; \
+})
+
+extern const UIPopoverArrowDirection UIPopoverArrowDirectionVertical;
+
+static inline CGFloat BJLFloorWithScreenScale(CGFloat size) {
     CGFloat scale = [UIScreen mainScreen].scale;
     return floor(size * scale) / scale;
 }
 
-static inline CGFloat bjl_screenCeil(CGFloat size) {
+static inline CGFloat BJLCeilWithScreenScale(CGFloat size) {
     CGFloat scale = [UIScreen mainScreen].scale;
     return ceil(size * scale) / scale;
 }
 
-static inline CGRect bjl_fillFrameWithScale(CGRect frame, CGFloat scale) {
-    CGFloat width = CGRectGetWidth(frame), height = CGRectGetHeight(frame);
-    CGFloat innerHeight = width / scale;
-    CGFloat innerWidth = height * scale;
-    if (ABS(width - innerWidth) < 2
-        || ABS(height - innerHeight) < 2) {
-        return frame;
-    }
-    return CGRectMake(MIN(0, bjl_screenFloor((width - innerWidth) / 2)),
-                      MIN(0, bjl_screenFloor((height - innerHeight) / 2)),
-                      MAX(width, bjl_screenCeil(innerWidth)),
-                      MAX(height, bjl_screenCeil(innerHeight)));
+static inline CGSize BJLAspectFillSize(CGSize size, CGFloat aspectRatio) {
+    return CGSizeMake(MAX(size.width, BJLCeilWithScreenScale(size.height * aspectRatio)),
+                      MAX(size.height, BJLCeilWithScreenScale(size.width / aspectRatio)));
+}
+static inline CGSize BJLAspectFitSize(CGSize size, CGFloat aspectRatio) {
+    return CGSizeMake(MIN(size.width, BJLCeilWithScreenScale(size.height * aspectRatio)),
+                      MIN(size.height, BJLCeilWithScreenScale(size.width / aspectRatio)));
 }
 
-static inline CGRect bjl_fitFrameWithScale(CGRect frame, CGFloat scale) {
-    CGFloat width = CGRectGetWidth(frame), height = CGRectGetHeight(frame);
-    CGFloat innerHeight = width / scale;
-    CGFloat innerWidth = height * scale;
-    if (ABS(width - innerWidth) < 2
-        || ABS(height - innerHeight) < 2) {
-        return frame;
-    }
-    return CGRectMake(MAX(0, bjl_screenFloor((width - innerWidth) / 2)),
-                      MAX(0, bjl_screenFloor((height - innerHeight) / 2)),
-                      MIN(width, bjl_screenCeil(innerWidth)),
-                      MIN(height, bjl_screenCeil(innerHeight)));
+static inline CGRect BJLAspectFillFrame(CGRect frame, CGFloat aspectRatio) {
+    CGSize size = BJLAspectFillSize(frame.size, aspectRatio);
+    return CGRectMake(MIN(0.0, BJLFloorWithScreenScale((CGRectGetWidth(frame) - size.width) / 2)),
+                      MIN(0.0, BJLFloorWithScreenScale((CGRectGetHeight(frame) - size.height) / 2)),
+                      size.width,
+                      size.height);
+}
+static inline CGRect BJLAspectFitFrame(CGRect frame, CGFloat aspectRatio) {
+    CGSize size = BJLAspectFitSize(frame.size, aspectRatio);
+    return CGRectMake(MAX(0.0, BJLFloorWithScreenScale((CGRectGetWidth(frame) - size.width) / 2)),
+                      MAX(0.0, BJLFloorWithScreenScale((CGRectGetHeight(frame) - size.height) / 2)),
+                      size.width,
+                      size.height);
+}
+
+static inline CGSize BJLImageViewSize(CGSize imgSize, CGSize minSize, CGSize maxSize) {
+    CGFloat minScale = MAX(imgSize.width / maxSize.width, imgSize.height / maxSize.height);
+    CGFloat maxScale = MIN(imgSize.width / minSize.width, imgSize.height / minSize.height);
+    CGFloat scale = MIN(MAX(minScale, 1.0), maxScale); // 等比显示、最少缩放
+    return CGSizeMake(MIN(imgSize.width / scale, maxSize.width),
+                      MIN(imgSize.height / scale, maxSize.height)); // 超出部分裁切
 }
 
 #pragma mark -
 
 @interface UIResponder (BJL_M9Dev)
 
-- (UIResponder *)bjl_closestResponderOfClass:(Class)clazz; // NOT include self
-- (UIResponder *)bjl_closestResponderOfClass:(Class)clazz includeSelf:(BOOL)includeSelf;
-- (UIResponder *)bjl_findResponderWithBlock:(BOOL (^)(UIResponder *responder, BOOL *stop))enumerateBlock;
+- (nullable UIResponder *)bjl_closestResponderOfClass:(Class)clazz; // NOT include self
+- (nullable UIResponder *)bjl_closestResponderOfClass:(Class)clazz includeSelf:(BOOL)includeSelf;
+- (nullable UIResponder *)bjl_findResponderWithBlock:(BOOL (^)(UIResponder *responder, BOOL *stop))enumerateBlock;
 
 @end
 
@@ -65,10 +77,10 @@ static inline CGRect bjl_fitFrameWithScale(CGRect frame, CGFloat scale) {
 
 @interface UIView (BJL_M9Dev)
 
-- (__kindof UIView *)bjl_closestViewOfClass:(Class)clazz; // NOT include self
-- (__kindof UIView *)bjl_closestViewOfClass:(Class)clazz includeSelf:(BOOL)includeSelf; // up to UIViewController
-- (__kindof UIView *)bjl_closestViewOfClass:(Class)clazz includeSelf:(BOOL)includeSelf upToResponder:(UIResponder *)upToResponder; // not include the upToResponder, nil - up to UIViewController
-- (__kindof UIViewController *)bjl_closestViewController;
+- (nullable __kindof UIView *)bjl_closestViewOfClass:(Class)clazz; // NOT include self
+- (nullable __kindof UIView *)bjl_closestViewOfClass:(Class)clazz includeSelf:(BOOL)includeSelf; // up to UIViewController
+- (nullable __kindof UIView *)bjl_closestViewOfClass:(Class)clazz includeSelf:(BOOL)includeSelf upToResponder:(nullable UIResponder *)upToResponder; // NOT include the upToResponder, nil - up to UIViewController
+- (nullable __kindof UIViewController *)bjl_closestViewController;
 
 - (void)bjl_removeAllConstraints;
 
@@ -86,12 +98,16 @@ static inline CGRect bjl_fitFrameWithScale(CGRect frame, CGFloat scale) {
 - (void)bjl_addChildViewController:(UIViewController *)childViewController addSubview:(void (^)(UIView *parentView, UIView *childView))addSubview;
 - (void)bjl_removeFromParentViewControllerAndSuperiew;
 
-- (void)bjl_dismissAllViewControllersAnimated:(BOOL)animated completion:(void (^)(void))completion;
+/**
+ *  differences from dismissViewControllerAnimated:completion:
+ *  1. always call completion although no presentedViewController
+ *  2. only dismiss the presentedViewController, but not self
+ */
+- (void)bjl_dismissPresentedViewControllerAnimated:(BOOL)animated completion:(void (^ _Nullable)(void))completion;
++ (nullable UIViewController *)bjl_gotoRootViewControllerAnimated:(BOOL)animated completion:(void (^ _Nullable)(void))completion DEPRECATED_MSG_ATTRIBUTE("should be implemented by apps");
 
-+ (UIViewController *)bjl_gotoRootViewControllerAnimated:(BOOL)animated completion:(void (^)(void))completion;
-
-+ (UIViewController *)bjl_topViewController;
-+ (UIViewController *)bjl_rootViewController;
++ (nullable UIViewController *)bjl_rootViewController;
++ (nullable UIViewController *)bjl_topViewController;
 
 @end
 
@@ -101,17 +117,17 @@ static inline CGRect bjl_fitFrameWithScale(CGRect frame, CGFloat scale) {
 
 @property(nonatomic, strong, readonly, nullable) UIViewController *bjl_rootViewController;
 
-- (void)bjl_pushViewController:(nullable UIViewController *)viewController
+- (void)bjl_pushViewController:(UIViewController *)viewController
                       animated:(BOOL)animated
-                    completion:(void (^ __nullable)(void))completion;
+                    completion:(void (^ _Nullable)(void))completion;
 
 - (nullable UIViewController *)bjl_popViewControllerAnimated:(BOOL)animated
-                                                  completion:(void (^ __nullable)(void))completion;
+                                                  completion:(void (^ _Nullable)(void))completion;
 - (nullable NSArray *)bjl_popToViewController:(UIViewController *)viewController
                                      animated:(BOOL)animated
-                                   completion:(void (^ __nullable)(void))completion;
+                                   completion:(void (^ _Nullable)(void))completion;
 - (nullable NSArray *)bjl_popToRootViewControllerAnimated:(BOOL)animated
-                                               completion:(void (^ __nullable)(void))completion;
+                                               completion:(void (^ _Nullable)(void))completion;
 
 @end
 
@@ -120,11 +136,11 @@ static inline CGRect bjl_fitFrameWithScale(CGRect frame, CGFloat scale) {
 @interface UIColor (BJL_M9Dev)
 
 // @"#FFFFFF"
-+ (UIColor *)bjl_colorWithHexString:(NSString *)hexString;
-+ (UIColor *)bjl_colorWithHexString:(NSString *)hexString alpha:(CGFloat)alpha;
++ (nullable UIColor *)bjl_colorWithHexString:(NSString *)hexString;
++ (nullable UIColor *)bjl_colorWithHexString:(NSString *)hexString alpha:(CGFloat)alpha;
 // 0xFFFFFF
-+ (UIColor *)bjl_colorWithHex:(unsigned)hex;
-+ (UIColor *)bjl_colorWithHex:(unsigned)hex alpha:(CGFloat)alpha;
++ (nullable UIColor *)bjl_colorWithHex:(unsigned)hex;
++ (nullable UIColor *)bjl_colorWithHex:(unsigned)hex alpha:(CGFloat)alpha;
 
 @end
 
@@ -134,19 +150,19 @@ static inline CGRect bjl_fitFrameWithScale(CGRect frame, CGFloat scale) {
 
 - (UIImage *)bjl_resizableImage;
 
-+ (UIImage *)bjl_imageWithColor:(UIColor *)color;
-+ (UIImage *)bjl_imageWithColor:(UIColor *)color size:(CGSize)size;
+/**
+ @return UIImage with the scale factor of the device’s main screen
+ */
+- (UIImage *)bjl_imageByResizing:(CGSize)size; // aspect fill & cropped
+- (UIImage *)bjl_imageByZooming:(CGFloat)zoom;
+
+/**
+ @return UIImage with the scale factor of the device’s main screen
+ */
++ (nullable UIImage *)bjl_imageWithColor:(UIColor *)color;
++ (nullable UIImage *)bjl_imageWithColor:(UIColor *)color size:(CGSize)size;
 
 @end
-
-/*
-#pragma mark - Masonry
-
-@interface MASConstraint (BJL_M9Dev)
-
-- (MASConstraint *(^)(CGFloat))bjl_inset;
-
-@end */
 
 #pragma mark - AliIMG
 
@@ -161,12 +177,12 @@ static inline CGRect bjl_fitFrameWithScale(CGRect frame, CGFloat scale) {
  http://image-demo.img-cn-hangzhou.aliyuncs.com/example.jpg@100h_100w_0c_1e_1l_2o_2x.jpg - fill > 300*200
  http://image-demo.img-cn-hangzhou.aliyuncs.com/example.jpg@100h_100w_0c_0e_1l_2o_2x.jpg - fit  > 200*134
  @see
- https://help.aliyun.com/document_detail/32223.html?spm=5176.doc32228.6.969.IvVprX
- https://help.aliyun.com/document_detail/32231.html?spm=5176.doc32223.6.977.fTzBHO
- https://help.aliyun.com/document_detail/32244.html?spm=5176.doc32223.2.2.fTzBHO
+ whcel: https://help.aliyun.com/document_detail/32223.html?spm=5176.doc32228.6.969.IvVprX
+ o:     https://help.aliyun.com/document_detail/32231.html?spm=5176.doc32223.6.977.fTzBHO
+ ext:   https://help.aliyun.com/document_detail/32244.html?spm=5176.doc32223.2.2.fTzBHO
  */
 
-NS_INLINE NSString *BJLAliIMGURLParams_aspectScale(BOOL fill, NSInteger width, NSInteger height, NSString * _Nullable ext) {
+static inline NSString *BJLAliIMGURLParams_aspectScale(BOOL fill, NSInteger width, NSInteger height, NSString * _Nullable ext) {
     static const NSInteger limit = 4096;
     NSInteger scale = round([UIScreen mainScreen].scale);
     NSInteger max = MAX(width, height) * scale;
@@ -177,12 +193,13 @@ NS_INLINE NSString *BJLAliIMGURLParams_aspectScale(BOOL fill, NSInteger width, N
     }
     width = MAX(1, width);
     height = MAX(1, height);
+    // w: width, h: height, x: scale, c: 1 - cut, e: 1 - fill, l: 1 - no magnify, o: 2 - routate then resize
     NSString *params = [NSString stringWithFormat:@"@%tdw_%tdh_%tdx_0c_%de_1l_2o",
                         width, height, scale, fill];
     return ext.length ? [params stringByAppendingPathExtension:ext] : params;
 }
 
-NS_INLINE NSString *BJLAliIMGURLString_aspectScale(BOOL fill, NSInteger width, NSInteger height, NSString *urlString) {
+static inline NSString *BJLAliIMGURLString_aspectScale(BOOL fill, NSInteger width, NSInteger height, NSString *urlString) {
     NSUInteger atLocation = [urlString rangeOfString:@"@"].location;
     if (atLocation != NSNotFound) {
         urlString = [urlString substringToIndex:atLocation];
@@ -191,10 +208,12 @@ NS_INLINE NSString *BJLAliIMGURLString_aspectScale(BOOL fill, NSInteger width, N
     return urlString.length ? [urlString stringByAppendingString:params] : params;
 }
 
-NS_INLINE NSString *BJLAliIMG_aspectFill(CGSize size, NSString *urlString) {
+static inline NSString *BJLAliIMG_aspectFill(CGSize size, NSString *urlString) {
     return BJLAliIMGURLString_aspectScale(YES, ceil(size.width), ceil(size.height), urlString);
 }
 
-NS_INLINE NSString *BJLAliIMG_aspectFit(CGSize size, NSString *urlString) {
+static inline NSString *BJLAliIMG_aspectFit(CGSize size, NSString *urlString) {
     return BJLAliIMGURLString_aspectScale(NO, ceil(size.width), ceil(size.height), urlString);
 }
+
+NS_ASSUME_NONNULL_END

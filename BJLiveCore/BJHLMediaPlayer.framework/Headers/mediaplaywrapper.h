@@ -9,6 +9,8 @@
 #include "gsx_rtc_types.h"
 #include "gsx_live_play_info.h"
 
+#pragma GCC visibility push(default)
+
 @interface MediaPlayWrapper : NSObject
 
 - (void) gsx_rtc_engine_set_upstream_support_udp:(int)support_udp;
@@ -86,3 +88,5 @@
 - (int)  gsx_rtc_engine_get_live_play_info:(void *)in_pVoid :(int) in_nPlayId : (GsxLivePlayInfo *)out_pPlayInfo;
 
 @end
+
+#pragma GCC visibility pop

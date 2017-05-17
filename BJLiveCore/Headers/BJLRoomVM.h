@@ -17,15 +17,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BJLRoomVM : BJLBaseVM
 
-@property (nonatomic, readonly, nullable, copy) NSObject<BJLRoomInfo> *roomInfo DEPRECATED_MSG_ATTRIBUTE("use `BJLRoom.roomInfo` instead");
-@property (nonatomic, readonly, nullable, copy) NSObject<BJLUser> *loginUser DEPRECATED_MSG_ATTRIBUTE("use `BJLRoom.loginUser` instead");
+@property (nonatomic, readonly, copy, nullable) NSObject<BJLRoomInfo> *roomInfo DEPRECATED_MSG_ATTRIBUTE("use `BJLRoom.roomInfo` instead");
+@property (nonatomic, readonly, copy, nullable) BJLUser *loginUser DEPRECATED_MSG_ATTRIBUTE("use `BJLRoom.loginUser` instead");
 
 /** 进入教室时间 */
 @property (nonatomic, readonly) NSTimeInterval enteringTimeInterval; // seconds since 1970
-
-/** 教室发言类型
- 自由模式/举手模式 */
-@property (nonatomic, readonly) BJLSpeakType speakType;
 
 #pragma mark - 上课状态
 
@@ -39,8 +35,8 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - 公告
 
 /** 教室公告 */
-@property (nonatomic, readonly, nullable, copy) BJLNotice *notice;
-@property (nonatomic, readonly, nullable, copy) NSString *noticeText DEPRECATED_MSG_ATTRIBUTE("use `notice` instead");
+@property (nonatomic, readonly, copy, nullable) BJLNotice *notice;
+@property (nonatomic, readonly, copy, nullable) NSString *noticeText DEPRECATED_MSG_ATTRIBUTE("use `notice` instead");
 
 /** 获取教室公告
  连接教室后、掉线重新连接后自动调用加载

@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 开始/停止云端录课
  老师才能开启录课，参考 `BJLErrorCode_invalidUserRole`
- 上课状态才能开启录课，参考 `roomVM.liveStarted`、`BJLErrorCode_serverRecording_not_liveStarted`
+ 上课状态才能开启录课，参考 `roomVM.liveStarted`
  此方法需要发起网络请求、检查云端录课是否可用
  - 如果可以录课则开始、并设置 `serverRecording`
  - 否则发送失败通知 `requestServerRecordingDidFailed:` */

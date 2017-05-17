@@ -20,18 +20,18 @@ NS_ASSUME_NONNULL_BEGIN
  `loadMoreOnlineUsersWithCount:` 导致的更新会先重置为 nil，然后再赋值，可用来区分单个更新
  参考 `loadMoreOnlineUsersWithCount:`
  */
-@property (nonatomic, readonly, nullable, copy) NSArray<NSObject<BJLOnlineUser> *> *onlineUsers;
+@property (nonatomic, readonly, copy, nullable) NSArray<BJLOnlineUser *> *onlineUsers;
 
 /** `onlineUsers` 被覆盖更新
  覆盖更新才调用，增量更新不调用
  `loadMoreOnlineUsersWithCount:` 会导致覆盖更新
  */
-- (BJLObservable)onlineUsersDidOverwrite:(nullable NSArray<NSObject<BJLOnlineUser> *> *)onlineUsers;
+- (BJLObservable)onlineUsersDidOverwrite:(nullable NSArray<BJLOnlineUser *> *)onlineUsers;
 
 /** 是否有更多在线用户未加载 */
 @property (nonatomic, readonly) BOOL hasMoreOnlineUsers;
 /** 在线的老师 */
-@property (nonatomic, readonly, nullable) NSObject<BJLOnlineUser> *onlineTeacher;
+@property (nonatomic, readonly, nullable) BJLOnlineUser *onlineTeacher;
 
 /** 加载更多在线用户
  连接教室后、掉线重新连接后自动调用加载
@@ -42,10 +42,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 有用户进入房间
  同时更新 `onlineUsers` */
-- (BJLObservable)onlineUserDidEnter:(NSObject<BJLOnlineUser> *)user;
+- (BJLObservable)onlineUserDidEnter:(BJLOnlineUser *)user;
 /** 有用户退出房间
  同时更新 `onlineUsers` */
-- (BJLObservable)onlineUserDidExit:(NSObject<BJLOnlineUser> *)user;
+- (BJLObservable)onlineUserDidExit:(BJLOnlineUser *)user;
 
 @end
 

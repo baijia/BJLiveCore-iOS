@@ -11,26 +11,43 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "gsx_rtc_engine2.h"
+#import "gsx_rtc_types.h"
 
 @interface RTCView : NSObject
 
 - (CGSize)videoResolution;
 
-//reset view
+/**
+ * \brief 释放view
+ */
 - (void)reset;
 
-//get view
+/**
+ * \brief 获取view，视频数据在该view中渲染
+ * \return GsxVideoRenderIosView对象(继承自UIView)
+ */
 - (id)view;
 
-//get capture preview
-- (id)preview:(void *)data;
 
-//set render
+/**
+ * @note API兼容，空实现
+ */
 - (void)setRender:(void *)data
        withPlayId:(int)playid;
 
-//set view frame
+/**
+ * \brief 视频采集预览
+ * \param data RTCEngine* pointer
+ * \return GPUImageView对象
+ */
+- (id)preview:(void *)data;
+
+/**
+ * \brief 设置渲染窗口大小
+ * \param cb 消息回调函数 eg: 视频size变化、播放成功等
+ * \param play_id 播放音视频接口返回的play_id(stream_id)
+ * \param data RTCEngine* pointer
+ */
 - (void)setFrame:(CGRect)frame
     withCallback:(gsx_rtc_engine_msg_callback)cb
       withPlayId:(int)play_id
