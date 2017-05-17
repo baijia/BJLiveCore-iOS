@@ -10,17 +10,27 @@
 
 // @see M9Dev - https://github.com/iwill/
 
+NS_ASSUME_NONNULL_BEGIN
+
 // for compound statement
 #define bjl_return ;
 
 // value to string
 #define bjl_NSStringFromValue(VALUE) [@(VALUE) description]
 
-// null - TODO: replace @""
-#define bjl_NSNull [NSNull null]
+// #define NSNULL [NSNull null]
 
-// set struct
-#define bjl_SetStruct(_STRUCT, STATEMENTS) ({ \
+// version comparison
+// bjl_NSVersionLT(@"10", @"10.0"));    // YES - X
+// bjl_NSVersionLT(@"10", @"10"));      // NO  - √
+#define bjl_NSVersionEQ(A, B) ({ [A compare:B options:NSNumericSearch] == NSOrderedSame; })
+#define bjl_NSVersionLT(A, B) ({ [A compare:B options:NSNumericSearch] <  NSOrderedSame; })
+#define bjl_NSVersionGT(A, B) ({ [A compare:B options:NSNumericSearch] >  NSOrderedSame; })
+#define bjl_NSVersionLE(A, B) ({ [A compare:B options:NSNumericSearch] <= NSOrderedSame; })
+#define bjl_NSVersionGE(A, B) ({ [A compare:B options:NSNumericSearch] >= NSOrderedSame; })
+
+// struct set
+#define bjl_structSet(_STRUCT, STATEMENTS) ({ \
     __typeof__(_STRUCT) set = _STRUCT; \
     STATEMENTS \
     set; \
@@ -35,7 +45,7 @@
     va_end(args); \
 }
 
-/** dispatch */
+// dispatch
 static inline dispatch_time_t bjl_dispatch_time_in_seconds(NSTimeInterval seconds) {
     return dispatch_time(DISPATCH_TIME_NOW, (int64_t)(seconds * NSEC_PER_SEC));
 }
@@ -60,6 +70,7 @@ static inline NSRange BJL_NSMakeSafeRange(NSUInteger loc, NSUInteger len, NSUInt
     return NSMakeRange(loc, len);
 }
 
+// this class
 #define BJL_THIS_CLASS_NAME ({ \
 static NSString *ClassName = nil; \
     if (!ClassName) {\
@@ -107,8 +118,9 @@ _Pragma("GCC diagnostic pop")
 }];})
 /**
  *  这里不需要 weakify&strongify，unpack block 会被立即执行
+ *  !!!: 用 ([BJLTuple defaultTuple], TUPLE) 而不是 (TUPLE ?: [BJLTuple defaultTuple])，因为后者会导致 TUPLE 被编译器认为是 nullable 的
  */
-#define BJLTupleUnpack(TUPLE)   (TUPLE ?: [BJLTuple new]).unpack
+#define BJLTupleUnpack(TUPLE)   ([BJLTuple defaultTuple], TUPLE).unpack
 typedef void (^BJLTupleUnpackBlock)(/* ... */);
 typedef void (^BJLTuplePackBlock)(BJLTupleUnpackBlock unpack);
 // - (BJLTuple<BJLTupleGeneric(NSString *string, NSInteger integer, ...)> *)aTuple;
@@ -118,27 +130,28 @@ typedef void (^BJLTuplePackBlock)(BJLTupleUnpackBlock unpack);
 @interface BJLTuple<BJLTupleUnpackTypeGeneric> : NSObject
 @property (nonatomic/* , writeonly */, assign, setter=unpack:) id/*<BJLTupleUnpackTypeGeneric>*/ unpack;
 + (instancetype)tupleWithPack:(BJLTuplePackBlock)pack;
++ (instancetype)defaultTuple;
 @end
 
 #pragma mark -
 
-#define bjlcast(OBJECT, CLASS) ({ (CLASS *)([OBJECT isKindOfClass:[CLASS class]] ? OBJECT : nil); })
+#define bjl_cast(CLASS, OBJECT) ({ (CLASS *)([OBJECT isKindOfClass:[CLASS class]] ? OBJECT : nil); })
 
 @interface NSObject (BJL_M9Dev)
 
-- (id)bjl_if:(BOOL)condition;
+- (nullable id)bjl_if:(BOOL)condition;
 
-- (id)bjl_as:(Class)clazz;
-- (id)bjl_asMemberOfClass:(Class)clazz;
-- (id)bjl_asProtocol:(Protocol *)protocol;
-- (id)bjl_ifRespondsToSelector:(SEL)selector;
+- (nullable id)bjl_as:(Class)clazz;
+- (nullable id)bjl_asMemberOfClass:(Class)clazz;
+- (nullable id)bjl_asProtocol:(Protocol *)protocol;
+- (nullable id)bjl_ifRespondsToSelector:(SEL)selector;
 
-- (NSArray *)bjl_asArray;
-- (NSDictionary *)bjl_asDictionary;
+- (nullable NSArray *)bjl_asArray;
+- (nullable NSDictionary *)bjl_asDictionary;
 
-- (id)bjl_performIfRespondsToSelector:(SEL)selector;
-- (id)bjl_performIfRespondsToSelector:(SEL)selector withObject:(id)object;
-- (id)bjl_performIfRespondsToSelector:(SEL)selector withObject:(id)object1 withObject:(id)object2;
+- (nullable id)bjl_performIfRespondsToSelector:(SEL)selector;
+- (nullable id)bjl_performIfRespondsToSelector:(SEL)selector withObject:(nullable id)object;
+- (nullable id)bjl_performIfRespondsToSelector:(SEL)selector withObject:(nullable id)object1 withObject:(nullable id)object2;
 
 @end
 
@@ -146,17 +159,26 @@ typedef void (^BJLTuplePackBlock)(BJLTupleUnpackBlock unpack);
 
 @interface NSArray (BJL_M9Dev)
 
-- (id)bjl_objectOrNilAtIndex:(NSUInteger)index;
+- (nullable id)bjl_objectOrNilAtIndex:(NSUInteger)index;
 - (BOOL)bjl_containsIndex:(NSUInteger)index;
 
 @end
 
 @interface NSMutableArray (BJL_M9Dev)
 
-- (BOOL)bjl_addObjectOrNil:(id)anObject;
-- (BOOL)bjl_insertObjectOrNil:(id)anObject atIndex:(NSUInteger)index;
+- (BOOL)bjl_addObjectOrNil:(nullable id)anObject;
+- (BOOL)bjl_insertObjectOrNil:(nullable id)anObject atIndex:(NSUInteger)index;
 - (BOOL)bjl_removeObjectOrNilAtIndex:(NSUInteger)index;
-- (BOOL)bjl_replaceObjectAtIndex:(NSUInteger)index withObjectOrNil:(id)anObject;
+- (BOOL)bjl_replaceObjectAtIndex:(NSUInteger)index withObjectOrNil:(nullable id)anObject;
+
+@end
+
+#pragma mark -
+
+@interface NSMutableDictionary (BJL_M9Dev)
+
+- (void)bjl_setObjectOrNil:(nullable id)anObject forKey:(nullable id<NSCopying>)aKey;
+- (void)bjl_removeObjectForKeyOrNil:(nullable id<NSCopying>)aKey;
 
 @end
 
@@ -174,7 +196,9 @@ typedef void (^BJLTuplePackBlock)(BJLTupleUnpackBlock unpack);
 
 @interface NSObject (BJL_M9Dev_YYModel)
 
-+ (NSArray *)bjl_modelArrayWithJSON:(id)json;
-+ (NSDictionary *)bjl_modelDictionaryWithJSON:(id)json;
++ (nullable NSArray *)bjl_modelArrayWithJSON:(id)json;
++ (nullable NSDictionary *)bjl_modelDictionaryWithJSON:(id)json;
 
 @end */
+
+NS_ASSUME_NONNULL_END

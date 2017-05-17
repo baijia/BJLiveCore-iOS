@@ -37,7 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly, copy) NSString *fileID, *fileName, *fileExtension;
 @property (nonatomic, readonly) BJLDocumentPageInfo *pageInfo;
 
-- (BOOL)isSynced;
+- (BOOL)isSyncedWithServer; 
 - (BOOL)isWhiteBoard;
 
 + (instancetype)documentWithUploadResponseData:(NSDictionary *)responseData;

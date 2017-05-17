@@ -14,6 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BJLPlayingVM : BJLBaseVM
 
+/** 播放视频宽高比 */
+@property (nonatomic, readonly) CGFloat outputVideoAspectRatio;
+
 /** 音视频用户列表
  包含 `videoPlayingUser`
  ???: 包含未开音视频的老师、管理员，需要自行判断用户音视频开关
@@ -21,12 +24,12 @@ NS_ASSUME_NONNULL_BEGIN
  SDK 会处理音视频打断、恢复、前后台切换等情况
  参考 `loadPlayingUsers`
  */
-@property (nonatomic, readonly, nullable, copy) NSArray<NSObject<BJLOnlineUser> *> *playingUsers;
+@property (nonatomic, readonly, copy, nullable) NSArray<BJLOnlineUser *> *playingUsers;
 
 /** `playingUsers` 被覆盖更新
  覆盖更新才调用，增量更新不调用
  */
-- (BJLObservable)playingUsersDidOverwrite:(nullable NSArray<NSObject<BJLOnlineUser> *> *)playingUsers;
+- (BJLObservable)playingUsersDidOverwrite:(nullable NSArray<BJLOnlineUser *> *)playingUsers;
 
 /** 加载音视频用户列表
  连接教室后、掉线重新连接后自动调用
@@ -39,11 +42,11 @@ NS_ASSUME_NONNULL_BEGIN
  - 正在播放的视频用户 关闭视频时 `videoPlayingUser` 将被设置为 nil、同时发送此通知
  - `loadPlayingUsers` 导致批量更新 `playingUsers` 时『不』发送此通知
  */
-- (BJLObservable)playingUserDidUpdate:(NSObject<BJLOnlineUser> *)now
-                                  old:(NSObject<BJLOnlineUser> *)old;
+- (BJLObservable)playingUserDidUpdate:(BJLOnlineUser *)now
+                                  old:(BJLOnlineUser *)old;
 /**
  BJLTuple 用于将多个封装到一个参数里，使用 BJLTupleUnpack + unpack-block 还原，例如：
- *     BJLTupleUnpack(tuple) = ^(NSObject<BJLOnlineUser> *old, NSObject<BJLOnlineUser> *now) {
+ *     BJLTupleUnpack(tuple) = ^(BJLOnlineUser *old, BJLOnlineUser *now) {
  *         BOOL audioChanged = old.audioOn != now.audioOn;
  *         NSString *audioAction = audioChanged ? (now.audioOn ? @"打开音频" : @"关闭音频") : nil;
  *         BOOL videoChanged = old.videoOn != now.videoOn;
@@ -52,14 +55,14 @@ NS_ASSUME_NONNULL_BEGIN
  *         [self displayUser:now audioAction:audioAction videoAction:videoAction];
  *     }
  */
-- (BJLObservable)playingUserDidUpdate:(BJLTuple<void (^)(NSObject<BJLOnlineUser> *old,
-                                                         NSObject<BJLOnlineUser> *now)> *)tuple DEPRECATED_MSG_ATTRIBUTE("use `playingUserDidUpdate:old:`");
+- (BJLObservable)playingUserDidUpdate:(BJLTuple<void (^)(BJLOnlineUser *old,
+                                                         BJLOnlineUser *now)> *)tuple DEPRECATED_MSG_ATTRIBUTE("use `playingUserDidUpdate:old:`");
 
 #pragma mark -
 
 /** 正在播放的视频用户
  断开重连、暂停恢复等操作不自动重置 `videoPlayingUser`，除非对方用户掉线、离线等 */
-@property (nonatomic, readonly, nullable) NSObject<BJLOnlineUser> *videoPlayingUser;
+@property (nonatomic, readonly, nullable) BJLOnlineUser *videoPlayingUser;
 
 /** 设置播放用户的视频
  将导致当前正在播放的视频被关闭，传 nil 表示关闭正在播放的视频 */

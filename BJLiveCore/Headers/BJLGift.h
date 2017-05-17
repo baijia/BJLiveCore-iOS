@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol BJLReceivedGift <BJLGift>
 
-@property (nonatomic, readonly) NSObject<BJLUser> *fromUser, *toUser;
+@property (nonatomic, readonly) BJLUser *fromUser, *toUser;
 
 @end
 

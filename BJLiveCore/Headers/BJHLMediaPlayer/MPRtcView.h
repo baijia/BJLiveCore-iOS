@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "gsx_rtc_view.h"
 
+#pragma GCC visibility push(default)
+
 @interface MPRtcView : RTCView
 
 - (CGSize)videoResolution;
@@ -34,3 +36,5 @@
          andData:(void *)data;
 
 @end
+
+#pragma GCC visibility pop
