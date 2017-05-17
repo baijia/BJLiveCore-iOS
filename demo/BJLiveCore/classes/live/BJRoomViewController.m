@@ -320,13 +320,12 @@ static CGFloat const margin = 10.0;
     loadingVM.suspendBlock = ^(BJLLoadingStep step,
                                BJLLoadingSuspendReason reason,
                                BJLError *error,
-                               BOOL ignorable,
-                               BJLLoadingSuspendCallback suspendCallback) {
+                               void (^continueCallback)(BOOL isContinue)) {
         strongdef(self/* , loadingVM */);
         
         if (reason == BJLLoadingSuspendReason_stepOver) {
             [self.console printFormat:@"loading step over: %td", step];
-            suspendCallback(YES);
+            continueCallback(YES);
             return;
         }
         [self.console printFormat:@"loading step suspend: %td", step];
@@ -342,20 +341,20 @@ static CGFloat const margin = 10.0;
         }
         if (message) {
             UIAlertController *alert = [UIAlertController
-                                        alertControllerWithTitle:ignorable ? @"提示" : @"错误"
+                                        alertControllerWithTitle:reason != BJLLoadingSuspendReason_errorOccurred ? @"提示" : @"错误"
                                         message:message
                                         preferredStyle:UIAlertControllerStyleAlert];
             [alert addAction:[UIAlertAction
-                              actionWithTitle:ignorable ? @"继续" : @"重试"
+                              actionWithTitle:reason != BJLLoadingSuspendReason_errorOccurred ? @"继续" : @"重试"
                               style:UIAlertActionStyleDefault
                               handler:^(UIAlertAction * _Nonnull action) {
-                                  suspendCallback(YES);
+                                  continueCallback(YES);
                               }]];
             [alert addAction:[UIAlertAction
                               actionWithTitle:@"取消"
                               style:UIAlertActionStyleCancel
                               handler:^(UIAlertAction * _Nonnull action) {
-                                  suspendCallback(NO);
+                                  continueCallback(NO);
                               }]];
             [self presentViewController:alert animated:YES completion:nil];
         }
@@ -387,7 +386,7 @@ static CGFloat const margin = 10.0;
     weakdef(self);
     
     [self bjl_observe:BJLMakeMethod(self.room.chatVM, didReceiveMessage:)
-             observer:^BOOL(NSObject<BJLMessage> *message) {
+             observer:^BOOL(BJLMessage *message) {
                  strongdef(self);
                  [self.console printFormat:@"chat %@: %@", message.fromUser.name, message.content];
                  return YES;
