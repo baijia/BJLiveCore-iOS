@@ -9,10 +9,6 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.ios.deployment_target    = '8.0'
-  # s.frameworks = ['AssetsLibrary', 'CoreGraphics', 'Foundation', 'UIKit', 'Photos']
-  s.frameworks = ['CoreGraphics', 'Foundation', 'UIKit']
-
-  # s.ios.vendored_frameworks  = 'BJLiveCore-#{s.version}/BJLiveCore.framework'
 
   # git
   s.source = { :git => 'https://github.com/baijia/BJLiveCore-iOS.git', :tag => s.version.to_s }
@@ -25,6 +21,10 @@ Pod::Spec.new do |s|
     ss.libraries  = ['icucore', 'c++', 'stdc++.6']
     ss.vendored_frameworks = "BJLiveCore/BJHLMediaPlayer.framework"
   end
+
+  # s.frameworks = ['AssetsLibrary', 'CoreGraphics', 'Foundation', 'UIKit', 'Photos']
+  s.frameworks = ['CoreGraphics', 'Foundation', 'UIKit']
+  # s.ios.vendored_frameworks  = 'BJLiveCore-#{s.version}/BJLiveCore.framework'
 
   # # http
   # s.source = { :http => 'http://file.gsxservice.com/0baijiatools/09b9807a96075f6247fd08ea48cab16b/BJLiveCore-0.0.1.zip' }
