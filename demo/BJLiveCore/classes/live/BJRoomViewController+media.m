@@ -27,7 +27,7 @@
     if (self.room.loginUser.isTeacher) {
         // 有学生请求发言
         [self bjl_observe:BJLMakeMethod(self.room.speakingRequestVM, receivedSpeakingRequestFromUser:)
-                 observer:^BOOL(NSObject<BJLUser> *user) {
+                 observer:^BOOL(BJLUser *user) {
                      strongdef(self);
                      // 自动同意
                      [self.room.speakingRequestVM replySpeakingRequestToUserID:user.ID allowed:YES];
@@ -37,11 +37,11 @@
     }
     else {
         // 发言请求被处理
-        [self bjl_observe:BJLMakeMethod(self.room.speakingRequestVM, speakingRequestDidReply:)
-                 observer:^BOOL(NSObject<BJLSpeakingReply> *reply) {
+        [self bjl_observe:BJLMakeMethod(self.room.speakingRequestVM, speakingRequestDidReplyEnabled:isUserCancelled:user:)
+                 observer:(BJLMethodObserver)^BOOL(BOOL speakingEnabled, BOOL isUserCancelled, BJLUser *user) {
                      strongdef(self);
-                     [self.console printFormat:@"发言申请已被%@", reply.speakingEnabled ? @"允许" : @"拒绝"];
-                     if (reply.speakingEnabled) {
+                     [self.console printFormat:@"发言申请已被%@", speakingEnabled ? @"允许" : @"拒绝"];
+                     if (speakingEnabled) {
                          [self.room.recordingVM setRecordingAudio:YES
                                                    recordingVideo:NO];
                          [self.console printFormat:@"麦克风已打开"];
@@ -168,12 +168,12 @@
                                          recordingVM.videoDefinition = isLow ? BJLVideoDefinition_high : BJLVideoDefinition_low;
                                      }]];
              
-             BOOL isClose = recordingVM.videoBeautifyLevel == BJLVideoBeautifyLevel_close;
+             BOOL isClose = recordingVM.videoBeautifyLevel == BJLVideoBeautifyLevel_off;
              [actionSheet addAction:[UIAlertAction
                                      actionWithTitle:isClose ? @"打开美颜" : @"关闭美颜"
                                      style:UIAlertActionStyleDefault
                                      handler:^(UIAlertAction * _Nonnull action) {
-                                         recordingVM.videoBeautifyLevel = isClose ? BJLVideoBeautifyLevel_max : BJLVideoBeautifyLevel_close;
+                                         recordingVM.videoBeautifyLevel = isClose ? BJLVideoBeautifyLevel_on : BJLVideoBeautifyLevel_off;
                                      }]];
          }
          
@@ -209,16 +209,16 @@
     
     [self bjl_observe:BJLMakeMethod(self.room.playingVM, playingUserDidUpdate:)
              observer:^BOOL(BJLTuple *tuple) {
-                 BJLTupleUnpack(tuple) = ^(NSObject<BJLOnlineUser> *old,
-                                           NSObject<BJLOnlineUser> *now) {
+                 BJLTupleUnpack(tuple) = ^(BJLOnlineUser *old,
+                                           BJLOnlineUser *now) {
                      strongdef(self);
                      [self.console printFormat:@"playingUserDidUpdate: %@ >> %@", old, now];
                  };
                  return YES;
              }];
     [self bjl_observe:BJLMakeMethod(self.room.playingVM, playingUserDidUpdate:old:)
-             observer:^BOOL(NSObject<BJLOnlineUser> *now,
-                            NSObject<BJLOnlineUser> *old) {
+             observer:^BOOL(BJLOnlineUser *now,
+                            BJLOnlineUser *old) {
                  strongdef(self);
                  [self.console printFormat:@"playingUserDidUpdate:old: %@ >> %@", old, now];
                  return YES;
@@ -233,8 +233,8 @@
              return;
          }
          
-         NSObject<BJLOnlineUser> *videoPlayingUser = playingVM.videoPlayingUser;
-         NSArray<NSObject<BJLOnlineUser> *> *playingUsers = playingVM.playingUsers;
+         BJLOnlineUser *videoPlayingUser = playingVM.videoPlayingUser;
+         NSArray<BJLOnlineUser *> *playingUsers = playingVM.playingUsers;
          BOOL noBody = !videoPlayingUser && !playingUsers.count;
          
          UIAlertController *actionSheet = [UIAlertController
@@ -260,7 +260,7 @@
                                          }]];
              }
          }
-         for (NSObject<BJLOnlineUser> *user in playingVM.playingUsers) {
+         for (BJLOnlineUser *user in playingVM.playingUsers) {
              if (videoPlayingUser && [user.ID isEqualToString:videoPlayingUser.ID]) {
                  continue;
              }
@@ -348,28 +348,28 @@
                                            message:nil
                                            preferredStyle:UIAlertControllerStyleActionSheet];
          
-         BOOL isFit = self.room.slideshowViewController.contentMode == BJLSlideshowContentMode_scaleAspectFit;
+         BOOL wasFit = self.room.slideshowViewController.contentMode == BJLContentMode_scaleAspectFit;
          [actionSheet addAction:[UIAlertAction
-                                 actionWithTitle:isFit ? @"完整显示" : @"铺满显示"
+                                 actionWithTitle:wasFit ? @"铺满显示" : @"完整显示"
                                  style:UIAlertActionStyleDefault
                                  handler:^(UIAlertAction * _Nonnull action) {
-                                     self.room.slideshowViewController.contentMode = isFit ? BJLSlideshowContentMode_scaleAspectFill : BJLSlideshowContentMode_scaleAspectFit;
+                                     self.room.slideshowViewController.contentMode = wasFit ? BJLContentMode_scaleAspectFill : BJLContentMode_scaleAspectFit;
                                  }]];
          
-         BOOL whiteboardEnabled = self.room.slideshowViewController.whiteboardEnabled;
-         if (whiteboardEnabled) {
+         BOOL drawingEnabled = self.room.slideshowViewController.drawingEnabled;
+         if (drawingEnabled) {
              [actionSheet addAction:[UIAlertAction
                                      actionWithTitle:@"擦除标记"
                                      style:UIAlertActionStyleDefault
                                      handler:^(UIAlertAction * _Nonnull action) {
-                                         [self.room.slideshowViewController clearWhiteboard];
+                                         [self.room.slideshowViewController clearDrawing];
                                      }]];
          }
          [actionSheet addAction:[UIAlertAction
-                                 actionWithTitle:whiteboardEnabled ? @"结束标记" : @"开始标记"
+                                 actionWithTitle:drawingEnabled ? @"结束标记" : @"开始标记"
                                  style:UIAlertActionStyleDefault
                                  handler:^(UIAlertAction * _Nonnull action) {
-                                     self.room.slideshowViewController.whiteboardEnabled = !whiteboardEnabled;
+                                     self.room.slideshowViewController.drawingEnabled = !drawingEnabled;
                                  }]];
          
          [actionSheet addAction:[UIAlertAction

@@ -25,17 +25,17 @@
                      }];
     
     [self bjl_kvo:BJLMakeProperty(self.room.onlineUsersVM, onlineTeacher)
-                     observer:^BOOL(id old, NSObject<BJLOnlineUser> *now) {
+                     observer:^BOOL(id old, BJLOnlineUser *now) {
                          strongdef(self);
                          [self.console printFormat:@"onlineUsers teacher: %@", now.name];
                          return YES;
                      }];
     
     [self bjl_kvo:BJLMakeProperty(self.room.onlineUsersVM, onlineUsers)
-                     observer:^BOOL(id old, NSArray<NSObject<BJLOnlineUser> *> *now) {
+                     observer:^BOOL(id old, NSArray<BJLOnlineUser *> *now) {
                          strongdef(self);
                          NSMutableArray *userNames = [NSMutableArray new];
-                         for (NSObject<BJLOnlineUser> *user in now) {
+                         for (BJLOnlineUser *user in now) {
                              [userNames addObjectOrNil:user.name];
                          }
                          [self.console printFormat:@"onlineUsers all: %@",
@@ -44,14 +44,14 @@
                      }];
     
     [self bjl_observe:BJLMakeMethod(self.room.onlineUsersVM, onlineUserDidEnter:)
-             observer:^BOOL(NSObject<BJLOnlineUser> *user) {
+             observer:^BOOL(BJLOnlineUser *user) {
                  strongdef(self);
                  [self.console printFormat:@"onlineUsers in: %@", user.name];
                  return YES;
              }];
     
     [self bjl_observe:BJLMakeMethod(self.room.onlineUsersVM, onlineUserDidExit:)
-             observer:^BOOL(NSObject<BJLOnlineUser> *user) {
+             observer:^BOOL(BJLOnlineUser *user) {
                  strongdef(self);
                  [self.console printFormat:@"onlineUsers out: %@", user.name];
                  return YES;
@@ -87,6 +87,60 @@
                  
                  return YES;
              }];
+    
+    [self bjl_observe:BJLMakeMethod(self.room.roomVM, didReceiveSurveyHistory:rightCount:wrongCount:)
+             observer:^BOOL(NSArray<BJLSurvey *> *surveyHistory, NSInteger rightCount, NSInteger wrongCount) {
+                 strongdef(self);
+                 [self.console printFormat:@"收到历史测验: %@ - 正确 %td, 错误 %td",
+                  [surveyHistory yy_modelToJSONObject], rightCount, wrongCount];
+                 return YES;
+             }];
+    
+    [self bjl_observe:BJLMakeMethod(self.room.roomVM, didReceiveSurvey:)
+             observer:^BOOL(BJLSurvey *survey) {
+                 strongdef(self);
+                 UIAlertController *alert = [UIAlertController
+                                             alertControllerWithTitle:[NSString stringWithFormat:@"测验-%td", survey.order]
+                                             message:survey.question
+                                             preferredStyle:UIAlertControllerStyleAlert];
+                 __block BOOL hasAnswer = NO;
+                 for (BJLSurveyOption *option in survey.options) {
+                     [alert addAction:[UIAlertAction
+                                       actionWithTitle:[NSString stringWithFormat:@"%@. %@", option.key, option.value]
+                                       style:UIAlertActionStyleDefault
+                                       handler:^(UIAlertAction * _Nonnull action) {
+                                           BJLSurveyResult result = (hasAnswer
+                                                                     ? (option.isAnswer ? BJLSurveyResultRight : BJLSurveyResultWrong)
+                                                                     : BJLSurveyResultNA);
+                                           [self.room.roomVM sendSurveyAnswers:@[option.key ?: @""]
+                                                                        result:result
+                                                                         order:survey.order];
+                                       }]];
+                     hasAnswer = hasAnswer || option.isAnswer;
+                 }
+                 if (!survey.options.count) {
+                     [alert addAction:[UIAlertAction
+                                       actionWithTitle:@"r u kidding me"
+                                       style:UIAlertActionStyleCancel
+                                       handler:nil]];
+                 }
+                 
+                 [self presentViewController:alert
+                                    animated:YES
+                                  completion:nil];
+                 
+                 return YES;
+             }];
+    
+    [self bjl_observe:BJLMakeMethod(self.room.roomVM, didReceiveSurveyResults:order:)
+             observer:^BOOL(NSDictionary<NSString *, NSNumber *> *results, NSInteger order) {
+                 strongdef(self);
+                 [self.console printFormat:@"收到测验结果: %td - %@",
+                  order, [results yy_modelToJSONObject]];
+                 return YES;
+             }];
+    
+    [self.room.roomVM loadSurveyHistory];
     
     [self bjl_observe:BJLMakeMethod(self.room.roomVM, didReceiveCustomizedSignal:value:)
              observer:^BOOL(NSString *key, id value) {
