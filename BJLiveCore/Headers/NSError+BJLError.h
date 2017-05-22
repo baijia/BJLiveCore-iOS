@@ -77,7 +77,7 @@ static inline BJLError * _Nullable BJLErrorMake(BJLErrorCode errorCode, NSString
 }
 
 #define bjl_isRobot(LIMIT) ({ \
-    static NSTimeInterval LAST = 0; \
+    static NSTimeInterval LAST = 0.0; \
     NSTimeInterval NOW = [NSDate timeIntervalSinceReferenceDate]; \
     BOOL isRobot = NOW - LAST < LIMIT; \
     if (!isRobot) { \
@@ -87,7 +87,7 @@ static inline BJLError * _Nullable BJLErrorMake(BJLErrorCode errorCode, NSString
 })
 
 #define bjl_returnIfRobot(LIMIT) { \
-    static NSTimeInterval LAST = 0; \
+    static NSTimeInterval LAST = 0.0; \
     NSTimeInterval NOW = [NSDate timeIntervalSinceReferenceDate]; \
     if (NOW - LAST < LIMIT) { \
         return; \
@@ -96,7 +96,7 @@ static inline BJLError * _Nullable BJLErrorMake(BJLErrorCode errorCode, NSString
 }
 
 #define bjl_returnErrorIfRobot(LIMIT) { \
-    static NSTimeInterval LAST = 0; \
+    static NSTimeInterval LAST = 0.0; \
     NSTimeInterval NOW = [NSDate timeIntervalSinceReferenceDate]; \
     if (NOW - LAST < LIMIT) { \
         return BJLErrorMake(BJLErrorCode_areYouRobot, \
