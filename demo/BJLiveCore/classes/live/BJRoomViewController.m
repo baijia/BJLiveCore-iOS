@@ -388,7 +388,7 @@ static CGFloat const margin = 10.0;
     [self bjl_observe:BJLMakeMethod(self.room.chatVM, didReceiveMessage:)
              observer:^BOOL(BJLMessage *message) {
                  strongdef(self);
-                 [self.console printFormat:@"chat %@: %@", message.fromUser.name, message.content];
+                 [self.console printFormat:@"chat %@: %@", message.fromUser.name, message.text];
                  return YES;
              }];
 }

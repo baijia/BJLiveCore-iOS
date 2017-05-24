@@ -14,14 +14,13 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - BJHL-Foundation-iOS (1.3.2):
-    - CocoaLumberjack (= 2.3.0)
+  - BJHL-Foundation-iOS (1.2.12)
   - BJHL-Websocket-iOS (0.3.2):
     - PocketSocket
-  - BJLiveCore (0.3.0-dylib02):
+  - BJLiveCore (0.3.0-dylib04):
     - BJHL-Foundation-iOS
     - BJHL-Websocket-iOS (>= 0.3.2)
-    - BJLiveCore/BJHLMediaPlayer (= 0.3.0-dylib02)
+    - BJLiveCore/BJHLMediaPlayer (= 0.3.0-dylib04)
     - JRSwizzle
     - libextobjc/EXTScope
     - LKDBHelper
@@ -30,7 +29,7 @@ PODS:
     - ReactiveCocoa (~> 2.0)
     - SDWebImage
     - YYModel
-  - BJLiveCore/BJHLMediaPlayer (0.3.0-dylib02):
+  - BJLiveCore/BJHLMediaPlayer (0.3.0-dylib04):
     - BJHL-Foundation-iOS
     - BJHL-Websocket-iOS (>= 0.3.2)
     - JRSwizzle
@@ -41,14 +40,6 @@ PODS:
     - ReactiveCocoa (~> 2.0)
     - SDWebImage
     - YYModel
-  - CocoaLumberjack (2.3.0):
-    - CocoaLumberjack/Default (= 2.3.0)
-    - CocoaLumberjack/Extensions (= 2.3.0)
-  - CocoaLumberjack/Core (2.3.0)
-  - CocoaLumberjack/Default (2.3.0):
-    - CocoaLumberjack/Core
-  - CocoaLumberjack/Extensions (2.3.0):
-    - CocoaLumberjack/Default
   - FLEX (2.4.0)
   - FMDB (2.6.2):
     - FMDB/standard (= 2.6.2)
@@ -116,17 +107,16 @@ PODS:
   - YYModel (1.0.4)
 
 DEPENDENCIES:
-  - BJLiveCore (= 0.3.0-dylib02)
+  - BJLiveCore (= 0.3.0-dylib04)
   - FLEX (~> 2.0)
   - M9Dev
   - Masonry
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  BJHL-Foundation-iOS: 2dc339ded83d6c1fae1ce51f7ffcb315b19f8db2
+  BJHL-Foundation-iOS: c8d795787524a8f27edb4694dd78794bc2fca450
   BJHL-Websocket-iOS: d268c2d08cb22d461a0b961781566e488c004c1d
-  BJLiveCore: 8b4f776e207d5a77c37e29122caf3f7252af70c2
-  CocoaLumberjack: 97fab7ee5f507fe54445cca7ea80f926729cfd15
+  BJLiveCore: 9c8cf353c9669e8e9d1149b93c5c4806008efe9a
   FLEX: bd1a39e55b56bb413b6f1b34b3c10a0dc44ef079
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   JRSwizzle: dd5ead5d913a0f29e7f558200165849f006bb1e3
@@ -143,6 +133,6 @@ SPEC CHECKSUMS:
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: afbea859c530616da9dcf7275bf87c5d3750a9ae
+PODFILE CHECKSUM: 132f90e2b3da609617686d6cd2bedc19a2066e3a
 
 COCOAPODS: 1.2.1
