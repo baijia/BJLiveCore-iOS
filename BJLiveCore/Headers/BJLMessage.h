@@ -13,25 +13,29 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSInteger, BJLMessageContentType) {
-    BJLMessageContentType_text,
-    BJLMessageContentType_emoticon,
-    BJLMessageContentType_image
+typedef NS_ENUM(NSInteger, BJLMessageType) {
+    BJLMessageType_text,
+    BJLMessageType_emoticon,
+    BJLMessageType_image
 };
 
 @interface BJLMessage : NSObject <YYModel>
 
-@property (nonatomic, readonly) NSString *ID, *content;
+@property (nonatomic, readonly) NSString *ID;
 @property (nonatomic, readonly, nullable) NSString *channel;
 @property (nonatomic, readonly) NSTimeInterval timeInterval; // seconds since 1970
 @property (nonatomic, readonly) BJLUser *fromUser;
 
-@property (nonatomic, readonly) BJLMessageContentType contentType;
-@property (nonatomic, readonly, nullable) BJLEmoticon *emoticon; // BJLMessageContentType_emoticon
-@property (nonatomic, readonly, nullable) NSString *imageURLString; // BJLMessageContentType_image
+@property (nonatomic, readonly) BJLMessageType type;
+@property (nonatomic, readonly, nullable) NSString *text; // BJLMessageType_text
+@property (nonatomic, readonly, nullable) BJLEmoticon *emoticon; // BJLMessageType_emoticon
+@property (nonatomic, readonly, nullable) NSString *imageURLString; // BJLMessageType_image
+@property (nonatomic, readonly) CGFloat imageWidth, imageHeight; // BJLMessageType_image
 
-+ (NSString *)messageStringWithEmoticon:(BJLEmoticon *)emoticon;
-+ (NSString *)messageStringWithImageURLString:(NSString *)imageURLString;
++ (NSDictionary *)messageDataWithEmoticonKey:(NSString *)emoticonKey;
++ (NSDictionary *)messageDataWithImageURLString:(NSString *)imageURLString imageSize:(CGSize)imageSize;
+
++ (nullable NSString *)displayingStringWithData:(NSDictionary *)data;
 
 @end
 

@@ -28,14 +28,16 @@ NS_ASSUME_NONNULL_BEGIN
  最多 BJLTextMaxLength_chat 个字符
  成功后会收到消息通知
  发送图片需事先调用 `uploadImageFile:progress:finish:` 方法上传
- 发送表情和图片需将 `(BJLEmoticon *)emoticon` 或 `(NSString *)imageURLString` 转换成消息文本，参考 `BJLMessage` 的 `messageStringWithEmoticon:` 和 `messageStringWithImageURLString:` 方法
+ 发送表情和图片需将 `(NSString *)emoticon.key` 或 `(NSString *)imageURLString` 转换成 (NSDictionary *)data，参考 `BJLMessage` 的 `messageDataWithEmoticonKey:` 和 `messageDataWithImageURLString:imageWidth:imageHeight:` 方法
  学生在禁言状态不能发送消息，参考 `forbidMe`、`forbidAll`
- @param content 消息，不能是空字符串或 nil
+ @param text 消息，不能是空字符串或 nil
  @param channel 频道
  参考 `BJLMessage`
  */
-- (nullable BJLError *)sendMessage:(NSString *)content;
-- (nullable BJLError *)sendMessage:(NSString *)content channel:(nullable NSString *)channel;
+- (nullable BJLError *)sendMessage:(NSString *)text;
+- (nullable BJLError *)sendMessage:(NSString *)text channel:(nullable NSString *)channel;
+- (nullable BJLError *)sendMessageData:(NSDictionary *)data;
+- (nullable BJLError *)sendMessageData:(NSDictionary *)data channel:(nullable NSString *)channel;
 
 /**
  上传图片，用于发送消息
