@@ -63,8 +63,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (BJLObservable)didReceiveRollcallWithTimeout:(NSTimeInterval)timeout;
 
 /** 学生: 收到点名取消
- 可能是老师取消、或者倒计时结束，参考 `rollcallTimeRemaining` */
-- (BJLObservable)rollcallDidCancel;
+ 可能是老师取消、或者倒计时结束
+ 参考 `rollcallTimeRemaining` */
+- (BJLObservable)rollcallDidFinish;
+- (BJLObservable)rollcallDidCancel DEPRECATED_MSG_ATTRIBUTE("use `rollcallDidFinish` instead");
 
 /** 学生: 答到 */
 - (nullable BJLError *)answerToRollcall;
