@@ -1,14 +1,14 @@
 Pod::Spec.new do |s|
   s.name = 'BJLiveCore'
-  s.version = '0.3.0-dylib05'
+  s.version = '0.3.0-dylib06'
   s.summary = 'BJLiveCore SDK.'
   s.license = 'MIT'
   s.authors = {"MingLQ"=>"minglq.9@gmail.com"}
   s.homepage = 'http://www.baijiacloud.com/'
   s.description = 'BJLiveCore SDK for iOS.'
+  s.platform = :ios, "8.0"
   s.requires_arc = true
-
-  s.ios.deployment_target    = '8.0'
+  s.xcconfig = { "ENABLE_BITCODE" => "NO" }
 
   # git
   s.source = { :git => 'https://github.com/baijia/BJLiveCore-iOS.git', :tag => s.version.to_s }
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
   # s.resources = 'BJLiveCore/**/*.bundle'
   s.subspec 'BJHLMediaPlayer' do |ss|
     ss.frameworks = ['AVFoundation', 'VideoToolbox', 'GLKit']
-    ss.libraries  = ['icucore', 'c++', 'stdc++.6']
+    ss.libraries  = ['icucore', 'c++', 'stdc++.6', 'z']
     ss.vendored_frameworks = "BJLiveCore/BJHLMediaPlayer.framework"
   end
 
@@ -33,18 +33,15 @@ Pod::Spec.new do |s|
   # s.vendored_libraries = 'BJLiveCore-#{s.version}/**/*.a'
   # # s.resources = 'BJLiveCore-#{s.version}/**/*.bundle'
 
-  # s.dependency 'BJHL-AVSDK-iOS', '>= 0.1.11'
-  s.dependency 'BJHL-Foundation-iOS'
-  s.dependency 'BJHL-Websocket-iOS', '>= 0.3.2'
-  s.dependency "libextobjc/EXTScope"
-  s.dependency 'LogStat'
-  s.dependency 'JRSwizzle'
+  s.dependency 'AFNetworking', '~> 3.0'
+  s.dependency 'PocketSocket'
   s.dependency 'YYModel'
 
   # DEPRECATED
-  s.dependency 'LKDBHelper'
-  s.dependency 'LTInfiniteScrollView'
+  s.dependency "libextobjc/EXTScope"
+  s.dependency 'LogStat', '>= 0.6.2'
+  s.dependency 'JRSwizzle'
   s.dependency 'SDWebImage'
-  s.dependency 'ReactiveCocoa', '~> 2.0'
+  s.dependency 'ReactiveObjc'
 
 end

@@ -175,6 +175,81 @@ typedef void (^BJLTuplePackBlock)(BJLTupleUnpackBlock unpack);
 
 #pragma mark -
 
+@interface NSDictionary (BJL_M9Dev)
+
+/**
+ * ???: add int, remove unsignedXxxx
+ *  @see NSString+NSStringExtensionMethods @ xxxValue
+ *
+ * NOTE: detect CGFloat is float or double:
+ *  #if defined(__LP64__) && __LP64__
+ *      CGFloat is double
+ *  #elif
+ #      CGFloat is float
+ *  #endif
+ */
+
+/* C */
+- (float)bjl_floatForKey:(id)aKey;
+- (float)bjl_floatForKey:(id)aKey defaultValue:(float)defaultValue;
+- (double)bjl_doubleForKey:(id)aKey;
+- (double)bjl_doubleForKey:(id)aKey defaultValue:(double)defaultValue;
+/* C More */
+- (long long)bjl_longLongForKey:(id)aKey;
+- (long long)bjl_longLongForKey:(id)aKey defaultValue:(long long)defaultValue;
+- (unsigned long long)bjl_unsignedLongLongForKey:(id)aKey;
+- (unsigned long long)bjl_unsignedLongLongForKey:(id)aKey defaultValue:(unsigned long long)defaultValue;
+
+/* OC */
+- (BOOL)bjl_boolForKey:(id)aKey;
+- (BOOL)bjl_boolForKey:(id)aKey defaultValue:(BOOL)defaultValue;
+- (NSInteger)bjl_integerForKey:(id)aKey;
+- (NSInteger)bjl_integerOrNotFoundForKey:(id)aKey;
+- (NSInteger)bjl_integerForKey:(id)aKey defaultValue:(NSInteger)defaultValue;
+
+/* OC More */
+- (NSUInteger)bjl_unsignedIntegerForKey:(id)aKey;
+- (NSUInteger)bjl_unsignedIntegerOrNotFoundForKey:(id)aKey;
+- (NSUInteger)bjl_unsignedIntegerForKey:(id)aKey defaultValue:(NSUInteger)defaultValue;
+
+/* OC Object */
+- (nullable NSNumber *)bjl_numberForKey:(id)aKey;
+- (nullable NSNumber *)bjl_numberForKey:(id)aKey defaultValue:(nullable NSNumber *)defaultValue;
+- (nullable NSString *)bjl_stringForKey:(id)aKey;
+- (nullable NSString *)bjl_stringOrEmptyStringForKey:(id)akey;
+- (nullable NSString *)bjl_stringForKey:(id)akey defaultValue:(nullable NSString *)defaultValue;
+- (nullable NSArray *)bjl_arrayForKey:(id)aKey;
+- (nullable NSArray *)bjl_arrayForKey:(id)aKey defaultValue:(nullable NSArray *)defaultValue;
+- (nullable NSDictionary *)bjl_dictionaryForKey:(id)aKey;
+- (nullable NSDictionary *)bjl_dictionaryForKey:(id)aKey defaultValue:(nullable NSDictionary *)defaultValue;
+- (nullable NSData *)bjl_dataForKey:(id)aKey;
+- (nullable NSData *)bjl_dataForKey:(id)aKey defaultValue:(nullable NSData *)defaultValue;
+- (nullable NSDate *)bjl_dateForKey:(id)aKey;
+- (nullable NSDate *)bjl_dateForKey:(id)aKey defaultValue:(nullable NSDate *)defaultValue;
+- (nullable NSURL *)bjl_URLForKey:(id)aKey;
+- (nullable NSURL *)bjl_URLForKey:(id)aKey defaultValue:(nullable NSURL *)defaultValue;
+
+/* OC Object More */
+/* !!!:
+ *  @param clazz: Be careful when using this method on objects represented by a class cluster...
+ *
+ *      // DO NOT DO THIS! Use - objectForKey:callback: instead
+ *      if ([myArray isKindOfClass:[NSMutableArray class]]) {
+ *          // Modify the object
+ *      }
+ *
+ *      @see NSObject - isKindOfClass:
+ */
+- (nullable id)bjl_objectForKey:(id)aKey class:(nullable Class)clazz;
+- (nullable id)bjl_objectForKey:(id)aKey class:(nullable Class)clazz defaultValue:(nullable id)defaultValue;
+- (nullable id)bjl_objectForKey:(id)aKey protocol:(nullable Protocol *)protocol;
+- (nullable id)bjl_objectForKey:(id)aKey protocol:(nullable Protocol *)protocol defaultValue:(nullable id)defaultValue;
+- (nullable id)bjl_objectForKey:(id)aKey class:(nullable Class)clazz protocol:(nullable Protocol *)protocol;
+- (nullable id)bjl_objectForKey:(id)aKey class:(nullable Class)clazz protocol:(nullable Protocol *)protocol defaultValue:(nullable id)defaultValue;
+- (nullable id)bjl_objectForKey:(id)aKey callback:(_Nullable id (^)(id object))callback;
+
+@end
+
 @interface NSMutableDictionary (BJL_M9Dev)
 
 - (void)bjl_setObjectOrNil:(nullable id)anObject forKey:(nullable id<NSCopying>)aKey;
