@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'BJLiveCore'
-  s.version = '0.3.0-dylib06'
+  s.version = '0.3.0-dylib07'
   s.summary = 'BJLiveCore SDK.'
   s.description = 'BJLiveCore SDK for iOS.'
   s.license = 'MIT'
@@ -11,12 +11,15 @@ Pod::Spec.new do |s|
 
   # git
   s.source = { :git => 'https://github.com/baijia/BJLiveCore-iOS.git', :tag => s.version.to_s }
+
+  # # framework
   s.ios.preserve_paths       = 'BJLiveCore/BJLiveCore.framework'
   s.ios.public_header_files  = 'BJLiveCore/BJLiveCore.framework/Versions/A/Headers/**/*.h'
   s.ios.source_files         = 'BJLiveCore/BJLiveCore.framework/Versions/A/Headers/**/*.h'
-  s.ios.resource             = 'BJLiveCore/BJLiveCore.framework/Versions/A/Resources/**/*'
+  # s.ios.resource             = 'BJLiveCore/BJLiveCore.framework/Versions/A/Resources/**/*'
   s.ios.vendored_frameworks  = 'BJLiveCore/BJLiveCore.framework'
 
+  # # library
   # s.public_header_files = 'BJLiveCore/**/*.h'
   # s.source_files = 'BJLiveCore/**/*.h'
   # s.vendored_libraries = 'BJLiveCore/**/*.a'
