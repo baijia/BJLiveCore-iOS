@@ -13,7 +13,7 @@ target 'BJLiveCore' do
     pod 'BJLiveCore'
     # pod 'BJLiveCore', '0.2.4.5-beta'
     # pod 'BJLiveCore', :path => '../'
-    
+    pod 'BJHL-Foundation-iOS', '1.2.11'
     # demo
     pod 'Masonry'
     pod 'M9Dev'
