@@ -39,9 +39,9 @@ Pod::Spec.new do |s|
 
   # DEPRECATED
   s.dependency "libextobjc/EXTScope"
-  s.dependency 'LogStat', '>= 0.6.2'
+  s.dependency 'LogStat'
   s.dependency 'JRSwizzle'
   s.dependency 'SDWebImage'
-  s.dependency 'ReactiveObjc'
+  s.dependency 'ReactiveObjC'
 
 end
