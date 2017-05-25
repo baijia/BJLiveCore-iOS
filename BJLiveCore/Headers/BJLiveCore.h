@@ -7,3 +7,12 @@
 //
 
 #import "BJLRoom.h"
+
+#import "BJLConstants.h"
+#import "BJLMessage.h"
+#import "BJLUser.h"
+#import "BJLiveCore.h"
+#import "NSError+BJLError.h"
+#import "NSObject+BJLObserving.h"
+#import "NSObject+BJL_M9Dev.h"
+#import "UIKit+BJL_M9Dev.h"
