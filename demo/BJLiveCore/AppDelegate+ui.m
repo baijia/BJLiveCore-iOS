@@ -6,7 +6,6 @@
 //  Copyright © 2016年 Baijia Cloud. All rights reserved.
 //
 
-#import <BJHL-Foundation-iOS/BJHL-Foundation-iOS.h>
 #import <BJLiveCore/BJLiveCore.h>
 #import <M9Dev/M9Dev.h>
 

@@ -6,7 +6,7 @@
 //  Copyright © 2016年 Baijia Cloud. All rights reserved.
 //
 
-#import <ReactiveCocoa/ReactiveCocoa.h>
+#import <ReactiveObjC/ReactiveObjC.h>
 
 #import "BJAppConfig.h"
 
