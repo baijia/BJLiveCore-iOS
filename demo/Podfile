@@ -10,7 +10,7 @@ target 'BJLiveCore' do
     # use_frameworks!
     
     # dev
-    pod 'BJLiveCore', '0.3.0-dylib04'
+    pod 'BJLiveCore', '~> 0.3.0-dylib07'
     # pod 'BJLiveCore', '0.2.4.5-beta'
     # pod 'BJLiveCore', :path => '../'
     

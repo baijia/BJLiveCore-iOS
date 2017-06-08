@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'BJLiveCore'
-  s.version = '0.3.0-dylib07'
+  s.version = '0.3.0-dylib08'
   s.summary = 'BJLiveCore SDK.'
   s.description = 'BJLiveCore SDK for iOS.'
   s.license = 'MIT'
@@ -44,6 +44,7 @@ Pod::Spec.new do |s|
 
   s.requires_arc = true
   s.xcconfig = { "ENABLE_BITCODE" => "NO" }
+  s.xcconfig = {"CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES" => "YES"}
 
   s.dependency 'AFNetworking', '~> 3.0'
   s.dependency 'PocketSocket'
