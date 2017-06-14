@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
   s.summary = 'BJLiveCore SDK.'
   s.description = 'BJLiveCore SDK for iOS.'
   s.license = 'MIT'
-  s.authors = {"MingLQ"=>"minglq.9@gmail.com"}
+  s.authors = { "MingLQ"=>"minglq.9@gmail.com" }
   s.homepage = 'http://www.baijiacloud.com/'
 
   s.platform = :ios, "8.0"
@@ -43,8 +43,7 @@ Pod::Spec.new do |s|
   # s.ios.vendored_frameworks  = 'BJLiveCore-#{s.version}/BJLiveCore.framework'
 
   s.requires_arc = true
-  s.xcconfig = { "ENABLE_BITCODE" => "NO" }
-  s.xcconfig = {"CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES" => "YES"}
+  s.xcconfig = { "ENABLE_BITCODE" => "NO", "CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES" => "YES" }
 
   s.dependency 'AFNetworking', '~> 3.0'
   s.dependency 'PocketSocket'
