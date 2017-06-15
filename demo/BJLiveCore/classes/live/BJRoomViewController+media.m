@@ -6,11 +6,10 @@
 //  Copyright © 2016 Baijia Cloud. All rights reserved.
 //
 
+#import <BJLiveCore/BJLiveCore.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 
 #import "BJRoomViewController+media.h"
-
-#import "BJLNetworking.h"
 
 @implementation BJRoomViewController (media)
 
