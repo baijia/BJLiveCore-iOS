@@ -6,118 +6,44 @@
 //  Copyright © 2016年 Baijia Cloud. All rights reserved.
 //
 
-// #import <NBKit/NBKit.h>
-#import <M9Dev/M9Dev.h>
+#import <BJLiveCore/BJLiveCore.h>
 
 #import "UIViewController+BJUtil.h"
 
-#import "BJAppearance.h"
-
 @implementation UIViewController (BJBack)
 
-- (UIBarButtonItem *)barButtonItemWithTitle:(NSString *)title
-                                     target:(id)target
-                                     action:(SEL)action {
-    return [[UIBarButtonItem alloc] initWithTitle:title
-                                            style:UIBarButtonItemStylePlain
-                                           target:target
-                                           action:action];
+- (void)addChildViewController:(UIViewController *)childViewController superview:(UIView *)superview {
+    /* The addChildViewController: method automatically calls the willMoveToParentViewController: method
+     * of the view controller to be added as a child before adding it.
+     */
+    [self addChildViewController:childViewController]; // 1
+    [superview addSubview:childViewController.view]; // 2
+    [childViewController didMoveToParentViewController:self]; // 3
 }
 
-- (UIBarButtonItem *)barButtonItemWithImage:(UIImage *)image
-                                buttonClass:(Class)buttonClass
-                                     target:(id)target
-                                     action:(SEL)action {
-    if (!buttonClass) {
-        return [[UIBarButtonItem alloc] initWithImage:image
-                                                style:UIBarButtonItemStylePlain
-                                               target:target
-                                               action:action];
-    }
-    
-    NSAssert([buttonClass isSubclassOfClass:[UIButton class]],
-             @"<#buttonClass#> must be a subclass of <#UIButton#>");
-    if (![buttonClass isSubclassOfClass:[UIButton class]]) {
-        return nil;
-    }
-    
-    UIButton *backBarButton = ({
-        UIButton *button = [[buttonClass alloc] initWithFrame:CGRectMake(0, 0, image.size.width, image.size.height)];
-        button.tintColor = [UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil].tintColor;
-        /* if ([image respondsToSelector:@selector(imageWithRenderingMode:)]) {
-            image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        } */
-        [button setImage:image forState:UIControlStateNormal];
-        [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
-        button;
-    });
-    return [[UIBarButtonItem alloc] initWithCustomView:backBarButton];
+- (void)removeFromParentViewControllerAndSuperiew {
+    [self willMoveToParentViewController:nil]; // 1
+    /* The removeFromParentViewController method automatically calls the didMoveToParentViewController: method
+     * of the child view controller after it removes the child.
+     */
+    [self.view removeFromSuperview]; // 2
+    [self removeFromParentViewController]; // 3
 }
 
-- (UIBarButtonItem *)backBarButtonItemWithTarget:(id)target action:(SEL)action {
-    UIImage *image = [UIImage imageNamed:@"back-dark"];
-    /* if ([image respondsToSelector:@selector(imageWithRenderingMode:)]) {
-        image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    } */
-    return [self barButtonItemWithImage:image
-                            // buttonClass:[NBLeftBarButton class]
-                            buttonClass:[UIButton class]
-                                 target:target
-                                 action:action];
-}
-
-- (void)setBackBarButtonItem {
-    if (!self.navigationItem.leftBarButtonItem) {
-        self.navigationItem.leftBarButtonItem = [self backBarButtonItemWithTarget:self
-                                                                           action:@selector(popViewControllerAnimated)];
++ (UIViewController *)topViewController {
+    UIViewController *topViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
+    UITabBarController *tabBarController = [topViewController bjl_as:[UITabBarController class]];
+    if (tabBarController.selectedViewController) {
+        topViewController = tabBarController.selectedViewController;
     }
-}
-
-- (UIBarButtonItem *)dismissBarButtonItemWithTarget:(id)target action:(SEL)action {
-    UIImage *image = [UIImage imageNamed:@"back-dark"];
-    /* if ([image respondsToSelector:@selector(imageWithRenderingMode:)]) {
-        image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    } */
-    return [self barButtonItemWithImage:image
-                            // buttonClass:[NBLeftBarButton class]
-                            buttonClass:[UIButton class]
-                                 target:target
-                                 action:action];
-}
-
-- (void)setDismissBarButtonItem {
-    if (!self.navigationItem.leftBarButtonItem) {
-        self.navigationItem.leftBarButtonItem = [self dismissBarButtonItemWithTarget:self
-                                                                              action:@selector(dismissViewControllerAnimated)];
+    while (topViewController.presentedViewController) {
+        topViewController = topViewController.presentedViewController;
     }
-}
-
-@end
-
-#pragma mark -
-
-@implementation UIViewController (BJNavigation)
-
-+ (void)showViewController:(UIViewController *)viewController
-        fromViewController:(UIViewController *)fromViewController
-                completion:(void (^)(void))completion {
-    if (!viewController) {
-        return;
+    UINavigationController *navigationController = [topViewController bjl_as:[UINavigationController class]];
+    if ([navigationController.viewControllers count]) {
+        topViewController = navigationController.viewControllers.lastObject;
     }
-    UIViewController *top = fromViewController OR [UIViewController topViewController];
-    UINavigationController *nav = [top as:[UINavigationController class]] OR top.navigationController;
-    if (nav) {
-        [nav pushViewController:viewController animated:YES completion:completion];
-    }
-    else {
-        nav = [viewController wrapWithNavigationController]; // viewDidLoad?
-        if (!viewController.viewLoaded) {
-            [viewController view];
-        }
-        // set dismiss after viewDidLoad
-        [viewController setDismissBarButtonItem];
-        [top presentViewController:nav animated:YES completion:completion];
-    }
+    return topViewController;
 }
 
 @end

@@ -111,6 +111,12 @@ NS_ASSUME_NONNULL_BEGIN
 - (BJLObservable)didReceiveSurveyUserResults:(NSDictionary<NSString *, NSArray<NSString *> *> *)results
                                        order:(NSInteger)order; */
 
+#pragma mark - 测验 V2
+
+- (nullable BJLError *)sendQuizMessage:(NSDictionary<NSString *, id> *)message;
+- (BJLObservable)didReceiveQuizMessage:(NSDictionary<NSString *, id> *)message;
+- (NSURLRequest *)quizRequestWithID:(NSString *)quizID error:(NSError *__autoreleasing *)error;
+
 #pragma mark - 定制信令
 
 /**

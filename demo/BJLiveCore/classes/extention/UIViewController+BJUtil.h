@@ -10,28 +10,9 @@
 
 @interface UIViewController (BJBack)
 
-- (UIBarButtonItem *)barButtonItemWithTitle:(NSString *)title
-                                     target:(id)target
-                                     action:(SEL)action;
-- (UIBarButtonItem *)barButtonItemWithImage:(UIImage *)image
-                                buttonClass:(Class)buttonClass
-                                     target:(id)target
-                                     action:(SEL)action;
+- (void)addChildViewController:(UIViewController *)childController superview:(UIView *)superview;
+- (void)removeFromParentViewControllerAndSuperiew;
 
-// self.navigationItem.<#left#>BarButtonItem = ...
-- (UIBarButtonItem *)backBarButtonItemWithTarget:(id)target action:(SEL)action;
-- (void)setBackBarButtonItem;
-
-// self.navigationItem.<#left#>BarButtonItem = ...
-- (UIBarButtonItem *)dismissBarButtonItemWithTarget:(id)target action:(SEL)action;
-- (void)setDismissBarButtonItem;
-
-@end
-
-@interface UIViewController (BJNavigation)
-
-+ (void)showViewController:(UIViewController *)viewController
-        fromViewController:(UIViewController *)fromViewController
-                completion:(void (^)(void))completion;
++ (UIViewController *)topViewController;
 
 @end

@@ -1,8 +1,14 @@
 source 'https://github.com/CocoaPods/Specs.git'
-source 'https://github.com/baijia/specs.git'
+source 'http://git.baijiahulian.com/iOS/specs.git'
+# source 'https://github.com/baijia/specs.git'
 
 platform :ios, '8.0'
 # inhibit_all_warnings!
+
+post_install do |installer|
+    installer.pods_project.root_object.attributes["CLASSPREFIX"] = "BJL"
+    installer.pods_project.root_object.attributes["ORGANIZATIONNAME"] = "Baijia Cloud"
+end
 
 target 'BJLiveCore' do
     
@@ -10,13 +16,11 @@ target 'BJLiveCore' do
     # use_frameworks!
     
     # dev
-    # pod 'BJLiveCore', '~> 0.3.0-dylib07'
-    # pod 'BJLiveCore', '0.2.4.5-beta'
+    # pod 'BJHL-AVSDK-iOS', :git => 'http://git.baijiahulian.com/video/BJHL-AVSDK-iOS.git', :branch => 'master'
     pod 'BJLiveCore', :path => '../'
     
     # demo
     pod 'Masonry'
-    pod 'M9Dev'
     
     # debug
     pod 'FLEX', '~> 2.0', :configurations => ['Debug']

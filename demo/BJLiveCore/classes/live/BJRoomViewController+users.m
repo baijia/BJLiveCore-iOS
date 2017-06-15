@@ -6,37 +6,39 @@
 //  Copyright © 2016 Baijia Cloud. All rights reserved.
 //
 
+#import <YYModel/YYModel.h>
+
 #import "BJRoomViewController+users.h"
 
 @implementation BJRoomViewController (users)
 
 - (void)makeUserEvents {
-    weakdef(self);
+    @weakify(self);
     
     [self bjl_kvo:BJLMakeProperty(self.room.onlineUsersVM, onlineUsersTotalCount)
                        filter:^BOOL(NSNumber *old, NSNumber *now) {
-                           // strongdef(self);
+                           // @strongify(self);
                            return old.integerValue != now.integerValue;
                        }
                      observer:^BOOL(id old, id now) {
-                         strongdef(self);
+                         @strongify(self);
                          [self.console printFormat:@"onlineUsers count: %@", now];
                          return YES;
                      }];
     
     [self bjl_kvo:BJLMakeProperty(self.room.onlineUsersVM, onlineTeacher)
                      observer:^BOOL(id old, BJLOnlineUser *now) {
-                         strongdef(self);
+                         @strongify(self);
                          [self.console printFormat:@"onlineUsers teacher: %@", now.name];
                          return YES;
                      }];
     
     [self bjl_kvo:BJLMakeProperty(self.room.onlineUsersVM, onlineUsers)
                      observer:^BOOL(id old, NSArray<BJLOnlineUser *> *now) {
-                         strongdef(self);
+                         @strongify(self);
                          NSMutableArray *userNames = [NSMutableArray new];
                          for (BJLOnlineUser *user in now) {
-                             [userNames addObjectOrNil:user.name];
+                             [userNames bjl_addObjectOrNil:user.name];
                          }
                          [self.console printFormat:@"onlineUsers all: %@",
                           [userNames componentsJoinedByString:@", "]];
@@ -45,21 +47,21 @@
     
     [self bjl_observe:BJLMakeMethod(self.room.onlineUsersVM, onlineUserDidEnter:)
              observer:^BOOL(BJLOnlineUser *user) {
-                 strongdef(self);
+                 @strongify(self);
                  [self.console printFormat:@"onlineUsers in: %@", user.name];
                  return YES;
              }];
     
     [self bjl_observe:BJLMakeMethod(self.room.onlineUsersVM, onlineUserDidExit:)
              observer:^BOOL(BJLOnlineUser *user) {
-                 strongdef(self);
+                 @strongify(self);
                  [self.console printFormat:@"onlineUsers out: %@", user.name];
                  return YES;
              }];
     
     [self bjl_observe:BJLMakeMethod(self.room.roomVM, didReceiveRollcallWithTimeout:)
              observer:^BOOL(NSTimeInterval timeout) {
-                 strongdef(self);
+                 @strongify(self);
                  
                  UIAlertController *actionSheet = [UIAlertController
                                                    alertControllerWithTitle:@"老师点名"
@@ -90,7 +92,7 @@
     
     [self bjl_observe:BJLMakeMethod(self.room.roomVM, didReceiveSurveyHistory:rightCount:wrongCount:)
              observer:^BOOL(NSArray<BJLSurvey *> *surveyHistory, NSInteger rightCount, NSInteger wrongCount) {
-                 strongdef(self);
+                 @strongify(self);
                  [self.console printFormat:@"收到历史测验: %@ - 正确 %td, 错误 %td",
                   [surveyHistory yy_modelToJSONObject], rightCount, wrongCount];
                  return YES;
@@ -98,7 +100,7 @@
     
     [self bjl_observe:BJLMakeMethod(self.room.roomVM, didReceiveSurvey:)
              observer:^BOOL(BJLSurvey *survey) {
-                 strongdef(self);
+                 @strongify(self);
                  UIAlertController *alert = [UIAlertController
                                              alertControllerWithTitle:[NSString stringWithFormat:@"测验-%td", survey.order]
                                              message:survey.question
@@ -134,7 +136,7 @@
     
     [self bjl_observe:BJLMakeMethod(self.room.roomVM, didReceiveSurveyResults:order:)
              observer:^BOOL(NSDictionary<NSString *, NSNumber *> *results, NSInteger order) {
-                 strongdef(self);
+                 @strongify(self);
                  [self.console printFormat:@"收到测验结果: %td - %@",
                   order, [results yy_modelToJSONObject]];
                  return YES;
@@ -144,18 +146,18 @@
     
     [self bjl_observe:BJLMakeMethod(self.room.roomVM, didReceiveCustomizedSignal:value:)
              observer:^BOOL(NSString *key, id value) {
-                 strongdef(self);
+                 @strongify(self);
                  [self.console printFormat:@"客户定制信令: %@ - %@", key, value];
                  return YES;
              }];
     
     [self bjl_kvo:BJLMakeProperty(self.room.roomVM, rollcallTimeRemaining)
            filter:^BOOL(NSNumber * _Nullable old, NSNumber * _Nullable now) {
-               // strongdef(self);
+               // @strongify(self);
                return now.doubleValue != old.doubleValue;
            }
          observer:^BOOL(NSNumber * _Nullable old, NSNumber * _Nullable now) {
-             strongdef(self);
+             @strongify(self);
              [self.console printFormat:@"答到倒计时: %f", now.doubleValue];
              return YES;
          }];

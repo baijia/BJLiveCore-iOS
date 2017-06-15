@@ -51,12 +51,13 @@ NS_ASSUME_NONNULL_BEGIN
  - 个别设置可能会导致视频流重新发布
  */
 
-/** 是否使用后置摄像头 */
+/** 使用后置摄像头，默认使用前置摄像头 */
 @property (nonatomic) BOOL usingRearCamera; // NO: Front, YES Rear(iSight)
-
-/** 清晰度 */
+/** 视频方向，默认自动 */
+@property (nonatomic) BJLVideoOrientation videoOrientation;
+/** 清晰度，默认标清 */
 @property (nonatomic) BJLVideoDefinition videoDefinition;
-/** 美颜 */
+/** 美颜，默认关闭 */
 @property (nonatomic) BJLVideoBeautifyLevel videoBeautifyLevel;
 
 @end

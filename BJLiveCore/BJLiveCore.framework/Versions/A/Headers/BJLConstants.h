@@ -100,6 +100,16 @@ static inline BOOL BJL_isValidLinkType(BJLLinkType linkType) {
     return linkType == BJLLinkType_TCP || linkType == BJLLinkType_UDP;
 }
 
+/** 视频方向 */
+typedef NS_ENUM(NSInteger, BJLVideoOrientation) {
+    /** 自动 - 使用设备方向 */
+    BJLVideoOrientation_auto,
+    /** 纵向 */
+    BJLVideoOrientation_portrait,
+    /** 横向 */
+    BJLVideoOrientation_landscape
+};
+
 /** 视频清晰度 */
 typedef NS_ENUM(NSInteger, BJLVideoDefinition) {
     /** 流畅 */

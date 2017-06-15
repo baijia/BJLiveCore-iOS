@@ -6,10 +6,13 @@
 //  Copyright © 2016 Baijia Cloud. All rights reserved.
 //
 
-#import <BJLiveCore/BJLiveCore.h>
 #import <MobileCoreServices/MobileCoreServices.h>
+#import <Masonry/Masonry.h>
 
 #import "BJRoomViewController+media.h"
+#import "UIViewController+BJUtil.h"
+
+#import <BJLiveCore/BJLiveCore.h>
 
 @implementation BJRoomViewController (media)
 
@@ -21,13 +24,13 @@
 }
 
 - (void)makeSpeakingEvents {
-    weakdef(self);
+    @weakify(self);
     
     if (self.room.loginUser.isTeacher) {
         // 有学生请求发言
         [self bjl_observe:BJLMakeMethod(self.room.speakingRequestVM, receivedSpeakingRequestFromUser:)
                  observer:^BOOL(BJLUser *user) {
-                     strongdef(self);
+                     @strongify(self);
                      // 自动同意
                      [self.room.speakingRequestVM replySpeakingRequestToUserID:user.ID allowed:YES];
                      [self.console printFormat:@"%@ 请求发言、已同意", user.name];
@@ -38,7 +41,7 @@
         // 发言请求被处理
         [self bjl_observe:BJLMakeMethod(self.room.speakingRequestVM, speakingRequestDidReplyEnabled:isUserCancelled:user:)
                  observer:(BJLMethodObserver)^BOOL(BOOL speakingEnabled, BOOL isUserCancelled, BJLUser *user) {
-                     strongdef(self);
+                     @strongify(self);
                      [self.console printFormat:@"发言申请已被%@", speakingEnabled ? @"允许" : @"拒绝"];
                      if (speakingEnabled) {
                          [self.room.recordingVM setRecordingAudio:YES
@@ -57,7 +60,7 @@
 }
 
 - (void)makeRecordingEvents {
-    weakdef(self);
+    @weakify(self);
     
     self.room.recordingView.userInteractionEnabled = NO;
     [self.recordingView addSubview:self.room.recordingView];
@@ -67,7 +70,7 @@
     
     [[self.recordingView rac_signalForControlEvents:UIControlEventTouchUpInside]
      subscribeNext:^(id x) {
-         strongdef(self);
+         @strongify(self);
          
          if (!self.room.loginUser.isTeacher
              && !self.room.speakingRequestVM.speakingEnabled) {
@@ -204,13 +207,13 @@
         make.edges.equalTo(self.playingView);
     }];
     
-    weakdef(self);
+    @weakify(self);
     
     [self bjl_observe:BJLMakeMethod(self.room.playingVM, playingUserDidUpdate:)
              observer:^BOOL(BJLTuple *tuple) {
                  BJLTupleUnpack(tuple) = ^(BJLOnlineUser *old,
                                            BJLOnlineUser *now) {
-                     strongdef(self);
+                     @strongify(self);
                      [self.console printFormat:@"playingUserDidUpdate: %@ >> %@", old, now];
                  };
                  return YES;
@@ -218,14 +221,14 @@
     [self bjl_observe:BJLMakeMethod(self.room.playingVM, playingUserDidUpdate:old:)
              observer:^BOOL(BJLOnlineUser *now,
                             BJLOnlineUser *old) {
-                 strongdef(self);
+                 @strongify(self);
                  [self.console printFormat:@"playingUserDidUpdate:old: %@ >> %@", old, now];
                  return YES;
              }];
     
     [[self.playingView rac_signalForControlEvents:UIControlEventTouchUpInside]
      subscribeNext:^(id x) {
-         strongdef(self);
+         @strongify(self);
          
          BJLPlayingVM *playingVM = self.room.playingVM;
          if (!playingVM) {
@@ -320,11 +323,11 @@
 }
 
 - (void)makeSlideshowAndWhiteboardEvents {
-    weakdef(self);
+    @weakify(self);
     
     self.room.slideshowViewController.studentCanPreviewForward = YES;
     self.room.slideshowViewController.studentCanRemoteControl = YES;
-    self.room.slideshowViewController.placeholderImage = [UIImage imageWithColor:[UIColor lightGrayColor]];
+    // self.room.slideshowViewController.placeholderImage = [UIImage imageWithColor:[UIColor lightGrayColor]];
     
     [self addChildViewController:self.room.slideshowViewController
                        superview:self.slideshowAndWhiteboardView];
@@ -340,7 +343,7 @@
     
     [[infoButton rac_signalForControlEvents:UIControlEventTouchUpInside]
      subscribeNext:^(id x) {
-         strongdef(self);
+         @strongify(self);
          
          UIAlertController *actionSheet = [UIAlertController
                                            alertControllerWithTitle:@"课件&画板"

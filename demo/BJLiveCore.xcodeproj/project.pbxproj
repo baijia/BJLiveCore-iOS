@@ -7,9 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1BEE80040FE80203B0ABD9A0 /* Pods_BJLiveCoreUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCE2C3922F4DD64656820128 /* Pods_BJLiveCoreUITests.framework */; };
-		43D944259C67038A5737C692 /* Pods_BJLiveCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A585B8A5DB9D283B8ED45CB /* Pods_BJLiveCore.framework */; };
-		B6397DEFCA74A65D9D574B8C /* Pods_BJLiveCoreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FCBDF03593C8FD67C93A298 /* Pods_BJLiveCoreTests.framework */; };
+		00863F3EDD8EE2C36FA19E8B /* libPods-BJLiveCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 12CD658A72BE5E9BB109C26B /* libPods-BJLiveCore.a */; };
+		B24C9E6790B998CD989F932A /* libPods-BJLiveCoreUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D5C9518B07B63F5009C1400A /* libPods-BJLiveCoreUITests.a */; };
 		DF0B3ABF1E0570E900E540CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0B3ABE1E0570E900E540CC /* main.m */; };
 		DF0B3AC21E0570E900E540CC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0B3AC11E0570E900E540CC /* AppDelegate.m */; };
 		DF0B3ACA1E0570E900E540CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF0B3AC91E0570E900E540CC /* Assets.xcassets */; };
@@ -21,13 +20,15 @@
 		DF0B3B121E0642FA00E540CC /* BJAppConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0B3B001E0642F900E540CC /* BJAppConfig.m */; };
 		DF0B3B131E0642FA00E540CC /* BJAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0B3B021E0642F900E540CC /* BJAppearance.m */; };
 		DF0B3B161E0642FA00E540CC /* BJRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0B3B091E0642F900E540CC /* BJRootViewController.m */; };
-		DF0B3B211E064D5F00E540CC /* UIViewController+BJUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0B3B1E1E064D5F00E540CC /* UIViewController+BJUtil.m */; };
 		DF0B3B221E064D5F00E540CC /* UIWindow+motion.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0B3B201E064D5F00E540CC /* UIWindow+motion.m */; };
 		DF0B3B251E064E0400E540CC /* AppDelegate+ui.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0B3B241E064E0400E540CC /* AppDelegate+ui.m */; };
 		DF0B3B291E065C7500E540CC /* BJRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0B3B281E065C7500E540CC /* BJRoomViewController.m */; };
 		DF0B3B2C1E065E5300E540CC /* BJConsoleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0B3B2B1E065E5300E540CC /* BJConsoleViewController.m */; };
 		DF0B3B351E06DE1600E540CC /* BJRoomViewController+media.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0B3B341E06DE1600E540CC /* BJRoomViewController+media.m */; };
 		DF0B3B381E06FFE800E540CC /* BJRoomViewController+users.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0B3B371E06FFE800E540CC /* BJRoomViewController+users.m */; };
+		DF96FFD21EE82F320029E140 /* UIViewController+BJUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = DF96FFD11EE82F320029E140 /* UIViewController+BJUtil.m */; };
+		DF96FFD51EE830AA0029E140 /* BJTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF96FFD41EE830AA0029E140 /* BJTableViewController.m */; };
+		E3B41683EC59BFDBF8458243 /* libPods-BJLiveCoreTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 296C1870A8C7AD4DAAB17FE4 /* libPods-BJLiveCoreTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,14 +49,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		12CD658A72BE5E9BB109C26B /* libPods-BJLiveCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BJLiveCore.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		296C1870A8C7AD4DAAB17FE4 /* libPods-BJLiveCoreTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BJLiveCoreTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E20105E229FB2E09C7C0993 /* Pods-BJLiveCoreUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BJLiveCoreUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BJLiveCoreUITests/Pods-BJLiveCoreUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		2FCBDF03593C8FD67C93A298 /* Pods_BJLiveCoreTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BJLiveCoreTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3A585B8A5DB9D283B8ED45CB /* Pods_BJLiveCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BJLiveCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B5A191A09986D643AEC06CE /* Pods-BJLiveCoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BJLiveCoreTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BJLiveCoreTests/Pods-BJLiveCoreTests.release.xcconfig"; sourceTree = "<group>"; };
 		9C65EDE424B7E0746A328A3E /* Pods-BJLiveCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BJLiveCore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BJLiveCore/Pods-BJLiveCore.debug.xcconfig"; sourceTree = "<group>"; };
 		9ED8A60CA1F17F6C097F139B /* Pods-BJLiveCoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BJLiveCoreTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BJLiveCoreTests/Pods-BJLiveCoreTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A3E106F522AD93BB2FECF4F7 /* Pods-BJLiveCoreUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BJLiveCoreUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BJLiveCoreUITests/Pods-BJLiveCoreUITests.release.xcconfig"; sourceTree = "<group>"; };
-		BCE2C3922F4DD64656820128 /* Pods_BJLiveCoreUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BJLiveCoreUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5C9518B07B63F5009C1400A /* libPods-BJLiveCoreUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BJLiveCoreUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF0B3ABA1E0570E900E540CC /* BJLiveCore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BJLiveCore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF0B3ABE1E0570E900E540CC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DF0B3AC01E0570E900E540CC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -80,8 +81,6 @@
 		DF0B3B081E0642F900E540CC /* BJRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BJRootViewController.h; sourceTree = "<group>"; };
 		DF0B3B091E0642F900E540CC /* BJRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BJRootViewController.m; sourceTree = "<group>"; };
 		DF0B3B0A1E0642F900E540CC /* BJViewControllerImports.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BJViewControllerImports.h; sourceTree = "<group>"; };
-		DF0B3B1D1E064D5F00E540CC /* UIViewController+BJUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BJUtil.h"; sourceTree = "<group>"; };
-		DF0B3B1E1E064D5F00E540CC /* UIViewController+BJUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BJUtil.m"; sourceTree = "<group>"; };
 		DF0B3B1F1E064D5F00E540CC /* UIWindow+motion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+motion.h"; sourceTree = "<group>"; };
 		DF0B3B201E064D5F00E540CC /* UIWindow+motion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+motion.m"; sourceTree = "<group>"; };
 		DF0B3B231E064E0300E540CC /* AppDelegate+ui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+ui.h"; sourceTree = "<group>"; };
@@ -94,6 +93,10 @@
 		DF0B3B341E06DE1600E540CC /* BJRoomViewController+media.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BJRoomViewController+media.m"; sourceTree = "<group>"; };
 		DF0B3B361E06FFE800E540CC /* BJRoomViewController+users.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BJRoomViewController+users.h"; sourceTree = "<group>"; };
 		DF0B3B371E06FFE800E540CC /* BJRoomViewController+users.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BJRoomViewController+users.m"; sourceTree = "<group>"; };
+		DF96FFD01EE82F320029E140 /* UIViewController+BJUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BJUtil.h"; sourceTree = "<group>"; };
+		DF96FFD11EE82F320029E140 /* UIViewController+BJUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BJUtil.m"; sourceTree = "<group>"; };
+		DF96FFD31EE830AA0029E140 /* BJTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BJTableViewController.h; sourceTree = "<group>"; };
+		DF96FFD41EE830AA0029E140 /* BJTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BJTableViewController.m; sourceTree = "<group>"; };
 		FC466E6262F221A0BC20DE95 /* Pods-BJLiveCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BJLiveCore.release.xcconfig"; path = "Pods/Target Support Files/Pods-BJLiveCore/Pods-BJLiveCore.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,7 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43D944259C67038A5737C692 /* Pods_BJLiveCore.framework in Frameworks */,
+				00863F3EDD8EE2C36FA19E8B /* libPods-BJLiveCore.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,7 +113,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6397DEFCA74A65D9D574B8C /* Pods_BJLiveCoreTests.framework in Frameworks */,
+				E3B41683EC59BFDBF8458243 /* libPods-BJLiveCoreTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,7 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1BEE80040FE80203B0ABD9A0 /* Pods_BJLiveCoreUITests.framework in Frameworks */,
+				B24C9E6790B998CD989F932A /* libPods-BJLiveCoreUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,9 +131,9 @@
 		4999FC49765F5DF2E7F5A278 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3A585B8A5DB9D283B8ED45CB /* Pods_BJLiveCore.framework */,
-				2FCBDF03593C8FD67C93A298 /* Pods_BJLiveCoreTests.framework */,
-				BCE2C3922F4DD64656820128 /* Pods_BJLiveCoreUITests.framework */,
+				12CD658A72BE5E9BB109C26B /* libPods-BJLiveCore.a */,
+				296C1870A8C7AD4DAAB17FE4 /* libPods-BJLiveCoreTests.a */,
+				D5C9518B07B63F5009C1400A /* libPods-BJLiveCoreUITests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -259,8 +262,10 @@
 		DF0B3B1C1E064D5F00E540CC /* extention */ = {
 			isa = PBXGroup;
 			children = (
-				DF0B3B1D1E064D5F00E540CC /* UIViewController+BJUtil.h */,
-				DF0B3B1E1E064D5F00E540CC /* UIViewController+BJUtil.m */,
+				DF96FFD31EE830AA0029E140 /* BJTableViewController.h */,
+				DF96FFD41EE830AA0029E140 /* BJTableViewController.m */,
+				DF96FFD01EE82F320029E140 /* UIViewController+BJUtil.h */,
+				DF96FFD11EE82F320029E140 /* UIViewController+BJUtil.m */,
 				DF0B3B1F1E064D5F00E540CC /* UIWindow+motion.h */,
 				DF0B3B201E064D5F00E540CC /* UIWindow+motion.m */,
 			);
@@ -570,6 +575,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF96FFD21EE82F320029E140 /* UIViewController+BJUtil.m in Sources */,
 				DF0B3B221E064D5F00E540CC /* UIWindow+motion.m in Sources */,
 				DF0B3B351E06DE1600E540CC /* BJRoomViewController+media.m in Sources */,
 				DF0B3B381E06FFE800E540CC /* BJRoomViewController+users.m in Sources */,
@@ -578,10 +584,10 @@
 				DF0B3B121E0642FA00E540CC /* BJAppConfig.m in Sources */,
 				DF0B3AC21E0570E900E540CC /* AppDelegate.m in Sources */,
 				DF0B3B161E0642FA00E540CC /* BJRootViewController.m in Sources */,
+				DF96FFD51EE830AA0029E140 /* BJTableViewController.m in Sources */,
 				DF0B3B131E0642FA00E540CC /* BJAppearance.m in Sources */,
 				DF0B3B251E064E0400E540CC /* AppDelegate+ui.m in Sources */,
 				DF0B3AFB1E06420800E540CC /* BJLoginViewController.m in Sources */,
-				DF0B3B211E064D5F00E540CC /* UIViewController+BJUtil.m in Sources */,
 				DF0B3ABF1E0570E900E540CC /* main.m in Sources */,
 				DF0B3B291E065C7500E540CC /* BJRoomViewController.m in Sources */,
 			);
@@ -726,7 +732,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5EMFG9Z439;
-				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = BJLiveCore/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bjhl.inhouse.BJLiveCore;
@@ -741,7 +746,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5EMFG9Z439;
-				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = BJLiveCore/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bjhl.inhouse.BJLiveCore;

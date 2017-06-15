@@ -6,6 +6,8 @@
 //
 //
 
+#import <BJLiveCore/BJLiveCore.h>
+
 #import "BJConsoleViewController.h"
 
 static NSString * const BJConsoleDefaultIdentifier = @"default";
@@ -34,7 +36,7 @@ static NSString * const BJConsoleDefaultIdentifier = @"default";
 }
 
 - (void)printLine:(NSString *)line {
-    [self.lines addObjectOrNil:line];
+    [self.lines bjl_addObjectOrNil:line];
     
     while (self.lines.count > 1000) {
         [self.lines removeObjectAtIndex:0];
@@ -112,7 +114,7 @@ static NSString * const BJConsoleDefaultIdentifier = @"default";
     cell.backgroundColor = [UIColor clearColor];
     cell.textLabel.textColor = [UIColor greenColor];
     cell.textLabel.numberOfLines = 0;
-    cell.textLabel.text = [self.lines objectOrNilAtIndex:indexPath.row];
+    cell.textLabel.text = [self.lines bjl_objectOrNilAtIndex:indexPath.row];
     return cell;
 }
 
