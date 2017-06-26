@@ -4,10 +4,42 @@ Change Log
 - 标记为 **粗体** 的改动需要特别留意；
 - 被标记 `DEPRECATED` 的代码 **将在 `1.0` 版本移除**；
 
-## 0.2.4.2
+## 0.4.0
 
-- 支持激光笔；
-- `BJLDocument` 和 `BJLDocumentPageInfo` 由 protocol 改为具体实现，同时修改 `BJLSlideVM` 和 `BJLSlideshowVM` 中相关的方法、属性；
+- **底层音视频 SDK 使用动态库，iOS 版本要求最低 8.0**；
+- 支持分辨率、码率、音频编码格式等参数可服务端配置；
+- 支持 MS 服务器调度、支持动态 CDN；
+- 优化统计上报；
+- 支持新版小测；
+- 支持踢人功能；
+
+## 0.3.0
+
+- 支持助教登录；
+- 支持加载客服信息；
+- **`BJLUser` 由 `protocol` 改为 `class`；**；
+- **`BJLMessage` 由 `protocol` 改为 `class`**，聊天支持自定义表情，支持老师、助教和非大班课的学生发图片；
+- `BJLSpeakingRequestVM` 里的 `speakingRequestUsers` 改为倒序，后举手的学生排在数组的前面，与发言用户逻辑保持一致；
+- PPT 翻页相关 API 改进，参考 `BJLSlideshowVM`、`BJLSlideshowUI`；
+- 优化 PPT 图片加载逻辑；
+- 解决 BUG；
+
+### 0.2.6-internal
+
+- 美颜级别枚举优化，参考 `BJLConstants` 的 `BJLVideoBeautifyLevel`；
+- 解决升级 XCode 8.3 后发现的警告；
+- 解决 Swift 集成时的编译错误问题；
+- 解决 BUG；
+
+### 0.2.5-internal
+
+- 增加采集和播放视频的比例，参考 `BJLRecordingVM` 的 `inputVideoAspectRatio` 和 `BJLPlayingVM` 的 `outputVideoAspectRatio`；
+- `BJLRecordingVM` 的 `inputVolumeLevel` 属性的类型由 `NSInteger` 改为 `CGFloat`，取值从 `[0-9]` 改为 `[0.0-1.0]`；
+- `BJLDocument` 和 `BJLDocumentPageInfo` 由 protocol 改为 class，影响到 `BJLSlideVM` 和 `BJLSlideshowVM` 中的相关属性和方法；
+- `BJLSlideVM` 的 `uploadImageFile:progress:finish:` 方法改为 `uploadImageFile:progress:finish:`，只单个上传图片、不自动添加课件，添加课件需自行调用 `addDocument:` 方法；
+- `BJLSlideshowUI` 的 `whiteboardEnabled` 属性改名为 `drawingEnabled`、`clearWhiteboard` 改名为 `clearDrawing`，原属性、方法标记为 `DEPRECATED`；
+- PPT 支持显示激光笔功能；
+- 解决 BUG；
 
 ## 0.2.4
 
