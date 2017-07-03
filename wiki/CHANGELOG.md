@@ -17,7 +17,7 @@ Change Log
 
 - 支持助教登录；
 - 支持加载客服信息；
-- **`BJLUser` 由 `protocol` 改为 `class`；**；
+- **`BJLUser` 由 `protocol` 改为 `class`**；
 - **`BJLMessage` 由 `protocol` 改为 `class`**，聊天支持自定义表情，支持老师、助教和非大班课的学生发图片；
 - `BJLSpeakingRequestVM` 里的 `speakingRequestUsers` 改为倒序，后举手的学生排在数组的前面，与发言用户逻辑保持一致；
 - PPT 翻页相关 API 改进，参考 `BJLSlideshowVM`、`BJLSlideshowUI`；
