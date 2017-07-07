@@ -14,22 +14,22 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BJLSlideVM : BJLBaseVM
 
-/** 翻页课件 */
+/** 翻页文档 */
 - (nullable BJLError *)requestTurnToDocumentID:(NSString *)documentID
                                      pageIndex:(NSInteger)pageIndex;
 
-/** 添加课件
+/** 添加文档
  添加成功将调用 `BJLSlideshowVM` 的 `didAddDocument:`
  */
 - (nullable BJLError *)addDocument:(BJLDocument *)document;
 
-/** 删除课件
+/** 删除文档
  删除成功将调用 `BJLSlideshowVM` 的 `didDeleteDocument:`
  */
 - (nullable BJLError *)deleteDocumentWithID:(NSString *)documentID;
 
 /**
- 上传图片，用于添加课件
+ 上传图片，用于添加文档
  @param fileURL     图片文件路径
  @param progress    上传进度，非主线程回调、可能过于频繁
  - progress         0.0 ~ 1.0

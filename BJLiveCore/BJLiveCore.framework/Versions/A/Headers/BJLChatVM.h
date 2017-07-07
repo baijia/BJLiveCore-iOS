@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
  成功后会收到消息通知
  发送图片需事先调用 `uploadImageFile:progress:finish:` 方法上传
  发送表情和图片需将 `(NSString *)emoticon.key` 或 `(NSString *)imageURLString` 转换成 (NSDictionary *)data，参考 `BJLMessage` 的 `messageDataWithEmoticonKey:` 和 `messageDataWithImageURLString:imageWidth:imageHeight:` 方法
- 学生在禁言状态不能发送消息，参考 `forbidMe`、`forbidAll`
+ 观众在禁言状态不能发送消息，参考 `forbidMe`、`forbidAll`
  @param text 消息，不能是空字符串或 nil
  @param channel 频道
  参考 `BJLMessage`
@@ -60,11 +60,11 @@ NS_ASSUME_NONNULL_BEGIN
 /** 全体禁言状态 */
 @property (nonatomic, readonly) BOOL forbidAll;
 
-/** 老师: 设置全体禁言状态
+/** 主讲: 设置全体禁言状态
  设置成功后修改 `forbidAll` */
 - (nullable BJLError *)sendForbidAll:(BOOL)forbidAll;
 
-/** 学生: 当前用户被禁言状态 */
+/** 观众: 当前用户被禁言状态 */
 @property (nonatomic, readonly) BOOL forbidMe;
 
 /** 所有人: 收到某人被禁言通知
@@ -75,7 +75,7 @@ NS_ASSUME_NONNULL_BEGIN
                              fromUser:(nullable BJLUser *)fromUser
                              duration:(NSTimeInterval)duration;
 
-/** 老师: 对某人禁言
+/** 主讲: 对某人禁言
  `duration` 为禁言时间 */
 - (nullable BJLError *)sendForbidUser:(BJLUser *)user
                              duration:(NSTimeInterval)duration;

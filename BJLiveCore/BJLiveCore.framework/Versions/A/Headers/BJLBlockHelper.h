@@ -13,10 +13,6 @@
 #import "NSError+BJLError.h"
 #import "NSObject+BJLObserving.h"
 
-// DEPRECATED
-#import "NSObject+BJLBlockKVO.h"
-#import "NSObject+BJLBlockNTO.h"
-
 NS_ASSUME_NONNULL_BEGIN
 
 /**

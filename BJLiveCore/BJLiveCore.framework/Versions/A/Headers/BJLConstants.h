@@ -39,22 +39,25 @@ typedef NS_ENUM(NSInteger, BJLDeployType){
 
 /** 用户角色 */
 typedef NS_ENUM(NSInteger, BJLUserRole) {
-    /** 学生 */
+    /** 观众 */
     BJLUserRole_student = 0,
-    /** 老师 */
+    /** 主讲 */
     BJLUserRole_teacher = 1,
-    /** 助教 */
+    /** 助理 */
     BJLUserRole_assistant = 2,
     /** 游客 */
     BJLUserRole_guest = 3 // 内部使用
 };
 
-/** 教室类型 */
+/** 房间类型 */
 typedef NS_ENUM(NSInteger, BJLRoomType) {
     /** 1 对 1 */
     BJLRoomType_1to1 = 1,
-    /** 多人班课 */
+    /** 小班课 */
+    BJLRoomType_1toM = 3,
+    /** 大班课 */
     BJLRoomType_1toN = 2
+    // 小班课是 2、大班课是 3，没错
 };
 
 /** 客户端类型 */
@@ -142,7 +145,7 @@ typedef NS_ENUM(NSInteger, BJLVideoBeautifyLevel) {
     BJLVideoBeautifyLevel_max DEPRECATED_ATTRIBUTE = BJLVideoBeautifyLevel_5
 };
 
-/** 课件显示模式 */
+/** 文档显示模式 */
 typedef NS_ENUM(NSInteger, BJLContentMode) {
     /** 完整 */
     BJLContentMode_scaleAspectFit,

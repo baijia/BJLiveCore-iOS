@@ -67,10 +67,12 @@ typedef void BJLObservable;
     [self bjl_notifyMethodForSelector:_cmd callback:^BOOL(BJLMethodFilter filter, BJLMethodObserver observer, BOOL ignoreReturnValue) { \
         return (!filter || ((TYPE)filter)(__VA_ARGS__)) && (((TYPE)observer)(__VA_ARGS__) || ignoreReturnValue); \
     }]; \
-_Pragma("clang diagnostic pop") \
+    _Pragma("clang diagnostic pop") \
 } \
 while (NO)
 // #define BJLMethodNotify_NoArgs() BJLMethodNotify((void))
+
+extern const NSKeyValueObservingOptions BJLKVODefaultOptions;
 
 /**
  KVO with block.
@@ -80,7 +82,7 @@ while (NO)
 
 /**
  @param meta        target-property, @see `BJLMakeProperty(TARGET, PROPERTY)`
- @param options     default old | now | initial
+ @param options     default now | old | initial
  @param filter      return NO to ignore, retaind by self, target and returned id<BJLObservation>
  @param observer    return NO to stop observing, retaind by self, target and returned id<BJLObservation>
  @return id<BJLObservation> for `stopObserving`

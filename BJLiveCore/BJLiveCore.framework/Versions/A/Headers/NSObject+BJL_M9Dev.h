@@ -159,6 +159,8 @@ typedef void (^BJLTuplePackBlock)(BJLTupleUnpackBlock unpack);
 
 @interface NSArray (BJL_M9Dev)
 
+// indexOfObject:/containsObject:/removeObject: + compareSelector:/comparator:
+
 - (nullable id)bjl_objectOrNilAtIndex:(NSUInteger)index;
 - (BOOL)bjl_containsIndex:(NSUInteger)index;
 

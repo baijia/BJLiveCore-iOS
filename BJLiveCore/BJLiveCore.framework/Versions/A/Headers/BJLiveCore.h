@@ -34,8 +34,6 @@
 #import "BJLUser.h"
 #import "BJLiveCore.h"
 #import "NSError+BJLError.h"
-#import "NSObject+BJLBlockKVO.h"
-#import "NSObject+BJLBlockNTO.h"
 #import "NSObject+BJLObserving.h"
 #import "NSObject+BJL_M9Dev.h"
 #import "UIKit+BJL_M9Dev.h"

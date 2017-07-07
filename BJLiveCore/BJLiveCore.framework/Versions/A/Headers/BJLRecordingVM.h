@@ -20,9 +20,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) CGFloat inputVideoAspectRatio;
 
 /** 开关音视频
- 上课状态、并且老师在教室才能打开音视频，参考 `roomVM.liveStarted`、`onlineUsersVM.onlineTeacher`
+ 开始直播状态才能打开音视频，参考 `roomVM.liveStarted`
  上层自行检查麦克风、摄像头开关权限
- 上层可通过 BJLSpeakingRequestVM 实现学生发言需要举手的逻辑 */
+ 上层可通过 BJLSpeakingRequestVM 实现观众发言需要举手的逻辑 */
 - (nullable BJLError *)setRecordingAudio:(BOOL)recordingAudio
                           recordingVideo:(BOOL)recordingVideo;
 /* TODO: set/send/... to update/request/req

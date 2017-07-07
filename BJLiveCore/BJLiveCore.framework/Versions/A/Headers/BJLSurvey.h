@@ -20,7 +20,7 @@ typedef NS_ENUM(NSInteger, BJLSurveyResult) {
 };
 
 /**
- 测验题目
+ 问卷题目
  */
 @interface BJLSurvey : NSObject <YYModel>
 
@@ -34,7 +34,7 @@ typedef NS_ENUM(NSInteger, BJLSurveyResult) {
 @end
 
 /**
- 测验选项
+ 问卷选项
  */
 @interface BJLSurveyOption : NSObject <YYModel>
 

@@ -26,15 +26,15 @@ NS_ASSUME_NONNULL_BEGIN
 - (BJLObservable)receivedGiftsDidOverwrite:(nullable NSArray<NSObject<BJLReceivedGift> *> *)receivedGifts;
 
 /** 加载所有打赏记录
- 连接教室后、掉线重新连接后自动调用加载
+ 连接房间后、掉线重新连接后自动调用加载
  加载成功后更新 `receivedGifts`、调用 `receivedMessagesDidOverwrite:`
  */
 - (void)loadReceivedGifts;
 
 /**
  打赏
- 成功后会收到打赏通知，只支持学生给老师打赏
- @param teacher 打赏对象，老师在教室内时使用老师信息、否则使用传入的 `teacher`
+ 成功后会收到打赏通知，只支持观众给主讲打赏
+ @param teacher 打赏对象，主讲在房间内时使用主讲信息、否则使用传入的 `teacher`
  @param gift    礼物
  */
 - (nullable BJLError *)sendGift:(BJLGift *)gift toTeacher:(BJLUser *)teacher;

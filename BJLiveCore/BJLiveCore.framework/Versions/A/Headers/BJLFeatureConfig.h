@@ -9,27 +9,34 @@
 #import <Foundation/Foundation.h>
 #import <YYModel/YYModel.h>
 
+#import "BJLConstants.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSInteger, BJLPointsCompressType) {
-    BJLPointsCompressTypeNone = 0,
-    BJLPointsCompressTypeCustomized = 1
+    BJLPointsCompressTypeNone           = 0,
+    BJLPointsCompressTypeCustomized     = 1,
+    BJLPointsCompressTypeCustomizedV2   = 2
 };
 
 @interface BJLFeatureConfig : NSObject <YYModel, NSCopying, NSCoding>
 
-// 云端录课
+// 云端录制
 @property (nonatomic, readonly) BOOL enableRecordCourse;
 
 // 禁止举手
 @property (nonatomic, readonly) BOOL disableSpeakingRequest;
 @property (nonatomic, readonly, copy, nullable) NSString *disableSpeakingRequestReason;
-
-// 自动打开视频
-@property (nonatomic, readonly) BOOL enableVideoOn;
+// 举手通过后自动打开摄像头
+@property (nonatomic, readonly) BOOL autoPublishVideoStudent;
 
 // 分享
 @property (nonatomic, readonly) BOOL enableShare;
+
+#pragma mark - from class_data
+
+@property (nonatomic, readonly) BJLMediaLimit mediaLimit;
+@property (nonatomic, readonly) BOOL autoStartServerRecording;
 
 #pragma mark - internal
 

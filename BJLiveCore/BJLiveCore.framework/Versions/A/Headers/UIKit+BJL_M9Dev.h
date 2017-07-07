@@ -95,13 +95,19 @@ static inline CGSize BJLImageViewSize(CGSize imgSize, CGSize minSize, CGSize max
 - (void)bjl_addChildViewController:(UIViewController *)childViewController superview:(UIView *)superview atIndex:(NSInteger)index;
 - (void)bjl_addChildViewController:(UIViewController *)childViewController superview:(UIView *)superview belowSubview:(UIView *)siblingSubview;
 - (void)bjl_addChildViewController:(UIViewController *)childViewController superview:(UIView *)superview aboveSubview:(UIView *)siblingSubview;
-- (void)bjl_addChildViewController:(UIViewController *)childViewController addSubview:(void (^)(UIView *parentView, UIView *childView))addSubview;
+- (void)bjl_addChildViewController:(UIViewController *)childViewController addSubview:(void (^)(UIView *parentView, UIView *childView))addSubview; // synchronous
 - (void)bjl_removeFromParentViewControllerAndSuperiew;
 
 /**
  *  differences from dismissViewControllerAnimated:completion:
- *  1. always call completion although no presentedViewController
- *  2. only dismiss the presentedViewController, but not self
+ *  1. always call completion although nothing to dismiss
+ *  2. only dismiss self, but not parentViewController
+ */
+- (void)bjl_dismissAnimated:(BOOL)animated completion:(void (^ _Nullable)(void))completion;
+/**
+ *  differences from dismissViewControllerAnimated:completion:
+ *  1. always call completion although nothing to dismiss
+ *  2. only dismiss presentedViewController, but not self
  */
 - (void)bjl_dismissPresentedViewControllerAnimated:(BOOL)animated completion:(void (^ _Nullable)(void))completion;
 + (nullable UIViewController *)bjl_gotoRootViewControllerAnimated:(BOOL)animated completion:(void (^ _Nullable)(void))completion DEPRECATED_MSG_ATTRIBUTE("should be implemented by apps");

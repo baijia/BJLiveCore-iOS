@@ -13,12 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 typedef NS_OPTIONS(NSInteger, BJLLoadingStep) {
     BJLLoadingStep_checkNetwork         = 1 << 0,
     BJLLoadingStep_loadRoomInfo         = 1 << 1,
-    BJLLoadingStep_loadFeatureConfig    = 1 << 2,
-    BJLLoadingStep_connectMasterServer  = 1 << 3,
-    BJLLoadingStep_connectRoomServer    = 1 << 4,
-    BJLLoadingStep_connectChatServer    = 1 << 5,
+    BJLLoadingStep_connectMasterServer  = 1 << 2,
+    BJLLoadingStep_connectRoomServer    = 1 << 3,
+    BJLLoadingStep_connectChatServer    = 1 << 4,
     BJLLoadingStep_all                  = NSIntegerMax,
-    BJLLoadingStep_reconnect            = (BJLLoadingStep_all ^ (BJLLoadingStep_loadRoomInfo | BJLLoadingStep_loadFeatureConfig))
+    BJLLoadingStep_reconnect            = (BJLLoadingStep_all ^ (BJLLoadingStep_loadRoomInfo))
 };
 
 /**
