@@ -4,6 +4,18 @@ Change Log
 - 标记为 **粗体** 的改动需要特别留意；
 - 被标记 `DEPRECATED` 的代码 **将在 `1.0` 版本移除**；
 
+## 0.5.0-beta
+
+- 支持播放 1+5 路他人视频（1 路老师/主讲、5 路其他用户），参考 `BJLPlayingVM`；
+- 支持切换主讲人（暂不支持助教被切换成主讲），参考 `BJLOnlineUsersVM`；
+- 增加小班课类型，参考 `BJLFeatureConfig`；
+- 简化加载流程，参考 `BJLLoadingVM`；
+- 客户定制信令可区分是否是缓存，参考 `BJLRoomVM`；
+- 白板增加是否空白参数，支持程序设置本地页数，参考 `BJLSlideshowUI`；
+- 支持禁止举手，参考 `BJLSpeakingRequestVM`；
+- 合并 `BJLUser` 和 `BJLOnlineUser`，`BJLOnlineUser` 将废弃；
+- 支持新的画笔压缩格式；
+
 ## 0.4.0
 
 - **底层音视频 SDK 使用动态库，iOS 版本要求最低 8.0**；
@@ -13,11 +25,11 @@ Change Log
 - 支持新版小测；
 - 支持踢人功能；
 
-## 0.3.0-internal
+## 0.3.0
 
 - 支持助教登录；
 - 支持加载客服信息；
-- **`BJLUser` 由 `protocol` 改为 `class`**；
+- **`BJLUser` 由 `protocol` 改为 `class`；**；
 - **`BJLMessage` 由 `protocol` 改为 `class`**，聊天支持自定义表情，支持老师、助教和非大班课的学生发图片；
 - `BJLSpeakingRequestVM` 里的 `speakingRequestUsers` 改为倒序，后举手的学生排在数组的前面，与发言用户逻辑保持一致；
 - PPT 翻页相关 API 改进，参考 `BJLSlideshowVM`、`BJLSlideshowUI`；
