@@ -18,29 +18,25 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable BJLError *)requestTurnToDocumentID:(NSString *)documentID
                                      pageIndex:(NSInteger)pageIndex;
 
-/** 添加课件
- 添加成功将调用 `BJLSlideshowVM` 的 `didAddDocument:`
- */
-- (nullable BJLError *)addDocument:(BJLDocument *)document;
+/** 添加课件 */
+- (nullable BJLError *)addDocument:(NSObject<BJLDocument> *)document;
 
-/** 删除课件
- 删除成功将调用 `BJLSlideshowVM` 的 `didDeleteDocument:`
- */
+/** 删除课件 */
 - (nullable BJLError *)deleteDocumentWithID:(NSString *)documentID;
 
 /**
- 上传图片，用于添加课件
- @param fileURL     图片文件路径
- @param progress    上传进度，非主线程回调、可能过于频繁
- - progress         0.0 ~ 1.0
- @param finish      结束
- - document         非 nil 即为成功，用于 `addDocument:`
- - error            错误
- @return            upload task
+ 上传图片并添加课件
+ @param images      图片
+ @param progress    进度
+ @param finish      结束，completed == total 表示全部上传成功
+ - total        总数量
+ - completed    已完成数量
+ - progress     0.0 ~ 1.0 单个图片进度，总进度 = (CGFloat)completed / total + progress
+ - error        错误
  */
-- (NSURLSessionUploadTask *)uploadImageFile:(NSURL *)fileURL
-                                   progress:(nullable void (^)(CGFloat progress))progress
-                                     finish:(void (^)(BJLDocument * _Nullable document, BJLError * _Nullable error))finish;
+- (void)addImagesWithFileURLs:(NSArray<NSURL *> *)fileURLs
+                     progress:(void (^)(NSInteger total, NSInteger completed, CGFloat progress))progress
+                       finish:(void (^)(NSInteger total, NSInteger completed, BJLError * _Nullable error))finish;
 
 @end
 

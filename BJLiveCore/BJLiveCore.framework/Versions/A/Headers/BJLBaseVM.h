@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BJLBaseVM : NSObject
 
-- (instancetype)init NS_UNAVAILABLE;
+- (nullable instancetype)init NS_UNAVAILABLE;
 
 @end
 

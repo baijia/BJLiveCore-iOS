@@ -17,11 +17,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BJLRoomVM : BJLBaseVM
 
-@property (nonatomic, readonly, copy, nullable) NSObject<BJLRoomInfo> *roomInfo DEPRECATED_MSG_ATTRIBUTE("use `BJLRoom.roomInfo` instead");
-@property (nonatomic, readonly, copy, nullable) BJLUser *loginUser DEPRECATED_MSG_ATTRIBUTE("use `BJLRoom.loginUser` instead");
+@property (nonatomic, readonly, nullable, copy) NSObject<BJLRoomInfo> *roomInfo DEPRECATED_MSG_ATTRIBUTE("use `BJLRoom.roomInfo` instead");
+@property (nonatomic, readonly, nullable, copy) NSObject<BJLUser> *loginUser DEPRECATED_MSG_ATTRIBUTE("use `BJLRoom.loginUser` instead");
 
 /** 进入教室时间 */
 @property (nonatomic, readonly) NSTimeInterval enteringTimeInterval; // seconds since 1970
+
+/** 教室发言类型
+ 自由模式/举手模式 */
+@property (nonatomic, readonly) BJLSpeakType speakType;
 
 #pragma mark - 上课状态
 
@@ -35,8 +39,8 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - 公告
 
 /** 教室公告 */
-@property (nonatomic, readonly, copy, nullable) BJLNotice *notice;
-@property (nonatomic, readonly, copy, nullable) NSString *noticeText DEPRECATED_MSG_ATTRIBUTE("use `notice` instead");
+@property (nonatomic, readonly, nullable, copy) BJLNotice *notice;
+@property (nonatomic, readonly, nullable, copy) NSString *noticeText DEPRECATED_MSG_ATTRIBUTE("use `notice` instead");
 
 /** 获取教室公告
  连接教室后、掉线重新连接后自动调用加载
@@ -63,10 +67,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (BJLObservable)didReceiveRollcallWithTimeout:(NSTimeInterval)timeout;
 
 /** 学生: 收到点名取消
- 可能是老师取消、或者倒计时结束
- 参考 `rollcallTimeRemaining` */
-- (BJLObservable)rollcallDidFinish;
-- (BJLObservable)rollcallDidCancel DEPRECATED_MSG_ATTRIBUTE("use `rollcallDidFinish` instead");
+ 可能是老师取消、或者倒计时结束，参考 `rollcallTimeRemaining` */
+- (BJLObservable)rollcallDidCancel;
 
 /** 学生: 答到 */
 - (nullable BJLError *)answerToRollcall;
@@ -111,12 +113,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (BJLObservable)didReceiveSurveyUserResults:(NSDictionary<NSString *, NSArray<NSString *> *> *)results
                                        order:(NSInteger)order; */
 
-#pragma mark - 测验 V2
-
-- (nullable BJLError *)sendQuizMessage:(NSDictionary<NSString *, id> *)message;
-- (BJLObservable)didReceiveQuizMessage:(NSDictionary<NSString *, id> *)message;
-- (NSURLRequest *)quizRequestWithID:(NSString *)quizID error:(NSError *__autoreleasing *)error;
-
 #pragma mark - 定制信令
 
 /**
@@ -125,7 +121,8 @@ NS_ASSUME_NONNULL_BEGIN
  @param key     信令类型
  @param value   信令内容，类型可能是字符串或者字典等 JSON 数据类型
  */
-- (BJLObservable)didReceiveCustomizedSignal:(NSString *)key value:(nullable id)value;
+- (BJLObservable)didReceiveCustomizedSignal:(NSString *)key value:(nullable id)value isCache:(BOOL)isCache;
+- (BJLObservable)didReceiveCustomizedSignal:(NSString *)key value:(nullable id)value DEPRECATED_MSG_ATTRIBUTE("use `didReceiveCustomizedSignal:value:isCache:` instead");
 
 @end
 

@@ -11,36 +11,44 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BJLDocumentPageInfo : NSObject <YYModel>
+@protocol BJLDocumentPageInfo <NSObject, YYModel>
 
 @property (nonatomic, readonly) BOOL isAlbum;
 @property (nonatomic, readonly) NSInteger pageCount;
 /**
  if isAlbum, file urls format: {pageURLPrefix}_{pageIndex+1}.png
  if !isAlbum, file url: {pageURLString} */
-@property (nonatomic, readonly, copy) NSString *pageURLString;
-@property (nonatomic, readonly, copy, nullable) NSString *pageURLPrefix; // nil if NOT isAlbum
+@property (nonatomic, readonly, copy) NSString *pageURLString, *pageURLPrefix;
 
 @property (nonatomic, readonly) NSInteger width, height;
 
 - (BOOL)containsPageIndex:(NSInteger)pageIndex;
-- (nullable NSString *)pageURLStringWithPageIndex:(NSInteger)pageIndex;
-- (nullable NSString *)pageURLStringWithPageIndex:(NSInteger)pageIndex fillSize:(CGSize)size;
+- (nullable NSString *)pageURLStringStringWithPageIndex:(NSInteger)pageIndex;
+
+@end
+
+@interface BJLDocumentPageInfo : NSObject <BJLDocumentPageInfo>
+
+@property (nonatomic, readwrite) BOOL isAlbum;
+@property (nonatomic, readwrite) NSInteger pageCount;
+@property (nonatomic, readwrite, copy) NSString *pageURLString, *pageURLPrefix;
+@property (nonatomic, readwrite) NSInteger width, height;
 
 @end
 
 #pragma mark -
 
-@interface BJLDocument : NSObject <YYModel>
+@protocol BJLDocument <NSObject, YYModel>
 
-@property (nonatomic, readonly, copy, nullable) NSString *documentID;
-@property (nonatomic, readonly, copy) NSString *fileID, *fileName, *fileExtension;
-@property (nonatomic, readonly) BJLDocumentPageInfo *pageInfo;
+@property (nonatomic, readonly, copy) NSString *documentID, *fileID, *fileName, *fileExtension;
+@property (nonatomic, readonly) NSObject<BJLDocumentPageInfo> *pageInfo;
 
-- (BOOL)isSyncedWithServer; 
-- (BOOL)isWhiteBoard;
+@end
 
-+ (instancetype)documentWithUploadResponseData:(NSDictionary *)responseData;
+@interface BJLDocument : NSObject <BJLDocument>
+
+@property (nonatomic, readwrite, copy) NSString *documentID, *fileID, *fileName, *fileExtension;
+@property (nonatomic, readwrite) NSObject<BJLDocumentPageInfo> *pageInfo;
 
 @end
 

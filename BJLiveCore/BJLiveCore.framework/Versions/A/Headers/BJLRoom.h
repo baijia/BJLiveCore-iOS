@@ -14,9 +14,7 @@
 
 /** model **/
 
-#import "BJLRoomInfo.h"
 #import "BJLUser.h"
-#import "BJLFeatureConfig.h"
 
 /** view & vm **/
 
@@ -86,24 +84,17 @@ NS_ASSUME_NONNULL_BEGIN
  退出教室后各 vm、view、`vmsAvailable`、`inRoom` 均被重置
  */
 
-/**
- 教室状态
- */
+/*
 typedef NS_ENUM(NSInteger, BJLRoomState) {
-    BJLRoomState_initialized,
-    BJLRoomState_loadingInfo,
-    BJLRoomState_loadedInfo,
-    // BJLRoomState_loadedInfoFailed = BJLRoomState_initialized + loadInfoError
-    BJLRoomState_connectingServer,
-    BJLRoomState_connectedServer,
-    // BJLRoomState_connectServerFailed = BJLRoomState_loadedInfo + connectServerError
-    BJLRoomState_exited
-    // BJLRoomState_exitedWithError = BJLRoomState_exited + exitError
-};
+    BJLRoomState_offline,
+    BJLRoomState_connecting,
+    BJLRoomState_connected
+}; */
 
 /**
  直播教室
  可同时存在多个实例，但最多只有一个教室处于进入状态，后执行 `enter` 的教室会把之前的教室踢掉
+ 不建议退出教室后再次调用 `enter` 方法，未经测试、结果不可预期
  */
 @interface BJLRoom : NSObject
 
@@ -132,27 +123,9 @@ typedef NS_ENUM(NSInteger, BJLRoomState) {
                              userAvatar:(nullable NSString *)userAvatar;
 
 /**
- 教室状态
- 正常流程: initialized > loadingInfo > loadedInfo > connectingServer > connectedServer > exited
- 加载教室信息出错: loadingInfo > initialized + loadInfoError
- 服务器连接出错/断开: connectingServer > loadedInfo + connectServerError
- 随时退出: any > exited
- `state` 属性支持 KVO、`error` 不支持，`state` 发生变化时各 `error` 可用
- */
-@property (nonatomic, readonly) BJLRoomState state;
-@property (nonatomic, readonly, nullable) BJLError *loadInfoError, *connectServerError, *exitError; // NON-KVO
-- (BJLObservable)loadingInfoDidStart;
-- (BJLObservable)loadingInfoSuccess;
-- (BJLObservable)loadingInfoFailureWithError:(BJLError *)error;
-- (BJLObservable)connectingServerDidStart;
-- (BJLObservable)connectingServerSuccess;
-- (BJLObservable)connectingServerFailureWithError:(BJLError *)error;
-- (BJLObservable)serverDidDisconnect;
-
-/**
  在 `enterRoomSuccess` 和 `roomDidExitWithError:` 之间是 YES，包括断开重连
  */
-@property (nonatomic, readonly) BOOL inRoom; // DEPRECATED_MSG_ATTRIBUTE("state != BJLRoomState_initialized && state != BJLRoomState_exited")
+@property (nonatomic, readonly) BOOL inRoom;
 
 /** 进入教室 */
 - (void)enter;
@@ -170,8 +143,8 @@ typedef NS_ENUM(NSInteger, BJLRoomState) {
  @param reloadingVM         重连 vm
  @param callback(reload)    调用 callback 是 reload 参数传 YES 重连，NO 将导致 `异常退出`
  */
-- (void)setReloadingBlock:(void (^ _Nullable )(BJLLoadingVM *reloadingVM,
-                                               void (^callback)(BOOL reload)))reloadingBlock;
+- (void)setReloadingBlock:(void (^)(BJLLoadingVM *reloadingVM,
+                                    void (^callback)(BOOL reload)))reloadingBlock;
 
 /** 退出教室 */
 - (void)exit;
@@ -187,18 +160,11 @@ typedef NS_ENUM(NSInteger, BJLRoomState) {
 
 /** 教室信息
  BJLiveCore 内部【不】读取此处 `roomInfo` */
-@property (nonatomic, readonly, copy, nullable) NSObject<BJLRoomInfo> *roomInfo;
+@property (nonatomic, readonly, nullable, copy) NSObject<BJLRoomInfo> *roomInfo;
 /** 当前登录用户信息
  BJLiveCore 内部【不】读取此处 `loginUser`
  */
-@property (nonatomic, readonly, copy, nullable) BJLUser *loginUser;
-
-/**
- 功能设置
- BJLiveCore 内部【不】读取此处 featureConfig
- TODO: MingLQ - if nil
- */
-@property (nonatomic, readonly, copy, nullable) BJLFeatureConfig *featureConfig;
+@property (nonatomic, readonly, nullable, copy) NSObject<BJLUser> *loginUser;
 
 #pragma mark view & view-model
 
@@ -207,7 +173,7 @@ typedef NS_ENUM(NSInteger, BJLRoomState) {
  !!!: 但此时 `loadingVM` 以外的 vm 并没有与 server 建立连接，vm 的状态、数据没有与服务端同步，调用 vm 方法时发起的网络请求会被丢弃、甚至产生不可预期的错误，断开重连时类似
  KVO 此属性时 option 包含 initial(默认)，即使开始 KVO 时值已经是 YES 也会执行 KVO 回调，参考 NSObject+BJLObserving.h
  */
-@property (nonatomic, readonly) BOOL vmsAvailable; // DEPRECATED_MSG_ATTRIBUTE("state >= BJLRoomState_loadedInfo && state != BJLRoomState_exited")
+@property (nonatomic, readonly) BOOL vmsAvailable;
 
 /** 进教室的 loading 状态 */
 @property (nonatomic, readonly, nullable) BJLLoadingVM *loadingVM;

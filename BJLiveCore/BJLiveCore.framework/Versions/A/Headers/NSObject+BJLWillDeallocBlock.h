@@ -8,15 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
 typedef void (^BJLWillDeallocBlock)(id instance);
 
 @interface NSObject (BJLWillDeallocBlock)
 
-@property (nonatomic, readonly, nullable) BJLWillDeallocBlock bjl_willDeallocBlock;
-- (void)bjl_setWillDeallocBlock:(void (^ _Nullable)(id instance))willDeallocBlock;
+@property (nonatomic, readonly) BJLWillDeallocBlock bjl_willDeallocBlock;
+- (void)bjl_setWillDeallocBlock:(void (^)(id instance))willDeallocBlock;
 
 @end
-
-NS_ASSUME_NONNULL_END
