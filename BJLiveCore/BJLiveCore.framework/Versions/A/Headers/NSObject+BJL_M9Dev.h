@@ -16,7 +16,15 @@ NS_ASSUME_NONNULL_BEGIN
 #define bjl_return ;
 
 // value to string
-#define bjl_NSStringFromValue(VALUE) [@(VALUE) description]
+#define bjl_NSStringFromValue(VALUE)        [@(VALUE) description]
+
+#define bjl_NSStringFromLiteral(LITERAL)    @#LITERAL // #LITERAL - LITERAL to CString
+
+// !!!: use DEFAULT_VALUE if PREPROCESSOR is undefined or its value is same to itself
+#define bjl_NSStringFromPreprocessor(PREPROCESSOR, DEFAULT_VALUE) ({ \
+    NSString *string = bjl_NSStringFromLiteral(PREPROCESSOR); \
+    bjl_return [string isEqualToString:@#PREPROCESSOR] ? DEFAULT_VALUE : string; \
+})
 
 // #define NSNULL [NSNull null]
 

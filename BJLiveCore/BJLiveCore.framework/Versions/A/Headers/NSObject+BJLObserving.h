@@ -65,7 +65,7 @@ typedef void BJLObservable;
     _Pragma("clang diagnostic push") \
     _Pragma("clang diagnostic ignored \"-Wdeprecated-declarations\"") \
     [self bjl_notifyMethodForSelector:_cmd callback:^BOOL(BJLMethodFilter filter, BJLMethodObserver observer, BOOL ignoreReturnValue) { \
-        return (!filter || ((TYPE)filter)(__VA_ARGS__)) && (((TYPE)observer)(__VA_ARGS__) || ignoreReturnValue); \
+        return (!filter || ((TYPE)filter)(__VA_ARGS__)) ? (((TYPE)observer)(__VA_ARGS__) || ignoreReturnValue) : YES; \
     }]; \
     _Pragma("clang diagnostic pop") \
 } \

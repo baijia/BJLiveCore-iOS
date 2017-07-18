@@ -16,6 +16,7 @@ typedef NS_OPTIONS(NSInteger, BJLLoadingStep) {
     BJLLoadingStep_connectMasterServer  = 1 << 2,
     BJLLoadingStep_connectRoomServer    = 1 << 3,
     BJLLoadingStep_connectChatServer    = 1 << 4,
+    BJLLoadingStep_last                 = BJLLoadingStep_connectChatServer,
     BJLLoadingStep_all                  = NSIntegerMax,
     BJLLoadingStep_reconnect            = (BJLLoadingStep_all ^ (BJLLoadingStep_loadRoomInfo))
 };
@@ -27,7 +28,6 @@ typedef NS_OPTIONS(NSInteger, BJLLoadingStep) {
  */
 typedef NS_ENUM(NSInteger, BJLLoadingSuspendReason) {
     BJLLoadingSuspendReason_stepOver,
-    BJLLoadingSuspendReason_askForWWANNetwork,
     BJLLoadingSuspendReason_errorOccurred
 };
 

@@ -12,8 +12,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-extern const NSInteger BJLVideoPlayingMaxCount;
-
 @interface BJLPlayingVM : BJLBaseVM
 
 /** 音视频用户列表
@@ -61,8 +59,7 @@ extern const NSInteger BJLVideoPlayingMaxCount;
  断开重连、暂停恢复等操作不自动重置 `videoPlayingUsers`，除非对方用户关闭摄像头、离线、掉线等 */
 @property (nonatomic, readonly, copy, nullable) NSArray<BJLUser *> *videoPlayingUsers;
 
-/** 设置播放用户的视频
- 同时打开他人视频个数不超过 `BJLVideoPlayingMaxCount` */
+/** 设置播放用户的视频 */
 - (nullable BJLError *)updatePlayingUserWithID:(NSString *)userID videoOn:(BOOL)videoOn;
 
 /** 获取播放用户的视频视图 */

@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 本地当前页、可能与房间内的页数不同
  参考 `BJLSlideshowVM` 的 `currentSlidePage.documentPageIndex` */
-@property (nonatomic, readonly) NSInteger localPageIndex;
+@property (nonatomic) NSInteger localPageIndex;
 /** 是否空白
  只有一页白板、并且没有画笔 */
 @property (nonatomic, readonly) BOOL isBlank;
