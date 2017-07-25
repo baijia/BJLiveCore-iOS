@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'BJLiveCore'
-  s.version = '0.4.0'
+  s.version = '0.2.4-dylib05'
   s.summary = 'BJLiveCore SDK.'
   s.description = 'BJLiveCore SDK for iOS.'
   s.license = 'MIT'
@@ -47,14 +47,17 @@ Pod::Spec.new do |s|
   s.xcconfig = { "CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES" => "YES", "ENABLE_BITCODE" => "NO" }
 
   s.dependency 'AFNetworking', '~> 3.0'
-  s.dependency 'PocketSocket'
-  s.dependency 'YYModel'
-
-  # DEPRECATED
   s.dependency "libextobjc/EXTScope"
   s.dependency 'LogStat', '0.6.6'
   s.dependency 'JRSwizzle'
+  s.dependency 'YYModel'
+
+  # DEPRECATED
+  s.dependency 'BJHL-Foundation-iOS', '1.2.13-nolog'
+  s.dependency 'BJHL-Websocket-iOS', '>= 0.3.4'
+  s.dependency 'LTInfiniteScrollView'
+  s.dependency "libextobjc/EXTScope"
   s.dependency 'SDWebImage'
-  s.dependency 'ReactiveObjC'
+  s.dependency 'ReactiveCocoa', '~> 2.0'
 
 end
