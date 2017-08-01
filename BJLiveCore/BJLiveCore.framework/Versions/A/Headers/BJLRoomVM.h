@@ -125,7 +125,8 @@ NS_ASSUME_NONNULL_BEGIN
  @param key     信令类型
  @param value   信令内容，类型可能是字符串或者字典等 JSON 数据类型
  */
-- (BJLObservable)didReceiveCustomizedSignal:(NSString *)key value:(nullable id)value;
+- (BJLObservable)didReceiveCustomizedSignal:(NSString *)key value:(nullable id)value isCache:(BOOL)isCache;
+- (BJLObservable)didReceiveCustomizedSignal:(NSString *)key value:(nullable id)value DEPRECATED_MSG_ATTRIBUTE("use `didReceiveCustomizedSignal:value:isCache:` instead");
 
 @end
 

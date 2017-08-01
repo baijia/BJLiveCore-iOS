@@ -12,6 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BJLMediaVM : BJLBaseVM
 
+/** 是否允许设置上、下行链路类型
+ `linkTypeReadOnly` 为 YES 时设置 `upLinkType`、`downLinkType` 无效 */
+@property (nonatomic, readonly) BOOL linkTypeReadOnly;
+
 /** 上、下行链路类型 */
 @property (nonatomic) BJLLinkType upLinkType, downLinkType;
 

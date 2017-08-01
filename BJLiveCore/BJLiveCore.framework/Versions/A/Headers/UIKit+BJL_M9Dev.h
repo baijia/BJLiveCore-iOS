@@ -95,13 +95,19 @@ static inline CGSize BJLImageViewSize(CGSize imgSize, CGSize minSize, CGSize max
 - (void)bjl_addChildViewController:(UIViewController *)childViewController superview:(UIView *)superview atIndex:(NSInteger)index;
 - (void)bjl_addChildViewController:(UIViewController *)childViewController superview:(UIView *)superview belowSubview:(UIView *)siblingSubview;
 - (void)bjl_addChildViewController:(UIViewController *)childViewController superview:(UIView *)superview aboveSubview:(UIView *)siblingSubview;
-- (void)bjl_addChildViewController:(UIViewController *)childViewController addSubview:(void (^)(UIView *parentView, UIView *childView))addSubview;
+- (void)bjl_addChildViewController:(UIViewController *)childViewController addSubview:(void (^)(UIView *parentView, UIView *childView))addSubview; // synchronous
 - (void)bjl_removeFromParentViewControllerAndSuperiew;
 
 /**
  *  differences from dismissViewControllerAnimated:completion:
- *  1. always call completion although no presentedViewController
- *  2. only dismiss the presentedViewController, but not self
+ *  1. always call completion although nothing to dismiss
+ *  2. only dismiss self, but not parentViewController
+ */
+- (void)bjl_dismissAnimated:(BOOL)animated completion:(void (^ _Nullable)(void))completion;
+/**
+ *  differences from dismissViewControllerAnimated:completion:
+ *  1. always call completion although nothing to dismiss
+ *  2. only dismiss presentedViewController, but not self
  */
 - (void)bjl_dismissPresentedViewControllerAnimated:(BOOL)animated completion:(void (^ _Nullable)(void))completion;
 + (nullable UIViewController *)bjl_gotoRootViewControllerAnimated:(BOOL)animated completion:(void (^ _Nullable)(void))completion DEPRECATED_MSG_ATTRIBUTE("should be implemented by apps");
@@ -153,8 +159,8 @@ static inline CGSize BJLImageViewSize(CGSize imgSize, CGSize minSize, CGSize max
 /**
  @return UIImage with the scale factor of the device’s main screen
  */
-- (UIImage *)bjl_imageByResizing:(CGSize)size; // aspect fill & cropped
-- (UIImage *)bjl_imageByZooming:(CGFloat)zoom;
+- (UIImage *)bjl_imageFillSize:(CGSize)size; // enlarge: NO
+- (UIImage *)bjl_imageFillSize:(CGSize)size enlarge:(BOOL)enlarge; // aspect fill & cropped
 
 /**
  @return UIImage with the scale factor of the device’s main screen
@@ -193,7 +199,7 @@ static inline NSString *BJLAliIMGURLParams_aspectScale(BOOL fill, NSInteger widt
     }
     width = MAX(1, width);
     height = MAX(1, height);
-    // w: width, h: height, x: scale, c: 1 - cut, e: 1 - fill, l: 1 - no magnify, o: 2 - routate then resize
+    // w: width, h: height, x: scale, c: 1 - cut, e: 1 - fill, l: 1 - no enlarge, o: 2 - routate then resize
     NSString *params = [NSString stringWithFormat:@"@%tdw_%tdh_%tdx_0c_%de_1l_2o",
                         width, height, scale, fill];
     return ext.length ? [params stringByAppendingPathExtension:ext] : params;

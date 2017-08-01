@@ -16,23 +16,29 @@ NS_ASSUME_NONNULL_BEGIN
  只支持 BJLContentMode_scaleAspectFit, BJLContentMode_scaleAspectFill */
 @property (nonatomic) BJLContentMode contentMode;
 
-/** 本地当前页、可能与教室内的页数不同，参考 `BJLSlideshowVM` 的 `currentSlidePage.documentPageIndex` */
-@property (nonatomic, readonly) NSInteger localPageIndex;
+/** 课件占位图 */
+@property (nonatomic) UIImage *placeholderImage;
+
 /** 学生本地翻页是否可以超过教室内的页数 */
 @property (nonatomic) BOOL studentCanPreviewForward;
 /** 学生本地翻页是否可以同步到教室内的页数
  设置为 YES 时忽略 `studentCanPreviewForward` 的值、当 YES 处理 */
 @property (nonatomic) BOOL studentCanRemoteControl;
 
-/** 课件占位图 */
-@property (nonatomic) UIImage *placeholderImage;
+/** 本地当前页、可能与教室内的页数不同
+ 参考 `BJLSlideshowVM` 的 `currentSlidePage.documentPageIndex` */
+@property (nonatomic) NSInteger localPageIndex;
+/** 是否空白
+ 只有一页白板、并且没有画笔 */
+@property (nonatomic, readonly) BOOL isBlank;
 
-/** 开启、关闭白板（画笔）
+/** 开启、关闭画笔（白板）
  开启画笔时，如果本地页数与服务端页数不同步的话无法绘制 */
 @property (nonatomic) BOOL drawingEnabled;
-@property (nonatomic) BOOL whiteboardEnabled DEPRECATED_MSG_ATTRIBUTE("use `drawingEnabled` instead");
 /** 清除白板 */
 - (void)clearDrawing;
+
+@property (nonatomic) BOOL whiteboardEnabled DEPRECATED_MSG_ATTRIBUTE("use `drawingEnabled` instead");
 - (void)clearWhiteboard DEPRECATED_MSG_ATTRIBUTE("use `clearDrawing` instead");
 
 @end

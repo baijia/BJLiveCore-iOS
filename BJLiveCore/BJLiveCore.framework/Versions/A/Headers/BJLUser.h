@@ -13,12 +13,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/**
- BJLUser: 当前登录用户
- BJLOnlineUser: 教室内在线用户
- BJLSpeakingUser: 发言用户
- */
-
+/** 用户 */
 @interface BJLUser : NSObject <YYModel>
 
 @property (nonatomic, readonly) NSString *number, *name, *ID;
@@ -27,8 +22,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) BJLClientType clientType;
 @property (nonatomic, readonly) BJLOnlineState onlineState;
 
+@property (nonatomic, readonly) BOOL audioOn, videoOn; // 作为登录用户、在线用户时一直是 NO
+
 @property (nonatomic, readonly) BOOL isTeacher, isStudent, isAssistant, isGuest;
 @property (nonatomic, readonly) BOOL isTeacherOrAssistant;
+
+- (BOOL)isSameUser:(BJLUser *)user;
+- (BOOL)isSameUserWithID:(nullable NSString *)userID number:(nullable NSString *)userNumber;
 
 + (instancetype)userWithNumber:(NSString *)number
                           name:(NSString *)name
@@ -37,24 +37,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-#pragma mark -
-
-@interface BJLOnlineUser : BJLUser
-
-@property (nonatomic, readonly) BOOL audioOn, videoOn;
-
-@end
-
-#pragma mark -
-
-/* 
-@interface BJLSpeakingUser : BJLOnlineUser
-
-@property (nonatomic, readonly) NSString *classID;
-@property (nonatomic, readonly) BJLLinkType linkType;
-@property (nonatomic, readonly) NSInteger publishIndex;
-@property (nonatomic, readonly) BJLServerAddress *publishServer;
-
-@end // */
+@compatibility_alias BJLOnlineUser BJLUser;
 
 NS_ASSUME_NONNULL_END

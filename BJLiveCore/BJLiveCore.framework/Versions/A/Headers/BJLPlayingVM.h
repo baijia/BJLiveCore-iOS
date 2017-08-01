@@ -14,39 +14,33 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BJLPlayingVM : BJLBaseVM
 
-/** 播放视频宽高比 */
-@property (nonatomic, readonly) CGFloat outputVideoAspectRatio;
-
 /** 音视频用户列表
  包含 `videoPlayingUser`
- ???: 包含未开音视频的老师、管理员，需要自行判断用户音视频开关
  所有音频直接播放，视频需要调用 `updateVideoPlayingUser:` 打开
  SDK 会处理音视频打断、恢复、前后台切换等情况
- 参考 `loadPlayingUsers`
  */
-@property (nonatomic, readonly, copy, nullable) NSArray<BJLOnlineUser *> *playingUsers;
-
-/** `playingUsers` 被覆盖更新
- 覆盖更新才调用，增量更新不调用
- */
-- (BJLObservable)playingUsersDidOverwrite:(nullable NSArray<BJLOnlineUser *> *)playingUsers;
-
-/** 加载音视频用户列表
- 连接教室后、掉线重新连接后自动调用
- 加载成功后更新 `playingUsers`、`videoPlayingUser` 并调用 `playingUsersDidOverwrite:`
- */
-- (void)loadPlayingUsers;
+@property (nonatomic, readonly, copy, nullable) NSArray<BJLUser *> *playingUsers;
 
 /** 用户开关音、视频
  - 某个用户主动开关自己的音视频时发送此通知、不包含意外掉线等情况
  - 正在播放的视频用户 关闭视频时 `videoPlayingUser` 将被设置为 nil、同时发送此通知
- - `loadPlayingUsers` 导致批量更新 `playingUsers` 时『不』发送此通知
+ - 进教室后批量更新 `playingUsers` 时『不』发送此通知
  */
-- (BJLObservable)playingUserDidUpdate:(BJLOnlineUser *)now
-                                  old:(BJLOnlineUser *)old;
+- (BJLObservable)playingUserDidUpdate:(nullable BJLUser *)now
+                                  old:(nullable BJLUser *)old;
+/** 用户希望被全屏显示
+ 比如在 PC 上共享桌面、播放本地视频
+ 目前只支持老师（不支持主讲） */
+- (BJLObservable)playingUserWantsShowInFullScreen:(BJLUser *)user;
+
+/** `playingUsers` 被覆盖更新
+ 进教室后批量更新才调用，增量更新不调用
+ */
+- (BJLObservable)playingUsersDidOverwrite:(nullable NSArray<BJLUser *> *)playingUsers;
+
 /**
  BJLTuple 用于将多个封装到一个参数里，使用 BJLTupleUnpack + unpack-block 还原，例如：
- *     BJLTupleUnpack(tuple) = ^(BJLOnlineUser *old, BJLOnlineUser *now) {
+ *     BJLTupleUnpack(tuple) = ^(BJLUser *old, BJLUser *now) {
  *         BOOL audioChanged = old.audioOn != now.audioOn;
  *         NSString *audioAction = audioChanged ? (now.audioOn ? @"打开音频" : @"关闭音频") : nil;
  *         BOOL videoChanged = old.videoOn != now.videoOn;
@@ -55,18 +49,24 @@ NS_ASSUME_NONNULL_BEGIN
  *         [self displayUser:now audioAction:audioAction videoAction:videoAction];
  *     }
  */
-- (BJLObservable)playingUserDidUpdate:(BJLTuple<void (^)(BJLOnlineUser *old,
-                                                         BJLOnlineUser *now)> *)tuple DEPRECATED_MSG_ATTRIBUTE("use `playingUserDidUpdate:old:`");
+- (BJLObservable)playingUserDidUpdate:(BJLTuple<void (^)(BJLUser *old,
+                                                         BJLUser *now)> *)tuple DEPRECATED_MSG_ATTRIBUTE("use `playingUserDidUpdate:old:`");
 
 #pragma mark -
 
 /** 正在播放的视频用户
- 断开重连、暂停恢复等操作不自动重置 `videoPlayingUser`，除非对方用户掉线、离线等 */
-@property (nonatomic, readonly, nullable) BJLOnlineUser *videoPlayingUser;
+ `playingUsers` 的子集
+ 断开重连、暂停恢复等操作不自动重置 `videoPlayingUsers`，除非对方用户掉线、离线等 */
+@property (nonatomic, readonly, copy, nullable) NSArray<BJLUser *> *videoPlayingUsers;
 
-/** 设置播放用户的视频
- 将导致当前正在播放的视频被关闭，传 nil 表示关闭正在播放的视频 */
-- (nullable BJLError *)updateVideoPlayingUserWithID:(nullable NSString *)userID;
+/** 设置播放用户的视频 */
+- (nullable BJLError *)updatePlayingUserWithID:(NSString *)userID videoOn:(BOOL)videoOn;
+
+/** 获取播放用户的视频视图 */
+- (nullable UIView *)playingViewForUserWithID:(NSString *)userID;
+/** 获取播放用户的视频视图宽高比 */
+- (CGFloat)playingViewAspectRatioForUserWithID:(NSString *)userID;
+- (BJLObservable)playingViewAspectRatioChanged:(CGFloat)videoAspectRatio forUserWithID:(NSString *)userID;
 
 - (void)restartPlaying;
 
@@ -75,7 +75,8 @@ NS_ASSUME_NONNULL_BEGIN
 /** 老师: 远程开关用户音、视频
  打开音频、视频会导致对方发言状态开启
  同时关闭音频、视频会导致对方发言状态终止
- @see `speakingRequestVM.speakingEnabled` */
+ @see `speakingRequestVM.speakingEnabled`
+ TODO: 移至 `BJLSpeakingRequestVM` */
 - (nullable BJLError *)remoteUpdatePlayingUserWithID:(NSString *)userID
                                              audioOn:(BOOL)audioOn
                                              videoOn:(BOOL)videoOn;

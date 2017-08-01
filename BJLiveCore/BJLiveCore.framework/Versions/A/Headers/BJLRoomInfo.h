@@ -18,7 +18,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) NSTimeInterval startTimeInterval, endTimeInterval;
 
 @property (nonatomic, readonly) BJLRoomType roomType;
-@property (nonatomic, readonly) BJLMediaLimit mediaLimit;
 
 @property (nonatomic, readonly) NSString *partnerID;
 @property (nonatomic, readonly, nullable) NSString *customerSupportMessage;

@@ -88,16 +88,30 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  教室状态
+ TODO:
+ 1、网络检查放在 UI 层；
+ 2、roomInfo 和 featureConfig 合并；
+ 3、roomServer、chatServer、mediaPlayer 改在 roomInfo 后创建 —— 否则连接 masterServer 后创建、初始化 vmsAvailable 无法映射到 state；
+ 4、chatServer 从连接步骤移除，不阻塞进教室流程；
  */
 typedef NS_ENUM(NSInteger, BJLRoomState) {
+    /** 初始状态 */
     BJLRoomState_initialized,
+    /** 教室信息加载中 */
     BJLRoomState_loadingInfo,
+    /** 教室信息加载完成 */
     BJLRoomState_loadedInfo,
+    /** 教室信息加载失败 */
     // BJLRoomState_loadedInfoFailed = BJLRoomState_initialized + loadInfoError
+    /** 服务连接中 */
     BJLRoomState_connectingServer,
+    /** 服务连接成功 */
     BJLRoomState_connectedServer,
+    /** 服务连接失败/断开 */
     // BJLRoomState_connectServerFailed = BJLRoomState_loadedInfo + connectServerError
+    /** 退出教室 */
     BJLRoomState_exited
+    /** 异常退出教室 */
     // BJLRoomState_exitedWithError = BJLRoomState_exited + exitError
 };
 
@@ -164,7 +178,8 @@ typedef NS_ENUM(NSInteger, BJLRoomState) {
 - (BJLObservable)enterRoomFailureWithError:(BJLError *)error;
 
 /** 断开、重连
- 网络连接断开时回调，回调 callback 确认是否重连、可通过 `reloadingVM` 监听重连的进度和结果
+ 网络连接断开时回调，回调 callback 确认是否重连，YES 重连、NO 退出教室，也可延时或者手动调用 callback
+ 可通过 `reloadingVM` 监听重连的进度和结果
  默认（不设置此回调）在断开时自动重连、重连过程中遇到错误将 `异常退出`
  !!!: 断开重连过程中 vm 的状态、数据没有与服务端同步，调用其它 vm 方法时发起的网络请求会被丢弃、甚至产生不可预期的错误
  @param reloadingVM         重连 vm
@@ -192,6 +207,9 @@ typedef NS_ENUM(NSInteger, BJLRoomState) {
  BJLiveCore 内部【不】读取此处 `loginUser`
  */
 @property (nonatomic, readonly, copy, nullable) BJLUser *loginUser;
+/** 当前登录用户是否是主讲人
+ 不支持 KVO */
+@property (nonatomic, readonly) BOOL loginUserIsPresenter; // NON-KVO
 
 /**
  功能设置
@@ -207,7 +225,7 @@ typedef NS_ENUM(NSInteger, BJLRoomState) {
  !!!: 但此时 `loadingVM` 以外的 vm 并没有与 server 建立连接，vm 的状态、数据没有与服务端同步，调用 vm 方法时发起的网络请求会被丢弃、甚至产生不可预期的错误，断开重连时类似
  KVO 此属性时 option 包含 initial(默认)，即使开始 KVO 时值已经是 YES 也会执行 KVO 回调，参考 NSObject+BJLObserving.h
  */
-@property (nonatomic, readonly) BOOL vmsAvailable; // DEPRECATED_MSG_ATTRIBUTE("state >= BJLRoomState_loadedInfo && state != BJLRoomState_exited")
+@property (nonatomic, readonly) BOOL vmsAvailable; // DEPRECATED_MSG_ATTRIBUTE("didLoginMasterServer, ???: state")
 
 /** 进教室的 loading 状态 */
 @property (nonatomic, readonly, nullable) BJLLoadingVM *loadingVM;
@@ -227,14 +245,11 @@ typedef NS_ENUM(NSInteger, BJLRoomState) {
 /** 音视频 采集 - 个人 */
 @property (nonatomic, readonly, nullable) BJLRecordingVM *recordingVM;
 /** 视频采集视图 - 个人
- 尺寸、位置随意设定，建议横屏 4:3、竖屏 3:4 */
+ 参考 `BJLRecordingVM` 的 `recordingVideo`、`inputVideoAspectRatio` */
 @property (nonatomic, readonly, nullable) UIView *recordingView;
 
 /** 音视频 播放 - 他人 */
 @property (nonatomic, readonly, nullable) BJLPlayingVM *playingVM;
-/** 视频播放视图 - 他人
- 尺寸、位置随意设定，建议横屏 4:3、竖屏 3:4 */
-@property (nonatomic, readonly, nullable) UIView *playingView;
 
 /** 课件管理 */
 @property (nonatomic, readonly, nullable) BJLSlideVM *slideVM;
@@ -245,7 +260,7 @@ typedef NS_ENUM(NSInteger, BJLRoomState) {
  尺寸、位置随意设定 */
 @property (nonatomic, readonly, nullable) UIViewController<BJLSlideshowUI> *slideshowViewController;
 
-/** 云端录制 */
+/** 云端录课 */
 @property (nonatomic, readonly, nullable) BJLServerRecordingVM *serverRecordingVM;
 
 /** 聊天/弹幕 */

@@ -18,6 +18,11 @@ extern const NSTimeInterval BJLSpeakingRequestTimeoutInterval, BJLSpeakingReques
 
 @interface BJLSpeakingRequestVM : BJLBaseVM
 
+/** 老师禁止学生举手 */
+@property (nonatomic, readonly) BOOL forbidSpeakingRequest;
+/**  */
+- (nullable BJLError *)requestForbidSpeakingRequest:(BOOL)forbid;
+
 /** 学生: 发言状态 */
 @property (nonatomic, readonly) BOOL speakingEnabled;
 
@@ -26,7 +31,7 @@ extern const NSTimeInterval BJLSpeakingRequestTimeoutInterval, BJLSpeakingReques
  每 `BJLSpeakingRequestCountdownStep` 秒更新，变为 0.0 表示举手超时，变为 - 1.0 表示计时被取消 */
 @property (nonatomic, readonly) NSTimeInterval speakingRequestTimeRemaining;
 /** 学生: 发送发言申请
- 上课状态、并且老师在教室才能举手，参考 `roomVM.liveStarted`、`onlineUsersVM.onlineTeacher`
+ 上课状态才能举手，参考 `roomVM.liveStarted`
  发言申请被允许/拒绝时会收到通知 `speakingRequestDidReply:` */
 - (nullable BJLError *)sendSpeakingRequest;
 /** 学生: 取消发言申请/结束发言
@@ -53,7 +58,9 @@ extern const NSTimeInterval BJLSpeakingRequestTimeoutInterval, BJLSpeakingReques
                                 isUserCancelled:(BOOL)isUserCancelled
                                            user:(BJLUser *)user;
 - (BJLObservable)speakingRequestDidReply:(NSObject<BJLSpeakingReply> *)reply DEPRECATED_MSG_ATTRIBUTE("use `speakingRequestDidReplyEnabled:isUserCancelled:user:`");
-/** 发言状态被开启、关闭 */
+
+/** 发言状态被开启、关闭
+ 参考 `BJLPlayingVM` 的 `remoteUpdatePlayingUserWithID:audioOn:videoOn:` */
 - (BJLObservable)speakingDidRemoteEnabled:(BOOL)enabled;
 - (BJLObservable)speakingBeRemoteEnabled:(BOOL)enabled DEPRECATED_MSG_ATTRIBUTE("use `speakingDidRemoteEnabled:`");
 

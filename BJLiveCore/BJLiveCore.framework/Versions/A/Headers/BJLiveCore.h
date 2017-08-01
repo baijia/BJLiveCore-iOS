@@ -6,6 +6,42 @@
 //  Copyright © 2016 Baijia Cloud. All rights reserved.
 //
 
+#if __has_include(<BJLiveCore/BJLiveCore.h>)
+
+#import <BJLiveCore/BJLBaseVM.h>
+#import <BJLiveCore/BJLBlockHelper.h>
+#import <BJLiveCore/BJLChatVM.h>
+#import <BJLiveCore/BJLConstants.h>
+#import <BJLiveCore/BJLDocument.h>
+#import <BJLiveCore/BJLEmoticon.h>
+#import <BJLiveCore/BJLFeatureConfig.h>
+#import <BJLiveCore/BJLGift.h>
+#import <BJLiveCore/BJLHelpVM.h>
+#import <BJLiveCore/BJLLoadingVM.h>
+#import <BJLiveCore/BJLMediaVM.h>
+#import <BJLiveCore/BJLMessage.h>
+#import <BJLiveCore/BJLNotice.h>
+#import <BJLiveCore/BJLOnlineUsersVM.h>
+#import <BJLiveCore/BJLPlayingVM.h>
+#import <BJLiveCore/BJLRecordingVM.h>
+#import <BJLiveCore/BJLRoom.h>
+#import <BJLiveCore/BJLRoomInfo.h>
+#import <BJLiveCore/BJLRoomVM.h>
+#import <BJLiveCore/BJLServerRecordingVM.h>
+#import <BJLiveCore/BJLSlideVM.h>
+#import <BJLiveCore/BJLSlideshowUI.h>
+#import <BJLiveCore/BJLSlideshowVM.h>
+#import <BJLiveCore/BJLSpeakingRequestVM.h>
+#import <BJLiveCore/BJLSurvey.h>
+#import <BJLiveCore/BJLUser.h>
+#import <BJLiveCore/BJLiveCore.h>
+#import <BJLiveCore/NSError+BJLError.h>
+#import <BJLiveCore/NSObject+BJLObserving.h>
+#import <BJLiveCore/NSObject+BJL_M9Dev.h>
+#import <BJLiveCore/UIKit+BJL_M9Dev.h>
+
+#else
+
 #import "BJLBaseVM.h"
 #import "BJLBlockHelper.h"
 #import "BJLChatVM.h"
@@ -34,8 +70,10 @@
 #import "BJLUser.h"
 #import "BJLiveCore.h"
 #import "NSError+BJLError.h"
-#import "NSObject+BJLBlockKVO.h"
-#import "NSObject+BJLBlockNTO.h"
 #import "NSObject+BJLObserving.h"
 #import "NSObject+BJL_M9Dev.h"
 #import "UIKit+BJL_M9Dev.h"
+
+#endif
+
+FOUNDATION_EXPORT NSString * BJLiveCoreVersion();

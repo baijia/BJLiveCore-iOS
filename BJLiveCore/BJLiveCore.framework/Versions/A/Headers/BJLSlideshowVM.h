@@ -63,9 +63,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable BJLDocument *)documentWithID:(NSString *)documentID;
 /** 通过 documentID、pageIndex 获取 slide page */
 - (nullable BJLSlidePage *)slidePageWithDocumentID:(NSString *)documentID pageIndex:(NSInteger)pageIndex;
+/** 指定 fillSize，获取 slide pages */
+- (NSArray<BJLSlidePage *> *)slidePagesWithFillSize:(CGSize)fillSize;
 
 /** 翻页课件通知 */
-- (BJLObservable)didTurnToSlidePage:(BJLSlidePage *)slidePage DEPRECATED_ATTRIBUTE;
+- (BJLObservable)didTurnToSlidePage:(BJLSlidePage *)slidePage DEPRECATED_MSG_ATTRIBUTE("KVO `currentSlidePage` instead");
 
 @end
 

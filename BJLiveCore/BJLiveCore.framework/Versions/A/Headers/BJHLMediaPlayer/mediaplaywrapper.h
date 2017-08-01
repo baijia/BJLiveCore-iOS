@@ -12,7 +12,7 @@
 
 @interface MediaPlayWrapper : NSObject
 
-- (void) gsx_rtc_engine_set_upstream_support_udp:(int)support_udp;
+- (void)gsx_rtc_engine_set_upstream_support_udp:(int)support_udp;
 
 - (void)gsx_rtc_engine_set_audio_codec:(int)audio_codec;
 
