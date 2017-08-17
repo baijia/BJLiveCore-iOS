@@ -14,21 +14,21 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - BJLiveCore (0.4.0):
+  - BJLiveCore (0.4.1):
     - AFNetworking (~> 3.0)
-    - BJLiveCore/BJHLMediaPlayer (= 0.4.0)
+    - BJLiveCore/BJHLMediaPlayer (= 0.4.1)
     - JRSwizzle
     - libextobjc/EXTScope
-    - LogStat
+    - LogStat (~> 0.7.0)
     - PocketSocket
     - ReactiveObjC
     - SDWebImage
     - YYModel
-  - BJLiveCore/BJHLMediaPlayer (0.4.0):
+  - BJLiveCore/BJHLMediaPlayer (0.4.1):
     - AFNetworking (~> 3.0)
     - JRSwizzle
     - libextobjc/EXTScope
-    - LogStat
+    - LogStat (~> 0.7.0)
     - PocketSocket
     - ReactiveObjC
     - SDWebImage
@@ -41,11 +41,9 @@ PODS:
   - libextobjc/EXTScope (0.4.1):
     - libextobjc/RuntimeExtensions
   - libextobjc/RuntimeExtensions (0.4.1)
-  - LKDBHelper (2.4.2):
-    - FMDB
-  - LogStat (0.6.6):
+  - LogStat (0.7.0):
     - AFNetworking
-    - LKDBHelper
+    - FMDB
   - Masonry (1.0.2)
   - PocketSocket (1.0.1):
     - PocketSocket/Client (= 1.0.1)
@@ -57,9 +55,9 @@ PODS:
   - PocketSocket/Server (1.0.1):
     - PocketSocket/Client
   - ReactiveObjC (3.0.0)
-  - SDWebImage (4.0.0):
-    - SDWebImage/Core (= 4.0.0)
-  - SDWebImage/Core (4.0.0)
+  - SDWebImage (4.1.0):
+    - SDWebImage/Core (= 4.1.0)
+  - SDWebImage/Core (4.1.0)
   - YYModel (1.0.4)
 
 DEPENDENCIES:
@@ -73,19 +71,18 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  BJLiveCore: dca06d66a6f61f66af0e37bd38c932bb0dfab72d
+  BJLiveCore: 145f6ef40e39edcf41a80e88240e777c28fb84a1
   FLEX: bd1a39e55b56bb413b6f1b34b3c10a0dc44ef079
   FMDB: 6198a90e7b6900cfc046e6bc0ef6ebb7be9236aa
   JRSwizzle: dd5ead5d913a0f29e7f558200165849f006bb1e3
   libextobjc: a650fc1bf489a3d3a9bc2e621efa3e1006fc5471
-  LKDBHelper: ab67373b32f47463bf5f838d730f225824f4492a
-  LogStat: 26619dbf5205a025b427a83da22ba3af5ac3aed9
+  LogStat: 7896c8f792a83de12bcea5bc81fe73c47ac5a0d8
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
   PocketSocket: 9c6867d66fb4f962af96b9b07f4b45bb561b2c2a
   ReactiveObjC: ce79989e8684b9086b5f8d0c74bc7b81a8729c9e
-  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
+  SDWebImage: 0e435c14e402a6730315a0fb79f95e68654d55a4
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: 211515778abeb367bb5ace745e05ec40cfe56a49
+PODFILE CHECKSUM: 7c593a48f104c5518b384ecef0f2198d0c6f78dc
 
 COCOAPODS: 1.2.1

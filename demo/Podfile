@@ -16,7 +16,6 @@ target 'BJLiveCore' do
     # use_frameworks!
     
     # dev
-    # pod 'BJHL-AVSDK-iOS', :git => 'http://git.baijiahulian.com/video/BJHL-AVSDK-iOS.git', :branch => 'master'
     pod 'BJLiveCore', :path => '../'
     
     # demo
