@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'BJLiveCore'
-  s.version = '0.4.0'
+  s.version = '0.4.1'
   s.summary = 'BJLiveCore SDK.'
   s.description = 'BJLiveCore SDK for iOS.'
   s.license = 'MIT'
@@ -52,7 +52,7 @@ Pod::Spec.new do |s|
 
   # DEPRECATED
   s.dependency "libextobjc/EXTScope"
-  s.dependency 'LogStat'
+  s.dependency 'LogStat', '~> 0.7.0'
   s.dependency 'JRSwizzle'
   s.dependency 'SDWebImage'
   s.dependency 'ReactiveObjC'
