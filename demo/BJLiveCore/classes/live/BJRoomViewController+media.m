@@ -74,12 +74,12 @@
          
          if (!self.room.loginUser.isTeacher
              && !self.room.speakingRequestVM.speakingEnabled) {
-             BOOL hasTeacher = !!self.room.onlineUsersVM.onlineTeacher;
+             BOOL liveStarted = self.room.roomVM.liveStarted;
              UIAlertController *actionSheet = [UIAlertController
                                                alertControllerWithTitle:self.recordingView.currentTitle
-                                               message:hasTeacher ? @"要发言先举手" : @"老师没在教室，不能举手"
+                                               message:liveStarted ? @"要发言先举手" : @"非上课状态，不能举手"
                                                preferredStyle:UIAlertControllerStyleActionSheet];
-             if (hasTeacher) {
+             if (liveStarted) {
                  [actionSheet addAction:[UIAlertAction
                                          actionWithTitle:@"举手"
                                          style:UIAlertActionStyleDefault
