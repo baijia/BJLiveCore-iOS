@@ -26,7 +26,7 @@ extern const NSTimeInterval BJLSpeakingRequestTimeoutInterval, BJLSpeakingReques
  每 `BJLSpeakingRequestCountdownStep` 秒更新，变为 0.0 表示举手超时，变为 - 1.0 表示计时被取消 */
 @property (nonatomic, readonly) NSTimeInterval speakingRequestTimeRemaining;
 /** 学生: 发送发言申请
- 上课状态、并且老师在教室才能举手，参考 `roomVM.liveStarted`、`onlineUsersVM.onlineTeacher`
+ 上课状态才能举手，参考 `roomVM.liveStarted`
  发言申请被允许/拒绝时会收到通知 `speakingRequestDidReply:` */
 - (nullable BJLError *)sendSpeakingRequest;
 /** 学生: 取消发言申请/结束发言
