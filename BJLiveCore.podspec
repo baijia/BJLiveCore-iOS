@@ -43,8 +43,8 @@ Pod::Spec.new do |s|
   # s.ios.vendored_frameworks  = 'BJLiveCore-#{s.version}/BJLiveCore.framework'
 
   s.requires_arc = true
-  # s.xcconfig = { "ENABLE_BITCODE" => "NO" }
-  s.xcconfig = { "CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES" => "YES", "ENABLE_BITCODE" => "NO" }
+  # s.xcconfig = {"ENABLE_BITCODE" => "NO"}
+  s.xcconfig = {"CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES" => "YES", "ENABLE_BITCODE" => "NO", "GCC_PREPROCESSOR_DEFINITIONS" => "$(inherited) PODSPEC_NAME=#{s.name} PODSPEC_VERSION=#{s.version}"}
 
   s.dependency 'AFNetworking', '~> 3.0'
   s.dependency 'PocketSocket'
