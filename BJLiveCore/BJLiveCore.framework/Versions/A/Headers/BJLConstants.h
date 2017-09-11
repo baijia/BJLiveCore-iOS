@@ -7,23 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-
-/** 毫秒 */
-
-typedef long long BJLMilliseconds;
-
-#define BJL_MSEC_PER_SEC            1000ull
-#define BJLMillisecondsSince1970    BJLMillisecondsFromTimeInterval(NSTimeIntervalSince1970)
-
-static inline BJLMilliseconds BJLMillisecondsFromTimeInterval(NSTimeInterval timeInterval) {
-    return (BJLMilliseconds)(timeInterval * BJL_MSEC_PER_SEC);
-}
-
-static inline NSTimeInterval BJLTimeIntervalFromMilliseconds(BJLMilliseconds milliseconds) {
-    return (NSTimeInterval)milliseconds / BJL_MSEC_PER_SEC;
-}
 
 /** WebSocket 请求超时时间 */
 extern const NSTimeInterval BJLWebSocketTimeoutInterval;
@@ -54,7 +40,7 @@ typedef NS_ENUM(NSInteger, BJLRoomType) {
     /** 1 对 1 */
     BJLRoomType_1to1 = 1,
     /** 小班课 */
-    BJLRoomType_1toM = 3,
+    BJLRoomType_1toM = 3, // M: s[m]all
     /** 大班课 */
     BJLRoomType_1toN = 2
     // 小班课是 2、大班课是 3，没错
@@ -99,8 +85,11 @@ typedef NS_ENUM(NSInteger, BJLLinkType) {
     /** UDP */
     BJLLinkType_UDP = 1
 };
-static inline BOOL BJL_isValidLinkType(BJLLinkType linkType) {
+static inline BOOL BJLLinkTypeValidate(BJLLinkType linkType) {
     return linkType == BJLLinkType_TCP || linkType == BJLLinkType_UDP;
+}
+static inline BJLLinkType BJLLinkTypeValidify(BJLLinkType linkType) {
+    return linkType == BJLLinkType_TCP ? BJLLinkType_TCP : BJLLinkType_UDP;
 }
 
 /** 视频方向 */
@@ -173,5 +162,59 @@ typedef NS_ENUM(NSInteger, BJLTextMaxLength) {
     BJLTextMaxLength_chat = 140,
     BJLTextMaxLength_notice = 140
 };
+
+#pragma mark - AliIMG
+
+/**
+ Ali image aspect scale url params
+ @param fill    fill, or fit
+ @param width   * scale <> 1-4096
+ @param height  * scale <> 1-4096
+ @param scale   0 - mainScreen.scale
+ @param ext     jpg, png, webp, bmp, gif, src
+ @return        url params
+ e.g.
+ http://image-demo.img-cn-hangzhou.aliyuncs.com/example.jpg@100h_100w_0c_1e_1l_2o_2x.jpg - fill > 300*200
+ http://image-demo.img-cn-hangzhou.aliyuncs.com/example.jpg@100h_100w_0c_0e_1l_2o_2x.jpg - fit  > 200*134
+ @see
+ whcel: https://help.aliyun.com/document_detail/32223.html?spm=5176.doc32228.6.969.IvVprX
+ o:     https://help.aliyun.com/document_detail/32231.html?spm=5176.doc32223.6.977.fTzBHO
+ ext:   https://help.aliyun.com/document_detail/32244.html?spm=5176.doc32223.2.2.fTzBHO
+ */
+
+static inline NSString *BJLAliIMGURLParams_aspectScale(BOOL fill, NSInteger width, NSInteger height, NSInteger scale, NSString * _Nullable ext) {
+    static const NSInteger aliIMGMaxSize = 4096;
+    scale = MAX(1.0, scale <= 0 ? round([UIScreen mainScreen].scale) : scale);
+    NSInteger max = MAX(width, height) * scale;
+    if (max > aliIMGMaxSize) {
+        CGFloat maxScale = (CGFloat)aliIMGMaxSize / max;
+        width = floor(width * maxScale);
+        height = floor(height * maxScale);
+    }
+    width = MAX(1.0, width);
+    height = MAX(1.0, height);
+    // w: width, h: height, x: scale, c: 0 - no cut, e: 0 - fit, 1 - fill, l: 1 - no enlarge, o: 2 - routate then resize
+    NSString *params = [NSString stringWithFormat:@"@%tdw_%tdh_%tdx_0c_%de_1l_2o",
+                        width, height, scale, fill];
+    ext = ext.lowercaseString;
+    return ext.length ? [params stringByAppendingPathExtension:ext] : params;
+}
+
+static inline NSString *BJLAliIMGURLString_aspectScale(BOOL fill, NSInteger width, NSInteger height, NSInteger scale, NSString *urlString, NSString * _Nullable ext) {
+    NSUInteger atLocation = [urlString rangeOfString:@"@"].location;
+    if (atLocation != NSNotFound) {
+        urlString = [urlString substringToIndex:atLocation];
+    }
+    NSString *params = BJLAliIMGURLParams_aspectScale(fill, width, height, scale, ext ?: [urlString pathExtension]);
+    return urlString.length ? [urlString stringByAppendingString:params] : params;
+}
+
+static inline NSString *BJLAliIMG_aspectFill(CGSize size, CGFloat scale, NSString *urlString, NSString * _Nullable ext) {
+    return BJLAliIMGURLString_aspectScale(YES, round(size.width), round(size.height), scale, urlString, ext);
+}
+
+static inline NSString *BJLAliIMG_aspectFit(CGSize size, CGFloat scale, NSString *urlString, NSString * _Nullable ext) {
+    return BJLAliIMGURLString_aspectScale(NO, round(size.width), round(size.height), scale, urlString, ext);
+}
 
 NS_ASSUME_NONNULL_END

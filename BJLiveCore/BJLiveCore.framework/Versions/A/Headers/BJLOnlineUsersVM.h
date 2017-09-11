@@ -44,11 +44,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (nullable BJLError *)loadMoreOnlineUsersWithCount:(NSInteger)count;
 
-/** 有用户进入房间
+/** 有用户进入教室
  批量更新时不会调用
  同时更新 `onlineUsers` */
 - (BJLObservable)onlineUserDidEnter:(BJLUser *)user;
-/** 有用户退出房间
+/** 有用户退出教室
  批量更新时不会调用
  同时更新 `onlineUsers` */
 - (BJLObservable)onlineUserDidExit:(BJLUser *)user;

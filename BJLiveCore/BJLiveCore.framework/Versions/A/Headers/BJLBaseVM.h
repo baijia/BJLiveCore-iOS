@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <BJLiveBase/BJL_M9Dev.h>
+#import <BJLiveBase/NSObject+BJL_M9Dev.h>
 
 #import "BJLConstants.h"
-#import "NSObject+BJL_M9Dev.h"
 #import "BJLBlockHelper.h"
 
 NS_ASSUME_NONNULL_BEGIN

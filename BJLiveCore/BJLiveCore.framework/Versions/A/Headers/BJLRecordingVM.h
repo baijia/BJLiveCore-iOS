@@ -32,7 +32,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable BJLError *)updateRecordingVideo:(BOOL)recordingVideo; */
 - (void)restartRecording;
 
-/** 音视频被远程开关通知 */
+/** 音视频被远程开关通知
+ 对于学生，音视频有一个打开就开启发言、全部关闭就结束发言
+ 参考 `BJLSpeakingRequestVM` 的 `speakingDidRemoteControl:` */
 - (BJLObservable)recordingDidRemoteChangedRecordingAudio:(BOOL)recordingAudio
                                           recordingVideo:(BOOL)recordingVideo
                                    recordingAudioChanged:(BOOL)recordingAudioChanged

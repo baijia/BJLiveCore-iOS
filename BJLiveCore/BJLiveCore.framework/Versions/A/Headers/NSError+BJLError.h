@@ -43,11 +43,11 @@ typedef NS_ENUM(NSInteger, BJLErrorCode) {
     BJLErrorCode_invalidArguments,  // 参数错误
     BJLErrorCode_areYouRobot,       // 操作过于频繁
     /* enter & exit room */
-    BJLErrorCode_enterRoom_roomIsFull,      // 房间已满
-    BJLErrorCode_enterRoom_forbidden,       // 用户被禁止进入房间
+    BJLErrorCode_enterRoom_roomIsFull,      // 教室已满
+    BJLErrorCode_enterRoom_forbidden,       // 用户被禁止进入教室
     BJLErrorCode_exitRoom_disconnected,     // 连接断开
     BJLErrorCode_exitRoom_loginConflict,    // 用户在其它设备登录
-    BJLErrorCode_exitRoom_kickout,          // 用户被请出房间
+    BJLErrorCode_exitRoom_kickout,          // 用户被请出教室
     /* !!!: 
      1、在此之前增加错误码；
      2、不要设置错误码取值；

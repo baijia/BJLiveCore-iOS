@@ -21,9 +21,6 @@ typedef NS_ENUM(NSInteger, BJLPointsCompressType) {
 
 @interface BJLFeatureConfig : NSObject <YYModel, NSCopying, NSCoding>
 
-// 云端录课
-@property (nonatomic, readonly) BOOL enableRecordCourse;
-
 // 禁止举手
 @property (nonatomic, readonly) BOOL disableSpeakingRequest;
 @property (nonatomic, readonly, copy, nullable) NSString *disableSpeakingRequestReason;
@@ -37,6 +34,15 @@ typedef NS_ENUM(NSInteger, BJLPointsCompressType) {
 
 @property (nonatomic, readonly) BJLMediaLimit mediaLimit;
 @property (nonatomic, readonly) BOOL autoStartServerRecording;
+
+#pragma mark - from partner_config
+
+// 隐藏技术支持消息
+@property (nonatomic, readonly) BOOL hideSupportMessage;
+// 隐藏用户列表
+@property (nonatomic, readonly) BOOL hideUserList;
+// 禁用 H5 实现的 PPT 动画
+@property (nonatomic, readonly) BOOL disablePPTAnimation;
 
 #pragma mark - internal
 

@@ -32,7 +32,6 @@
 
 #import "BJLSlideVM.h"
 #import "BJLSlideshowVM.h"
-// #import "BJLSlideshowView.h"
 
 #import "BJLServerRecordingVM.h"
 
@@ -151,7 +150,7 @@ typedef NS_ENUM(NSInteger, BJLRoomState) {
  加载教室信息出错: loadingInfo > initialized + loadInfoError
  服务器连接出错/断开: connectingServer > loadedInfo + connectServerError
  随时退出: any > exited
- `state` 属性支持 KVO、`error` 不支持，`state` 发生变化时各 `error` 可用
+ `state` 属性支持 KVO、各种 `error` 不支持 KVO，`state` 发生变化时各 `error` 可用
  */
 @property (nonatomic, readonly) BJLRoomState state;
 @property (nonatomic, readonly, nullable) BJLError *loadInfoError, *connectServerError, *exitError; // NON-KVO
@@ -185,8 +184,8 @@ typedef NS_ENUM(NSInteger, BJLRoomState) {
  @param reloadingVM         重连 vm
  @param callback(reload)    调用 callback 是 reload 参数传 YES 重连，NO 将导致 `异常退出`
  */
-- (void)setReloadingBlock:(void (^ _Nullable )(BJLLoadingVM *reloadingVM,
-                                               void (^callback)(BOOL reload)))reloadingBlock;
+- (void)setReloadingBlock:(void (^ _Nullable)(BJLLoadingVM *reloadingVM,
+                                              void (^callback)(BOOL reload)))reloadingBlock;
 
 /** 退出教室 */
 - (void)exit;
@@ -256,6 +255,13 @@ typedef NS_ENUM(NSInteger, BJLRoomState) {
 
 /** 课件显示、控制 */
 @property (nonatomic, readonly, nullable) BJLSlideshowVM *slideshowVM;
+/**
+ 禁用 PPT 动画
+ 是否禁用 PPT 动画由两个参数控制，任意一个值为 YES 就禁止
+ 1、由服务端通过 `BJLFeatureConfig` 的 `disablePPTAnimation` 控制
+ 2、由上层设置这个 `disablePPTAnimation`
+ */
+@property (nonatomic) BOOL disablePPTAnimation;
 /** 课件、画笔视图
  尺寸、位置随意设定 */
 @property (nonatomic, readonly, nullable) UIViewController<BJLSlideshowUI> *slideshowViewController;

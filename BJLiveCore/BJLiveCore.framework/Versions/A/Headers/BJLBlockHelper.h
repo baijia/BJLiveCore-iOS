@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreGraphics/CoreGraphics.h>
-#import <libextobjc/EXTScope.h>
+#import <BJLiveBase/BJL_EXTScope.h>
+#import <BJLiveBase/NSObject+BJLObserving.h>
 
 #import "NSError+BJLError.h"
-#import "NSObject+BJLObserving.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
