@@ -48,6 +48,12 @@ typedef struct {
     int duration;
 } RTCVideoDescription;
 
+// 音频编码格式
+enum {
+    kAudioCodecAAC = 1,
+    kAudioCodecSpeex = 2
+};
+
 typedef enum {
     kRTCMsgNone = 0,
     kRTCMsgGetMediaInfo = 1,
@@ -56,10 +62,6 @@ typedef enum {
     kRTCMsgAVPublishFail        = 0xFF301,
     
     kRTCMsgSpeechInLevel          = 20, // 声音输入级别[0-9]
-    // 避免歧义或重复去除这些定义
-    // kRTCMsgRtmpDownloadFailed   = 0x111,
-    // kRTCMsgRtmpConnectError     = 0x112,
-    // kRTCMsgRtmpConnectSuccess   = 0x113,
 
     // 以下消息均在回调函数参数param1中指定stream_id
     kRTCMsgAVConnectSuccess     = 100,  // 连接成功
@@ -109,8 +111,8 @@ typedef enum
     FrameType_MetaInfo          = 1, //meta 信息sps和pps
     FrameType_KeyFrame          = 2, //关键帧
     FrameType_UnkeyFrame        = 3  //非关键帧
-    
 } GsxCaptureFrameType;
+
 
 /*连接状态*/
 typedef enum tagGsxLiveConnectStatus {

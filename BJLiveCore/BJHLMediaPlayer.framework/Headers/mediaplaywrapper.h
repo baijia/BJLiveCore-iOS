@@ -14,6 +14,9 @@
 
 - (void) gsx_rtc_engine_set_upstream_support_udp:(int)support_udp;
 
+/**
+ * @note 若需要设置音频编码，请在gsx_rtc_engine_init调用之前设置好音频编码
+ */
 - (void)gsx_rtc_engine_set_audio_codec:(int)audio_codec;
 
 - (void*) gsx_rtc_engine_init;
