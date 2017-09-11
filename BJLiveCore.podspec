@@ -1,60 +1,64 @@
 Pod::Spec.new do |s|
-  s.name = 'BJLiveCore'
-  s.version = '0.5.0-beta03'
-  s.summary = 'BJLiveCore SDK.'
-  s.description = 'BJLiveCore SDK for iOS.'
-  s.license = 'MIT'
-  s.authors = { "MingLQ"=>"minglq.9@gmail.com" }
-  s.homepage = 'http://www.baijiacloud.com/'
+    s.name          = 'BJLiveCore'
+    s.version       = '0.6.0-alpha'
+    s.summary       = 'BJLiveCore SDK.'
+    s.description   = 'BJLiveCore SDK for iOS.'
 
-  s.platform = :ios, "8.0"
+    s.homepage      = 'http://www.baijiacloud.com/'
+    s.license       = 'MIT'
+    s.author        = { 'MingLQ' => 'minglq.9@gmail.com' }
 
-  # git
-  s.source = { :git => 'https://github.com/baijia/BJLiveCore-iOS.git', :tag => s.version.to_s }
+    s.deployment_target = '8.0'
 
-  # # framework
-  s.ios.preserve_paths       = 'BJLiveCore/BJLiveCore.framework'
-  s.ios.public_header_files  = 'BJLiveCore/BJLiveCore.framework/Versions/A/Headers/**/*.h'
-  s.ios.source_files         = 'BJLiveCore/BJLiveCore.framework/Versions/A/Headers/**/*.h'
-  # s.ios.resource             = 'BJLiveCore/BJLiveCore.framework/Versions/A/Resources/**/*'
-  s.ios.vendored_frameworks  = 'BJLiveCore/BJLiveCore.framework'
+    s.source = {
+        :git => 'https://github.com/baijia/BJLiveCore-iOS.git',
+        :tag => s.version.to_s
+    }
 
-  # # library
-  # s.public_header_files = 'BJLiveCore/**/*.h'
-  # s.source_files = 'BJLiveCore/**/*.h'
-  # s.vendored_libraries = 'BJLiveCore/**/*.a'
-  # # s.resources = 'BJLiveCore/**/*.bundle'
+    # # framework
+    s.preserve_paths       = 'BJLiveCore/BJLiveCore.framework'
+    s.public_header_files  = 'BJLiveCore/BJLiveCore.framework/Versions/A/Headers/**/*.h'
+    s.source_files         = 'BJLiveCore/BJLiveCore.framework/Versions/A/Headers/**/*.h'
+    s.resource             = 'BJLiveCore/BJLiveCore.framework/Versions/A/Resources/**/*'
+    s.vendored_frameworks  = 'BJLiveCore/BJLiveCore.framework'
 
-  # # http
-  # s.source = { :http => 'http://file.gsxservice.com/0baijiatools/09b9807a96075f6247fd08ea48cab16b/BJLiveCore-0.0.1.zip' }
-  # s.public_header_files = 'BJLiveCore-#{s.version}/**/*.h'
-  # s.source_files = 'BJLiveCore-#{s.version}/**/*.h'
-  # s.vendored_libraries = 'BJLiveCore-#{s.version}/**/*.a'
-  # # s.resources = 'BJLiveCore-#{s.version}/**/*.bundle'
+    s.requires_arc = true
+    s.xcconfig      = {
+        'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) PODSPEC_NAME=#{s.name} PODSPEC_VERSION=#{s.version}'
+    }
 
-  s.subspec 'BJHLMediaPlayer' do |ss|
-    ss.frameworks = ['AVFoundation', 'VideoToolbox', 'GLKit']
-    ss.libraries  = ['icucore', 'c++', 'stdc++.6', 'z']
-    ss.vendored_frameworks = "BJLiveCore/BJHLMediaPlayer.framework"
-  end
+    s.default_subspecs = ['Core']
 
-  # s.frameworks = ['AssetsLibrary', 'CoreGraphics', 'Foundation', 'UIKit', 'Photos']
-  s.frameworks = ['CoreGraphics', 'Foundation', 'UIKit']
-  # s.ios.vendored_frameworks  = 'BJLiveCore-#{s.version}/BJLiveCore.framework'
+    s.subspec 'Core' do |ss|
 
-  s.requires_arc = true
-  # s.xcconfig = { "ENABLE_BITCODE" => "NO" }
-  s.xcconfig = { "CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES" => "YES", "ENABLE_BITCODE" => "NO" }
+        ss.frameworks = ['CoreGraphics', 'Foundation', 'UIKit']
 
-  s.dependency 'AFNetworking', '~> 3.0'
-  s.dependency 'PocketSocket'
-  s.dependency 'YYModel'
+        ss.dependency 'BJLiveBase', '~> 0.1.0-alpha'
+        ss.dependency 'BJLiveBase/Base'
+        ss.dependency 'BJLiveBase/Ext'
+        ss.dependency 'BJLiveBase/Networking'
+        ss.dependency 'BJLiveBase/WebImage/AFNetworking'
 
-  # DEPRECATED
-  s.dependency "libextobjc/EXTScope"
-  s.dependency 'LogStat'
-  s.dependency 'JRSwizzle'
-  s.dependency 'SDWebImage'
-  s.dependency 'ReactiveObjC'
+        ss.dependency 'BJLiveCore/BJHLMediaPlayer'
+
+        ss.dependency 'AFNetworking', '~> 3.0'
+        ss.dependency 'PocketSocket'
+        ss.dependency 'YYModel'
+
+        ## DEPRECATED
+        ss.dependency 'LogStat', '~> 0.7.0'
+        ss.dependency 'ReactiveObjC'
+
+    end
+
+    s.subspec 'BJHLMediaPlayer' do |ss|
+        ss.xcconfig = {
+            'ENABLE_BITCODE' => 'NO',
+            'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES'
+        }
+        ss.frameworks = ['AVFoundation', 'VideoToolbox', 'GLKit']
+        ss.libraries  = ['icucore', 'c++', 'stdc++.6', 'z']
+        ss.vendored_frameworks = "BJLiveCore/BJHLMediaPlayer.framework"
+    end
 
 end
