@@ -383,6 +383,24 @@
                             animated:YES
                           completion:nil];
      }];
+    
+    [self bjl_kvoMerge:@[BJLMakeProperty(self.room.slideshowViewController, localPageIndex),
+                         BJLMakeProperty(self.room.slideshowVM, totalPageCount)]
+                filter:^BOOL(NSNumber * _Nullable old, NSNumber * _Nullable now) {
+                    // @strongify(self);
+                    return now.integerValue != old.integerValue;
+                }
+              observer:^(NSNumber * _Nullable old, NSNumber * _Nullable now) {
+                  @strongify(self);
+                  if (self.room.slideshowViewController.localPageIndex == 0) {
+                      [self.console printLine:@"PPT: 白板"];
+                  }
+                  else {
+                      [self.console printFormat:@"PPT: %td/%td",
+                       self.room.slideshowViewController.localPageIndex,
+                       self.room.slideshowVM.totalPageCount - 1]; // 减去白板
+                  }
+              }];
 }
 
 @end
