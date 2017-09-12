@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'BJLiveCore'
-  s.version = '0.5.0-beta03'
+  s.version = '0.5.1-beta02'
   s.summary = 'BJLiveCore SDK.'
   s.description = 'BJLiveCore SDK for iOS.'
   s.license = 'MIT'
@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   s.ios.preserve_paths       = 'BJLiveCore/BJLiveCore.framework'
   s.ios.public_header_files  = 'BJLiveCore/BJLiveCore.framework/Versions/A/Headers/**/*.h'
   s.ios.source_files         = 'BJLiveCore/BJLiveCore.framework/Versions/A/Headers/**/*.h'
-  # s.ios.resource             = 'BJLiveCore/BJLiveCore.framework/Versions/A/Resources/**/*'
+  s.ios.resource             = 'BJLiveCore/BJLiveCore.framework/Versions/A/Resources/**/*'
   s.ios.vendored_frameworks  = 'BJLiveCore/BJLiveCore.framework'
 
   # # library
@@ -33,13 +33,13 @@ Pod::Spec.new do |s|
   # # s.resources = 'BJLiveCore-#{s.version}/**/*.bundle'
 
   s.subspec 'BJHLMediaPlayer' do |ss|
-    ss.frameworks = ['AVFoundation', 'VideoToolbox', 'GLKit']
+    ss.frameworks = ['AVFoundation', 'GLKit', 'VideoToolbox']
     ss.libraries  = ['icucore', 'c++', 'stdc++.6', 'z']
     ss.vendored_frameworks = "BJLiveCore/BJHLMediaPlayer.framework"
   end
 
   # s.frameworks = ['AssetsLibrary', 'CoreGraphics', 'Foundation', 'UIKit', 'Photos']
-  s.frameworks = ['CoreGraphics', 'Foundation', 'UIKit']
+  s.frameworks = ['CoreGraphics', 'Foundation', 'UIKit', 'WebKit']
   # s.ios.vendored_frameworks  = 'BJLiveCore-#{s.version}/BJLiveCore.framework'
 
   s.requires_arc = true
