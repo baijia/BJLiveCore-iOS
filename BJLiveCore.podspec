@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
     s.ios.public_header_files  = 'frameworks/BJLiveCore.framework/Versions/A/Headers/**/*.h'
     s.ios.resource             = 'frameworks/BJLiveCore.framework/Versions/A/Resources/**/*'
     s.ios.vendored_frameworks  = 'frameworks/BJLiveCore.framework'
-    s.frameworks    = ['CoreGraphics', 'Foundation', 'UIKit']
+    s.frameworks    = ['CoreGraphics', 'Foundation', 'UIKit', 'WebKit']
 
     s.subspec 'BJHLMediaPlayer' do |ss|
         ss.xcconfig = {
@@ -31,7 +31,7 @@ Pod::Spec.new do |s|
             'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES'
         }
         ss.vendored_frameworks = "frameworks/BJHLMediaPlayer.framework"
-        ss.frameworks = ['AVFoundation', 'VideoToolbox', 'GLKit']
+        ss.frameworks = ['AVFoundation', 'GLKit', 'VideoToolbox']
         ss.libraries = ['icucore', 'c++', 'stdc++.6', 'z']
     end
 
