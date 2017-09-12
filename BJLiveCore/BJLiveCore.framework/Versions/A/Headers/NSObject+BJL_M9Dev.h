@@ -136,7 +136,7 @@ typedef void (^BJLTuplePackBlock)(BJLTupleUnpackBlock unpack);
 // - (BJLTupleType(NSString *string, NSInteger integer))aTuple;
 #define BJLTupleType(...)       BJLTuple<void (^)(__VA_ARGS__)> *
 @interface BJLTuple<BJLTupleUnpackTypeGeneric> : NSObject
-@property (nonatomic/* , writeonly */, assign, setter=unpack:) id/*<BJLTupleUnpackTypeGeneric>*/ unpack;
+@property (nonatomic/* , writeonly */, assign, setter=unpack:) id/* <BJLTupleUnpackTypeGeneric> */ unpack;
 + (instancetype)tupleWithPack:(BJLTuplePackBlock)pack;
 + (instancetype)defaultTuple;
 @end

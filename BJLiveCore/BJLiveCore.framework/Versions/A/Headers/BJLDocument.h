@@ -25,7 +25,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (BOOL)containsPageIndex:(NSInteger)pageIndex;
 - (nullable NSString *)pageURLStringWithPageIndex:(NSInteger)pageIndex;
-- (nullable NSString *)pageURLStringWithPageIndex:(NSInteger)pageIndex fillSize:(CGSize)size;
+// jpg, png, webp, bmp, gif, src
+- (nullable NSString *)pageURLStringWithPageIndex:(NSInteger)pageIndex
+                                         fillSize:(CGSize)size
+                                           format:(nullable NSString *)ext;
 
 @end
 

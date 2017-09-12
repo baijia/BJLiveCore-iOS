@@ -34,7 +34,7 @@
 #import <BJLiveCore/BJLSpeakingRequestVM.h>
 #import <BJLiveCore/BJLSurvey.h>
 #import <BJLiveCore/BJLUser.h>
-#import <BJLiveCore/BJLiveCore.h>
+#import <BJLiveCore/BJLWebImage.h>
 #import <BJLiveCore/NSError+BJLError.h>
 #import <BJLiveCore/NSObject+BJLObserving.h>
 #import <BJLiveCore/NSObject+BJL_M9Dev.h>
@@ -61,19 +61,25 @@
 #import "BJLRoom.h"
 #import "BJLRoomInfo.h"
 #import "BJLRoomVM.h"
+#import "BJLScrollViewController.h"
 #import "BJLServerRecordingVM.h"
 #import "BJLSlideVM.h"
 #import "BJLSlideshowUI.h"
 #import "BJLSlideshowVM.h"
 #import "BJLSpeakingRequestVM.h"
 #import "BJLSurvey.h"
+#import "BJLTableViewController.h"
 #import "BJLUser.h"
-#import "BJLiveCore.h"
+#import "BJLUserAgent.h"
+#import "BJLWebImage.h"
+#import "BJLWebViewController.h"
 #import "NSError+BJLError.h"
 #import "NSObject+BJLObserving.h"
 #import "NSObject+BJL_M9Dev.h"
 #import "UIKit+BJL_M9Dev.h"
+#import "UIKit+BJLHandler.h"
 
 #endif
 
+FOUNDATION_EXPORT NSString * BJLiveCoreName();
 FOUNDATION_EXPORT NSString * BJLiveCoreVersion();

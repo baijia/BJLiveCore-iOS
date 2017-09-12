@@ -23,7 +23,10 @@ extern const NSTimeInterval BJLSpeakingRequestTimeoutInterval, BJLSpeakingReques
 /**  */
 - (nullable BJLError *)requestForbidSpeakingRequest:(BOOL)forbid;
 
-/** 学生: 发言状态 */
+/** 学生: 发言状态
+ 举手、邀请发言、远程开关音视频等事件会改变此状态
+ 上层需要根据这个状态开启/关闭音视频，上次开关音视频前需要判断当前音视频状态
+ 因为 `speakingDidRemoteControl:` 会直接开关音视频、然后再更新学生的 `speakingEnabled` */
 @property (nonatomic, readonly) BOOL speakingEnabled;
 
 /** 举手自动取消倒计时
@@ -44,7 +47,7 @@ extern const NSTimeInterval BJLSpeakingRequestTimeoutInterval, BJLSpeakingReques
 /** 老师: 收到发言申请 */
 - (BJLObservable)receivedSpeakingRequestFromUser:(BJLUser *)user;
 /** 老师: 允许/拒绝发言申请
- 允许发言后关闭发言调用 `BJLPlayingVM` 的 `remoteUpdatePlayingUserWithID:audioOn:videoOn:` 方法 */
+ 允许发言后，关闭发言需要调用 `BJLPlayingVM` 的 `remoteUpdatePlayingUserWithID:audioOn:videoOn:` 方法 */
 - (nullable BJLError *)replySpeakingRequestToUserID:(NSString *)userID allowed:(BOOL)allowed;
 
 /** 学生&老师: 发言申请被允许/拒绝
@@ -59,9 +62,20 @@ extern const NSTimeInterval BJLSpeakingRequestTimeoutInterval, BJLSpeakingReques
                                            user:(BJLUser *)user;
 - (BJLObservable)speakingRequestDidReply:(NSObject<BJLSpeakingReply> *)reply DEPRECATED_MSG_ATTRIBUTE("use `speakingRequestDidReplyEnabled:isUserCancelled:user:`");
 
-/** 发言状态被开启、关闭
- 参考 `BJLPlayingVM` 的 `remoteUpdatePlayingUserWithID:audioOn:videoOn:` */
-- (BJLObservable)speakingDidRemoteEnabled:(BOOL)enabled;
+/** 学生: 收到邀请发言
+ @param invite  YES 收到邀请、NO 邀请取消 */
+- (BJLObservable)didReceiveSpeakingInvite:(BOOL)invite;
+/** 学生: 接受或拒绝发言邀请
+ 接受后更新学生的 `speakingEnabled`
+ @param accept  接受或拒绝 */
+- (nullable BJLError *)responseSpeakingInvite:(BOOL)accept;
+
+/** 音视频被远程开启、关闭，导致发言状态变化
+ 音视频有一个打开就开启发言、全部关闭就结束发言
+ SDK 内部先开关音视频、然后再更更新学生的 `speakingEnabled` 的状态
+ 参考 `BJLRecordingVM` 的 `recordingDidRemoteChangedRecordingAudio:recordingVideo:recordingAudioChanged:recordingVideoChanged:` */
+- (BJLObservable)speakingDidRemoteControl:(BOOL)enabled;
+- (BJLObservable)speakingDidRemoteEnabled:(BOOL)enabled DEPRECATED_MSG_ATTRIBUTE("use `speakingDidRemoteControl:`");
 - (BJLObservable)speakingBeRemoteEnabled:(BOOL)enabled DEPRECATED_MSG_ATTRIBUTE("use `speakingDidRemoteEnabled:`");
 
 @end

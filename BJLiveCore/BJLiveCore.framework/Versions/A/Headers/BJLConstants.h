@@ -54,7 +54,7 @@ typedef NS_ENUM(NSInteger, BJLRoomType) {
     /** 1 对 1 */
     BJLRoomType_1to1 = 1,
     /** 小班课 */
-    BJLRoomType_1toM = 3,
+    BJLRoomType_1toM = 3, // M: s[m]all
     /** 大班课 */
     BJLRoomType_1toN = 2
     // 小班课是 2、大班课是 3，没错

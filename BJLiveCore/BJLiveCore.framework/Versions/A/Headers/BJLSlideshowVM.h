@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) NSInteger slidePageIndex; // slidePageNumber = slidePageIndex + 1
 
 @property (nonatomic, readonly, copy) NSString *documentID;
-@property (nonatomic, readonly) NSInteger documentPageIndex;
+@property (nonatomic, readonly) NSInteger documentPageIndex; // maybe incorrect if allDocuments changed
 
 @property (nonatomic, readonly, copy) NSString *pageURLString; // image
 @property (nonatomic, readonly) NSInteger width, height;

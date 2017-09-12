@@ -15,8 +15,7 @@ typedef NS_OPTIONS(NSInteger, BJLLoadingStep) {
     BJLLoadingStep_loadRoomInfo         = 1 << 1,
     BJLLoadingStep_connectMasterServer  = 1 << 2,
     BJLLoadingStep_connectRoomServer    = 1 << 3,
-    BJLLoadingStep_connectChatServer    = 1 << 4,
-    BJLLoadingStep_last                 = BJLLoadingStep_connectChatServer,
+    BJLLoadingStep_last                 = BJLLoadingStep_connectRoomServer,
     BJLLoadingStep_all                  = NSIntegerMax,
     BJLLoadingStep_reconnect            = (BJLLoadingStep_all ^ (BJLLoadingStep_loadRoomInfo))
 };

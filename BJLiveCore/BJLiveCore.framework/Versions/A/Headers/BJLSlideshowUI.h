@@ -38,6 +38,10 @@ NS_ASSUME_NONNULL_BEGIN
 /** 清除白板 */
 - (void)clearDrawing;
 
+/** 尝试刷新 PPT
+ PPT 长时间无法加载时调用此方法尝试刷新 */
+- (void)tryToReload;
+
 @property (nonatomic) BOOL whiteboardEnabled DEPRECATED_MSG_ATTRIBUTE("use `drawingEnabled` instead");
 - (void)clearWhiteboard DEPRECATED_MSG_ATTRIBUTE("use `clearDrawing` instead");
 
