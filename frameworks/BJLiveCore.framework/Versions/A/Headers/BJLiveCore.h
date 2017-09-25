@@ -29,6 +29,7 @@
 #import "BJLPlayingVM.h"
 #import "BJLRecordingVM.h"
 #import "BJLRoom.h"
+#import "BJLRoom+Gift.h"
 #import "BJLRoomInfo.h"
 #import "BJLRoomVM.h"
 #import "BJLServerRecordingVM.h"
