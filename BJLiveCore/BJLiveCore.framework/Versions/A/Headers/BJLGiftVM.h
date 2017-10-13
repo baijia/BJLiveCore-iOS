@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 /** 所有打赏记录
  参考 `loadReceivedGifts`
  */
-@property (nonatomic, readonly, copy, nullable) NSArray<NSObject<BJLReceivedGift> *> *receivedGifts;
+@property (nonatomic, readonly, nullable, copy) NSArray<NSObject<BJLReceivedGift> *> *receivedGifts;
 
 /** `receivedGifts` 被覆盖更新
  覆盖更新才调用，增量更新不调用
@@ -37,7 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param teacher 打赏对象，老师在教室内时使用老师信息、否则使用传入的 `teacher`
  @param gift    礼物
  */
-- (nullable BJLError *)sendGift:(BJLGift *)gift toTeacher:(BJLUser *)teacher;
+- (nullable BJLError *)sendGift:(BJLGift *)gift toTeacher:(NSObject<BJLUser> *)teacher;
 
 /** 收到打赏通知
  同时更新 `receivedGifts` */

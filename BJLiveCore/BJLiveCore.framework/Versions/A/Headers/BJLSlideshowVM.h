@@ -34,12 +34,17 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BJLSlideshowVM : BJLBaseVM
 
 /** 所有课件 */
-@property (nonatomic, readonly, copy, nullable) NSArray<BJLDocument *> *allDocuments;
+@property (nonatomic, readonly, nullable, copy) NSArray<NSObject<BJLDocument> *> *allDocuments;
 
 /** `allDocuments` 被覆盖更新
  覆盖更新才调用，增量更新不调用
  */
-- (BJLObservable)allDocumentsDidOverwrite:(nullable NSArray<BJLDocument *> *)allDocuments;
+- (BJLObservable)allDocumentsDidOverwrite:(nullable NSArray<NSObject<BJLDocument> *> *)allDocuments;
+
+/** 通过 documentID 获取 document */
+- (nullable NSObject<BJLDocument> *)documentWithID:(NSString *)documentID;
+/** 通过 documentID、pageIndex 获取 slide page */
+- (nullable BJLSlidePage *)slidePageWithDocumentID:(NSString *)documentID pageIndex:(NSInteger)pageIndex;
 
 /** 加载所有课件
  连接教室后、掉线重新连接后自动调用加载
@@ -49,23 +54,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 添加课件通知
  同时更新 `allDocuments` */
-- (BJLObservable)didAddDocument:(BJLDocument *)document;
+- (BJLObservable)didAddDocument:(NSObject<BJLDocument> *)document;
 
 /** 删除课件通知
  同时更新 `allDocuments` */
-- (BJLObservable)didDeleteDocument:(BJLDocument *)document;
-
-/** 课件总页数 */
-@property (nonatomic, readonly) NSInteger totalPageCount;
-/** 课件当前页信息 */
-@property (nonatomic, readonly, nullable) BJLSlidePage *currentSlidePage;
-/** 通过 documentID 获取 document */
-- (nullable BJLDocument *)documentWithID:(NSString *)documentID;
-/** 通过 documentID、pageIndex 获取 slide page */
-- (nullable BJLSlidePage *)slidePageWithDocumentID:(NSString *)documentID pageIndex:(NSInteger)pageIndex;
+- (BJLObservable)didDeleteDocument:(NSObject<BJLDocument> *)document;
 
 /** 翻页课件通知 */
-- (BJLObservable)didTurnToSlidePage:(BJLSlidePage *)slidePage DEPRECATED_ATTRIBUTE;
+- (BJLObservable)didTurnToSlidePage:(BJLSlidePage *)slidePage;
 
 @end
 

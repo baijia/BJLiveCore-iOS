@@ -11,29 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- *  !!!: avoid retain cycle - bjl_kvo:..., bjl_kvoMerge:..., bjl_observe:..., bjl_observeMerge:...
- *  // recommended: observation as property
- *  @weakify(self); // weakify self
- *  self.observation = // observation property
- *  [self bjl_kvo:@[..., ...]
- *       observer:^(id _Nullable old, id _Nullable now) {
- *           @strongify(self); // strongify self
- *           [self.observation stopObserving];
- *           self.observation = nil;
- *           return YES;
- *       }];
- *  // deprecated: observation as __block ivar
- *  __block id<BJLObservation> observation = // __block observation
- *  [self bjl_kvo:@[..., ...]
- *       // !!!: this observer block MUST be called at least once
- *       observer:^(id _Nullable old, id _Nullable now) {
- *           // !!!: these two statements MUST be called
- *           [observation stopObserving];
- *           observation = nil;
- *           return YES;
- *       }];
- *
- *  TODO: default filter: ifChanged, ifNumberChanged - isEqualToNumber:
+ TODO:
+ 1. bjl_kvo:@[a, b], bjl_observe:@[a, b]
+ 2. default filter: ifChanged
  */
 
 @protocol BJLObservation;
@@ -41,11 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef BOOL (^BJLPropertyFilter)(id _Nullable old, id _Nullable now);
 typedef BOOL (^BJLPropertyObserver)(id _Nullable old, id _Nullable now);
-typedef void (^BJLPropertiesObserver)(id _Nullable old, id _Nullable now);
 
 typedef BOOL (^BJLMethodFilter)();
 typedef BOOL (^BJLMethodObserver)();
-typedef void (^BJLMethodsObserver)();
 
 #define BJLStopObserving NO
 
@@ -64,8 +42,8 @@ typedef void BJLObservable;
 #define _BJLMethodNotify(TYPE, ...) do { \
     _Pragma("clang diagnostic push") \
     _Pragma("clang diagnostic ignored \"-Wdeprecated-declarations\"") \
-    [self bjl_notifyMethodForSelector:_cmd callback:^BOOL(BJLMethodFilter filter, BJLMethodObserver observer, BOOL ignoreReturnValue) { \
-        return (!filter || ((TYPE)filter)(__VA_ARGS__)) && (((TYPE)observer)(__VA_ARGS__) || ignoreReturnValue); \
+    [self bjl_notifyMethodForSelector:_cmd callback:^BOOL(BJLMethodFilter filter, BJLMethodObserver observer) { \
+        return (!filter || ((TYPE)filter)(__VA_ARGS__)) ? ((TYPE)observer)(__VA_ARGS__) : YES; \
     }]; \
 _Pragma("clang diagnostic pop") \
 } \
@@ -81,8 +59,8 @@ while (NO)
 /**
  @param meta        target-property, @see `BJLMakeProperty(TARGET, PROPERTY)`
  @param options     default old | now | initial
- @param filter      return NO to ignore, retaind by self, target and returned id<BJLObservation>
- @param observer    return NO to stop observing, retaind by self, target and returned id<BJLObservation>
+ @param filter      return NO to ignore, retaind by self and target
+ @param observer    return NO to stop observing, retaind by self and target
  @return id<BJLObservation> for `stopObserving`
  */
 - (id<BJLObservation>)bjl_kvo:(BJLPropertyMeta *)meta
@@ -97,19 +75,6 @@ while (NO)
                       options:(NSKeyValueObservingOptions)options
                        filter:(nullable BJLPropertyFilter)filter
                      observer:(BJLPropertyObserver)observer;
-
-- (nullable id<BJLObservation>)bjl_kvoMerge:(NSArray<BJLPropertyMeta *> *)metas
-                                   observer:(BJLPropertiesObserver)observer;
-- (nullable id<BJLObservation>)bjl_kvoMerge:(NSArray<BJLPropertyMeta *> *)metas
-                                     filter:(nullable BJLPropertyFilter)filter
-                                   observer:(BJLPropertiesObserver)observer;
-- (nullable id<BJLObservation>)bjl_kvoMerge:(NSArray<BJLPropertyMeta *> *)metas
-                                    options:(NSKeyValueObservingOptions)options
-                                   observer:(BJLPropertiesObserver)observer;
-- (nullable id<BJLObservation>)bjl_kvoMerge:(NSArray<BJLPropertyMeta *> *)metas
-                                    options:(NSKeyValueObservingOptions)options
-                                     filter:(nullable BJLPropertyFilter)filter
-                                   observer:(BJLPropertiesObserver)observer;
 
 - (void)bjl_stopAllKeyValueObservingOfTarget:(nullable id)target;
 - (void)bjl_stopAllKeyValueObserving;
@@ -124,8 +89,8 @@ while (NO)
 
 /**
  @param meta        target-method, @see `BJLMakeMethod(TARGET, METHOD)`
- @param filter      return NO to ignore, retaind by self, target and returned id<BJLObservation>
- @param observer    return NO to stop observing, retaind by self, target and returned id<BJLObservation>
+ @param filter      return NO to ignore, retaind by self and target
+ @param observer    return NO to stop observing, retaind by self and target
  @return id<BJLObservation> for `stopObserving`
  */
 - (id<BJLObservation>)bjl_observe:(BJLMethodMeta *)meta
@@ -134,19 +99,10 @@ while (NO)
                            filter:(nullable BJLMethodFilter)filter
                          observer:(BJLMethodObserver)observer;
 
-/**
- merged methods should have same arguments
- */
-- (nullable id<BJLObservation>)bjl_observeMerge:(NSArray<BJLMethodMeta *> *)metas
-                                       observer:(BJLMethodsObserver)observer;
-- (nullable id<BJLObservation>)bjl_observeMerge:(NSArray<BJLMethodMeta *> *)metas
-                                         filter:(nullable BJLMethodFilter)filter
-                                       observer:(BJLMethodsObserver)observer;
-
 - (void)bjl_stopAllMethodArgumentsObservingOfTarget:(nullable id)target;
 - (void)bjl_stopAllMethodArgumentsObserving;
 
-- (void)bjl_notifyMethodForSelector:(SEL)selector callback:(BOOL (^)(BJLMethodFilter filter, BJLMethodObserver observer, BOOL ignoreReturnValue))callback DEPRECATED_MSG_ATTRIBUTE("use `BJLMethodNotify(TYPE, ...)`");
+- (void)bjl_notifyMethodForSelector:(SEL)selector callback:(BOOL (^)(BJLMethodFilter filter, BJLMethodObserver observer))callback DEPRECATED_MSG_ATTRIBUTE("use `BJLMethodNotify(TYPE, ...)`");
 
 @end
 

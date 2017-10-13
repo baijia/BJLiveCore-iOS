@@ -17,19 +17,16 @@ typedef long long BJLMilliseconds;
 #define BJL_MSEC_PER_SEC            1000ull
 #define BJLMillisecondsSince1970    BJLMillisecondsFromTimeInterval(NSTimeIntervalSince1970)
 
-static inline BJLMilliseconds BJLMillisecondsFromTimeInterval(NSTimeInterval timeInterval) {
+NS_INLINE BJLMilliseconds BJLMillisecondsFromTimeInterval(NSTimeInterval timeInterval) {
     return (BJLMilliseconds)(timeInterval * BJL_MSEC_PER_SEC);
 }
 
-static inline NSTimeInterval BJLTimeIntervalFromMilliseconds(BJLMilliseconds milliseconds) {
+NS_INLINE NSTimeInterval BJLTimeIntervalFromMilliseconds(BJLMilliseconds milliseconds) {
     return (NSTimeInterval)milliseconds / BJL_MSEC_PER_SEC;
 }
 
-/** WebSocket 请求超时时间 */
-extern const NSTimeInterval BJLWebSocketTimeoutInterval;
-
 /** 部署环境 */
-typedef NS_ENUM(NSInteger, BJLDeployType){
+typedef NS_ENUM (NSInteger, BJLDeployType){
     /** 正式环境 */
     BJLDeployType_www,
     BJLDeployType_test,
@@ -60,25 +57,15 @@ typedef NS_ENUM(NSInteger, BJLRoomType) {
 /** 客户端类型 */
 typedef NS_ENUM(NSUInteger, BJLClientType) {
     /** PC 网页 */
-    BJLClientType_PCWeb = 0,
+    BJLClient_PCWeb = 0,
     /** PC 客户端 */
-    BJLClientType_PCApp = 1,
+    BJLClient_PCApp = 1,
     /** M 站 */
-    BJLClientType_MobileWeb = 2,
+    BJLClient_MobileWeb = 2,
     /** iOS 客户端 */
-    BJLClientType_iOSApp = 3,
+    BJLClient_iOSApp = 3,
     /** Android 客户端 */
-    BJLClientType_AndroidApp = 4
-};
-
-/** 在线状态 */
-typedef NS_ENUM(NSInteger, BJLOnlineState) {
-    /** 在线 */
-    BJLOnlineState_visible = 0,
-    /** 隐身 */
-    BJLOnlineState_invisible = 1,
-    /** 离线 */
-    BJLOnlineState_offline = 2 
+    BJLClient_AndroidApp = 4
 };
 
 /** 媒体类型限制 */
@@ -89,6 +76,14 @@ typedef NS_ENUM(NSInteger, BJLMediaLimit) {
     BJLMediaLimit_audioOnly = 1
 };
 
+/** 学生发言方式 */
+typedef NS_ENUM(NSUInteger, BJLSpeakType) {
+    /** 自由模式（一般在1对1模式下） */
+    BJLSpeakType_free = 0,
+    /** 限制模式。 默认值， 需要举手才能发言 */
+    BJLSpeakType_limit = 1
+};
+
 /** 链路类型 */
 typedef NS_ENUM(NSInteger, BJLLinkType) {
     /** TCP */
@@ -96,19 +91,9 @@ typedef NS_ENUM(NSInteger, BJLLinkType) {
     /** UDP */
     BJLLinkType_UDP = 1
 };
-static inline BOOL BJL_isValidLinkType(BJLLinkType linkType) {
+NS_INLINE BOOL BJL_isValidLinkType(BJLLinkType linkType) {
     return linkType == BJLLinkType_TCP || linkType == BJLLinkType_UDP;
 }
-
-/** 视频方向 */
-typedef NS_ENUM(NSInteger, BJLVideoOrientation) {
-    /** 自动 - 使用设备方向 */
-    BJLVideoOrientation_auto,
-    /** 纵向 */
-    BJLVideoOrientation_portrait,
-    /** 横向 */
-    BJLVideoOrientation_landscape
-};
 
 /** 视频清晰度 */
 typedef NS_ENUM(NSInteger, BJLVideoDefinition) {
@@ -122,34 +107,30 @@ typedef NS_ENUM(NSInteger, BJLVideoDefinition) {
 
 /** 美颜 */
 typedef NS_ENUM(NSInteger, BJLVideoBeautifyLevel) {
-    BJLVideoBeautifyLevel_0,
-    BJLVideoBeautifyLevel_1,
-    BJLVideoBeautifyLevel_2,
-    BJLVideoBeautifyLevel_3,
-    BJLVideoBeautifyLevel_4,
-    BJLVideoBeautifyLevel_5,
-    BJLVideoBeautifyLevel_off = BJLVideoBeautifyLevel_0,
-    BJLVideoBeautifyLevel_on  = BJLVideoBeautifyLevel_5,
-    BJLVideoBeautifyLevel_default = BJLVideoBeautifyLevel_off,
-    BJLVideoBeautifyLevel0 DEPRECATED_ATTRIBUTE = BJLVideoBeautifyLevel_0,
-    BJLVideoBeautifyLevel1 DEPRECATED_ATTRIBUTE = BJLVideoBeautifyLevel_1,
-    BJLVideoBeautifyLevel2 DEPRECATED_ATTRIBUTE = BJLVideoBeautifyLevel_2,
-    BJLVideoBeautifyLevel3 DEPRECATED_ATTRIBUTE = BJLVideoBeautifyLevel_3,
-    BJLVideoBeautifyLevel4 DEPRECATED_ATTRIBUTE = BJLVideoBeautifyLevel_4,
-    BJLVideoBeautifyLevel5 DEPRECATED_ATTRIBUTE = BJLVideoBeautifyLevel_5,
-    BJLVideoBeautifyLevel_close DEPRECATED_ATTRIBUTE = BJLVideoBeautifyLevel_off,
-    BJLVideoBeautifyLevel_min DEPRECATED_ATTRIBUTE = BJLVideoBeautifyLevel_1,
-    BJLVideoBeautifyLevel_max DEPRECATED_ATTRIBUTE = BJLVideoBeautifyLevel_5
+    BJLVideoBeautifyLevel0,
+    BJLVideoBeautifyLevel1,
+    BJLVideoBeautifyLevel2,
+    BJLVideoBeautifyLevel3,
+    BJLVideoBeautifyLevel4,
+    BJLVideoBeautifyLevel5,
+    /** 默认 */
+    BJLVideoBeautifyLevel_default = BJLVideoBeautifyLevel0,
+    /** 关闭 */
+    BJLVideoBeautifyLevel_close = BJLVideoBeautifyLevel0,
+    /** 最小 */
+    BJLVideoBeautifyLevel_min = BJLVideoBeautifyLevel1,
+    /** 最大 */
+    BJLVideoBeautifyLevel_max = BJLVideoBeautifyLevel5
 };
 
 /** 课件显示模式 */
-typedef NS_ENUM(NSInteger, BJLContentMode) {
+typedef NS_ENUM(NSInteger, BJLSlideshowContentMode) {
     /** 完整 */
-    BJLContentMode_scaleAspectFit,
+    BJLSlideshowContentMode_scaleAspectFit,
     /** 铺满 */
-    BJLContentMode_scaleAspectFill,
+    BJLSlideshowContentMode_scaleAspectFill
     /** 拉伸 */
-    BJLContentMode_scaleToFill
+    // BJLSlideshowContentMode_scaleToFill
 };
 
 /** 礼物类型 */

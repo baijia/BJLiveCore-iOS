@@ -8,8 +8,6 @@
 
 #import "BJLBaseVM.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface BJLMediaVM : BJLBaseVM
 
 /** 上、下行链路类型 */
@@ -21,5 +19,3 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSArray<NSString *> *)avDebugInfo;
 
 @end
-
-NS_ASSUME_NONNULL_END
