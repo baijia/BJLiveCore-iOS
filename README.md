@@ -4,6 +4,7 @@ BJLiveCore
 详细的文档、示例、常见问题等请访问 百家云官方网站 [http://www.baijiayun.com/](http://www.baijiayun.com/)
 
 - [官方文档](http://dev.baijiayun.com/default/wiki/index)
+- [API 文档](https://baijia.github.io/BJLiveCore-iOS/)
 - [版本记录](./wiki/CHANGELOG.md)
 - [更多 SDK](https://github.com/baijia)
 
