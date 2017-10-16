@@ -1,0 +1,1653 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>BJLRoom Class Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1333)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">AppleDoc </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">baijiayun</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+
+	
+	
+	<optgroup label="Properties">
+		
+		<option value="//api/name/chatVM">chatVM</option>
+		
+		<option value="//api/name/disablePPTAnimation">disablePPTAnimation</option>
+		
+		<option value="//api/name/featureConfig">featureConfig</option>
+		
+		<option value="//api/name/giftVM">giftVM</option>
+		
+		<option value="//api/name/inRoom">inRoom</option>
+		
+		<option value="//api/name/loadingVM">loadingVM</option>
+		
+		<option value="//api/name/loginUser">loginUser</option>
+		
+		<option value="//api/name/loginUserIsPresenter">loginUserIsPresenter</option>
+		
+		<option value="//api/name/mediaVM">mediaVM</option>
+		
+		<option value="//api/name/onlineUsersVM">onlineUsersVM</option>
+		
+		<option value="//api/name/playingVM">playingVM</option>
+		
+		<option value="//api/name/recordingVM">recordingVM</option>
+		
+		<option value="//api/name/recordingView">recordingView</option>
+		
+		<option value="//api/name/roomInfo">roomInfo</option>
+		
+		<option value="//api/name/roomVM">roomVM</option>
+		
+		<option value="//api/name/serverRecordingVM">serverRecordingVM</option>
+		
+		<option value="//api/name/slideVM">slideVM</option>
+		
+		<option value="//api/name/slideshowVM">slideshowVM</option>
+		
+		<option value="//api/name/slideshowViewController">slideshowViewController</option>
+		
+		<option value="//api/name/speakingRequestVM">speakingRequestVM</option>
+		
+		<option value="//api/name/state">state</option>
+		
+		<option value="//api/name/vmsAvailable">vmsAvailable</option>
+		
+	</optgroup>
+	
+
+	
+	<optgroup label="Class Methods">
+		
+		<option value="//api/name/roomWithID:apiSign:user:">+ roomWithID:apiSign:user:</option>
+		
+		<option value="//api/name/roomWithSecret:userName:userAvatar:">+ roomWithSecret:userName:userAvatar:</option>
+		
+	</optgroup>
+	
+
+	
+	<optgroup label="Instance Methods">
+		
+		<option value="//api/name/enter">- enter</option>
+		
+		<option value="//api/name/enterRoomFailureWithError:">- enterRoomFailureWithError:</option>
+		
+		<option value="//api/name/enterRoomSuccess">- enterRoomSuccess</option>
+		
+		<option value="//api/name/exit">- exit</option>
+		
+		<option value="//api/name/roomDidExitWithError:">- roomDidExitWithError:</option>
+		
+		<option value="//api/name/roomWillExitWithError:">- roomWillExitWithError:</option>
+		
+		<option value="//api/name/setReloadingBlock:">- setReloadingBlock:</option>
+		
+	</optgroup>
+	
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">BJLRoom Class Reference</h1>
+
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<th>Inherits from</th>
+	<td>NSObject</td>
+</tr><tr>
+	<th>Declared in</th>
+	<td>BJLRoom.h<br />BJLRoom.m</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<h3>直播教室</h3><p>可同时存在多个实例，但最多只有一个教室处于进入状态，后执行 <a href="#//api/name/enter"><code>enter</code></a> 的教室会把之前的教室踢掉</p>
+					</div>
+					
+					
+
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						
+
+						
+						
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/roomWithID:apiSign:user:" title="roomWithID:apiSign:user:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/roomWithID:apiSign:user:">+&nbsp;roomWithID:apiSign:user:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>通过 ID 创建教室</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (__kindof instancetype)roomWithID:(NSString *)<em>roomID</em> apiSign:(NSString *)<em>apiSign</em> user:(BJLUser *)<em>user</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>roomID</code></th>
+						<td><p>教室 ID</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>apiSign</code></th>
+						<td><p>API sign</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>user</code></th>
+						<td><p>用户</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>教室</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/roomWithSecret:userName:userAvatar:" title="roomWithSecret:userName:userAvatar:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/roomWithSecret:userName:userAvatar:">+&nbsp;roomWithSecret:userName:userAvatar:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>通过参加码创建教室</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (__kindof instancetype)roomWithSecret:(NSString *)<em>roomSecret</em> userName:(NSString *)<em>userName</em> userAvatar:(nullable NSString *)<em>userAvatar</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>roomSecret</code></th>
+						<td><p>教室参加码，目前只支持老师、学生角色</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>userName</code></th>
+						<td><p>用户名</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>userAvatar</code></th>
+						<td><p>用户头像 URL</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>教室</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/state" title="state"></a>
+	<h3 class="method-title"><code><a href="#//api/name/state">&nbsp;&nbsp;state</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>教室状态</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BJLRoomState state</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>正常流程: initialized > loadingInfo > loadedInfo > connectingServer > connectedServer > exited</p><p>加载教室信息出错: loadingInfo > initialized + loadInfoError</p><p>服务器连接出错/断开: connectingServer > loadedInfo + connectServerError</p><p>随时退出: any > exited</p><p><code>state</code> 属性支持 KVO、各种 <code>error</code> 不支持 KVO，<code>state</code> 发生变化时各 <code>error</code> 可用</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/inRoom" title="inRoom"></a>
+	<h3 class="method-title"><code><a href="#//api/name/inRoom">&nbsp;&nbsp;inRoom</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>是否在教室里</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL inRoom</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>在 <a href="#//api/name/enterRoomSuccess"><code>enterRoomSuccess</code></a> 和 <a href="#//api/name/roomDidExitWithError:"><code>roomDidExitWithError:</code></a> 之间是 YES，包括断开重连</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/enter" title="enter"></a>
+	<h3 class="method-title"><code><a href="#//api/name/enter">&ndash;&nbsp;enter</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>进入教室</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)enter</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/enterRoomSuccess" title="enterRoomSuccess"></a>
+	<h3 class="method-title"><code><a href="#//api/name/enterRoomSuccess">&ndash;&nbsp;enterRoomSuccess</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>进入教室成功</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)enterRoomSuccess</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>成功时所有初始化工作已经结束，vm 的状态、数据已经和服务端同步，并可调用 vm 方法</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/enterRoomFailureWithError:" title="enterRoomFailureWithError:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/enterRoomFailureWithError:">&ndash;&nbsp;enterRoomFailureWithError:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>进入教室失败</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)enterRoomFailureWithError:(BJLError *)<em>error</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>error</code></th>
+						<td><p>错误信息</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/setReloadingBlock:" title="setReloadingBlock:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/setReloadingBlock:">&ndash;&nbsp;setReloadingBlock:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>断开、重连</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)setReloadingBlock:(void ( ^ _Nullable ) ( BJLLoadingVM *reloadingVM , void ( ^ callback ) ( BOOL reload ) ))<em>reloadingBlock</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>reloadingBlock</code></th>
+						<td><p>重连回调。reloadingVM：重连 vm；<a href="#//api/name/callback">callback</a>(re<a href="#//api/name/load">load</a>)：调用 <a href="#//api/name/callback">callback</a> 时 re<a href="#//api/name/load">load</a> 参数传 YES 重连，NO 将导致 <code>异常退出</code></p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>网络连接断开时回调，回调 <a href="#//api/name/callback">callback</a> 确认是否重连，YES 重连、NO 退出教室，也可延时或者手动调用 <a href="#//api/name/callback">callback</a></p><p>可通过 <a href="#//api/name/reloadingVM"><code>reloadingVM</code></a> 监听重连的进度和结果</p><p>默认（不设置此回调）在断开时自动重连、重连过程中遇到错误将 <code>异常退出</code></p><p>!!!: 断开重连过程中 vm 的状态、数据没有与服务端同步，调用其它 vm 方法时发起的网络请求会被丢弃、甚至产生不可预期的错误</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/exit" title="exit"></a>
+	<h3 class="method-title"><code><a href="#//api/name/exit">&ndash;&nbsp;exit</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>退出教室</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)exit</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/roomWillExitWithError:" title="roomWillExitWithError:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/roomWillExitWithError:">&ndash;&nbsp;roomWillExitWithError:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>即将退出教室的通知 - 主动/异常</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)roomWillExitWithError:(nullable BJLError *)<em>error</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>error</code></th>
+						<td><p>错误信息</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>主动退出 <code>error</code> 为 nil，否则为异常退出</p><p>参考 <code>BJLErrorCode</code></p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/roomDidExitWithError:" title="roomDidExitWithError:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/roomDidExitWithError:">&ndash;&nbsp;roomDidExitWithError:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>退出教室的通知 - 主动/异常</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)roomDidExitWithError:(nullable BJLError *)<em>error</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>error</code></th>
+						<td><p>错误信息</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>主动退出 <code>error</code> 为 nil，否则为异常退出</p><p>参考 <code>BJLErrorCode</code></p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/roomInfo" title="roomInfo"></a>
+	<h3 class="method-title"><code><a href="#//api/name/roomInfo">&nbsp;&nbsp;roomInfo</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>教室信息</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, copy, nullable) NSObject&lt;BJLRoomInfo&gt; *roomInfo</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>BJLiveCore 内部【不】读取此处 <code>roomInfo</code></p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/loginUser" title="loginUser"></a>
+	<h3 class="method-title"><code><a href="#//api/name/loginUser">&nbsp;&nbsp;loginUser</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>当前登录用户信息</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, copy, nullable) BJLUser *loginUser</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>BJLiveCore 内部【不】读取此处 <code>loginUser</code></p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/loginUserIsPresenter" title="loginUserIsPresenter"></a>
+	<h3 class="method-title"><code><a href="#//api/name/loginUserIsPresenter">&nbsp;&nbsp;loginUserIsPresenter</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>当前登录用户是否是主讲人</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL loginUserIsPresenter</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>不支持 KVO</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/featureConfig" title="featureConfig"></a>
+	<h3 class="method-title"><code><a href="#//api/name/featureConfig">&nbsp;&nbsp;featureConfig</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>功能设置</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, copy, nullable) BJLFeatureConfig *featureConfig</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>BJLiveCore 内部【不】读取此处 featureConfig</p><p>TODO: MingLQ - if nil</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/vmsAvailable" title="vmsAvailable"></a>
+	<h3 class="method-title"><code><a href="#//api/name/vmsAvailable">&nbsp;&nbsp;vmsAvailable</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>vm、view 初始化状态，值为 YES 时 vm 可用</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL vmsAvailable</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>在进教室 成功/失败 之前，vm、view 就已经可用，开始监听 vm 的属性、方法调用以及显示 view，但是之后可能进教室成功、也可能失败</p><p>!!!: 但此时 <a href="#//api/name/loadingVM"><code>loadingVM</code></a> 以外的 vm 并没有与 server 建立连接，vm 的状态、数据没有与服务端同步，调用 vm 方法时发起的网络请求会被丢弃、甚至产生不可预期的错误，断开重连时类似</p><p>KVO 此属性时 option 包含 initial(默认)，即使开始 KVO 时值已经是 YES 也会执行 KVO 回调，参考 NSObject+BJLObserving.h</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/loadingVM" title="loadingVM"></a>
+	<h3 class="method-title"><code><a href="#//api/name/loadingVM">&nbsp;&nbsp;loadingVM</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>进教室的 loading 状态，参考 <a href="../Classes/BJLLoadingVM.html"><code>BJLLoadingVM</code></a></p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, nullable) BJLLoadingVM *loadingVM</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/roomVM" title="roomVM"></a>
+	<h3 class="method-title"><code><a href="#//api/name/roomVM">&nbsp;&nbsp;roomVM</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>教室信息、状态，用户信息，公告等，参考 <a href="../Classes/BJLRoomVM.html"><code>BJLRoomVM</code></a></p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, nullable) BJLRoomVM *roomVM</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/onlineUsersVM" title="onlineUsersVM"></a>
+	<h3 class="method-title"><code><a href="#//api/name/onlineUsersVM">&nbsp;&nbsp;onlineUsersVM</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>在线用户，参考 <a href="../Classes/BJLOnlineUsersVM.html"><code>BJLOnlineUsersVM</code></a></p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, nullable) BJLOnlineUsersVM *onlineUsersVM</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/speakingRequestVM" title="speakingRequestVM"></a>
+	<h3 class="method-title"><code><a href="#//api/name/speakingRequestVM">&nbsp;&nbsp;speakingRequestVM</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>发言申请/处理，参考 <a href="../Classes/BJLSpeakingRequestVM.html"><code>BJLSpeakingRequestVM</code></a></p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, nullable) BJLSpeakingRequestVM *speakingRequestVM</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/mediaVM" title="mediaVM"></a>
+	<h3 class="method-title"><code><a href="#//api/name/mediaVM">&nbsp;&nbsp;mediaVM</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>音视频 设置，参考 <a href="../Classes/BJLMediaVM.html"><code>BJLMediaVM</code></a></p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, nullable) BJLMediaVM *mediaVM</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/recordingVM" title="recordingVM"></a>
+	<h3 class="method-title"><code><a href="#//api/name/recordingVM">&nbsp;&nbsp;recordingVM</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>音视频 采集 - 个人，参考 <a href="../Classes/BJLRecordingVM.html"><code>BJLRecordingVM</code></a></p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, nullable) BJLRecordingVM *recordingVM</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/recordingView" title="recordingView"></a>
+	<h3 class="method-title"><code><a href="#//api/name/recordingView">&nbsp;&nbsp;recordingView</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>视频采集视图 - 个人，</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, nullable) UIView *recordingView</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>参考 <a href="../Classes/BJLRecordingVM.html"><code>BJLRecordingVM</code></a> 的 <code>recordingVideo</code>、<code>inputVideoAspectRatio</code></p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/playingVM" title="playingVM"></a>
+	<h3 class="method-title"><code><a href="#//api/name/playingVM">&nbsp;&nbsp;playingVM</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>音视频 播放 - 他人，参考 <a href="../Classes/BJLPlayingVM.html"><code>BJLPlayingVM</code></a></p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, nullable) BJLPlayingVM *playingVM</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/slideVM" title="slideVM"></a>
+	<h3 class="method-title"><code><a href="#//api/name/slideVM">&nbsp;&nbsp;slideVM</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>课件管理，参考 <a href="../Classes/BJLSlideVM.html"><code>BJLSlideVM</code></a></p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, nullable) BJLSlideVM *slideVM</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/slideshowVM" title="slideshowVM"></a>
+	<h3 class="method-title"><code><a href="#//api/name/slideshowVM">&nbsp;&nbsp;slideshowVM</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>课件显示、控制，参考 <a href="../Classes/BJLSlideshowVM.html"><code>BJLSlideshowVM</code></a></p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, nullable) BJLSlideshowVM *slideshowVM</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/disablePPTAnimation" title="disablePPTAnimation"></a>
+	<h3 class="method-title"><code><a href="#//api/name/disablePPTAnimation">&nbsp;&nbsp;disablePPTAnimation</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>禁用 PPT 动画</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic) BOOL disablePPTAnimation</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>是否禁用 PPT 动画由两个参数控制，任意一个值为 YES 就禁止</p><p>1、由服务端通过 <code>BJLFeatureConfig</code> 的 <code>disablePPTAnimation</code> 控制</p><p>2、由上层设置这个 <code>disablePPTAnimation</code></p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/slideshowViewController" title="slideshowViewController"></a>
+	<h3 class="method-title"><code><a href="#//api/name/slideshowViewController">&nbsp;&nbsp;slideshowViewController</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>课件、画笔视图</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, nullable) UIViewController&lt;BJLSlideshowUI&gt; *slideshowViewController</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>尺寸、位置随意设定</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/serverRecordingVM" title="serverRecordingVM"></a>
+	<h3 class="method-title"><code><a href="#//api/name/serverRecordingVM">&nbsp;&nbsp;serverRecordingVM</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>云端录课，参考 <a href="../Classes/BJLServerRecordingVM.html"><code>BJLServerRecordingVM</code></a></p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, nullable) BJLServerRecordingVM *serverRecordingVM</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/giftVM" title="giftVM"></a>
+	<h3 class="method-title"><code><a href="#//api/name/giftVM">&nbsp;&nbsp;giftVM</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>打赏，参考 <a href="../Classes/BJLGiftVM.html">BJLGiftVM</a></p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, nullable) BJLGiftVM *giftVM</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/chatVM" title="chatVM"></a>
+	<h3 class="method-title"><code><a href="#//api/name/chatVM">&nbsp;&nbsp;chatVM</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>聊天/弹幕，参考 <a href="../Classes/BJLChatVM.html">BJLChatVM</a></p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, nullable) BJLChatVM *chatVM</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+					</div>
+					
+					
+
+                    
+                    
+          
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2017 baijiayun. All rights reserved. Updated: 2017-10-16</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>

@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3039F3C07F72330885F68CA6 /* libPods-BJLiveCoreTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 110EA2B0C46121E343582F0B /* libPods-BJLiveCoreTests.a */; };
-		A39D15E93DC6A2B9FE22D054 /* libPods-BJLiveCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0868FFDB3D8B471717578365 /* libPods-BJLiveCore.a */; };
-		A5482820B5E6D98619A3FE7F /* libPods-BJLiveCoreUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A3A7CD96DF2AACAD03848011 /* libPods-BJLiveCoreUITests.a */; };
+		532F41901F66A4BD0016EBB4 /* BJPlayingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 532F418F1F66A4BD0016EBB4 /* BJPlayingView.m */; };
+		5DF19B45DC068B5A4E88CC2B /* libPods-BJLiveCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D9A5008473A0C959C0EBED9 /* libPods-BJLiveCore.a */; };
+		61DA7A9A2A20FE7E07724B84 /* libPods-BJLiveCoreTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 465D0A69099D3D7165F061EE /* libPods-BJLiveCoreTests.a */; };
+		6C76E982CAC38296DF7E2F9B /* libPods-BJLiveCoreUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F374DB9C3DAC683E912872EB /* libPods-BJLiveCoreUITests.a */; };
 		DF0B3ABF1E0570E900E540CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0B3ABE1E0570E900E540CC /* main.m */; };
 		DF0B3AC21E0570E900E540CC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0B3AC11E0570E900E540CC /* AppDelegate.m */; };
 		DF0B3ACA1E0570E900E540CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF0B3AC91E0570E900E540CC /* Assets.xcassets */; };
@@ -49,13 +50,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0868FFDB3D8B471717578365 /* libPods-BJLiveCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BJLiveCore.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		110EA2B0C46121E343582F0B /* libPods-BJLiveCoreTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BJLiveCoreTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E20105E229FB2E09C7C0993 /* Pods-BJLiveCoreUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BJLiveCoreUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BJLiveCoreUITests/Pods-BJLiveCoreUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		3D9A5008473A0C959C0EBED9 /* libPods-BJLiveCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BJLiveCore.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		465D0A69099D3D7165F061EE /* libPods-BJLiveCoreTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BJLiveCoreTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B5A191A09986D643AEC06CE /* Pods-BJLiveCoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BJLiveCoreTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BJLiveCoreTests/Pods-BJLiveCoreTests.release.xcconfig"; sourceTree = "<group>"; };
+		532F418E1F66A4BD0016EBB4 /* BJPlayingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BJPlayingView.h; sourceTree = "<group>"; };
+		532F418F1F66A4BD0016EBB4 /* BJPlayingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BJPlayingView.m; sourceTree = "<group>"; };
 		9C65EDE424B7E0746A328A3E /* Pods-BJLiveCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BJLiveCore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BJLiveCore/Pods-BJLiveCore.debug.xcconfig"; sourceTree = "<group>"; };
 		9ED8A60CA1F17F6C097F139B /* Pods-BJLiveCoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BJLiveCoreTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BJLiveCoreTests/Pods-BJLiveCoreTests.debug.xcconfig"; sourceTree = "<group>"; };
-		A3A7CD96DF2AACAD03848011 /* libPods-BJLiveCoreUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BJLiveCoreUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3E106F522AD93BB2FECF4F7 /* Pods-BJLiveCoreUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BJLiveCoreUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BJLiveCoreUITests/Pods-BJLiveCoreUITests.release.xcconfig"; sourceTree = "<group>"; };
 		DF0B3ABA1E0570E900E540CC /* BJLiveCore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BJLiveCore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF0B3ABE1E0570E900E540CC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 		DF96FFD11EE82F320029E140 /* UIViewController+BJUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BJUtil.m"; sourceTree = "<group>"; };
 		DF96FFD31EE830AA0029E140 /* BJTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BJTableViewController.h; sourceTree = "<group>"; };
 		DF96FFD41EE830AA0029E140 /* BJTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BJTableViewController.m; sourceTree = "<group>"; };
+		F374DB9C3DAC683E912872EB /* libPods-BJLiveCoreUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BJLiveCoreUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC466E6262F221A0BC20DE95 /* Pods-BJLiveCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BJLiveCore.release.xcconfig"; path = "Pods/Target Support Files/Pods-BJLiveCore/Pods-BJLiveCore.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,7 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A39D15E93DC6A2B9FE22D054 /* libPods-BJLiveCore.a in Frameworks */,
+				5DF19B45DC068B5A4E88CC2B /* libPods-BJLiveCore.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,7 +116,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3039F3C07F72330885F68CA6 /* libPods-BJLiveCoreTests.a in Frameworks */,
+				61DA7A9A2A20FE7E07724B84 /* libPods-BJLiveCoreTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,7 +124,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5482820B5E6D98619A3FE7F /* libPods-BJLiveCoreUITests.a in Frameworks */,
+				6C76E982CAC38296DF7E2F9B /* libPods-BJLiveCoreUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,11 +134,20 @@
 		4999FC49765F5DF2E7F5A278 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0868FFDB3D8B471717578365 /* libPods-BJLiveCore.a */,
-				110EA2B0C46121E343582F0B /* libPods-BJLiveCoreTests.a */,
-				A3A7CD96DF2AACAD03848011 /* libPods-BJLiveCoreUITests.a */,
+				3D9A5008473A0C959C0EBED9 /* libPods-BJLiveCore.a */,
+				465D0A69099D3D7165F061EE /* libPods-BJLiveCoreTests.a */,
+				F374DB9C3DAC683E912872EB /* libPods-BJLiveCoreUITests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		532F418D1F66A4940016EBB4 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				532F418E1F66A4BD0016EBB4 /* BJPlayingView.h */,
+				532F418F1F66A4BD0016EBB4 /* BJPlayingView.m */,
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 		B2FD54C6F9EE997E4EE785A9 /* Pods */ = {
@@ -283,6 +295,7 @@
 				DF0B3B341E06DE1600E540CC /* BJRoomViewController+media.m */,
 				DF0B3B361E06FFE800E540CC /* BJRoomViewController+users.h */,
 				DF0B3B371E06FFE800E540CC /* BJRoomViewController+users.m */,
+				532F418D1F66A4940016EBB4 /* view */,
 			);
 			path = live;
 			sourceTree = "<group>";
@@ -439,9 +452,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-BJLiveCore/Pods-BJLiveCore-frameworks.sh",
+				"${PODS_ROOT}/BJLiveCore/frameworks/BJHLMediaPlayer.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BJHLMediaPlayer.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -454,13 +470,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BJLiveCore-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		20D53A8D0BFEE36B844A919E /* [CP] Check Pods Manifest.lock */ = {
@@ -469,13 +488,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BJLiveCoreTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		29838BF7B538F34F61C732DB /* [CP] Embed Pods Frameworks */ = {
@@ -529,9 +551,21 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-BJLiveCore/Pods-BJLiveCore-resources.sh",
+				"${PODS_ROOT}/BJLiveCore/frameworks/BJLiveCore.framework/Versions/A/Resources/BJLiveCore.xcassets/bjl_ic_ppt_next.imageset/bjl_ic_ppt_next@2x.png",
+				"${PODS_ROOT}/BJLiveCore/frameworks/BJLiveCore.framework/Versions/A/Resources/BJLiveCore.xcassets/bjl_ic_ppt_next.imageset/bjl_ic_ppt_next@3x.png",
+				"${PODS_ROOT}/BJLiveCore/frameworks/BJLiveCore.framework/Versions/A/Resources/BJLiveCore.xcassets/bjl_ic_ppt_next.imageset/Contents.json",
+				"${PODS_ROOT}/BJLiveCore/frameworks/BJLiveCore.framework/Versions/A/Resources/BJLiveCore.xcassets/bjl_ic_ppt_prev.imageset/bjl_ic_ppt_prev@2x.png",
+				"${PODS_ROOT}/BJLiveCore/frameworks/BJLiveCore.framework/Versions/A/Resources/BJLiveCore.xcassets/bjl_ic_ppt_prev.imageset/bjl_ic_ppt_prev@3x.png",
+				"${PODS_ROOT}/BJLiveCore/frameworks/BJLiveCore.framework/Versions/A/Resources/BJLiveCore.xcassets/bjl_ic_ppt_prev.imageset/Contents.json",
+				"${PODS_ROOT}/BJLiveCore/frameworks/BJLiveCore.framework/Versions/A/Resources/BJLiveCore.xcassets/Contents.json",
+				"${PODS_ROOT}/BJLiveCore/frameworks/BJLiveCore.framework/Versions/A/Resources/BJLiveCore.xcassets",
+				"${PODS_ROOT}/BJLiveCore/frameworks/BJLiveCore.framework/Versions/A/Resources/BJLiveCore.xcassets/bjl_ic_ppt_next.imageset",
+				"${PODS_ROOT}/BJLiveCore/frameworks/BJLiveCore.framework/Versions/A/Resources/BJLiveCore.xcassets/bjl_ic_ppt_prev.imageset",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -559,13 +593,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BJLiveCoreUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -580,6 +617,7 @@
 				DF0B3B351E06DE1600E540CC /* BJRoomViewController+media.m in Sources */,
 				DF0B3B381E06FFE800E540CC /* BJRoomViewController+users.m in Sources */,
 				DF0B3AFA1E06420800E540CC /* BJLoginView.m in Sources */,
+				532F41901F66A4BD0016EBB4 /* BJPlayingView.m in Sources */,
 				DF0B3B2C1E065E5300E540CC /* BJConsoleViewController.m in Sources */,
 				DF0B3B121E0642FA00E540CC /* BJAppConfig.m in Sources */,
 				DF0B3AC21E0570E900E540CC /* AppDelegate.m in Sources */,

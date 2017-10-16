@@ -38,7 +38,7 @@ static NSString * const BJConsoleDefaultIdentifier = @"default";
 - (void)printLine:(NSString *)line {
     [self.lines bjl_addObjectOrNil:line];
     
-    while (self.lines.count > 1000) {
+    while (self.lines.count > 100) {
         [self.lines removeObjectAtIndex:0];
     }
     
@@ -66,6 +66,7 @@ static NSString * const BJConsoleDefaultIdentifier = @"default";
     self.tableView.indicatorStyle = UIScrollViewIndicatorStyleBlack;
     
     self.tableView.allowsSelection = NO;
+    self.tableView.bounces = NO;
     
     [self.tableView registerClass:[UITableViewCell class]
            forCellReuseIdentifier:BJConsoleDefaultIdentifier];

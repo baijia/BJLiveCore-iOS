@@ -2,14 +2,101 @@ Change Log
 ==========
 
 - 标记为 **粗体** 的改动需要特别留意；
-- 被标记 `DEPRECATED` 的代码 **将在 `1.0` 版本移除**；
+- 被标记 `DEPRECATED` 的代码 **将在大版本升级时移除**；
+- 带有 `alpha`、`beta`、`rc` 字样的版本，代码和功能都不稳定，**请勿随意升级**；
 
-## 0.4.4
+## 1.0.0 
 
-- 解决视频画面黑暗的问题；
+- **新功能**：支持禁止举手、邀请/强制发言，支持直播添加水印，增加老师开始共享屏幕/播放本地视频的通知；
+
+- **进教室流程优化**：减少加载步骤，是否使用 3/4G 网络交给上层自行判断，支持同时多个助教进教室；
+
+- **音视频优化**：取消播放视频个数的限制，更好地支持海外直播线路，App 退入后台时停止采集音频、避免泄露隐私，支持静音，解决花屏等音视频质量问题，解决直播同时播放本地音频时崩溃的问题；
+
+- **画笔优化**：画笔数据压缩使用新算法、涂鸦轨迹显示更平滑、支持圆和椭圆、支持填充颜色等，解决 iOS 8 使用画笔时偶现的崩溃问题；
+
+- **PPT 优化**：支持 PPT 动画，支持快速跳转到某一页，图片尺寸优化、图片加载增加重试逻辑、解决有时图片无法显示的问题，支持 WebP 格式加载 PPT 图片；
+
+支持 WebP 格式需要在 `Podfile` 中加入 `BJLiveBase` 的 `SDWebImage` 或者 `YYWebImage` 模块
+```
+// SDWebImage
+pod 'BJLiveBase/WebImage/SDWebImage'
+// YYWebImage
+pod 'BJLiveBase/WebImage/YYWebImage'
+```
+
+- 整理通用的工具类代码并已 **开源** [BJLiveBase](https://github.com/baijia/BJLiveBase/)，其中包括 `KVO` 和方法监听、`Foundation` 和 `UIKit` 常用类扩展等，欢迎贡献代码、帮忙改进；
+
+- 去掉对 `JRSwizzle`、`libextobjc`、`SDWebImage` 等开源库的强制 **依赖**，改为不依赖或可选依赖；
+
+- 标记为 `DEPRECATED` 的 `class`、`protocol`、`method`、`property`、`const`、`enum` 等 **全部删除**；
+
+删除的内容及替代实现：
+```objc
+// BJLConstants.h
+BJLVideoBeautifyLevel0 DEPRECATED_ATTRIBUTE = BJLVideoBeautifyLevel_0,
+BJLVideoBeautifyLevel1 DEPRECATED_ATTRIBUTE = BJLVideoBeautifyLevel_1,
+BJLVideoBeautifyLevel2 DEPRECATED_ATTRIBUTE = BJLVideoBeautifyLevel_2,
+BJLVideoBeautifyLevel3 DEPRECATED_ATTRIBUTE = BJLVideoBeautifyLevel_3,
+BJLVideoBeautifyLevel4 DEPRECATED_ATTRIBUTE = BJLVideoBeautifyLevel_4,
+BJLVideoBeautifyLevel5 DEPRECATED_ATTRIBUTE = BJLVideoBeautifyLevel_5,
+BJLVideoBeautifyLevel_close DEPRECATED_ATTRIBUTE = BJLVideoBeautifyLevel_off,
+BJLVideoBeautifyLevel_min DEPRECATED_ATTRIBUTE = BJLVideoBeautifyLevel_1,
+BJLVideoBeautifyLevel_max DEPRECATED_ATTRIBUTE = BJLVideoBeautifyLevel_5
+
+// BJLLoadingVM.h
+- (BJLObservable)loadingDidUpdateProgress:(CGFloat)progress DEPRECATED_MSG_ATTRIBUTE("use `loadingUpdateProgress:` instead");
+- (BJLObservable)loadingDidSuccess DEPRECATED_MSG_ATTRIBUTE("use `loadingSuccess` instead");
+- (BJLObservable)loadingDidFailureWithError:(nullable BJLError *)error DEPRECATED_MSG_ATTRIBUTE("use `loadingFailureWithError:` instead");
+
+// BJLPlayingVM.h
+- (BJLObservable)playingUserDidUpdate:(BJLTuple<void (^)(BJLUser *old, BJLUser *now)> *)tuple DEPRECATED_MSG_ATTRIBUTE("use `playingUserDidUpdate:old:`");
+- (nullable BJLError *)remoteUpdatePlayingUserWithID:(NSString *)userID audioOn:(BOOL)audioOn videoOn:(BOOL)videoOn DEPRECATED_MSG_ATTRIBUTE("use `BJLRecordingVM` - `remoteChangeRecordingWithUser:audioOn:videoOn:` insetad");
+
+// BJLRecordingVM.h
+- (BJLObservable)recordingDidRemoteChanged:(BJLTuple<void (^)(BOOL recordingAudio, BOOL recordingVideo, BOOL recordingAudioChanged, BOOL recordingVideoChanged)> *)tuple DEPRECATED_MSG_ATTRIBUTE("use `recordingDidRemoteChangedRecordingAudio:recordingVideo:recordingAudioChanged:recordingVideoChanged:`");
+
+// BJLRoomVM.h
+@property (nonatomic, readonly, copy, nullable) NSObject<BJLRoomInfo> *roomInfo DEPRECATED_MSG_ATTRIBUTE("use `BJLRoom.roomInfo` instead");
+@property (nonatomic, readonly, copy, nullable) BJLUser *loginUser DEPRECATED_MSG_ATTRIBUTE("use `BJLRoom.loginUser` instead");
+@property (nonatomic, readonly, copy, nullable) NSString *noticeText DEPRECATED_MSG_ATTRIBUTE("use `notice` instead");
+- (void)loadNoticeText DEPRECATED_MSG_ATTRIBUTE("use `loadNotice` instead");
+- (nullable BJLError *)sendNoticeText:(nullable NSString *)noticeText DEPRECATED_MSG_ATTRIBUTE("use `sendNoticeWithText:linkURL:` instead");
+- (BJLObservable)rollcallDidCancel DEPRECATED_MSG_ATTRIBUTE("use `rollcallDidFinish` instead");
+- (BJLObservable)didReceiveCustomizedSignal:(NSString *)key value:(nullable id)value DEPRECATED_MSG_ATTRIBUTE("use `didReceiveCustomizedSignal:value:isCache:` instead");
+
+// BJLSlideshowVM.h
+- (BJLObservable)didTurnToSlidePage:(BJLSlidePage *)slidePage DEPRECATED_MSG_ATTRIBUTE("KVO `currentSlidePage` instead");
+
+// BJLSpeakingRequestVM.h
+extern const NSTimeInterval BJLSpeakingRequestTimeoutInterval DEPRECATED_MSG_ATTRIBUTE("use property `speakingRequestTimeoutInterval`");
+extern const NSTimeInterval BJLSpeakingRequestCountdownStep DEPRECATED_MSG_ATTRIBUTE("use property `speakingRequestCountdownStep`");
+@protocol BJLSpeakingReply; // @see `speakingRequestDidReplyEnabled:isUserCancelled:user:`
+- (void)stopSpeaking DEPRECATED_MSG_ATTRIBUTE("use `stopSpeakingRequest` instead");
+- (BJLObservable)speakingRequestDidReply:(NSObject<BJLSpeakingReply> *)reply DEPRECATED_MSG_ATTRIBUTE("use `speakingRequestDidReplyEnabled:isUserCancelled:user:`");
+- (BJLObservable)speakingDidRemoteEnabled:(BOOL)enabled DEPRECATED_MSG_ATTRIBUTE("use `speakingDidRemoteControl:`");
+- (BJLObservable)speakingBeRemoteEnabled:(BOOL)enabled DEPRECATED_MSG_ATTRIBUTE("use `speakingDidRemoteEnabled:`");
+
+// BJLSlideshowUI.h
+@property (nonatomic) BOOL whiteboardEnabled DEPRECATED_MSG_ATTRIBUTE("use `drawingEnabled` instead");
+- (void)clearWhiteboard DEPRECATED_MSG_ATTRIBUTE("use `clearDrawing` instead");
+```
+
+## 0.5.0-beta
+
+- 支持播放 1+5 路他人视频（1 路老师/主讲、5 路其他用户），参考 `BJLPlayingVM`；
+- 支持切换主讲人（暂不支持助教被切换成主讲），参考 `BJLOnlineUsersVM`；
+- 增加小班课类型，参考 `BJLFeatureConfig`；
+- 简化加载流程，参考 `BJLLoadingVM`；
+- 客户定制信令可区分是否是缓存，参考 `BJLRoomVM`；
+- 白板增加是否空白参数，支持程序设置本地页数，参考 `BJLSlideshowUI`；
+- 支持禁止举手，参考 `BJLSpeakingRequestVM`；
+- 合并 `BJLUser` 和 `BJLOnlineUser`，`BJLOnlineUser` 将废弃；
+- 支持新的画笔压缩格式；
 
 ## 0.4.3
 
+- 解决视频画面黑暗的问题；
 - 支持静音；
 
 ## 0.4.2
@@ -18,7 +105,7 @@ Change Log
 
 ## 0.4.1
 
-- 统计模块升级;
+- 统计模块升级；
 
 ## 0.4.0
 
@@ -29,11 +116,11 @@ Change Log
 - 支持新版小测；
 - 支持踢人功能；
 
-## 0.3.0-internal
+## 0.3.0
 
 - 支持助教登录；
 - 支持加载客服信息；
-- **`BJLUser` 由 `protocol` 改为 `class`**；
+- **`BJLUser` 由 `protocol` 改为 `class`；**；
 - **`BJLMessage` 由 `protocol` 改为 `class`**，聊天支持自定义表情，支持老师、助教和非大班课的学生发图片；
 - `BJLSpeakingRequestVM` 里的 `speakingRequestUsers` 改为倒序，后举手的学生排在数组的前面，与发言用户逻辑保持一致；
 - PPT 翻页相关 API 改进，参考 `BJLSlideshowVM`、`BJLSlideshowUI`；

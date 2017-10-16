@@ -3,7 +3,7 @@
 //  LivePlayerApp
 //
 //  Created by MingLQ on 2016-08-22.
-//  Copyright © 2016年 Baijia Cloud. All rights reserved.
+//  Copyright © 2016年 BaijiaYun. All rights reserved.
 //
 
 #import "BJRootViewController.h"
@@ -33,8 +33,11 @@
     [self addChildViewController:viewController superview:self.view];
     self.activeViewController = viewController;
     [self setNeedsStatusBarAppearanceUpdate];
+    [UIViewController attemptRotationToDeviceOrientation]; // @see shouldAutorotate
+    if (completion) completion(YES);
     
-    /* if (!self.activeViewController) {
+    /* 切换动画
+    if (!self.activeViewController) {
         [self addChildViewController:viewController superview:self.view];
         self.activeViewController = viewController;
         [self setNeedsStatusBarAppearanceUpdate];
@@ -50,7 +53,8 @@
                         [self addChildViewController:viewController superview:self.view];
                         self.activeViewController = viewController;
                         [self setNeedsStatusBarAppearanceUpdate];
-                    }]; */
+                        if (completion) completion(finished);
+                    }]; // */
 }
 
 - (UIViewController *)childViewControllerForStatusBarStyle {
@@ -62,12 +66,17 @@
 }
 
 - (BOOL)shouldAutorotate {
-    return ([UIApplication sharedApplication].statusBarOrientation
-            != UIInterfaceOrientationPortrait);
+    // NSLog(@"shouldAutorotate: %d - %@", shouldAutorotate, self.activeViewController);
+    return (self.activeViewController
+            ? [self.activeViewController shouldAutorotate]
+            : [super shouldAutorotate]);
 }
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
-    return UIInterfaceOrientationMaskPortrait;
+    // NSLog(@"orientations: %d - %@", orientations, self.activeViewController);
+    return (self.activeViewController
+            ? [self.activeViewController supportedInterfaceOrientations]
+            : [super supportedInterfaceOrientations]);
 }
 
 @end

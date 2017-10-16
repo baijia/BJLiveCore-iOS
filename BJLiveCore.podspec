@@ -1,63 +1,52 @@
 Pod::Spec.new do |s|
-  s.name = 'BJLiveCore'
-  s.version = '0.2.4-dylib07-sd'
-  s.summary = 'BJLiveCore SDK.'
-  s.description = 'BJLiveCore SDK for iOS.'
-  s.license = 'MIT'
-  s.authors = { "MingLQ"=>"minglq.9@gmail.com" }
-  s.homepage = 'http://www.baijiacloud.com/'
 
-  s.platform = :ios, "8.0"
+    s.name          = 'BJLiveCore'
+    s.version       = '1.0.0'
+    s.summary       = 'BJLiveCore SDK.'
+    s.description   = 'BJLiveCore SDK for iOS.'
 
-  # git
-  s.source = { :git => 'https://github.com/baijia/BJLiveCore-iOS.git', :tag => s.version.to_s }
+    s.homepage      = 'http://www.baijiayun.com/'
+    s.license       = 'MIT'
+    s.author        = { 'MingLQ' => 'minglq.9@gmail.com' }
 
-  # # framework
-  s.ios.preserve_paths       = 'BJLiveCore/BJLiveCore.framework'
-  s.ios.public_header_files  = 'BJLiveCore/BJLiveCore.framework/Versions/A/Headers/**/*.h'
-  s.ios.source_files         = 'BJLiveCore/BJLiveCore.framework/Versions/A/Headers/**/*.h'
-  # s.ios.resource             = 'BJLiveCore/BJLiveCore.framework/Versions/A/Resources/**/*'
-  s.ios.vendored_frameworks  = 'BJLiveCore/BJLiveCore.framework'
+    s.platform      = :ios
+    s.ios.deployment_target = '8.0'
 
-  # # library
-  # s.public_header_files = 'BJLiveCore/**/*.h'
-  # s.source_files = 'BJLiveCore/**/*.h'
-  # s.vendored_libraries = 'BJLiveCore/**/*.a'
-  # # s.resources = 'BJLiveCore/**/*.bundle'
+    s.source = {
+        :git => 'https://github.com/baijia/BJLiveCore-iOS.git',
+        :tag => s.version.to_s
+    }
 
-  # # http
-  # s.source = { :http => 'http://file.gsxservice.com/0baijiatools/09b9807a96075f6247fd08ea48cab16b/BJLiveCore-0.0.1.zip' }
-  # s.public_header_files = 'BJLiveCore-#{s.version}/**/*.h'
-  # s.source_files = 'BJLiveCore-#{s.version}/**/*.h'
-  # s.vendored_libraries = 'BJLiveCore-#{s.version}/**/*.a'
-  # # s.resources = 'BJLiveCore-#{s.version}/**/*.bundle'
+    # # framework
+    s.ios.preserve_paths       = 'frameworks/BJLiveCore.framework'
+    s.ios.source_files         = 'frameworks/BJLiveCore.framework/Versions/A/Headers/**/*.h'
+    s.ios.public_header_files  = 'frameworks/BJLiveCore.framework/Versions/A/Headers/**/*.h'
+    s.ios.resource             = 'frameworks/BJLiveCore.framework/Versions/A/Resources/**/*'
+    s.ios.vendored_frameworks  = 'frameworks/BJLiveCore.framework'
+    s.frameworks    = ['CoreGraphics', 'Foundation', 'UIKit', 'WebKit']
 
-  s.subspec 'BJHLMediaPlayer' do |ss|
-    ss.frameworks = ['AVFoundation', 'VideoToolbox', 'GLKit']
-    ss.libraries  = ['icucore', 'c++', 'stdc++.6', 'z']
-    ss.vendored_frameworks = "BJLiveCore/BJHLMediaPlayer.framework"
-  end
+    s.subspec 'BJHLMediaPlayer' do |ss|
+        ss.xcconfig = {
+            'ENABLE_BITCODE' => 'NO',
+            'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES'
+        }
+        ss.vendored_frameworks = "frameworks/BJHLMediaPlayer.framework"
+        ss.frameworks = ['AVFoundation', 'GLKit', 'VideoToolbox']
+        ss.libraries = ['icucore', 'c++', 'stdc++.6', 'z']
+    end
 
-  # s.frameworks = ['AssetsLibrary', 'CoreGraphics', 'Foundation', 'UIKit', 'Photos']
-  s.frameworks = ['CoreGraphics', 'Foundation', 'UIKit']
-  # s.ios.vendored_frameworks  = 'BJLiveCore-#{s.version}/BJLiveCore.framework'
+    s.dependency 'BJLiveBase', '~> 1.0.0'
+    s.dependency 'BJLiveBase/Base'
+    s.dependency 'BJLiveBase/Ext'
+    s.dependency 'BJLiveBase/Networking'
+    s.dependency 'BJLiveBase/WebImage/AFNetworking'
 
-  s.requires_arc = true
-  # s.xcconfig = { "ENABLE_BITCODE" => "NO" }
-  s.xcconfig = { "CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES" => "YES", "ENABLE_BITCODE" => "NO" }
+    s.dependency 'AFNetworking', '~> 3.0'
+    s.dependency 'PocketSocket'
+    s.dependency 'YYModel'
 
-  s.dependency 'AFNetworking', '~> 3.0'
-  s.dependency "libextobjc/EXTScope"
-  s.dependency 'LogStat', '0.6.6'
-  s.dependency 'JRSwizzle'
-  s.dependency 'YYModel'
-
-  # DEPRECATED
-  s.dependency 'BJHL-Foundation-iOS', '1.2.13-nolog'
-  s.dependency 'BJHL-Websocket-iOS', '>= 0.3.4'
-  s.dependency 'LTInfiniteScrollView'
-  s.dependency "libextobjc/EXTScope"
-  s.dependency 'SDWebImage'
-  s.dependency 'ReactiveCocoa', '~> 2.0'
+    ## DEPRECATED
+    s.dependency 'LogStat', '~> 0.7.3'
+    s.dependency 'ReactiveObjC'
 
 end

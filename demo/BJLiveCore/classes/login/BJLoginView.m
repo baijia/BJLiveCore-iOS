@@ -3,7 +3,7 @@
 //  LivePlayerApp
 //
 //  Created by MingLQ on 2016-07-01.
-//  Copyright © 2016年 Baijiahulian. All rights reserved.
+//  Copyright © 2016年 BaijiaYun. All rights reserved.
 //
 
 #import <Masonry/Masonry.h>

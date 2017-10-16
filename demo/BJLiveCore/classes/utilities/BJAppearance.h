@@ -3,7 +3,7 @@
 //  LivePlayerApp
 //
 //  Created by MingLQ on 2016-08-20.
-//  Copyright © 2016年 Baijia Cloud. All rights reserved.
+//  Copyright © 2016年 BaijiaYun. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

@@ -3,7 +3,7 @@
 //  BJLiveCore
 //
 //  Created by MingLQ on 2016-12-19.
-//  Copyright © 2016 Baijia Cloud. All rights reserved.
+//  Copyright © 2016 BaijiaYun. All rights reserved.
 //
 
 #import <YYModel/YYModel.h>
@@ -144,10 +144,10 @@
     
     [self.room.roomVM loadSurveyHistory];
     
-    [self bjl_observe:BJLMakeMethod(self.room.roomVM, didReceiveCustomizedSignal:value:)
-             observer:^BOOL(NSString *key, id value) {
+    [self bjl_observe:BJLMakeMethod(self.room.roomVM, didReceiveCustomizedSignal:value:isCache:)
+             observer:(BJLMethodObserver)^BOOL(NSString *key, id value, BOOL isCache) {
                  @strongify(self);
-                 [self.console printFormat:@"客户定制信令: %@ - %@", key, value];
+                 [self.console printFormat:@"客户定制信令 %@: %@ - %@", isCache ? @"cached" : @"received", key, value];
                  return YES;
              }];
     

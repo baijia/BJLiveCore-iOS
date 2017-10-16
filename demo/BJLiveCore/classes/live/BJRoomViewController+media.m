@@ -3,7 +3,7 @@
 //  BJLiveCore
 //
 //  Created by MingLQ on 2016-12-18.
-//  Copyright © 2016 Baijia Cloud. All rights reserved.
+//  Copyright © 2016 BaijiaYun. All rights reserved.
 //
 
 #import <MobileCoreServices/MobileCoreServices.h>
@@ -51,7 +51,7 @@
                      return YES;
                  }];
         // 发言状态被开启、关闭
-        [self bjl_observe:BJLMakeMethod(self.room.speakingRequestVM, speakingDidRemoteEnabled:)
+        [self bjl_observe:BJLMakeMethod(self.room.speakingRequestVM, speakingDidRemoteControl:)
                  observer:(BJLMethodObserver)^BOOL(BOOL enabled) {
                      [self.console printFormat:@"发言状态被%@", enabled ? @"开启" : @"关闭"];
                      return YES;
@@ -63,10 +63,42 @@
     @weakify(self);
     
     self.room.recordingView.userInteractionEnabled = NO;
-    [self.recordingView addSubview:self.room.recordingView];
-    [self.room.recordingView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.recordingView);
-    }];
+    
+    [self bjl_kvo:BJLMakeProperty(self.room.recordingVM, recordingVideo)
+           filter:^BOOL(NSNumber *old, NSNumber *now) {
+               // @strongify(self);
+               return old.integerValue != now.integerValue;
+           }
+         observer:^BOOL(id old, id now) {
+             @strongify(self);
+             BOOL recordingVideo = [now boolValue];
+             if (!recordingVideo && !self.room.recordingVM.recordingAudio) { // 音视频采集都被关闭
+                 [self hideRecordingView];
+             }
+             else if (recordingVideo && !self.room.recordingVM.recordingAudio){ // 之前处于音视频都关闭的状态
+                 [self showRecordingView];
+             }
+             [self.console printFormat:@"recordingVideo: %@", self.room.recordingVM.recordingVideo ? @"YES" : @"NO"];
+             return YES;
+         }];
+    
+    [self bjl_kvo:BJLMakeProperty(self.room.recordingVM, recordingAudio)
+           filter:^BOOL(NSNumber *old, NSNumber *now) {
+               // @strongify(self);
+               return old.integerValue != now.integerValue;
+           }
+         observer:^BOOL(id old, id now) {
+             @strongify(self);
+             BOOL recordingAudio = [now boolValue];
+             if (!recordingAudio && !self.room.recordingVM.recordingVideo) { // 音视频采集都被关闭
+                 [self hideRecordingView];
+             }
+             else if (recordingAudio && !self.room.recordingVM.recordingVideo){ // 之前处于音视频都关闭的状态
+                 [self showRecordingView];
+             }
+             [self.console printFormat:@"recordingAudio: %@", self.room.recordingVM.recordingAudio ? @"YES" : @"NO"];
+             return YES;
+         }];
     
     [[self.recordingView rac_signalForControlEvents:UIControlEventTouchUpInside]
      subscribeNext:^(id x) {
@@ -74,12 +106,12 @@
          
          if (!self.room.loginUser.isTeacher
              && !self.room.speakingRequestVM.speakingEnabled) {
-             BOOL hasTeacher = !!self.room.onlineUsersVM.onlineTeacher;
+             BOOL liveStarted = self.room.roomVM.liveStarted;
              UIAlertController *actionSheet = [UIAlertController
                                                alertControllerWithTitle:self.recordingView.currentTitle
-                                               message:hasTeacher ? @"要发言先举手" : @"老师没在教室，不能举手"
+                                               message:liveStarted ? @"要发言先举手" : @"非上课状态，不能举手"
                                                preferredStyle:UIAlertControllerStyleActionSheet];
-             if (hasTeacher) {
+             if (liveStarted) {
                  [actionSheet addAction:[UIAlertAction
                                          actionWithTitle:@"举手"
                                          style:UIAlertActionStyleDefault
@@ -120,7 +152,7 @@
                                          if (!self.room.loginUser.isTeacher
                                              && !recordingVM.recordingAudio
                                              && !recordingVM.recordingVideo) {
-                                             [self.room.speakingRequestVM stopSpeaking];
+                                             [self.room.speakingRequestVM stopSpeakingRequest];
                                              [self.console printLine:@"同时关闭音视频，发言结束"];
                                          }
                                      }]];
@@ -135,7 +167,7 @@
                                      if (!self.room.loginUser.isTeacher
                                          && !recordingVM.recordingAudio
                                          && !recordingVM.recordingVideo) {
-                                         [self.room.speakingRequestVM stopSpeaking];
+                                         [self.room.speakingRequestVM stopSpeakingRequest];
                                          [self.console printLine:@"同时关闭音视频，发言结束"];
                                      }
                                  }]];
@@ -149,7 +181,7 @@
                                      if (!self.room.loginUser.isTeacher
                                          && !recordingVM.recordingAudio
                                          && !recordingVM.recordingVideo) {
-                                         [self.room.speakingRequestVM stopSpeaking];
+                                         [self.room.speakingRequestVM stopSpeakingRequest];
                                          [self.console printLine:@"同时关闭音视频，发言结束"];
                                      }
                                  }]];
@@ -201,125 +233,18 @@
 }
 
 - (void)makePlayingEvents {
-    self.room.playingView.userInteractionEnabled = NO;
-    [self.playingView addSubview:self.room.playingView];
-    [self.room.playingView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.playingView);
-    }];
-    
     @weakify(self);
     
-    [self bjl_observe:BJLMakeMethod(self.room.playingVM, playingUserDidUpdate:)
-             observer:^BOOL(BJLTuple *tuple) {
-                 BJLTupleUnpack(tuple) = ^(BJLOnlineUser *old,
-                                           BJLOnlineUser *now) {
-                     @strongify(self);
-                     [self.console printFormat:@"playingUserDidUpdate: %@ >> %@", old, now];
-                 };
-                 return YES;
-             }];
     [self bjl_observe:BJLMakeMethod(self.room.playingVM, playingUserDidUpdate:old:)
              observer:^BOOL(BJLOnlineUser *now,
                             BJLOnlineUser *old) {
                  @strongify(self);
+                 if (!now.videoOn) {
+                     [self stopPlayingForUser:now];
+                 }
                  [self.console printFormat:@"playingUserDidUpdate:old: %@ >> %@", old, now];
                  return YES;
              }];
-    
-    [[self.playingView rac_signalForControlEvents:UIControlEventTouchUpInside]
-     subscribeNext:^(id x) {
-         @strongify(self);
-         
-         BJLPlayingVM *playingVM = self.room.playingVM;
-         if (!playingVM) {
-             return;
-         }
-         
-         BJLOnlineUser *videoPlayingUser = playingVM.videoPlayingUser;
-         NSArray<BJLOnlineUser *> *playingUsers = playingVM.playingUsers;
-         BOOL noBody = !videoPlayingUser && !playingUsers.count;
-         
-         UIAlertController *actionSheet = [UIAlertController
-                                           alertControllerWithTitle:self.playingView.currentTitle
-                                           message:noBody ? @"现在没有人在发言" : nil
-                                           preferredStyle:UIAlertControllerStyleActionSheet];
-         
-         if (videoPlayingUser) {
-             [actionSheet addAction:[UIAlertAction
-                                     actionWithTitle:[NSString stringWithFormat:@"关闭视频 %@", videoPlayingUser.name]
-                                     style:UIAlertActionStyleDefault
-                                     handler:^(UIAlertAction * _Nonnull action) {
-                                         [playingVM updateVideoPlayingUserWithID:nil];
-                                     }]];
-             if (self.room.loginUser.isTeacher) {
-                 [actionSheet addAction:[UIAlertAction
-                                         actionWithTitle:([NSString stringWithFormat:@"关闭发言 %@", videoPlayingUser.name])
-                                         style:UIAlertActionStyleDestructive
-                                         handler:^(UIAlertAction * _Nonnull action) {
-                                             [playingVM remoteUpdatePlayingUserWithID:videoPlayingUser.ID
-                                                                              audioOn:NO
-                                                                              videoOn:NO];
-                                         }]];
-             }
-         }
-         for (BJLOnlineUser *user in playingVM.playingUsers) {
-             if (videoPlayingUser && [user.ID isEqualToString:videoPlayingUser.ID]) {
-                 continue;
-             }
-             if (user.videoOn) {
-                 [actionSheet addAction:[UIAlertAction
-                                         actionWithTitle:[NSString stringWithFormat:@"打开视频 %@", user.name]
-                                         style:UIAlertActionStyleDefault
-                                         handler:^(UIAlertAction * _Nonnull action) {
-                                             [playingVM updateVideoPlayingUserWithID:user.ID];
-                                         }]];
-             }
-             if (self.room.loginUser.isTeacher) {
-                 [actionSheet addAction:[UIAlertAction
-                                         actionWithTitle:([NSString stringWithFormat:@"关闭发言 %@", user.name])
-                                         style:UIAlertActionStyleDestructive
-                                         handler:^(UIAlertAction * _Nonnull action) {
-                                             [playingVM remoteUpdatePlayingUserWithID:user.ID
-                                                                              audioOn:NO
-                                                                              videoOn:NO];
-                                         }]];
-                 NSInteger seconds = 1;
-                 [actionSheet addAction:[UIAlertAction
-                                         actionWithTitle:([NSString stringWithFormat:@"禁言 %td 分钟 %@", seconds, user.name])
-                                         style:UIAlertActionStyleDestructive
-                                         handler:^(UIAlertAction * _Nonnull action) {
-                                             [self.room.chatVM sendForbidUser:user
-                                                                     duration:seconds * 60.0];
-                                         }]];
-                 [actionSheet addAction:[UIAlertAction
-                                         actionWithTitle:([NSString stringWithFormat:@"解除禁言 %@", user.name])
-                                         style:UIAlertActionStyleDestructive
-                                         handler:^(UIAlertAction * _Nonnull action) {
-                                             [self.room.chatVM sendForbidUser:user
-                                                                     duration:0.0];
-                                         }]];
-             }
-         }
-         
-         BJLMediaVM *mediaVM = self.room.mediaVM;
-         [actionSheet addAction:[UIAlertAction
-                                 actionWithTitle:(mediaVM.downLinkType == BJLLinkType_TCP
-                                                  ? @"TCP > UDP" : @"UDP > TCP")
-                                 style:UIAlertActionStyleDefault
-                                 handler:^(UIAlertAction * _Nonnull action) {
-                                     mediaVM.downLinkType = (mediaVM.downLinkType == BJLLinkType_TCP
-                                                             ? BJLLinkType_UDP : BJLLinkType_TCP);
-                                 }]];
-         
-         [actionSheet addAction:[UIAlertAction
-                                 actionWithTitle:@"取消"
-                                 style:UIAlertActionStyleCancel
-                                 handler:nil]];
-         
-         [self presentViewController:actionSheet
-                            animated:YES
-                          completion:nil];
-     }];
 }
 
 - (void)makeSlideshowAndWhiteboardEvents {
@@ -383,24 +308,32 @@
                             animated:YES
                           completion:nil];
      }];
-    
-    [self bjl_kvoMerge:@[BJLMakeProperty(self.room.slideshowViewController, localPageIndex),
-                         BJLMakeProperty(self.room.slideshowVM, totalPageCount)]
-                filter:^BOOL(NSNumber * _Nullable old, NSNumber * _Nullable now) {
-                    // @strongify(self);
-                    return now.integerValue != old.integerValue;
-                }
-              observer:^(NSNumber * _Nullable old, NSNumber * _Nullable now) {
-                  @strongify(self);
-                  if (self.room.slideshowViewController.localPageIndex == 0) {
-                      [self.console printLine:@"PPT: 白板"];
-                  }
-                  else {
-                      [self.console printFormat:@"PPT: %td/%td",
-                       self.room.slideshowViewController.localPageIndex,
-                       self.room.slideshowVM.totalPageCount - 1]; // 减去白板
-                  }
-              }];
+}
+
+#pragma mark - private
+
+- (void)stopPlayingForUser:(BJLUser *)user {
+    BJLUser *playingUser;
+    for (BJPlayingView *playingView in self.playingViews) {
+        playingUser = [playingView currentPlayingUser];
+        if (playingUser && [playingUser.ID isEqualToString:user.ID]) {
+            [playingView stopPlaying];
+        }
+    }
+}
+
+- (void)showRecordingView {
+    if (self.room.recordingView.superview) {
+        return;
+    }
+    [self.recordingView addSubview:self.room.recordingView];
+    [self.room.recordingView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.recordingView);
+    }];
+}
+
+- (void)hideRecordingView {
+    [self.room.recordingView removeFromSuperview];
 }
 
 @end

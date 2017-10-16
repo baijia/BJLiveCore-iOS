@@ -3,7 +3,7 @@
 //  BJLiveCoreTests
 //
 //  Created by MingLQ on 2016-12-17.
-//  Copyright © 2016 Baijia Cloud. All rights reserved.
+//  Copyright © 2016 BaijiaYun. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>
