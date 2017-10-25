@@ -1,6 +1,5 @@
 source 'https://github.com/CocoaPods/Specs.git'
-source 'http://git.baijiahulian.com/iOS/specs.git'
-# source 'https://github.com/baijia/specs.git'
+source 'https://github.com/baijia/specs.git'
 
 platform :ios, '8.0'
 # inhibit_all_warnings!
