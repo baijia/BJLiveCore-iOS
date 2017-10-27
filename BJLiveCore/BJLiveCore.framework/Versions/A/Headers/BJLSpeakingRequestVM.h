@@ -21,10 +21,10 @@ extern const NSTimeInterval BJLSpeakingRequestTimeoutInterval, BJLSpeakingReques
 /** 学生: 发言状态 */
 @property (nonatomic, readonly) BOOL speakingEnabled;
 
-/** 举手自动取消倒计时
- 调用 `sendSpeakingRequest` 举手时设置为 `BJLSpeakingRequestTimeoutInterval` 秒
- 每 `BJLSpeakingRequestCountdownStep` 秒更新，变为 0.0 表示举手超时，变为 - 1.0 表示计时被取消 */
-@property (nonatomic, readonly) NSTimeInterval speakingRequestTimeRemaining;
+/** 举手自动取消倒计时总时长、更新间隔、剩余时间
+ #discussion 调用 `sendSpeakingRequest` 举手时设置为 `speakingRequestTimeoutInterval` 秒
+ #discussion 每 `speakingRequestCountdownStep` 秒更新，变为 0.0 表示举手超时，变为 - 1.0 表示计时被取消 */
+@property (nonatomic, readonly) NSTimeInterval speakingRequestTimeoutInterval, speakingRequestCountdownStep, speakingRequestTimeRemaining;
 /** 学生: 发送发言申请
  上课状态才能举手，参考 `roomVM.liveStarted`
  发言申请被允许/拒绝时会收到通知 `speakingRequestDidReply:` */
