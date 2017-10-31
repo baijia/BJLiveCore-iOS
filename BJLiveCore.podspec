@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.ios.vendored_frameworks   = 'BJLiveCore/*.framework'
   
   s.dependency 'AFNetworking', '~> 3.0'
-  s.dependency 'BJHL-AVSDK-iOS', '>= 0.1.9'
+#  s.dependency 'BJHL-AVSDK-iOS', '>= 0.1.9'
   s.dependency "libextobjc/EXTScope"
   s.dependency 'LogStat', '0.6.6-dylib'
   s.dependency 'JRSwizzle'
