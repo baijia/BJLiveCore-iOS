@@ -11,7 +11,6 @@
 #endif
 
 #import "BJLiveCore.h"
-#import "BJLRoom+GSX.h"
 #import "BJLRoom.h"
 #import "BJLDocument.h"
 #import "BJLFeatureConfig.h"
@@ -34,7 +33,6 @@
 #import "BJLPlayingVM.h"
 #import "BJLRecordingVM.h"
 #import "BJLRoomVM.h"
-#import "BJLServerRecordingVM+GSX.h"
 #import "BJLServerRecordingVM.h"
 #import "BJLSlideshowVM.h"
 #import "BJLSlideVM.h"

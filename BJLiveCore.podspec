@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.source = { :git => 'https://github.com/baijia/BJLiveCore-iOS.git', :tag => s.version.to_s }
 
   s.ios.deployment_target    = '8.0'
-  s.ios.vendored_framework   = 'BJLiveCore/BJLiveCore.framework'
+  s.ios.vendored_frameworks   = 'BJLiveCore/*.framework'
   
   s.dependency 'AFNetworking', '~> 3.0'
   s.dependency 'BJHL-AVSDK-iOS', '>= 0.1.9'
