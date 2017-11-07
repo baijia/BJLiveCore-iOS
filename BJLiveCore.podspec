@@ -31,11 +31,11 @@ Pod::Spec.new do |s|
     end
 
     s.subspec 'dynamic' do |ss|
-        ss.ios.preserve_paths       = 'frameworks/BJLiveCoreDylib.framework'
-        ss.ios.source_files         = 'frameworks/BJLiveCoreDylib.framework/Versions/A/Headers/**/*.h'
-        ss.ios.public_header_files  = 'frameworks/BJLiveCoreDylib.framework/Versions/A/Headers/**/*.h'
-        ss.ios.resource             = 'frameworks/BJLiveCoreDylib.framework/Versions/A/Resources/**/*'
-        ss.ios.vendored_frameworks  = 'frameworks/BJLiveCoreDylib.framework'
+        ss.ios.preserve_paths       = 'frameworks/dylib/BJLiveCore.framework'
+        ss.ios.source_files         = 'frameworks/dylib/BJLiveCore.framework/Versions/A/Headers/**/*.h'
+        ss.ios.public_header_files  = 'frameworks/dylib/BJLiveCore.framework/Versions/A/Headers/**/*.h'
+        ss.ios.resource             = 'frameworks/dylib/BJLiveCore.framework/Versions/A/Resources/**/*'
+        ss.ios.vendored_frameworks  = 'frameworks/dylib/BJLiveCore.framework'
         ss.frameworks               = ['CoreGraphics', 'Foundation', 'UIKit', 'WebKit']
         ss.dependency 'BJLiveCore/BJHLMediaPlayer'
         ss.dependency 'LogStat', '0.7.3-dylib'
