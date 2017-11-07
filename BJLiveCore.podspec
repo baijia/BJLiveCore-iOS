@@ -30,16 +30,17 @@ Pod::Spec.new do |s|
         ss.dependency 'LogStat', '~> 0.7.3'
     end
 
-    s.subspec 'dynamic' do |ss|
-        ss.ios.preserve_paths       = 'frameworks/dylib/BJLiveCore.framework'
-        ss.ios.source_files         = 'frameworks/dylib/BJLiveCore.framework/Versions/A/Headers/**/*.h'
-        ss.ios.public_header_files  = 'frameworks/dylib/BJLiveCore.framework/Versions/A/Headers/**/*.h'
-        ss.ios.resource             = 'frameworks/dylib/BJLiveCore.framework/Versions/A/Resources/**/*'
-        ss.ios.vendored_frameworks  = 'frameworks/dylib/BJLiveCore.framework'
-        ss.frameworks               = ['CoreGraphics', 'Foundation', 'UIKit', 'WebKit']
-        ss.dependency 'BJLiveCore/BJHLMediaPlayer'
-        ss.dependency 'LogStat', '0.7.3-dylib'
-    end
+    # TODO: Assets.car
+    # s.subspec 'dynamic' do |ss|
+    #     ss.ios.preserve_paths       = 'frameworks/dylib/BJLiveCore.framework'
+    #     ss.ios.source_files         = 'frameworks/dylib/BJLiveCore.framework/Headers/**/*.h'
+    #     ss.ios.public_header_files  = 'frameworks/dylib/BJLiveCore.framework/Headers/**/*.h'
+    #     # ss.ios.resource             = 'frameworks/dylib/BJLiveCore.framework/Resources/**/*'
+    #     ss.ios.vendored_frameworks  = 'frameworks/dylib/BJLiveCore.framework'
+    #     ss.frameworks               = ['CoreGraphics', 'Foundation', 'UIKit', 'WebKit']
+    #     ss.dependency 'BJLiveCore/BJHLMediaPlayer'
+    #     ss.dependency 'LogStat', '0.7.3-dylib'
+    # end
 
     s.subspec 'BJHLMediaPlayer' do |ss|
         ss.xcconfig = {
