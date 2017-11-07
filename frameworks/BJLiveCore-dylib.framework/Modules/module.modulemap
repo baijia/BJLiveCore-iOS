@@ -1,0 +1,6 @@
+framework module BJLiveCore {
+  umbrella header "BJLiveCore-umbrella.h"
+
+  export *
+  module * { export * }
+}
