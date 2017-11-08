@@ -18,7 +18,7 @@ target 'BJLiveCore' do
     # pod 'BJLiveBase', :path => '../../../BJLiveBase/'
     # pod 'BJLiveCore', :path => '../'
     
-    pod 'BJLiveCore', '~> 1.1.0-alpha'
+    pod 'BJLiveCore', '~> 1.1.0'
     
     # demo
     pod 'Masonry'
