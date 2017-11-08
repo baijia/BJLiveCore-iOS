@@ -42,6 +42,8 @@ typedef NS_ENUM(NSInteger, BJLPointsCompressType) {
 @property (nonatomic, readonly) BOOL hideUserList;
 // 禁用 H5 实现的 PPT 动画
 @property (nonatomic, readonly) BOOL disablePPTAnimation;
+// 举手超时时间
+@property (nonatomic, readonly) NSTimeInterval speakingRequestTimeoutInterval;
 
 #pragma mark - internal
 

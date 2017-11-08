@@ -288,6 +288,10 @@ typedef NS_ENUM(NSInteger, BJLRoomState) {
 /** 聊天/弹幕，参考 BJLChatVM */
 @property (nonatomic, readonly, nullable) BJLChatVM *chatVM;
 
+#pragma mark - deployment
+
++ (void)setAPIBaseURL:(NSString *)apiBaseURL cdnBaseURL:(nullable NSString *)cdnBaseURL;
+
 @end
 
 NS_ASSUME_NONNULL_END

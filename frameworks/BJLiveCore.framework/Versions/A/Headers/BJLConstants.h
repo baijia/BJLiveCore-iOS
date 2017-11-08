@@ -157,7 +157,7 @@ typedef NS_ENUM(NSInteger, BJLTextMaxLength) {
 #pragma mark - AliIMG
 
 /**
- Ali image aspect scale url params
+ Ali image url params - old
  #param fill    fill, or fit
  #param width   * scale <> 1-4096
  #param height  * scale <> 1-4096
@@ -172,7 +172,6 @@ typedef NS_ENUM(NSInteger, BJLTextMaxLength) {
  o:     https://help.aliyun.com/document_detail/32231.html?spm=5176.doc32223.6.977.fTzBHO
  ext:   https://help.aliyun.com/document_detail/32244.html?spm=5176.doc32223.2.2.fTzBHO
  */
-
 static inline NSString *BJLAliIMGURLParams_aspectScale(BOOL fill, NSInteger width, NSInteger height, NSInteger scale, NSString * _Nullable ext) {
     static const NSInteger aliIMGMaxSize = 4096;
     scale = MAX(1.0, scale <= 0 ? round([UIScreen mainScreen].scale) : scale);
@@ -184,12 +183,42 @@ static inline NSString *BJLAliIMGURLParams_aspectScale(BOOL fill, NSInteger widt
     }
     width = MAX(1.0, width);
     height = MAX(1.0, height);
-    // w: width, h: height, x: scale, c: 0 - no cut, e: 0 - fit, 1 - fill, l: 1 - no enlarge, o: 2 - routate then resize
+    // w: width, h: height, x: scale, c: 0 - no cut, e: 0 - fit, 1 - fill, l: 1 - no enlarge, o: 2 - auto routate then resize
     NSString *params = [NSString stringWithFormat:@"@%tdw_%tdh_%tdx_0c_%de_1l_2o",
                         width, height, scale, fill];
     ext = ext.lowercaseString;
     return ext.length ? [params stringByAppendingPathExtension:ext] : params;
 }
+
+/*
+ Ali image url params
+ ?x-oss-process=image/resize,m_mfit,w_100,h_100,limit_1/auto-orient,1/format,jpg
+ /resize: m_lfit - aspect fit (default), m_mfit - aspect fill (no cut), w - width, h - height, limit_1 - no enlarge (default)
+ /auto-orient: 1 - auto routate then resize (default?), 0 - resize without auto routate
+ /format,jpg: jpg/png/webp/gif (lowercase!)
+ https://help.aliyun.com/document_detail/44686.html?spm=5176.doc54739.3.2.kCK7Oh
+static inline NSString *BJLAliIMGURLParams_aspectScale(BOOL fill, NSInteger width, NSInteger height, NSInteger scale, NSString * _Nullable ext) {
+    scale = MAX(1.0, scale <= 0 ? round([UIScreen mainScreen].scale) : scale);
+    width *= scale;
+    height *= scale;
+    static const NSInteger aliIMGMaxSize = 4096;
+    NSInteger max = MAX(width, height);
+    if (max > aliIMGMaxSize) {
+        CGFloat minify = (CGFloat)aliIMGMaxSize / max;
+        width = floor(width * minify);
+        height = floor(height * minify);
+    }
+    width = MAX(1.0, width);
+    height = MAX(1.0, height);
+    ext = ext.lowercaseString;
+    return [NSString stringWithFormat:@
+            "?x-oss-process=image"
+            "/resize,m_%@,w_%td,h_%td,limit_1"
+            "/auto-orient,1"
+            "/format,%@",
+            fill ? @"mfit" : @"lfit", width, height,
+            [@[@"jpg", @"png", @"webp", @"gif"] containsObject:ext] ? ext : @"jpg"];
+} */
 
 static inline NSString *BJLAliIMGURLString_aspectScale(BOOL fill, NSInteger width, NSInteger height, NSInteger scale, NSString *urlString, NSString * _Nullable ext) {
     NSUInteger atLocation = [urlString rangeOfString:@"@"].location;
@@ -206,6 +235,40 @@ static inline NSString *BJLAliIMG_aspectFill(CGSize size, CGFloat scale, NSStrin
 
 static inline NSString *BJLAliIMG_aspectFit(CGSize size, CGFloat scale, NSString *urlString, NSString * _Nullable ext) {
     return BJLAliIMGURLString_aspectScale(NO, round(size.width), round(size.height), scale, urlString, ext);
+}
+
+#pragma mark - AutoLayout Constraints
+
+static inline void BJLConstrains_edgesEqual(id item, id targetItem, UIView *superview) {
+    [superview addConstraints:@[[NSLayoutConstraint constraintWithItem:item
+                                                        attribute:NSLayoutAttributeTop
+                                                        relatedBy:NSLayoutRelationEqual
+                                                           toItem:targetItem
+                                                        attribute:NSLayoutAttributeTop
+                                                       multiplier:1.0
+                                                         constant:0.0],
+                           [NSLayoutConstraint constraintWithItem:item
+                                                        attribute:NSLayoutAttributeLeft
+                                                        relatedBy:NSLayoutRelationEqual
+                                                           toItem:targetItem
+                                                        attribute:NSLayoutAttributeLeft
+                                                       multiplier:1.0
+                                                         constant:0.0],
+                           [NSLayoutConstraint constraintWithItem:item
+                                                        attribute:NSLayoutAttributeBottom
+                                                        relatedBy:NSLayoutRelationEqual
+                                                           toItem:targetItem
+                                                        attribute:NSLayoutAttributeBottom
+                                                       multiplier:1.0
+                                                         constant:0.0],
+                           [NSLayoutConstraint constraintWithItem:item
+                                                        attribute:NSLayoutAttributeRight
+                                                        relatedBy:NSLayoutRelationEqual
+                                                           toItem:targetItem
+                                                        attribute:NSLayoutAttributeRight
+                                                       multiplier:1.0
+                                                         constant:0.0]
+                           ]];
 }
 
 NS_ASSUME_NONNULL_END
