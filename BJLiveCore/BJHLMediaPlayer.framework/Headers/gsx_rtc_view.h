@@ -15,6 +15,9 @@
 
 @interface RTCView : NSObject
 
+/**
+ * \brief 返回视频的分辨率
+ */
 - (CGSize)videoResolution;
 
 /**
@@ -27,7 +30,6 @@
  * \return GsxVideoRenderIosView对象(继承自UIView)
  */
 - (id)view;
-
 
 /**
  * @note API兼容，空实现

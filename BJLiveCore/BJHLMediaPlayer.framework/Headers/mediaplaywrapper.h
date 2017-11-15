@@ -7,13 +7,17 @@
 #import <Foundation/Foundation.h>
 
 #include "gsx_rtc_types.h"
-#include "gsx_live_play_info.h"
 
 #pragma GCC visibility push(default)
 
 @interface MediaPlayWrapper : NSObject
 
 - (void) gsx_rtc_engine_set_upstream_support_udp:(int)support_udp;
+
+/**
+ * @note 若需要设置音频编码，请在gsx_rtc_engine_init调用之前设置好音频编码
+ */
+- (void)gsx_rtc_engine_set_audio_codec:(int)audio_codec;
 
 - (void*) gsx_rtc_engine_init;
 
@@ -37,9 +41,7 @@
 -(int) gsx_rtc_engine_play_set_video_display_mode:(void *)in_pVoid :( int) in_nPlayId :( RTCVideoDisplayMode) in_DisplayMode;
 
 // 播放音视频
-//    GSX_RTC_API int gsx_rtc_engine_play_media_start(void *in_pVoid, const char *in_pPlayUrl, int in_nPlayType);
-//    GSX_RTC_API int gsx_rtc_engine_play_media_stop(void *in_pVoid, int in_nPlayId);
--(int) gsx_rtc_engine_play_media_start:(void *)in_pVoid :( const char *)in_pUrl :( int) in_nMediaType :( int) in_nRemoteId :( const char *)in_pPublishIp :( int) in_nPublishPort;
+- (int) gsx_rtc_engine_play_media_start:(void *)in_pVoid :( const char *)in_pUrl :( int) in_nMediaType :( int) in_nRemoteId :( const char *)in_pPublishIp :( int) in_nPublishPort;
 - (int) gsx_rtc_engine_play_media_stop:(void *)in_pVoid :( int) in_nPlayId;
 
 // 暂停音频播放
