@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
     s.name          = 'BJLiveCore'
-    s.version       = '1.0.0'
+    s.version       = '1.0.1'
     s.summary       = 'BJLiveCore SDK.'
     s.description   = 'BJLiveCore SDK for iOS.'
 
@@ -35,7 +35,7 @@ Pod::Spec.new do |s|
         ss.libraries = ['icucore', 'c++', 'stdc++.6', 'z']
     end
 
-    s.dependency 'BJLiveBase', '~> 1.0.0'
+    s.dependency 'BJLiveBase', '~> 1.0.1'
     s.dependency 'BJLiveBase/Base'
     s.dependency 'BJLiveBase/Ext'
     s.dependency 'BJLiveBase/Networking'
