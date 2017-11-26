@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
         ss.ios.preserve_paths       = 'frameworks/BJLiveCore.framework'
         ss.ios.source_files         = 'frameworks/BJLiveCore.framework/Versions/A/Headers/**/*.h'
         ss.ios.public_header_files  = 'frameworks/BJLiveCore.framework/Versions/A/Headers/**/*.h'
-        ss.ios.resource             = 'frameworks/BJLiveCore.framework/Versions/A/Resources/**/*'
+        # ss.ios.resource             = 'frameworks/BJLiveCore.framework/Versions/A/Resources/**/*'
         ss.ios.vendored_frameworks  = 'frameworks/BJLiveCore.framework'
         ss.frameworks               = ['CoreGraphics', 'CoreTelephony', 'Foundation', 'UIKit', 'WebKit']
         ss.dependency 'BJLiveCore/BJHLMediaPlayer'
