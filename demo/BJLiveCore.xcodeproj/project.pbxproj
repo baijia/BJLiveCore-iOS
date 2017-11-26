@@ -453,7 +453,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-BJLiveCore/Pods-BJLiveCore-frameworks.sh",
-				"${PODS_ROOT}/BJLiveCore/frameworks/BJHLMediaPlayer.framework",
+				"${PODS_ROOT}/../../frameworks/BJHLMediaPlayer.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (

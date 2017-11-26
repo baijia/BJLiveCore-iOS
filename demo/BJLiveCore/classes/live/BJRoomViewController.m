@@ -6,7 +6,9 @@
 //  Copyright © 2016 BaijiaYun. All rights reserved.
 //
 
+#import <BJLIveBase/BJLYYModel.h>
 #import <BJLiveCore/BJLiveCore.h>
+
 #import <Masonry/Masonry.h>
 
 #import "UIViewController+BJUtil.h"
@@ -17,7 +19,6 @@
 
 #import "BJAppearance.h"
 #import "BJAppConfig.h"
-#import <YYModel/YYModel.h>
 
 static CGFloat const margin = 10.0;
 static NSInteger const playingViewCount = 4;
