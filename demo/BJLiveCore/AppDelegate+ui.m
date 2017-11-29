@@ -81,7 +81,7 @@
 }
 
 - (void)showDeveloperTools {
-    // bjl_weakify(self);
+    bjl_weakify(self);
     
     UIAlertController *alertController = [UIAlertController
                                           alertControllerWithTitle:@"Developer Tools"
@@ -92,20 +92,80 @@
                                                         style:UIAlertActionStyleDefault
                                                       handler:^(UIAlertAction *action)
                                 {
-                                    // bjl_strongify(self);
+                                    // @strongify(self);
                                     [[FLEXManager sharedManager] showExplorer];
+                                }]];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"切换环境"
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:^(UIAlertAction *action)
+                                {
+                                    bjl_strongify(self);
+                                    [self askToSwitchDeployType];
                                 }]];
     
     [alertController addAction:[UIAlertAction actionWithTitle:@"取消"
                                                         style:UIAlertActionStyleCancel
                                                       handler:^(UIAlertAction *action)
                                 {
-                                    // bjl_strongify(self);
+                                    // @strongify(self);
                                 }]];
     
     [[UIViewController topViewController] presentViewController:alertController
                                                        animated:YES
                                                      completion:nil];
+}
+
+- (void)askToSwitchDeployType {
+    // @weakify(self);
+    
+    BJLDeployType currentDeployType = [BJAppConfig sharedInstance].deployType;
+    
+    NSString *title = [NSString stringWithFormat:@"当前环境：%@",
+                       [self nameOfDeployType:currentDeployType]];
+    NSString *message = @"注意：切换环境需要重启应用！";
+    
+    UIAlertController *alertController = [UIAlertController
+                                          alertControllerWithTitle:title
+                                          message:message
+                                          preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    for (BJLDeployType deployType = 0; deployType < _BJLDeployType_count; deployType++) {
+        if (deployType == currentDeployType) {
+            continue;
+        }
+        [alertController addAction:[UIAlertAction actionWithTitle:[self nameOfDeployType:deployType]
+                                                            style:UIAlertActionStyleDestructive
+                                                          handler:^(UIAlertAction *action)
+                                    {
+                                        // @strongify(self);
+                                        [BJAppConfig sharedInstance].deployType = deployType;
+                                    }]];
+    }
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"取消"
+                                                        style:UIAlertActionStyleCancel
+                                                      handler:^(UIAlertAction *action)
+                                {
+                                    // @strongify(self);
+                                }]];
+    
+    [[UIViewController topViewController] presentViewController:alertController
+                                                       animated:YES
+                                                     completion:nil];
+}
+
+- (NSString *)nameOfDeployType:(BJLDeployType)deployType {
+    switch (deployType) {
+        case BJLDeployType_test:
+            return @"test";
+        case BJLDeployType_beta:
+            return @"beta";
+        case BJLDeployType_www:
+            return @"www";
+        default:
+            return [@(deployType) description];
+    }
 }
 
 #endif

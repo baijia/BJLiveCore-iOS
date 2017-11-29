@@ -1,4 +1,5 @@
 source 'https://github.com/CocoaPods/Specs.git'
+# source 'git@git.baijiayun.com:iOS/specs.git'
 source 'https://github.com/baijia/specs.git'
 
 platform :ios, '8.0'
@@ -15,10 +16,9 @@ target 'BJLiveCore' do
     # use_frameworks!
     
     # dev
-    # pod 'BJLiveBase', :path => '../../../BJLiveBase/'
-    # pod 'BJLiveCore', :path => '../'
-    
-    pod 'BJLiveCore', '~> 1.1.0'
+    # pod 'BJLiveBase', :path => '../../BJLiveBase/'
+    # pod 'BJLiveCore/dynamic', :path => '../'
+    pod 'BJLiveCore', :path => '../'
     
     # demo
     pod 'Masonry'

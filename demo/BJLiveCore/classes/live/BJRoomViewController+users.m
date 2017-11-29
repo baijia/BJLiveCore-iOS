@@ -6,7 +6,7 @@
 //  Copyright © 2016 BaijiaYun. All rights reserved.
 //
 
-#import <YYModel/YYModel.h>
+#import <BJLiveBase/BJLYYModel.h>
 
 #import "BJRoomViewController+users.h"
 
@@ -94,7 +94,7 @@
              observer:^BOOL(NSArray<BJLSurvey *> *surveyHistory, NSInteger rightCount, NSInteger wrongCount) {
                  @strongify(self);
                  [self.console printFormat:@"收到历史测验: %@ - 正确 %td, 错误 %td",
-                  [surveyHistory yy_modelToJSONObject], rightCount, wrongCount];
+                  [surveyHistory bjlyy_modelToJSONObject], rightCount, wrongCount];
                  return YES;
              }];
     
@@ -138,7 +138,7 @@
              observer:^BOOL(NSDictionary<NSString *, NSNumber *> *results, NSInteger order) {
                  @strongify(self);
                  [self.console printFormat:@"收到测验结果: %td - %@",
-                  order, [results yy_modelToJSONObject]];
+                  order, [results bjlyy_modelToJSONObject]];
                  return YES;
              }];
     

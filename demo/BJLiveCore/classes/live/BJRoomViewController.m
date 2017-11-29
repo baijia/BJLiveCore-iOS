@@ -7,6 +7,7 @@
 //
 
 #import <BJLiveCore/BJLiveCore.h>
+#import <BJLiveBase/BJLYYModel.h>
 #import <Masonry/Masonry.h>
 
 #import "UIViewController+BJUtil.h"
@@ -17,7 +18,6 @@
 
 #import "BJAppearance.h"
 #import "BJAppConfig.h"
-#import <YYModel/YYModel.h>
 
 static CGFloat const margin = 10.0;
 static NSInteger const playingViewCount = 4;
@@ -52,6 +52,15 @@ static NSInteger const playingViewCount = 4;
     self.room = [BJLRoom roomWithSecret:roomSecret
                                userName:userName
                              userAvatar:nil];
+    BJLRoom.deployType = [BJAppConfig sharedInstance].deployType;
+    
+    /*
+    self.room = [BJLRoom roomWithID:@"17042853877073"
+                            apiSign:@"c017b76c976568f96ef7208e43b3eea7"
+                            user:[BJLUser userWithNumber:@"1602910"
+                                                    name:@"尚德111"
+                                                  avatar:@"http://static.sunlands.com/user_center_test/newUserImagePath/1602910/1602910.jpg"
+                                                    role:BJLUserRole_student]]; */
     
     @weakify(self);
     

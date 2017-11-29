@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0AE777061019689056D7F748 /* libPods-BJLiveCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 344351DD023F080D53BD787C /* libPods-BJLiveCore.a */; };
+		453B7D6484814D230F9CFAEA /* libPods-BJLiveCoreUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 80DEF14E4DC21E17EB57F2C9 /* libPods-BJLiveCoreUITests.a */; };
 		532F41901F66A4BD0016EBB4 /* BJPlayingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 532F418F1F66A4BD0016EBB4 /* BJPlayingView.m */; };
-		7123C7B36E9E5416D58835CB /* libPods-BJLiveCoreUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DD3E56A2258135439B21203 /* libPods-BJLiveCoreUITests.a */; };
-		855A50A9B4157BDBE21CF7CD /* libPods-BJLiveCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9CF7433595677C400A70698 /* libPods-BJLiveCore.a */; };
+		AC7018580CE82AB9ADC3D3C2 /* libPods-BJLiveCoreTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D5AED420E8205AF6F961932A /* libPods-BJLiveCoreTests.a */; };
 		DF0B3ABF1E0570E900E540CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0B3ABE1E0570E900E540CC /* main.m */; };
 		DF0B3AC21E0570E900E540CC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0B3AC11E0570E900E540CC /* AppDelegate.m */; };
 		DF0B3ACA1E0570E900E540CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF0B3AC91E0570E900E540CC /* Assets.xcassets */; };
@@ -29,7 +30,6 @@
 		DF0B3B381E06FFE800E540CC /* BJRoomViewController+users.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0B3B371E06FFE800E540CC /* BJRoomViewController+users.m */; };
 		DF96FFD21EE82F320029E140 /* UIViewController+BJUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = DF96FFD11EE82F320029E140 /* UIViewController+BJUtil.m */; };
 		DF96FFD51EE830AA0029E140 /* BJTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF96FFD41EE830AA0029E140 /* BJTableViewController.m */; };
-		FCC3D7E313ECFE0D2A276610 /* libPods-BJLiveCoreTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C80D531DB10EE4971BFDFDC7 /* libPods-BJLiveCoreTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,15 +50,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0DD3E56A2258135439B21203 /* libPods-BJLiveCoreUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BJLiveCoreUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E20105E229FB2E09C7C0993 /* Pods-BJLiveCoreUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BJLiveCoreUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BJLiveCoreUITests/Pods-BJLiveCoreUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		344351DD023F080D53BD787C /* libPods-BJLiveCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BJLiveCore.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B5A191A09986D643AEC06CE /* Pods-BJLiveCoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BJLiveCoreTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BJLiveCoreTests/Pods-BJLiveCoreTests.release.xcconfig"; sourceTree = "<group>"; };
 		532F418E1F66A4BD0016EBB4 /* BJPlayingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BJPlayingView.h; sourceTree = "<group>"; };
 		532F418F1F66A4BD0016EBB4 /* BJPlayingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BJPlayingView.m; sourceTree = "<group>"; };
+		80DEF14E4DC21E17EB57F2C9 /* libPods-BJLiveCoreUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BJLiveCoreUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C65EDE424B7E0746A328A3E /* Pods-BJLiveCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BJLiveCore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BJLiveCore/Pods-BJLiveCore.debug.xcconfig"; sourceTree = "<group>"; };
 		9ED8A60CA1F17F6C097F139B /* Pods-BJLiveCoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BJLiveCoreTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BJLiveCoreTests/Pods-BJLiveCoreTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A3E106F522AD93BB2FECF4F7 /* Pods-BJLiveCoreUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BJLiveCoreUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BJLiveCoreUITests/Pods-BJLiveCoreUITests.release.xcconfig"; sourceTree = "<group>"; };
-		C80D531DB10EE4971BFDFDC7 /* libPods-BJLiveCoreTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BJLiveCoreTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5AED420E8205AF6F961932A /* libPods-BJLiveCoreTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BJLiveCoreTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF0B3ABA1E0570E900E540CC /* BJLiveCore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BJLiveCore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF0B3ABE1E0570E900E540CC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DF0B3AC01E0570E900E540CC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -99,7 +100,6 @@
 		DF96FFD11EE82F320029E140 /* UIViewController+BJUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BJUtil.m"; sourceTree = "<group>"; };
 		DF96FFD31EE830AA0029E140 /* BJTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BJTableViewController.h; sourceTree = "<group>"; };
 		DF96FFD41EE830AA0029E140 /* BJTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BJTableViewController.m; sourceTree = "<group>"; };
-		E9CF7433595677C400A70698 /* libPods-BJLiveCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BJLiveCore.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC466E6262F221A0BC20DE95 /* Pods-BJLiveCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BJLiveCore.release.xcconfig"; path = "Pods/Target Support Files/Pods-BJLiveCore/Pods-BJLiveCore.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -108,7 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				855A50A9B4157BDBE21CF7CD /* libPods-BJLiveCore.a in Frameworks */,
+				0AE777061019689056D7F748 /* libPods-BJLiveCore.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,7 +116,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FCC3D7E313ECFE0D2A276610 /* libPods-BJLiveCoreTests.a in Frameworks */,
+				AC7018580CE82AB9ADC3D3C2 /* libPods-BJLiveCoreTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,7 +124,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7123C7B36E9E5416D58835CB /* libPods-BJLiveCoreUITests.a in Frameworks */,
+				453B7D6484814D230F9CFAEA /* libPods-BJLiveCoreUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,9 +134,9 @@
 		4999FC49765F5DF2E7F5A278 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E9CF7433595677C400A70698 /* libPods-BJLiveCore.a */,
-				C80D531DB10EE4971BFDFDC7 /* libPods-BJLiveCoreTests.a */,
-				0DD3E56A2258135439B21203 /* libPods-BJLiveCoreUITests.a */,
+				344351DD023F080D53BD787C /* libPods-BJLiveCore.a */,
+				D5AED420E8205AF6F961932A /* libPods-BJLiveCoreTests.a */,
+				80DEF14E4DC21E17EB57F2C9 /* libPods-BJLiveCoreUITests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -453,7 +453,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-BJLiveCore/Pods-BJLiveCore-frameworks.sh",
-				"${PODS_ROOT}/BJLiveCore/frameworks/BJHLMediaPlayer.framework",
+				"${PODS_ROOT}/../../frameworks/BJHLMediaPlayer.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -552,16 +552,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-BJLiveCore/Pods-BJLiveCore-resources.sh",
-				"${PODS_ROOT}/BJLiveCore/frameworks/BJLiveCore.framework/Versions/A/Resources/BJLiveCore.xcassets/bjl_ic_ppt_next.imageset/bjl_ic_ppt_next@2x.png",
-				"${PODS_ROOT}/BJLiveCore/frameworks/BJLiveCore.framework/Versions/A/Resources/BJLiveCore.xcassets/bjl_ic_ppt_next.imageset/bjl_ic_ppt_next@3x.png",
-				"${PODS_ROOT}/BJLiveCore/frameworks/BJLiveCore.framework/Versions/A/Resources/BJLiveCore.xcassets/bjl_ic_ppt_next.imageset/Contents.json",
-				"${PODS_ROOT}/BJLiveCore/frameworks/BJLiveCore.framework/Versions/A/Resources/BJLiveCore.xcassets/bjl_ic_ppt_prev.imageset/bjl_ic_ppt_prev@2x.png",
-				"${PODS_ROOT}/BJLiveCore/frameworks/BJLiveCore.framework/Versions/A/Resources/BJLiveCore.xcassets/bjl_ic_ppt_prev.imageset/bjl_ic_ppt_prev@3x.png",
-				"${PODS_ROOT}/BJLiveCore/frameworks/BJLiveCore.framework/Versions/A/Resources/BJLiveCore.xcassets/bjl_ic_ppt_prev.imageset/Contents.json",
-				"${PODS_ROOT}/BJLiveCore/frameworks/BJLiveCore.framework/Versions/A/Resources/BJLiveCore.xcassets/Contents.json",
-				"${PODS_ROOT}/BJLiveCore/frameworks/BJLiveCore.framework/Versions/A/Resources/BJLiveCore.xcassets",
-				"${PODS_ROOT}/BJLiveCore/frameworks/BJLiveCore.framework/Versions/A/Resources/BJLiveCore.xcassets/bjl_ic_ppt_next.imageset",
-				"${PODS_ROOT}/BJLiveCore/frameworks/BJLiveCore.framework/Versions/A/Resources/BJLiveCore.xcassets/bjl_ic_ppt_prev.imageset",
+				"${PODS_ROOT}/../../images/BJLiveCore.xcassets",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
