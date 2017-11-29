@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
     s.name          = 'BJLiveCore'
-    s.version       = '1.1.0'
+    s.version       = '1.2.0'
     s.summary       = 'BJLiveCore SDK.'
     s.description   = 'BJLiveCore SDK for iOS.'
 
@@ -23,11 +23,11 @@ Pod::Spec.new do |s|
         ss.ios.preserve_paths       = 'frameworks/BJLiveCore.framework'
         ss.ios.source_files         = 'frameworks/BJLiveCore.framework/Versions/A/Headers/**/*.h'
         ss.ios.public_header_files  = 'frameworks/BJLiveCore.framework/Versions/A/Headers/**/*.h'
-        ss.ios.resource             = 'frameworks/BJLiveCore.framework/Versions/A/Resources/**/*'
+        # ss.ios.resource             = 'frameworks/BJLiveCore.framework/Versions/A/Resources/**/*'
         ss.ios.vendored_frameworks  = 'frameworks/BJLiveCore.framework'
-        ss.frameworks               = ['CoreGraphics', 'Foundation', 'UIKit', 'WebKit']
+        ss.frameworks               = ['CoreGraphics', 'CoreTelephony', 'Foundation', 'UIKit', 'WebKit']
         ss.dependency 'BJLiveCore/BJHLMediaPlayer'
-        ss.dependency 'LogStat', '~> 0.7.3'
+        ss.dependency 'BJLLogStat', '~> 0.8.0'
     end
 
     # TODO: Assets.car
@@ -39,12 +39,11 @@ Pod::Spec.new do |s|
     #     ss.ios.vendored_frameworks  = 'frameworks/dylib/BJLiveCore.framework'
     #     ss.frameworks               = ['CoreGraphics', 'Foundation', 'UIKit', 'WebKit']
     #     ss.dependency 'BJLiveCore/BJHLMediaPlayer'
-    #     ss.dependency 'LogStat', '0.7.3-dylib'
+    #     ss.dependency 'BJLLogStat', '0.8.0'
     # end
 
     s.subspec 'BJHLMediaPlayer' do |ss|
         ss.xcconfig = {
-            'ENABLE_BITCODE' => 'NO',
             'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES'
         }
         ss.vendored_frameworks = "frameworks/BJHLMediaPlayer.framework"
@@ -52,15 +51,15 @@ Pod::Spec.new do |s|
         ss.libraries = ['icucore', 'c++', 'stdc++.6', 'z']
     end
 
-    s.dependency 'BJLiveBase', '~> 1.1.0'
-    s.dependency 'BJLiveBase/Base'
-    s.dependency 'BJLiveBase/Ext'
-    s.dependency 'BJLiveBase/Networking'
-    s.dependency 'BJLiveBase/WebImage/AFNetworking'
+    s.dependency "BJLiveBase", "~> 1.2.0"
+    s.dependency "BJLiveBase/Base"
+    s.dependency "BJLiveBase/Ext"
+    s.dependency "BJLiveBase/Networking"
+    s.dependency "BJLiveBase/WebImage/AFNetworking"
+    s.dependency "BJLiveBase/YYModel"
 
     s.dependency 'AFNetworking', '~> 3.0'
     s.dependency 'PocketSocket'
-    s.dependency 'YYModel'
 
     ## DEPRECATED
     s.dependency 'ReactiveObjC'
