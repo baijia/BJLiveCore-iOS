@@ -44,7 +44,8 @@ Pod::Spec.new do |s|
 
     s.subspec 'BJHLMediaPlayer' do |ss|
         ss.xcconfig = {
-            'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES'
+            'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES',
+            "ENABLE_BITCODE" => "NO"
         }
         ss.vendored_frameworks = "frameworks/BJHLMediaPlayer.framework"
         ss.frameworks = ['AVFoundation', 'GLKit', 'VideoToolbox']
