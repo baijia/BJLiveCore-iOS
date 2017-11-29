@@ -26,20 +26,16 @@ static NSString * const BJAppConfig_deployType = @"BJAppConfig_deployType";
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _deployType = BJLDeployType_www;
-#if DEBUG
         id deployType = [[NSUserDefaults standardUserDefaults] stringForKey:BJAppConfig_deployType];
         _deployType = ([deployType respondsToSelector:@selector(integerValue)]
                        ? [deployType integerValue]
-                       : BJLDeployType_test);
-#endif
+                       : BJLDeployType_www);
         [self makeSignals];
     }
     return self;
 }
 
 - (void)makeSignals {
-#if DEBUG
     @weakify(self);
     [[[RACObserve(self, deployType) skip:1] distinctUntilChanged] subscribeNext:^(id x) {
         @strongify(self);
@@ -50,7 +46,6 @@ static NSString * const BJAppConfig_deployType = @"BJAppConfig_deployType";
         
         exit(0);
     }];
-#endif
 }
 
 @end
