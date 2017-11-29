@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "BJLBlockHelper.h"
 
 #import "BJLConstants.h"
 
@@ -35,6 +34,7 @@
 
 #import "BJLServerRecordingVM.h"
 #import "BJLGiftVM.h"
+#import "BJLHelpVM.h"
 
 #import "BJLChatVM.h"
 
@@ -162,6 +162,12 @@ typedef NS_ENUM(NSInteger, BJLRoomState) {
  */
 @property (nonatomic, readonly) BOOL inRoom; // inRoom == (state != BJLRoomState_initialized && state != BJLRoomState_exited)
 
+/** 是否在切换教室 */
+@property (nonatomic, readonly) BOOL isSwitching;
+
+/** 跑马灯内容 */
+@property (nonatomic) NSString *lampContent;
+
 /** 进入教室 */
 - (void)enter;
 
@@ -287,10 +293,14 @@ typedef NS_ENUM(NSInteger, BJLRoomState) {
 
 /** 聊天/弹幕，参考 BJLChatVM */
 @property (nonatomic, readonly, nullable) BJLChatVM *chatVM;
+// 内部使用
+@property (nonatomic, readonly, nullable) BJLHelpVM *helpVM;
 
 #pragma mark - deployment
 
-+ (void)setAPIBaseURL:(NSString *)apiBaseURL cdnBaseURL:(nullable NSString *)cdnBaseURL;
+/** 部署环境(内部使用)
+ 调用 enter 之后设置无效 */
+@property (class, nonatomic) BJLDeployType deployType;
 
 @end
 

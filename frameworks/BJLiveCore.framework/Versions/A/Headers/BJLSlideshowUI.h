@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 课件占位图 */
 @property (nonatomic) UIImage *placeholderImage;
+@property (nonatomic) UIImage *prevPageIndicatorImage, *nextPageIndicatorImage;
 
 /** 学生本地翻页是否可以超过教室内的页数 */
 @property (nonatomic) BOOL studentCanPreviewForward;

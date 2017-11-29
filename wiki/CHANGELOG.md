@@ -5,6 +5,18 @@ Change Log
 - 被标记 `DEPRECATED` 的代码 **将在大版本升级时移除**；
 - 带有 `alpha`、`beta`、`rc` 字样的版本，代码和功能都不稳定，**请勿随意升级**；
 
+## 1.2.0
+
+- 支持音视频前向纠错；
+- 支持跑马灯，参考 `BJLRoom` 的 `lampContent` 属性；
+- 大小班切换(内部使用)；
+- 不再依赖 `YYModel`；
+- PPT 动画视图不再内置翻页指示箭头，如果需要可以自行设置：
+```objc
+self.room.slideshowViewController.prevPageIndicatorImage = ...;
+self.room.slideshowViewController.nextPageIndicatorImage = ...;
+```
+
 ## 1.1.0
 
 - 支持竖屏/横屏状态下采集横屏/竖屏视频，参考 `BJLRecordingVM` 的 `videoOrientation` 属性；

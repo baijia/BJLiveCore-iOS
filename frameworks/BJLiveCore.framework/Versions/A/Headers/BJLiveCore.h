@@ -12,7 +12,6 @@
 #import <BJLiveBase/UIKit+BJL_M9Dev.h>
 
 #import "BJLBaseVM.h"
-#import "BJLBlockHelper.h"
 #import "BJLChatVM.h"
 #import "BJLConstants.h"
 #import "BJLDocument.h"

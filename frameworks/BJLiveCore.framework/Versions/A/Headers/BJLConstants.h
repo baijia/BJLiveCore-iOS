@@ -14,12 +14,13 @@ NS_ASSUME_NONNULL_BEGIN
 /** WebSocket 请求超时时间 */
 extern const NSTimeInterval BJLWebSocketTimeoutInterval;
 
-/** 部署环境 */
-typedef NS_ENUM(NSInteger, BJLDeployType){
+/** 部署环境(内部使用) */
+typedef NS_ENUM(NSInteger, BJLDeployType) {
     /** 正式环境 */
     BJLDeployType_www,
     BJLDeployType_test,
     BJLDeployType_beta,
+    BJLDeployType_96kr,
     _BJLDeployType_count
 };
 
