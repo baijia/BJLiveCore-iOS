@@ -241,6 +241,11 @@ static inline NSString *BJLAliIMGURLString_aspectScale(BOOL fill, NSInteger widt
     [queryItems addObject:queryItem];
     components.queryItems = queryItems;
     
+    NSRange range = [components.path rangeOfString:@"@" options:NSBackwardsSearch];
+    if (range.location != NSNotFound) {
+        components.path = [components.path substringToIndex:range.location];
+    }
+    
     return components.string;
 }
 
