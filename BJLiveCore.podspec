@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
     s.name          = 'BJLiveCore'
-    s.version       = '1.3.0-alpha'
+    s.version       = '1.3.0-alpha02'
     s.summary       = 'BJLiveCore SDK.'
     s.description   = 'BJLiveCore SDK for iOS.'
 
@@ -48,8 +48,5 @@ Pod::Spec.new do |s|
     s.dependency "BJLiveBase/YYModel"
 
     s.dependency "BJLLogStat", "~> 0.9.0-alpha"
-
-    ## DEPRECATED
-    s.dependency 'ReactiveObjC'
-
+    
 end

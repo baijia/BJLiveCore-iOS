@@ -22,6 +22,7 @@ target 'BJLiveCore' do
     
     # demo
     pod 'Masonry'
+    pod 'ReactiveObjC'
     
     # debug
     pod 'FLEX', '~> 2.0', :configurations => ['Debug']
