@@ -5,6 +5,24 @@ Change Log
 - 被标记 `DEPRECATED` 的代码 **将在大版本升级时移除**；
 - 带有 `alpha`、`beta`、`rc` 字样的版本，代码和功能都不稳定，**请勿随意升级**；
 
+## 1.3.0
+
+- 去除对非百家云开源库的依赖；
+- 其他用户视频可用时支持自动播放，参考 `BJLPlayingVM` 的 `videoPlayingBlock` 属性；
+- 改进获取 PPT 图片 URL 的方式，参考 `BJLSlideshowVM`、`BJLSlidePage`；
+
+## 1.2.0
+
+- 支持音视频前向纠错；
+- 支持跑马灯，参考 `BJLRoom` 的 `lampContent` 属性；
+- 大小班切换(内部使用)；
+- 不再依赖 `YYModel`；
+- PPT 动画视图不再内置翻页指示箭头，如果需要可以自行设置：
+```objc
+self.room.slideshowViewController.prevPageIndicatorImage = ...;
+self.room.slideshowViewController.nextPageIndicatorImage = ...;
+```
+
 ## 1.1.0
 
 - 支持竖屏/横屏状态下采集横屏/竖屏视频，参考 `BJLRecordingVM` 的 `videoOrientation` 属性；
@@ -129,7 +147,7 @@ extern const NSTimeInterval BJLSpeakingRequestCountdownStep DEPRECATED_MSG_ATTRI
 - 支持加载客服信息；
 - **`BJLUser` 由 `protocol` 改为 `class`；**；
 - **`BJLMessage` 由 `protocol` 改为 `class`**，聊天支持自定义表情，支持老师、助教和非大班课的学生发图片；
-- `BJLSpeakingRequestVM` 里的 `speakingRequestUsers` 改为倒序，后举手的学生排在数组的前面，与发言用户逻辑保持一致；
+- `BJLSpeakingRequestVM` 的 `speakingRequestUsers` 改为倒序，后举手的学生排在数组的前面，与发言用户逻辑保持一致；
 - PPT 翻页相关 API 改进，参考 `BJLSlideshowVM`、`BJLSlideshowUI`；
 - 优化 PPT 图片加载逻辑；
 - 解决 BUG；

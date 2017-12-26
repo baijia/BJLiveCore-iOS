@@ -22,6 +22,15 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly, copy) NSString *pageURLString; // image
 @property (nonatomic, readonly) NSInteger width, height;
 
+/**
+ size:  CGSizeMake(1280.0, 720.0) || CGSizeMake(1920.0, 1080.0) || CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)
+ fill:  fill, or fit
+ ext:   jpg, png, webp, bmp, gif, src
+ */
+- (nullable NSString *)pageURLStringWithSize:(CGSize)size
+                                        fill:(BOOL)fill
+                                      format:(nullable NSString *)ext;
+
 @end
 
 #pragma mark -
@@ -63,21 +72,26 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 课件总页数 */
 @property (nonatomic, readonly) NSInteger totalPageCount;
+
 /** 课件当前页信息 */
 @property (nonatomic, readonly, nullable) BJLSlidePage *currentSlidePage;
+
 /** 通过 documentID 获取 document
  #param documentID 课件 ID
  */
 - (nullable BJLDocument *)documentWithID:(NSString *)documentID;
+
 /** 通过 documentID、pageIndex 获取 slide page
  #param documentID 课件 ID
  #param pageIndex 目标页在课件中的序号
  */
-- (nullable BJLSlidePage *)slidePageWithDocumentID:(NSString *)documentID pageIndex:(NSInteger)pageIndex;
-/** 指定 fillSize，获取 slide pages
- #param fillSize 课件展示大小
- */
-- (NSArray<BJLSlidePage *> *)slidePagesWithFillSize:(CGSize)fillSize;
+- (nullable BJLSlidePage *)slidePageWithDocumentID:(NSString *)documentID
+                                         pageIndex:(NSInteger)pageIndex;
+
+/** 获取 slide pages */
+- (NSArray<BJLSlidePage *> *)allSlidePages;
+
+- (NSArray<BJLSlidePage *> *)slidePagesWithFillSize:(CGSize)fillSize DEPRECATED_MSG_ATTRIBUTE("use `self - allSlidePages` and `BJLSlidePage - pageURLStringWithSize:fill:format:`");
 
 @end
 
