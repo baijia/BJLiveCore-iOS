@@ -14,7 +14,7 @@ BJLiveCore 会依赖一些第三方库，建议使用 CocoaPods 方式集成；
 - Podfile 中设置 source
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
-source 'https://github.com/baijia/specs.git'
+source 'http://git.baijiashilian.com/open-ios/specs.git'
 ```
 - Podfile 中引入 BJLiveCore
 ```ruby

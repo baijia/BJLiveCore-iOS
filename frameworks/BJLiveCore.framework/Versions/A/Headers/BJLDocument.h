@@ -23,11 +23,17 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) NSInteger width, height;
 
 - (BOOL)containsPageIndex:(NSInteger)pageIndex;
+
+/** original pageURLString with pageIndex */
 - (nullable NSString *)pageURLStringWithPageIndex:(NSInteger)pageIndex;
-// jpg, png, webp, bmp, gif, src
+
 - (nullable NSString *)pageURLStringWithPageIndex:(NSInteger)pageIndex
                                          fillSize:(CGSize)size
-                                           format:(nullable NSString *)ext;
+                                           format:(nullable NSString *)ext DEPRECATED_MSG_ATTRIBUTE("use `BJLAliIMG_aspectFill`, `BJLAliIMG_aspectFit` or `BJLSlidePage - pageURLStringWithSize:fill:format:`");
+- (nullable NSString *)pageURLStringWithPageIndex:(NSInteger)pageIndex
+                                         fillSize:(CGSize)size
+                                            scale:(CGFloat)scale
+                                           format:(nullable NSString *)ext DEPRECATED_MSG_ATTRIBUTE("use `BJLAliIMG_aspectFill`, `BJLAliIMG_aspectFit` or `BJLSlidePage - pageURLStringWithSize:fill:format:`");
 
 @end
 

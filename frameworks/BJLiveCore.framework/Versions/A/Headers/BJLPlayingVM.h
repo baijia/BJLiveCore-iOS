@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 音视频用户列表
  #discussion 包含 `videoPlayingUser`
- #discussion 所有音频直接播放，视频需要调用 `updateVideoPlayingUser:` 打开
+ #discussion 所有用户的音频会自动播放，视频需要调用 `updatePlayingUserWithID:videoOn:` 打开或者通过 `videoPlayingBlock` 控制打开
  #discussion SDK 会处理音视频打断、恢复、前后台切换等情况
  */
 @property (nonatomic, readonly, copy, nullable) NSArray<BJLUser *> *playingUsers;
@@ -56,6 +56,11 @@ NS_ASSUME_NONNULL_BEGIN
  #discussion `playingUsers` 的子集
  #discussion 断开重连、暂停恢复等操作不自动重置 `videoPlayingUsers`，除非对方用户掉线、离线等 */
 @property (nonatomic, readonly, copy, nullable) NSArray<BJLUser *> *videoPlayingUsers;
+
+/** 播放视频的回调
+ #discussion 其他用户视频可用时调用，返回 YES 表示自动播放视频，不设置此 block 不会自动播放
+ */
+@property (nonatomic, copy, nullable) BOOL (^videoPlayingBlock)(BJLUser *user);
 
 /** 设置播放用户的视频
  #param userID 用户 ID

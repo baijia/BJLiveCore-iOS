@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
     s.name          = 'BJLiveCore'
-    s.version       = '1.2.0'
+    s.version       = '1.3.0'
     s.summary       = 'BJLiveCore SDK.'
     s.description   = 'BJLiveCore SDK for iOS.'
 
@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
     s.ios.deployment_target = '8.0'
 
     s.source = {
-        :git => 'https://github.com/baijia/BJLiveCore-iOS.git',
+        :git => 'http://git.baijiashilian.com/open-ios/BJLiveCore.git',
         :tag => s.version.to_s
     }
 
@@ -27,7 +27,7 @@ Pod::Spec.new do |s|
         ss.ios.vendored_frameworks  = 'frameworks/BJLiveCore.framework'
         ss.frameworks               = ['CoreGraphics', 'CoreTelephony', 'Foundation', 'UIKit', 'WebKit']
         ss.dependency 'BJLiveCore/BJHLMediaPlayer'
-        ss.dependency 'BJLLogStat', '~> 0.8.0'
+        ss.dependency 'BJLLogStat', '~> 0.9.0'
     end
 
     # TODO: Assets.car
@@ -39,7 +39,7 @@ Pod::Spec.new do |s|
     #     ss.ios.vendored_frameworks  = 'frameworks/dylib/BJLiveCore.framework'
     #     ss.frameworks               = ['CoreGraphics', 'Foundation', 'UIKit', 'WebKit']
     #     ss.dependency 'BJLiveCore/BJHLMediaPlayer'
-    #     ss.dependency 'BJLLogStat', '0.8.0'
+    #     ss.dependency 'BJLLogStat', '0.9.0'
     # end
 
     s.subspec 'BJHLMediaPlayer' do |ss|
@@ -52,17 +52,12 @@ Pod::Spec.new do |s|
         ss.libraries = ['icucore', 'c++', 'stdc++.6', 'z']
     end
 
-    s.dependency "BJLiveBase", "~> 1.2.0"
+    s.dependency "BJLiveBase", "~> 1.3.0"
     s.dependency "BJLiveBase/Base"
     s.dependency "BJLiveBase/Ext"
     s.dependency "BJLiveBase/Networking"
+    s.dependency "BJLiveBase/PocketSocket/Client"
     s.dependency "BJLiveBase/WebImage/AFNetworking"
     s.dependency "BJLiveBase/YYModel"
-
-    s.dependency 'AFNetworking', '~> 3.0'
-    s.dependency 'PocketSocket'
-
-    ## DEPRECATED
-    s.dependency 'ReactiveObjC'
 
 end

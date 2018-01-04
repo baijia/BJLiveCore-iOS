@@ -155,6 +155,14 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (BJLObservable)didReceiveCustomizedSignal:(NSString *)key value:(nullable id)value isCache:(BOOL)isCache;
 
+/**
+ 获取定制信令
+ 进教室后会自动获取定制信令的缓存并且回调
+ 如果希望`再次`获取并回调，可调用此方法
+ #param key     信令类型
+ */
+- (nullable BJLError *)requestCustomizedSignalCache:(NSString *)key;
+
 @end
 
 NS_ASSUME_NONNULL_END
