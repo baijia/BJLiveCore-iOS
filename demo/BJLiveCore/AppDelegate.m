@@ -6,10 +6,15 @@
 //  Copyright © 2016 BaijiaYun. All rights reserved.
 //
 
+#import <BJLiveBase/BJLMotionWindow.h>
+
 #import "AppDelegate.h"
 #import "AppDelegate+ui.h"
+#import "AppDelegate+util.h"
 
 #import "BJRootViewController.h"
+
+#import "BJAppConfig.h"
 
 @interface AppDelegate ()
 
@@ -18,6 +23,12 @@
 @implementation AppDelegate
 
 - (void)beforeVisible {
+    BJLRoom.deployType = [BJAppConfig sharedInstance].deployType;
+    
+    [self setupReachability];
+    
+    [BJAppConfig initializeInstance];
+    
     [self setupAppearance];
     [self setupViewControllers];
 }
@@ -42,7 +53,7 @@ void BJLUncaughtExceptionHandler(NSException *exception) {
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window = [[BJLMotionWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
     self.window.rootViewController = [BJRootViewController sharedInstance];
     
@@ -69,6 +80,10 @@ void BJLUncaughtExceptionHandler(NSException *exception) {
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

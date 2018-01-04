@@ -30,6 +30,7 @@
 		DF0B3B381E06FFE800E540CC /* BJRoomViewController+users.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0B3B371E06FFE800E540CC /* BJRoomViewController+users.m */; };
 		DF96FFD21EE82F320029E140 /* UIViewController+BJUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = DF96FFD11EE82F320029E140 /* UIViewController+BJUtil.m */; };
 		DF96FFD51EE830AA0029E140 /* BJTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF96FFD41EE830AA0029E140 /* BJTableViewController.m */; };
+		DFE557701FCEC34800BA605C /* AppDelegate+util.m in Sources */ = {isa = PBXBuildFile; fileRef = DFE5576E1FCEC34700BA605C /* AppDelegate+util.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +101,8 @@
 		DF96FFD11EE82F320029E140 /* UIViewController+BJUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BJUtil.m"; sourceTree = "<group>"; };
 		DF96FFD31EE830AA0029E140 /* BJTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BJTableViewController.h; sourceTree = "<group>"; };
 		DF96FFD41EE830AA0029E140 /* BJTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BJTableViewController.m; sourceTree = "<group>"; };
+		DFE5576E1FCEC34700BA605C /* AppDelegate+util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+util.m"; sourceTree = "<group>"; };
+		DFE5576F1FCEC34700BA605C /* AppDelegate+util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+util.h"; sourceTree = "<group>"; };
 		FC466E6262F221A0BC20DE95 /* Pods-BJLiveCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BJLiveCore.release.xcconfig"; path = "Pods/Target Support Files/Pods-BJLiveCore/Pods-BJLiveCore.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -193,6 +196,8 @@
 				DF0B3AC11E0570E900E540CC /* AppDelegate.m */,
 				DF0B3B231E064E0300E540CC /* AppDelegate+ui.h */,
 				DF0B3B241E064E0400E540CC /* AppDelegate+ui.m */,
+				DFE5576F1FCEC34700BA605C /* AppDelegate+util.h */,
+				DFE5576E1FCEC34700BA605C /* AppDelegate+util.m */,
 				DF0B3AC91E0570E900E540CC /* Assets.xcassets */,
 				DF0B3ACB1E0570E900E540CC /* LaunchScreen.storyboard */,
 				DF0B3ACE1E0570E900E540CC /* Info.plist */,
@@ -611,6 +616,7 @@
 				532F41901F66A4BD0016EBB4 /* BJPlayingView.m in Sources */,
 				DF0B3B2C1E065E5300E540CC /* BJConsoleViewController.m in Sources */,
 				DF0B3B121E0642FA00E540CC /* BJAppConfig.m in Sources */,
+				DFE557701FCEC34800BA605C /* AppDelegate+util.m in Sources */,
 				DF0B3AC21E0570E900E540CC /* AppDelegate.m in Sources */,
 				DF0B3B161E0642FA00E540CC /* BJRootViewController.m in Sources */,
 				DF96FFD51EE830AA0029E140 /* BJTableViewController.m in Sources */,

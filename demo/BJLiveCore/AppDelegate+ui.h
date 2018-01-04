@@ -13,8 +13,4 @@
 - (void)setupAppearance;
 - (void)setupViewControllers;
 
-#if DEBUG
-- (void)setupDeveloperTools;
-#endif
-
 @end

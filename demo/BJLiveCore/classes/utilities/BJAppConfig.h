@@ -11,6 +11,7 @@
 
 @interface BJAppConfig : NSObject
 
++ (void)initializeInstance;
 + (instancetype)sharedInstance;
 
 #if DEBUG
