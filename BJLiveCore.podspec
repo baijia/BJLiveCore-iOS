@@ -47,9 +47,15 @@ Pod::Spec.new do |s|
             'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES',
             "ENABLE_BITCODE" => "NO"
         }
-        ss.vendored_frameworks = "frameworks/BJHLMediaPlayer.framework"
         ss.frameworks = ['AVFoundation', 'GLKit', 'VideoToolbox']
         ss.libraries = ['icucore', 'c++', 'stdc++.6', 'z']
+        # ss.vendored_frameworks = "frameworks/BJHLMediaPlayer.framework"
+        ss.source_files = [
+            "frameworks/BJHLMediaPlayer.framework/**/gsx_rtc_types.h"
+        ]
+        ss.private_header_files = [
+            "frameworks/BJHLMediaPlayer.framework/**/gsx_rtc_types.h"
+        ]
     end
 
     s.dependency "BJLiveBase", "~> 1.3.0"

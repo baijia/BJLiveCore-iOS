@@ -12,7 +12,7 @@ PODS:
     - BJLiveBase/WebImage/BJLWebImage
   - BJLiveBase/WebImage/BJLWebImage (1.3.0)
   - BJLiveBase/YYModel (1.3.0)
-  - BJLiveCore (1.3.0):
+  - BJLiveCore (1.3.1-weak02):
     - BJLiveBase (~> 1.3.0)
     - BJLiveBase/Base
     - BJLiveBase/Ext
@@ -20,8 +20,8 @@ PODS:
     - BJLiveBase/PocketSocket/Client
     - BJLiveBase/WebImage/AFNetworking
     - BJLiveBase/YYModel
-    - BJLiveCore/static (= 1.3.0)
-  - BJLiveCore/BJHLMediaPlayer (1.3.0):
+    - BJLiveCore/static (= 1.3.1-weak02)
+  - BJLiveCore/BJHLMediaPlayer (1.3.1-weak02):
     - BJLiveBase (~> 1.3.0)
     - BJLiveBase/Base
     - BJLiveBase/Ext
@@ -29,7 +29,7 @@ PODS:
     - BJLiveBase/PocketSocket/Client
     - BJLiveBase/WebImage/AFNetworking
     - BJLiveBase/YYModel
-  - BJLiveCore/static (1.3.0):
+  - BJLiveCore/static (1.3.1-weak02):
     - BJLiveBase (~> 1.3.0)
     - BJLiveBase/Base
     - BJLiveBase/Ext
@@ -46,23 +46,19 @@ PODS:
   - ReactiveObjC (3.1.0)
 
 DEPENDENCIES:
-  - BJLiveCore (from `../`)
+  - BJLiveCore (= 1.3.1-weak02)
   - FLEX (~> 2.0)
   - Masonry
   - ReactiveObjC
 
-EXTERNAL SOURCES:
-  BJLiveCore:
-    :path: ../
-
 SPEC CHECKSUMS:
   BJLiveBase: 91a39b8ccef53058e4af7623b3d340ea835f2b78
-  BJLiveCore: f7beb89140bcb62a6251dcadd25f4c9532898f10
+  BJLiveCore: 53e061ae15046e0ac906327ecb35696f9f32badb
   BJLLogStat: d166f1fe879d7654a22ab99a640a71903189cbda
   FLEX: bd1a39e55b56bb413b6f1b34b3c10a0dc44ef079
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   ReactiveObjC: 2a38ea15335de4119d8b17caf1db1484f61db902
 
-PODFILE CHECKSUM: b90287cd01d9b45e4a74cc0fee6372db40bb0ca0
+PODFILE CHECKSUM: 3360e5849f2ad90dce6b466fefdd8f84e4684744
 
 COCOAPODS: 1.3.1

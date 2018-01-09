@@ -30,6 +30,7 @@
 		DF0B3B381E06FFE800E540CC /* BJRoomViewController+users.m in Sources */ = {isa = PBXBuildFile; fileRef = DF0B3B371E06FFE800E540CC /* BJRoomViewController+users.m */; };
 		DF96FFD21EE82F320029E140 /* UIViewController+BJUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = DF96FFD11EE82F320029E140 /* UIViewController+BJUtil.m */; };
 		DF96FFD51EE830AA0029E140 /* BJTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF96FFD41EE830AA0029E140 /* BJTableViewController.m */; };
+		DFCCF36B2004EA65003CFD5F /* BJHLMediaPlayer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DFCCF3682004EA36003CFD5F /* BJHLMediaPlayer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DFE557701FCEC34800BA605C /* AppDelegate+util.m in Sources */ = {isa = PBXBuildFile; fileRef = DFE5576E1FCEC34700BA605C /* AppDelegate+util.m */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +50,20 @@
 			remoteInfo = BJLiveCore;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DFCCF36C2004EA65003CFD5F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				DFCCF36B2004EA65003CFD5F /* BJHLMediaPlayer.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2E20105E229FB2E09C7C0993 /* Pods-BJLiveCoreUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BJLiveCoreUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BJLiveCoreUITests/Pods-BJLiveCoreUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -101,6 +116,7 @@
 		DF96FFD11EE82F320029E140 /* UIViewController+BJUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BJUtil.m"; sourceTree = "<group>"; };
 		DF96FFD31EE830AA0029E140 /* BJTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BJTableViewController.h; sourceTree = "<group>"; };
 		DF96FFD41EE830AA0029E140 /* BJTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BJTableViewController.m; sourceTree = "<group>"; };
+		DFCCF3682004EA36003CFD5F /* BJHLMediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BJHLMediaPlayer.framework; path = ../frameworks/BJHLMediaPlayer.framework; sourceTree = "<group>"; };
 		DFE5576E1FCEC34700BA605C /* AppDelegate+util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+util.m"; sourceTree = "<group>"; };
 		DFE5576F1FCEC34700BA605C /* AppDelegate+util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+util.h"; sourceTree = "<group>"; };
 		FC466E6262F221A0BC20DE95 /* Pods-BJLiveCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BJLiveCore.release.xcconfig"; path = "Pods/Target Support Files/Pods-BJLiveCore/Pods-BJLiveCore.release.xcconfig"; sourceTree = "<group>"; };
@@ -169,6 +185,7 @@
 		DF0B3AB11E0570E900E540CC = {
 			isa = PBXGroup;
 			children = (
+				DFCCF3682004EA36003CFD5F /* BJHLMediaPlayer.framework */,
 				DF0B3ABC1E0570E900E540CC /* BJLiveCore */,
 				DF0B3AD61E0570E900E540CC /* BJLiveCoreTests */,
 				DF0B3AE11E0570E900E540CC /* BJLiveCoreUITests */,
@@ -318,6 +335,7 @@
 				DF0B3AB81E0570E900E540CC /* Resources */,
 				041DA83B8F0F43FB18CCFD5D /* [CP] Embed Pods Frameworks */,
 				8D64F77526002DBEB7C53093 /* [CP] Copy Pods Resources */,
+				DFCCF36C2004EA65003CFD5F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -458,7 +476,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-BJLiveCore/Pods-BJLiveCore-frameworks.sh",
-				"${PODS_ROOT}/../../frameworks/BJHLMediaPlayer.framework",
+				"${PODS_ROOT}/BJLiveCore/frameworks/BJHLMediaPlayer.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
