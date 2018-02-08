@@ -21,12 +21,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) BJLClientType clientType;
 @property (nonatomic, readonly) BJLOnlineState onlineState;
 
-@property (nonatomic, readonly) BOOL audioOn, videoOn; // 作为登录用户、在线用户时一直是 NO
-
 @property (nonatomic, readonly) BOOL isTeacher, isStudent, isAssistant, isGuest;
 @property (nonatomic, readonly) BOOL isTeacherOrAssistant;
 
-- (BOOL)isSameUser:(BJLUser *)user;
+@property (nonatomic, readonly) BOOL audioOn, videoOn DEPRECATED_ATTRIBUTE;
+
+- (BOOL)isSameUser:(__kindof BJLUser *)user;
 - (BOOL)isSameUserWithID:(nullable NSString *)userID number:(nullable NSString *)userNumber;
 
 + (instancetype)userWithNumber:(NSString *)number
@@ -36,6 +36,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@compatibility_alias BJLOnlineUser BJLUser;
+// @compatibility_alias BJLOnlineUser BJLUser;
+DEPRECATED_MSG_ATTRIBUTE("use `BJLUser` instead")
+@interface BJLOnlineUser : BJLUser
+@end
+
+#pragma mark -
+
+@interface BJLMediaUser : BJLUser
+
+@property (nonatomic, readonly) BOOL audioOn, videoOn;
+
+@end
 
 NS_ASSUME_NONNULL_END

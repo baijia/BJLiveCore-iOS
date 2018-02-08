@@ -31,9 +31,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, readonly) BOOL activeUsersSynced;
 /** 在线的老师 */
-@property (nonatomic, readonly, nullable) BJLUser *onlineTeacher;
+@property (nonatomic, readonly, nullable) __kindof BJLUser *onlineTeacher;
 /** 当前主讲，可能和 `onlineTeacher` 相同、也可能不同 */
-@property (nonatomic, readonly, nullable) BJLUser *currentPresenter;
+@property (nonatomic, readonly, nullable) __kindof BJLUser *currentPresenter;
 
 /** 是否有更多在线用户未加载 */
 @property (nonatomic, readonly) BOOL hasMoreOnlineUsers; // NON-KVO

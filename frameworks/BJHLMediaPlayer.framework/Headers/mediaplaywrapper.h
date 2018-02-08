@@ -53,7 +53,12 @@
 
 // 采集音频
 - (int) gsx_rtc_engine_capture_audio_start:(void *)in_pVoid;
-- (int)  gsx_rtc_engine_capture_audio_stop:(void *)in_pVoid;
+- (int) gsx_rtc_engine_capture_audio_stop:(void *)in_pVoid;
+
+// 开启音频静音
+- (int) gsx_rtc_engine_capture_audio_mute:(void *)in_pVoid;
+// 取消音频静音
+- (int) gsx_rtc_engine_capture_audio_unmute:(void *)in_pVoid;
 
 // 采集视频
 - (int) gsx_rtc_engine_capture_video_set_capability:(void *)in_pVoid :( GsxVideoCaptureCapability) capability;

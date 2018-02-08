@@ -20,7 +20,7 @@ typedef NS_ENUM(NSInteger, BJLDeployType) {
     BJLDeployType_www,
     BJLDeployType_test,
     BJLDeployType_beta,
-    BJLDeployType_96kr,
+    // BJLDeployType_96kr,
     _BJLDeployType_count
 };
 
@@ -155,7 +155,15 @@ typedef NS_ENUM(NSInteger, BJLTextMaxLength) {
     BJLTextMaxLength_notice = 140
 };
 
+/** 聊天状态 */
+typedef NS_ENUM(NSInteger, BJLChatStatus) {
+    BJLChatStatus_Default, // 群聊
+    BJLChatStatus_Private  // 私聊
+};
+
 #pragma mark - AliIMG
+
+static const NSInteger BJLAliIMGMaxSize = 4096;
 
 /**
  Ali image url params - old
@@ -174,11 +182,10 @@ typedef NS_ENUM(NSInteger, BJLTextMaxLength) {
  ext:   https://help.aliyun.com/document_detail/32244.html?spm=5176.doc32223.2.2.fTzBHO
 
 static inline NSString *BJLAliIMGURLParams_aspectScale(BOOL fill, NSInteger width, NSInteger height, NSInteger scale, NSString * _Nullable ext) {
-    static const NSInteger aliIMGMaxSize = 4096;
     scale = MAX(1.0, scale <= 0 ? round([UIScreen mainScreen].scale) : scale);
     NSInteger max = MAX(width, height) * scale;
-    if (max > aliIMGMaxSize) {
-        CGFloat maxScale = (CGFloat)aliIMGMaxSize / max;
+    if (max > BJLAliIMGMaxSize) {
+        CGFloat maxScale = (CGFloat)BJLAliIMGMaxSize / max;
         width = floor(width * maxScale);
         height = floor(height * maxScale);
     }
@@ -203,10 +210,9 @@ static inline NSString *BJLAliIMGURLParams_aspectScale(BOOL fill, NSInteger widt
     scale = MAX(1.0, scale <= 0 ? round([UIScreen mainScreen].scale) : scale);
     width *= scale;
     height *= scale;
-    static const NSInteger aliIMGMaxSize = 4096;
     NSInteger max = MAX(width, height);
-    if (max > aliIMGMaxSize) {
-        CGFloat minify = (CGFloat)aliIMGMaxSize / max;
+    if (max > BJLAliIMGMaxSize) {
+        CGFloat minify = (CGFloat)BJLAliIMGMaxSize / max;
         width = floor(width * minify);
         height = floor(height * minify);
     }

@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 学生: 发言状态
  #discussion 举手、邀请发言、远程开关音视频等事件会改变此状态
- #discussion 上层需要根据这个状态开启/关闭音视频，上次开关音视频前需要判断当前音视频状态
+ #discussion 上层需要根据这个状态开启/关闭音视频，上层开关音视频前需要判断当前音视频状态
  #discussion 因为 `speakingDidRemoteControl:` 会直接开关音视频、然后再更新学生的 `speakingEnabled` */
 @property (nonatomic, readonly) BOOL speakingEnabled;
 
@@ -42,6 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
  BJLErrorCode_invalidUserRole   错误权限，要求学生权限。
  */
 - (nullable BJLError *)sendSpeakingRequest;
+
 /** 学生: 取消发言申请/结束发言
  #discussion 更新 `speakingEnabled`
  */
@@ -53,7 +54,7 @@ NS_ASSUME_NONNULL_BEGIN
 /** 老师: 收到发言申请
  #param user 申请用户
  */
-- (BJLObservable)receivedSpeakingRequestFromUser:(BJLUser *)user;
+- (BJLObservable)didReceiveSpeakingRequestFromUser:(BJLUser *)user;
 /** 老师: 允许/拒绝发言申请
  #discussion 允许发言后，关闭发言需要调用 `BJLPlayingVM` 的 `remoteUpdatePlayingUserWithID:audioOn:videoOn:` 方法
  #param userID 申请用户 ID
@@ -73,6 +74,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (BJLObservable)speakingRequestDidReplyEnabled:(BOOL)speakingEnabled
                                 isUserCancelled:(BOOL)isUserCancelled
                                            user:(BJLUser *)user;
+/** 学生: 举手发言申请被自动拒绝，因为上麦路数达到上限
+ */
+- (BJLObservable)speakingRequestDidDeny;
 
 /** 学生: 收到邀请发言
  #param invite  YES 收到邀请、NO 邀请取消 */
@@ -92,6 +96,8 @@ NS_ASSUME_NONNULL_BEGIN
  #param enabled YES：开启，NO：关闭
  */
 - (BJLObservable)speakingDidRemoteControl:(BOOL)enabled;
+
+- (BJLObservable)receivedSpeakingRequestFromUser:(BJLUser *)user DEPRECATED_MSG_ATTRIBUTE("use `didReceiveSpeakingRequestFromUser:` instead");
 
 @end
 

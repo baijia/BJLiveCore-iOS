@@ -20,47 +20,47 @@ NS_ASSUME_NONNULL_BEGIN
  #discussion 所有用户的音频会自动播放，视频需要调用 `updatePlayingUserWithID:videoOn:` 打开或者通过 `videoPlayingBlock` 控制打开
  #discussion SDK 会处理音视频打断、恢复、前后台切换等情况
  */
-@property (nonatomic, readonly, copy, nullable) NSArray<BJLUser *> *playingUsers;
+@property (nonatomic, readonly, copy, nullable) NSArray<BJLMediaUser *> *playingUsers;
 /** 从 `playingUsers` 查找用户
  #param userID 用户 ID
  #param userNumber 用户编号
  */
-- (nullable __kindof BJLUser *)userWithID:(nullable NSString *)userID number:(nullable NSString *)userNumber;
+- (nullable __kindof BJLMediaUser *)userWithID:(nullable NSString *)userID number:(nullable NSString *)userNumber;
 
 /** 用户开关音、视频
  #discussion - 某个用户主动开关自己的音视频时发送此通知、不包含意外掉线等情况
  #discussion - 正在播放的视频用户 关闭视频时 `videoPlayingUser` 将被设置为 nil、同时发送此通知
  #discussion - 进教室后批量更新 `playingUsers` 时『不』发送此通知
- #discussion - 音视频开关状态通过 `BJLUser` 的 `audioOn`、`videoOn` 获得
+ #discussion - 音视频开关状态通过 `BJLMediaUser` 的 `audioOn`、`videoOn` 获得
  #param now 新用户信息
  #param old 旧用户信息
  */
-- (BJLObservable)playingUserDidUpdate:(nullable BJLUser *)now
-                                  old:(nullable BJLUser *)old;
+- (BJLObservable)playingUserDidUpdate:(nullable BJLMediaUser *)now
+                                  old:(nullable BJLMediaUser *)old;
 /** 用户希望被全屏显示
  #discussion 比如在 PC 上共享桌面、播放本地视频
  #discussion 目前只支持老师（不支持主讲）
  #param user 对象用户
  */
-- (BJLObservable)playingUserWantsShowInFullScreen:(BJLUser *)user;
+- (BJLObservable)playingUserWantsShowInFullScreen:(BJLMediaUser *)user;
 
 /** `playingUsers` 被覆盖更新
  #discussion 进教室后批量更新才调用，增量更新不调用
  #param playingUsers 音视频用户列表
  */
-- (BJLObservable)playingUsersDidOverwrite:(nullable NSArray<BJLUser *> *)playingUsers;
+- (BJLObservable)playingUsersDidOverwrite:(nullable NSArray<BJLMediaUser *> *)playingUsers;
 
 #pragma mark -
 
 /** 正在播放的视频用户
  #discussion `playingUsers` 的子集
  #discussion 断开重连、暂停恢复等操作不自动重置 `videoPlayingUsers`，除非对方用户掉线、离线等 */
-@property (nonatomic, readonly, copy, nullable) NSArray<BJLUser *> *videoPlayingUsers;
+@property (nonatomic, readonly, copy, nullable) NSArray<BJLMediaUser *> *videoPlayingUsers;
 
 /** 播放视频的回调
  #discussion 其他用户视频可用时调用，返回 YES 表示自动播放视频，不设置此 block 不会自动播放
  */
-@property (nonatomic, copy, nullable) BOOL (^videoPlayingBlock)(BJLUser *user);
+@property (nonatomic, copy, nullable) BOOL (^videoPlayingBlock)(BJLMediaUser *user);
 
 /** 设置播放用户的视频
  #param userID 用户 ID

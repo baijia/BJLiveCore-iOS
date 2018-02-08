@@ -37,8 +37,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable BJLError *)updateRecordingAudio:(BOOL)recordingAudio;
 - (nullable BJLError *)updateRecordingVideo:(BOOL)recordingVideo; */
 
-/** 重新开始采集 */
-- (void)restartRecording;
+/** 开启音视频被自动拒绝，因为上麦路数达到上限 */
+- (BJLObservable)recordingDidDeny;
 
 /** 音视频被远程开关通知
  #discussion 对于学生，音、视频有一个打开就开启发言、全部关闭就结束发言
@@ -67,6 +67,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable BJLError *)remoteChangeRecordingWithUser:(BJLUser *)user
                                              audioOn:(BOOL)audioOn
                                              videoOn:(BOOL)videoOn;
+/** 老师: 远程开启学生音、视频被自动拒绝，因为上麦路数达到上限
+ #param user    开启失败的学生
+ */
+- (BJLObservable)remoteChangeRecordingDidDenyForUser:(BJLUser *)user;
 
 #pragma mark - 音视频采集设置
 
@@ -85,6 +89,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) BJLVideoDefinition videoDefinition;
 /** 美颜，默认关闭 */
 @property (nonatomic) BJLVideoBeautifyLevel videoBeautifyLevel;
+
+/** 重新开始采集 */
+- (void)restartRecording DEPRECATED_ATTRIBUTE;
 
 @end
 

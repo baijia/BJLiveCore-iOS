@@ -25,6 +25,7 @@ typedef NS_ENUM(NSInteger, BJLMessageType) {
 @property (nonatomic, readonly, nullable) NSString *channel;
 @property (nonatomic, readonly) NSTimeInterval timeInterval; // seconds since 1970
 @property (nonatomic, readonly) BJLUser *fromUser;
+@property (nonatomic, readonly) BJLUser *toUser; // 群聊消息：nil；私聊消息：私聊对象
 
 @property (nonatomic, readonly) BJLMessageType type;
 @property (nonatomic, readonly, nullable) NSString *text; // BJLMessageType_text
@@ -32,6 +33,8 @@ typedef NS_ENUM(NSInteger, BJLMessageType) {
 @property (nonatomic, readonly, nullable) NSString *imageURLString; // BJLMessageType_image
 @property (nonatomic, readonly) CGFloat imageWidth, imageHeight; // BJLMessageType_image
 
+/** 聊天 */
++ (NSDictionary *)messageDataWithMessage:(NSString *)message;
 + (NSDictionary *)messageDataWithEmoticonKey:(NSString *)emoticonKey;
 + (NSDictionary *)messageDataWithImageURLString:(NSString *)imageURLString imageSize:(CGSize)imageSize;
 

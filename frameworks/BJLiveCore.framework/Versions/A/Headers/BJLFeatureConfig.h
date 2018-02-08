@@ -42,8 +42,12 @@ typedef NS_ENUM(NSInteger, BJLPointsCompressType) {
 @property (nonatomic, readonly) BOOL hideUserList;
 // 禁用 H5 实现的 PPT 动画
 @property (nonatomic, readonly) BOOL disablePPTAnimation;
+// 支持私聊
+@property (nonatomic, readonly) BOOL enableWhisper;
 // 举手超时时间
 @property (nonatomic, readonly) NSTimeInterval speakingRequestTimeoutInterval;
+// 最大发言用户数
+@property (nonatomic, readonly) NSInteger maxSpeakerCount;
 
 #pragma mark - internal
 

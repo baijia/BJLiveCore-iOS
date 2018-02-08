@@ -42,9 +42,11 @@ typedef NS_ENUM(NSInteger, BJLErrorCode) {
     BJLErrorCode_invalidCalling,    // 非法调用
     BJLErrorCode_invalidArguments,  // 参数错误
     BJLErrorCode_areYouRobot,       // 操作过于频繁
-    /* enter & exit room */
+    /* enter room */
     BJLErrorCode_enterRoom_roomIsFull,      // 教室已满
+    BJLErrorCode_enterRoom_roomUnsupported, // 不支持进入的教室
     BJLErrorCode_enterRoom_forbidden,       // 用户被禁止进入教室
+    /* exit room */
     BJLErrorCode_exitRoom_disconnected,     // 连接断开
     BJLErrorCode_exitRoom_loginConflict,    // 用户在其它设备登录
     BJLErrorCode_exitRoom_kickout,          // 用户被请出教室

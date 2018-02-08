@@ -35,6 +35,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable BJLError *)sendMessage:(NSString *)text;
 
 /**
+ 指定对象，发送文字消息
+ */
+- (nullable BJLError *)sendMessage:(NSString *)text toUser:(nullable BJLUser *)user;
+
+/**
  指定频道，发送文字消息
  #discussion 最多 BJLTextMaxLength_chat 个字符
  #discussion 成功后会收到消息通知
@@ -52,6 +57,11 @@ NS_ASSUME_NONNULL_BEGIN
  #param data 消息内容
  */
 - (nullable BJLError *)sendMessageData:(NSDictionary *)data;
+
+/**
+ 指定对象，发送图片、表情等其它类型的消息
+ */
+- (nullable BJLError *)sendMessageData:(NSDictionary *)data toUser:(nullable BJLUser *)user;
 
 /**
  指定频道，发送图片、表情等其它类型的消息
