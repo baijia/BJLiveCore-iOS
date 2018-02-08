@@ -5,6 +5,14 @@ Change Log
 - 被标记 `DEPRECATED` 的代码 **将在大版本升级时移除**；
 - 带有 `alpha`、`beta`、`rc` 字样的版本，代码和功能都不稳定，**请勿随意升级**；
 
+## 1.3.1
+
+- 增加上麦路数限制，参考 `BJLRecordingVM`；
+- 音视频推流、拉流优化；
+- 支持私聊，参考 `BJLChatVM` 的 `sendMessage:toUser:` 等方法；
+- `BJLOnlineUser` 标记为 `DEPRECATED`，使用 `BJLUser`代替，音视频相关的用户使用 `BJLMediaUser`;
+- 解决 Bug；
+
 ## 1.3.0
 
 - 去除对非百家云开源库的依赖；

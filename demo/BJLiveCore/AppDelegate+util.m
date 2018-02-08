@@ -153,8 +153,6 @@ static inline SEL setCheckedSelector() {
             return @"TEST";
         case BJLDeployType_beta:
             return @"BETA";
-        case BJLDeployType_96kr:
-            return @"96kr";
         default:
             return bjl_NSStringFromValue(deployType, @"WWW");
     }
