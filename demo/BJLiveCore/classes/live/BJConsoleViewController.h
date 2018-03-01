@@ -6,9 +6,9 @@
 //
 //
 
-#import "BJTableViewController.h"
+#import <M9Dev/M9Dev.h>
 
-@interface BJConsoleViewController : BJTableViewController <UITableViewDataSource, UITableViewDelegate>
+@interface BJConsoleViewController : M9TableViewController <UITableViewDataSource, UITableViewDelegate>
 
 - (void)printLine:(NSString *)line;
 - (void)printFormat:(NSString *)format, ... NS_FORMAT_FUNCTION(1, 2);

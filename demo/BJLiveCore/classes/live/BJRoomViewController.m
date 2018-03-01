@@ -6,10 +6,9 @@
 //  Copyright © 2016 Baijia Cloud. All rights reserved.
 //
 
-#import <BJLiveCore/BJLiveCore.h>
+#import <BJLiveCore/BJLRoom+GSX.h>
+#import <M9Dev/M9Dev.h>
 #import <Masonry/Masonry.h>
-
-#import "UIViewController+BJUtil.h"
 
 #import "BJRoomViewController.h"
 #import "BJRoomViewController+media.h"
@@ -55,21 +54,13 @@ static CGFloat const margin = 10.0;
     self.room = [BJLRoom roomWithSecret:roomSecret
                                userName:userName
                              userAvatar:nil];
-    // BJLRoom.deployType = [BJAppConfig sharedInstance].deployType;
+    self.room.deployType = [BJAppConfig sharedInstance].deployType;
     
-    /*
-    self.room = [BJLRoom roomWithID:@"17042853877073"
-                            apiSign:@"c017b76c976568f96ef7208e43b3eea7"
-                            user:[BJLUser userWithNumber:@"1602910"
-                                                    name:@"尚德111"
-                                                  avatar:@"http://static.sunlands.com/user_center_test/newUserImagePath/1602910/1602910.jpg"
-                                                    role:BJLUserRole_student]]; */
-    
-    @weakify(self);
+    weakdef(self);
     
     [self bjl_observe:BJLMakeMethod(self.room, enterRoomSuccess)
              observer:^BOOL(id data) {
-                 @strongify(self);
+                 strongdef(self);
                  if (self.room.loginUser.isTeacher) {
                      [self.room.roomVM sendLiveStarted:YES]; // 上课
                  }
@@ -79,7 +70,7 @@ static CGFloat const margin = 10.0;
     
     [self bjl_observe:BJLMakeMethod(self.room, roomWillExitWithError:)
              observer:^BOOL(BJLError *error) {
-                 @strongify(self);
+                 strongdef(self);
                  if (self.room.loginUser.isTeacher) {
                      [self.room.roomVM sendLiveStarted:NO]; // 下课
                  }
@@ -88,7 +79,7 @@ static CGFloat const margin = 10.0;
     
     [self bjl_observe:BJLMakeMethod(self.room, roomDidExitWithError:)
              observer:^BOOL(BJLError *error) {
-                 @strongify(self);
+                 strongdef(self);
                  
                  if (!error) {
                      [self goBack];
@@ -119,11 +110,11 @@ static CGFloat const margin = 10.0;
     
     [self bjl_kvo:BJLMakeProperty(self.room, loadingVM)
                        filter:^BOOL(id old, id now) {
-                           // @strongify(self);
+                           // strongdef(self);
                            return !!now;
                        }
                      observer:^BOOL(id old, BJLLoadingVM *now) {
-                         @strongify(self);
+                         strongdef(self);
                          [self makeEventsForLoadingVM:now];
                          return YES;
                      }];
@@ -307,15 +298,15 @@ static CGFloat const margin = 10.0;
      self.room.loginUser.name];
     
     // if (!self.room.loginUser.isTeacher) {
-    @weakify(self);
+    weakdef(self);
     [self bjl_kvo:BJLMakeProperty(self.room.roomVM, liveStarted)
                        filter:^BOOL(NSNumber *old, NSNumber *now) {
-                           // @strongify(self);
+                           // strongdef(self);
                            return old.integerValue != now.integerValue;
                        }
                      observer:^BOOL(id old, id now) {
-                         @strongify(self);
-                         [self.console printFormat:@"liveStarted: %@", self.room.roomVM.liveStarted ? @"YES" : @"NO"];
+                         strongdef(self);
+                         [self.console printFormat:@"liveStarted: %@", NSStringFromBOOL(self.room.roomVM.liveStarted)];
                          return YES;
                      }];
     // }
@@ -326,17 +317,18 @@ static CGFloat const margin = 10.0;
 }
 
 - (void)makeEventsForLoadingVM:(BJLLoadingVM *)loadingVM {
-    @weakify(self/* , loadingVM */);
+    weakdef(self/* , loadingVM */);
     
     loadingVM.suspendBlock = ^(BJLLoadingStep step,
                                BJLLoadingSuspendReason reason,
                                BJLError *error,
-                               void (^continueCallback)(BOOL isContinue)) {
-        @strongify(self/* , loadingVM */);
+                               BOOL ignorable,
+                               BJLLoadingSuspendCallback suspendCallback) {
+        strongdef(self/* , loadingVM */);
         
         if (reason == BJLLoadingSuspendReason_stepOver) {
             [self.console printFormat:@"loading step over: %td", step];
-            continueCallback(YES);
+            suspendCallback(YES);
             return;
         }
         [self.console printFormat:@"loading step suspend: %td", step];
@@ -352,20 +344,20 @@ static CGFloat const margin = 10.0;
         }
         if (message) {
             UIAlertController *alert = [UIAlertController
-                                        alertControllerWithTitle:reason != BJLLoadingSuspendReason_errorOccurred ? @"提示" : @"错误"
+                                        alertControllerWithTitle:ignorable ? @"提示" : @"错误"
                                         message:message
                                         preferredStyle:UIAlertControllerStyleAlert];
             [alert addAction:[UIAlertAction
-                              actionWithTitle:reason != BJLLoadingSuspendReason_errorOccurred ? @"继续" : @"重试"
+                              actionWithTitle:ignorable ? @"继续" : @"重试"
                               style:UIAlertActionStyleDefault
                               handler:^(UIAlertAction * _Nonnull action) {
-                                  continueCallback(YES);
+                                  suspendCallback(YES);
                               }]];
             [alert addAction:[UIAlertAction
                               actionWithTitle:@"取消"
                               style:UIAlertActionStyleCancel
                               handler:^(UIAlertAction * _Nonnull action) {
-                                  continueCallback(NO);
+                                  suspendCallback(NO);
                               }]];
             [self presentViewController:alert animated:YES completion:nil];
         }
@@ -373,33 +365,33 @@ static CGFloat const margin = 10.0;
     
     [self bjl_observe:BJLMakeMethod(loadingVM, loadingUpdateProgress:)
              observer:(BJLMethodObserver)^BOOL(CGFloat progress) {
-                 @strongify(self/* , loadingVM */);
+                 strongdef(self/* , loadingVM */);
                  [self.console printFormat:@"loading progress: %f", progress];
                  return YES;
              }];
     
     [self bjl_observe:BJLMakeMethod(loadingVM, loadingSuccess)
              observer:^BOOL(id data) {
-                 @strongify(self/* , loadingVM */);
+                 strongdef(self/* , loadingVM */);
                  [self.console printLine:@"loading success"];
                  return YES;
              }];
     
     [self bjl_observe:BJLMakeMethod(loadingVM, loadingFailureWithError:)
              observer:^BOOL(BJLError *error) {
-                 @strongify(self/* , loadingVM */);
+                 strongdef(self/* , loadingVM */);
                  [self.console printLine:@"loading failure"];
                  return YES;
              }];
 }
 
 - (void)makeChatEvents {
-    @weakify(self);
+    weakdef(self);
     
     [self bjl_observe:BJLMakeMethod(self.room.chatVM, didReceiveMessage:)
-             observer:^BOOL(BJLMessage *message) {
-                 @strongify(self);
-                 [self.console printFormat:@"chat %@: %@", message.fromUser.name, message.text];
+             observer:^BOOL(NSObject<BJLMessage> *message) {
+                 strongdef(self);
+                 [self.console printFormat:@"chat %@: %@", message.fromUser.name, message.content];
                  return YES;
              }];
 }
@@ -422,26 +414,26 @@ static CGFloat const margin = 10.0;
 #pragma mark - events
 
 - (void)makeEvents {
-    @weakify(self);
+    weakdef(self);
     
     [[self.textField.rac_textSignal
       map:^id(NSString *text) {
           return @(!!text.length);
       }]
      subscribeNext:^(NSNumber *enabled) {
-         @strongify(self);
+         strongdef(self);
          self.doneButton.enabled = enabled.boolValue;
      }];
     
     [[self.backButton rac_signalForControlEvents:UIControlEventTouchUpInside]
      subscribeNext:^(id x) {
-         @strongify(self);
+         strongdef(self);
          [self goBack];
      }];
     
     [[self.doneButton rac_signalForControlEvents:UIControlEventTouchUpInside]
      subscribeNext:^(id x) {
-         @strongify(self);
+         strongdef(self);
          [self sendMessage];
      }];
 }

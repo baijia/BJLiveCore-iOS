@@ -7,12 +7,10 @@
 //
 
 #import <MobileCoreServices/MobileCoreServices.h>
-#import <Masonry/Masonry.h>
 
 #import "BJRoomViewController+media.h"
-#import "UIViewController+BJUtil.h"
 
-#import <BJLiveCore/BJLiveCore.h>
+#import <BJLiveCore/BJLNetworking.h>
 
 @implementation BJRoomViewController (media)
 
@@ -24,13 +22,13 @@
 }
 
 - (void)makeSpeakingEvents {
-    @weakify(self);
+    weakdef(self);
     
     if (self.room.loginUser.isTeacher) {
         // 有学生请求发言
         [self bjl_observe:BJLMakeMethod(self.room.speakingRequestVM, receivedSpeakingRequestFromUser:)
-                 observer:^BOOL(BJLUser *user) {
-                     @strongify(self);
+                 observer:^BOOL(NSObject<BJLUser> *user) {
+                     strongdef(self);
                      // 自动同意
                      [self.room.speakingRequestVM replySpeakingRequestToUserID:user.ID allowed:YES];
                      [self.console printFormat:@"%@ 请求发言、已同意", user.name];
@@ -40,8 +38,8 @@
     else {
         // 发言请求被处理
         [self bjl_observe:BJLMakeMethod(self.room.speakingRequestVM, speakingRequestDidReplyEnabled:isUserCancelled:user:)
-                 observer:(BJLMethodObserver)^BOOL(BOOL speakingEnabled, BOOL isUserCancelled, BJLUser *user) {
-                     @strongify(self);
+                 observer:(BJLMethodObserver)^BOOL(BOOL speakingEnabled, BOOL isUserCancelled, NSObject<BJLUser> *user) {
+                     strongdef(self);
                      [self.console printFormat:@"发言申请已被%@", speakingEnabled ? @"允许" : @"拒绝"];
                      if (speakingEnabled) {
                          [self.room.recordingVM setRecordingAudio:YES
@@ -60,7 +58,7 @@
 }
 
 - (void)makeRecordingEvents {
-    @weakify(self);
+    weakdef(self);
     
     self.room.recordingView.userInteractionEnabled = NO;
     [self.recordingView addSubview:self.room.recordingView];
@@ -70,7 +68,7 @@
     
     [[self.recordingView rac_signalForControlEvents:UIControlEventTouchUpInside]
      subscribeNext:^(id x) {
-         @strongify(self);
+         strongdef(self);
          
          if (!self.room.loginUser.isTeacher
              && !self.room.speakingRequestVM.speakingEnabled) {
@@ -170,12 +168,12 @@
                                          recordingVM.videoDefinition = isLow ? BJLVideoDefinition_high : BJLVideoDefinition_low;
                                      }]];
              
-             BOOL isClose = recordingVM.videoBeautifyLevel == BJLVideoBeautifyLevel_off;
+             BOOL isClose = recordingVM.videoBeautifyLevel == BJLVideoBeautifyLevel_close;
              [actionSheet addAction:[UIAlertAction
                                      actionWithTitle:isClose ? @"打开美颜" : @"关闭美颜"
                                      style:UIAlertActionStyleDefault
                                      handler:^(UIAlertAction * _Nonnull action) {
-                                         recordingVM.videoBeautifyLevel = isClose ? BJLVideoBeautifyLevel_on : BJLVideoBeautifyLevel_off;
+                                         recordingVM.videoBeautifyLevel = isClose ? BJLVideoBeautifyLevel_max : BJLVideoBeautifyLevel_close;
                                      }]];
          }
          
@@ -207,36 +205,36 @@
         make.edges.equalTo(self.playingView);
     }];
     
-    @weakify(self);
+    weakdef(self);
     
     [self bjl_observe:BJLMakeMethod(self.room.playingVM, playingUserDidUpdate:)
              observer:^BOOL(BJLTuple *tuple) {
-                 BJLTupleUnpack(tuple) = ^(BJLOnlineUser *old,
-                                           BJLOnlineUser *now) {
-                     @strongify(self);
+                 BJLTupleUnpack(tuple) = ^(NSObject<BJLOnlineUser> *old,
+                                           NSObject<BJLOnlineUser> *now) {
+                     strongdef(self);
                      [self.console printFormat:@"playingUserDidUpdate: %@ >> %@", old, now];
                  };
                  return YES;
              }];
     [self bjl_observe:BJLMakeMethod(self.room.playingVM, playingUserDidUpdate:old:)
-             observer:^BOOL(BJLOnlineUser *now,
-                            BJLOnlineUser *old) {
-                 @strongify(self);
+             observer:^BOOL(NSObject<BJLOnlineUser> *now,
+                            NSObject<BJLOnlineUser> *old) {
+                 strongdef(self);
                  [self.console printFormat:@"playingUserDidUpdate:old: %@ >> %@", old, now];
                  return YES;
              }];
     
     [[self.playingView rac_signalForControlEvents:UIControlEventTouchUpInside]
      subscribeNext:^(id x) {
-         @strongify(self);
+         strongdef(self);
          
          BJLPlayingVM *playingVM = self.room.playingVM;
          if (!playingVM) {
              return;
          }
          
-         BJLOnlineUser *videoPlayingUser = playingVM.videoPlayingUser;
-         NSArray<BJLOnlineUser *> *playingUsers = playingVM.playingUsers;
+         NSObject<BJLOnlineUser> *videoPlayingUser = playingVM.videoPlayingUser;
+         NSArray<NSObject<BJLOnlineUser> *> *playingUsers = playingVM.playingUsers;
          BOOL noBody = !videoPlayingUser && !playingUsers.count;
          
          UIAlertController *actionSheet = [UIAlertController
@@ -262,7 +260,7 @@
                                          }]];
              }
          }
-         for (BJLOnlineUser *user in playingVM.playingUsers) {
+         for (NSObject<BJLOnlineUser> *user in playingVM.playingUsers) {
              if (videoPlayingUser && [user.ID isEqualToString:videoPlayingUser.ID]) {
                  continue;
              }
@@ -323,11 +321,11 @@
 }
 
 - (void)makeSlideshowAndWhiteboardEvents {
-    @weakify(self);
+    weakdef(self);
     
     self.room.slideshowViewController.studentCanPreviewForward = YES;
     self.room.slideshowViewController.studentCanRemoteControl = YES;
-    // self.room.slideshowViewController.placeholderImage = [UIImage imageWithColor:[UIColor lightGrayColor]];
+    self.room.slideshowViewController.placeholderImage = [UIImage imageWithColor:[UIColor lightGrayColor]];
     
     [self addChildViewController:self.room.slideshowViewController
                        superview:self.slideshowAndWhiteboardView];
@@ -343,35 +341,69 @@
     
     [[infoButton rac_signalForControlEvents:UIControlEventTouchUpInside]
      subscribeNext:^(id x) {
-         @strongify(self);
+         strongdef(self);
          
          UIAlertController *actionSheet = [UIAlertController
                                            alertControllerWithTitle:@"课件&画板"
                                            message:nil
                                            preferredStyle:UIAlertControllerStyleActionSheet];
          
-         BOOL wasFit = self.room.slideshowViewController.contentMode == BJLContentMode_scaleAspectFit;
          [actionSheet addAction:[UIAlertAction
-                                 actionWithTitle:wasFit ? @"铺满显示" : @"完整显示"
+                                 actionWithTitle:@"上传课件"
                                  style:UIAlertActionStyleDefault
                                  handler:^(UIAlertAction * _Nonnull action) {
-                                     self.room.slideshowViewController.contentMode = wasFit ? BJLContentMode_scaleAspectFill : BJLContentMode_scaleAspectFit;
+                                     [self.room.slideVM addDocument:({
+                                         BJLDocumentPageInfo *pageInfo = [BJLDocumentPageInfo new];
+                                         pageInfo.isAlbum = NO;
+                                         pageInfo.pageCount = 0;
+                                         pageInfo.pageURLString = @"https://img.genshuixue.com/baijiacloud/25760197_xg3ypq77.png";
+                                         pageInfo.width = 550;
+                                         pageInfo.height = 280;
+                                         BJLDocument *document = [BJLDocument new];
+                                         document.fileID = @"25760197";
+                                         document.fileName = @"1482134071749";
+                                         document.fileExtension = @".png";
+                                         document.pageInfo = pageInfo;
+                                         document;
+                                     })];
+                                     [self.room.slideVM addDocument:({
+                                         BJLDocumentPageInfo *pageInfo = [BJLDocumentPageInfo new];
+                                         pageInfo.isAlbum = NO;
+                                         pageInfo.pageCount = 0;
+                                         pageInfo.pageURLString = @"https://img.genshuixue.com/baijiacloud/25760479_kypu8tvk.png";
+                                         pageInfo.width = 627;
+                                         pageInfo.height = 830;
+                                         BJLDocument *document = [BJLDocument new];
+                                         document.fileID = @"25760479";
+                                         document.fileName = @"1482134268462";
+                                         document.fileExtension = @".png";
+                                         document.pageInfo = pageInfo;
+                                         document;
+                                     })];
                                  }]];
          
-         BOOL drawingEnabled = self.room.slideshowViewController.drawingEnabled;
-         if (drawingEnabled) {
+         BOOL isFit = self.room.slideshowViewController.contentMode == BJLSlideshowContentMode_scaleAspectFit;
+         [actionSheet addAction:[UIAlertAction
+                                 actionWithTitle:isFit ? @"完整显示" : @"铺满显示"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * _Nonnull action) {
+                                     self.room.slideshowViewController.contentMode = isFit ? BJLSlideshowContentMode_scaleAspectFill : BJLSlideshowContentMode_scaleAspectFit;
+                                 }]];
+         
+         BOOL whiteboardEnabled = self.room.slideshowViewController.whiteboardEnabled;
+         if (whiteboardEnabled) {
              [actionSheet addAction:[UIAlertAction
                                      actionWithTitle:@"擦除标记"
                                      style:UIAlertActionStyleDefault
                                      handler:^(UIAlertAction * _Nonnull action) {
-                                         [self.room.slideshowViewController clearDrawing];
+                                         [self.room.slideshowViewController clearWhiteboard];
                                      }]];
          }
          [actionSheet addAction:[UIAlertAction
-                                 actionWithTitle:drawingEnabled ? @"结束标记" : @"开始标记"
+                                 actionWithTitle:whiteboardEnabled ? @"结束标记" : @"开始标记"
                                  style:UIAlertActionStyleDefault
                                  handler:^(UIAlertAction * _Nonnull action) {
-                                     self.room.slideshowViewController.drawingEnabled = !drawingEnabled;
+                                     self.room.slideshowViewController.whiteboardEnabled = !whiteboardEnabled;
                                  }]];
          
          [actionSheet addAction:[UIAlertAction
@@ -383,24 +415,6 @@
                             animated:YES
                           completion:nil];
      }];
-    
-    [self bjl_kvoMerge:@[BJLMakeProperty(self.room.slideshowViewController, localPageIndex),
-                         BJLMakeProperty(self.room.slideshowVM, totalPageCount)]
-                filter:^BOOL(NSNumber * _Nullable old, NSNumber * _Nullable now) {
-                    // @strongify(self);
-                    return now.integerValue != old.integerValue;
-                }
-              observer:^(NSNumber * _Nullable old, NSNumber * _Nullable now) {
-                  @strongify(self);
-                  if (self.room.slideshowViewController.localPageIndex == 0) {
-                      [self.console printLine:@"PPT: 白板"];
-                  }
-                  else {
-                      [self.console printFormat:@"PPT: %td/%td",
-                       self.room.slideshowViewController.localPageIndex,
-                       self.room.slideshowVM.totalPageCount - 1]; // 减去白板
-                  }
-              }];
 }
 
 @end

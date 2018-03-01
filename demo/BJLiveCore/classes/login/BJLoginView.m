@@ -8,7 +8,7 @@
 
 #import <Masonry/Masonry.h>
 // #import <NBKit/NBKit.h>
-#import <ReactiveObjC/ReactiveObjC.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 #import "BJLoginView.h"
 

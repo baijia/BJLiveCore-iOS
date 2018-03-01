@@ -6,8 +6,9 @@
 //  Copyright © 2016年 Baijia Cloud. All rights reserved.
 //
 
+#import <BJHL-Foundation-iOS/BJHL-Foundation-iOS.h>
 #import <BJLiveCore/BJLiveCore.h>
-#import <libextobjc/EXTScope.h>
+#import <M9Dev/M9Dev.h>
 
 #if DEBUG
 #import <FLEX/FLEXManager.h>
@@ -16,7 +17,6 @@
 #import "AppDelegate+ui.h"
 
 #import "BJAppearance.h"
-#import "UIViewController+BJUtil.h"
 #import "UIWindow+motion.h"
 
 #import "BJRootViewController.h"
@@ -45,13 +45,13 @@
     UIViewController *activeViewController = rootViewController.activeViewController;
     if ([activeViewController isKindOfClass:[UINavigationController class]]) {
         UINavigationController *navigationController = (UINavigationController *)activeViewController;
-        activeViewController = navigationController.viewControllers.firstObject;
+        activeViewController = navigationController.rootViewController;
     }
     
     if (![activeViewController isKindOfClass:viewControllerClass]) {
-        UIViewController *viewController = [[UINavigationController alloc] initWithRootViewController:[viewControllerClass new]];
+        UIViewController *viewController = [[viewControllerClass new] wrapWithNavigationController];
         if (rootViewController.presentedViewController) {
-            [rootViewController dismissViewControllerAnimated:NO completion:^{
+            [rootViewController dismissAllViewControllersAnimated:NO completion:^{
                 [rootViewController switchViewController:viewController completion:nil];
             }];
         }
@@ -74,7 +74,7 @@
 }
 
 - (void)didShakeWithNotification:(NSNotification *)notification {
-    UIEventSubtypeMotionShakeState shakeState = [notification.userInfo bjl_integerForKey:UIEventSubtypeMotionShakeStateKey];
+    UIEventSubtypeMotionShakeState shakeState = [notification.userInfo integerForKey:UIEventSubtypeMotionShakeStateKey];
     if (shakeState == UIEventSubtypeMotionShakeStateEnded) {
         [self showDeveloperTools];
     }
@@ -83,37 +83,37 @@
 - (void)showDeveloperTools {
     @weakify(self);
     
-    UIAlertController *alertController = [UIAlertController
+    M9AlertController *alertController = [M9AlertController
                                           alertControllerWithTitle:@"Developer Tools"
                                           message:nil
-                                          preferredStyle:UIAlertControllerStyleActionSheet];
+                                          preferredStyle:M9AlertControllerStyleActionSheet];
     
-    [alertController addAction:[UIAlertAction actionWithTitle:@"FLEX"
-                                                        style:UIAlertActionStyleDefault
-                                                      handler:^(UIAlertAction *action)
-                                {
-                                    // @strongify(self);
-                                    [[FLEXManager sharedManager] showExplorer];
-                                }]];
+    [alertController addActionWithTitle:@"FLEX"
+                                  style:M9AlertActionStyleDefault
+                                handler:^(id<M9AlertAction> action)
+     {
+         // @strongify(self);
+         [[FLEXManager sharedManager] showExplorer];
+     }];
     
-    [alertController addAction:[UIAlertAction actionWithTitle:@"切换环境"
-                                                        style:UIAlertActionStyleDefault
-                                                      handler:^(UIAlertAction *action)
-                                {
-                                    @strongify(self);
-                                    [self askToSwitchDeployType];
-                                }]];
+    [alertController addActionWithTitle:@"切换环境"
+                                  style:M9AlertActionStyleDefault
+                                handler:^(id<M9AlertAction> action)
+     {
+         @strongify(self);
+         [self askToSwitchDeployType];
+     }];
     
-    [alertController addAction:[UIAlertAction actionWithTitle:@"取消"
-                                                        style:UIAlertActionStyleCancel
-                                                      handler:^(UIAlertAction *action)
-                                {
-                                    // @strongify(self);
-                                }]];
+    [alertController addActionWithTitle:@"取消"
+                                  style:M9AlertActionStyleCancel
+                                handler:^(id<M9AlertAction> action)
+     {
+         // @strongify(self);
+     }];
     
-    [[UIViewController topViewController] presentViewController:alertController
-                                                       animated:YES
-                                                     completion:nil];
+    [alertController presentFromViewController:[UIViewController topViewController]
+                                      animated:YES
+                                    completion:nil];
 }
 
 - (void)askToSwitchDeployType {
@@ -125,34 +125,34 @@
                        [self nameOfDeployType:currentDeployType]];
     NSString *message = @"注意：切换环境需要重启应用！";
     
-    UIAlertController *alertController = [UIAlertController
+    M9AlertController *alertController = [M9AlertController
                                           alertControllerWithTitle:title
                                           message:message
-                                          preferredStyle:UIAlertControllerStyleActionSheet];
+                                          preferredStyle:M9AlertControllerStyleActionSheet];
     
     for (BJLDeployType deployType = 0; deployType < _BJLDeployType_count; deployType++) {
         if (deployType == currentDeployType) {
             continue;
         }
-        [alertController addAction:[UIAlertAction actionWithTitle:[self nameOfDeployType:deployType]
-                                                            style:UIAlertActionStyleDestructive
-                                                          handler:^(UIAlertAction *action)
-                                    {
-                                        // @strongify(self);
-                                        [BJAppConfig sharedInstance].deployType = deployType;
-                                    }]];
+        [alertController addActionWithTitle:[self nameOfDeployType:deployType]
+                                      style:M9AlertActionStyleDestructive
+                                    handler:^(id<M9AlertAction> action)
+         {
+             // @strongify(self);
+             [BJAppConfig sharedInstance].deployType = deployType;
+         }];
     }
     
-    [alertController addAction:[UIAlertAction actionWithTitle:@"取消"
-                                                        style:UIAlertActionStyleCancel
-                                                      handler:^(UIAlertAction *action)
-                                {
-                                    // @strongify(self);
-                                }]];
+    [alertController addActionWithTitle:@"取消"
+                                  style:M9AlertActionStyleCancel
+                                handler:^(id<M9AlertAction> action)
+     {
+         // @strongify(self);
+     }];
     
-    [[UIViewController topViewController] presentViewController:alertController
-                                                       animated:YES
-                                                     completion:nil];
+    [alertController presentFromViewController:[UIViewController topViewController]
+                                      animated:YES
+                                    completion:nil];
 }
 
 - (NSString *)nameOfDeployType:(BJLDeployType)deployType {
@@ -164,7 +164,7 @@
         case BJLDeployType_www:
             return @"www";
         default:
-            return [@(deployType) description];
+            return NSStringFromValue(deployType, nil);
     }
 }
 

@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 
 #import <BJLiveCore/BJLiveCore.h>
-#import <ReactiveObjC/ReactiveObjC.h>
+#import <BJLiveCore/UIKit+BJL_M9Dev.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 #import "BJConsoleViewController.h"
 
 @interface BJRoomViewController : UIViewController <

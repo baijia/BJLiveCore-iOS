@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <BJLiveCore/BJLiveCore.h>
+#import <BJLiveCore/UIKit+BJL_M9Dev.h>
 
 #define BJOnePixel ({ 1.0 / [UIScreen mainScreen].scale; })
 
