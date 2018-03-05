@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
     s.ios.deployment_target = '8.0'
 
     s.source = {
-        :git => 'https://github.com/baijia/BJLiveCore-iOS.git',
+        :git => 'http://git.baijiashilian.com/open-ios/BJLiveCore.git',
         :tag => s.version.to_s
     }
 
