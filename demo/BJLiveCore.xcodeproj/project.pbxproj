@@ -453,7 +453,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-BJLiveCore/Pods-BJLiveCore-frameworks.sh",
-				"${PODS_ROOT}/BJLiveCore/frameworks/BJHLMediaPlayer.framework",
+				"${PODS_ROOT}/../../frameworks/BJHLMediaPlayer.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -552,20 +552,27 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-BJLiveCore/Pods-BJLiveCore-resources.sh",
-				"${PODS_ROOT}/BJLiveCore/frameworks/BJLiveCore.framework/Versions/A/Resources/BJLiveCore.xcassets/bjl_ic_ppt_next.imageset/bjl_ic_ppt_next@2x.png",
-				"${PODS_ROOT}/BJLiveCore/frameworks/BJLiveCore.framework/Versions/A/Resources/BJLiveCore.xcassets/bjl_ic_ppt_next.imageset/bjl_ic_ppt_next@3x.png",
-				"${PODS_ROOT}/BJLiveCore/frameworks/BJLiveCore.framework/Versions/A/Resources/BJLiveCore.xcassets/bjl_ic_ppt_next.imageset/Contents.json",
-				"${PODS_ROOT}/BJLiveCore/frameworks/BJLiveCore.framework/Versions/A/Resources/BJLiveCore.xcassets/bjl_ic_ppt_prev.imageset/bjl_ic_ppt_prev@2x.png",
-				"${PODS_ROOT}/BJLiveCore/frameworks/BJLiveCore.framework/Versions/A/Resources/BJLiveCore.xcassets/bjl_ic_ppt_prev.imageset/bjl_ic_ppt_prev@3x.png",
-				"${PODS_ROOT}/BJLiveCore/frameworks/BJLiveCore.framework/Versions/A/Resources/BJLiveCore.xcassets/bjl_ic_ppt_prev.imageset/Contents.json",
-				"${PODS_ROOT}/BJLiveCore/frameworks/BJLiveCore.framework/Versions/A/Resources/BJLiveCore.xcassets/Contents.json",
-				"${PODS_ROOT}/BJLiveCore/frameworks/BJLiveCore.framework/Versions/A/Resources/BJLiveCore.xcassets",
-				"${PODS_ROOT}/BJLiveCore/frameworks/BJLiveCore.framework/Versions/A/Resources/BJLiveCore.xcassets/bjl_ic_ppt_next.imageset",
-				"${PODS_ROOT}/BJLiveCore/frameworks/BJLiveCore.framework/Versions/A/Resources/BJLiveCore.xcassets/bjl_ic_ppt_prev.imageset",
+				"${PODS_ROOT}/../../frameworks/BJLiveCore.framework/Versions/A/Resources/BJLiveCore.xcassets/bjl_ic_ppt_next.imageset/bjl_ic_ppt_next@2x.png",
+				"${PODS_ROOT}/../../frameworks/BJLiveCore.framework/Versions/A/Resources/BJLiveCore.xcassets/bjl_ic_ppt_next.imageset/bjl_ic_ppt_next@3x.png",
+				"${PODS_ROOT}/../../frameworks/BJLiveCore.framework/Versions/A/Resources/BJLiveCore.xcassets/bjl_ic_ppt_next.imageset/Contents.json",
+				"${PODS_ROOT}/../../frameworks/BJLiveCore.framework/Versions/A/Resources/BJLiveCore.xcassets/bjl_ic_ppt_prev.imageset/bjl_ic_ppt_prev@2x.png",
+				"${PODS_ROOT}/../../frameworks/BJLiveCore.framework/Versions/A/Resources/BJLiveCore.xcassets/bjl_ic_ppt_prev.imageset/bjl_ic_ppt_prev@3x.png",
+				"${PODS_ROOT}/../../frameworks/BJLiveCore.framework/Versions/A/Resources/BJLiveCore.xcassets/bjl_ic_ppt_prev.imageset/Contents.json",
+				"${PODS_ROOT}/../../frameworks/BJLiveCore.framework/Versions/A/Resources/BJLiveCore.xcassets/Contents.json",
+				"${PODS_ROOT}/../../frameworks/BJLiveCore.framework/Versions/A/Resources/BJLiveCore.xcassets",
+				"${PODS_ROOT}/../../frameworks/BJLiveCore.framework/Versions/A/Resources/BJLiveCore.xcassets/bjl_ic_ppt_next.imageset",
+				"${PODS_ROOT}/../../frameworks/BJLiveCore.framework/Versions/A/Resources/BJLiveCore.xcassets/bjl_ic_ppt_prev.imageset",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/bjl_ic_ppt_next@2x.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/bjl_ic_ppt_next@3x.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Contents.json",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/bjl_ic_ppt_prev@2x.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/bjl_ic_ppt_prev@3x.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/BJLiveCore.xcassets",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/bjl_ic_ppt_next.imageset",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/bjl_ic_ppt_prev.imageset",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
