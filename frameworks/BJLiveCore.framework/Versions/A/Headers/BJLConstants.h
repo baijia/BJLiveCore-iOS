@@ -155,89 +155,6 @@ typedef NS_ENUM(NSInteger, BJLTextMaxLength) {
     BJLTextMaxLength_notice = 140
 };
 
-#pragma mark - AliIMG
-
-/**
- Ali image url params - old
- #param fill    fill, or fit
- #param width   * scale <> 1-4096
- #param height  * scale <> 1-4096
- #param scale   0 - mainScreen.scale
- #param ext     jpg, png, webp, bmp, gif, src
- #return        url params
- e.g.
- http://image-demo.img-cn-hangzhou.aliyuncs.com/example.jpg@100h_100w_0c_1e_1l_2o_2x.jpg - fill > 300*200
- http://image-demo.img-cn-hangzhou.aliyuncs.com/example.jpg@100h_100w_0c_0e_1l_2o_2x.jpg - fit  > 200*134
- @see
- whcel: https://help.aliyun.com/document_detail/32223.html?spm=5176.doc32228.6.969.IvVprX
- o:     https://help.aliyun.com/document_detail/32231.html?spm=5176.doc32223.6.977.fTzBHO
- ext:   https://help.aliyun.com/document_detail/32244.html?spm=5176.doc32223.2.2.fTzBHO
- */
-static inline NSString *BJLAliIMGURLParams_aspectScale(BOOL fill, NSInteger width, NSInteger height, NSInteger scale, NSString * _Nullable ext) {
-    static const NSInteger aliIMGMaxSize = 4096;
-    scale = MAX(1.0, scale <= 0 ? round([UIScreen mainScreen].scale) : scale);
-    NSInteger max = MAX(width, height) * scale;
-    if (max > aliIMGMaxSize) {
-        CGFloat maxScale = (CGFloat)aliIMGMaxSize / max;
-        width = floor(width * maxScale);
-        height = floor(height * maxScale);
-    }
-    width = MAX(1.0, width);
-    height = MAX(1.0, height);
-    // w: width, h: height, x: scale, c: 0 - no cut, e: 0 - fit, 1 - fill, l: 1 - no enlarge, o: 2 - auto routate then resize
-    NSString *params = [NSString stringWithFormat:@"@%tdw_%tdh_%tdx_0c_%de_1l_2o",
-                        width, height, scale, fill];
-    ext = ext.lowercaseString;
-    return ext.length ? [params stringByAppendingPathExtension:ext] : params;
-}
-
-/*
- Ali image url params
- ?x-oss-process=image/resize,m_mfit,w_100,h_100,limit_1/auto-orient,1/format,jpg
- /resize: m_lfit - aspect fit (default), m_mfit - aspect fill (no cut), w - width, h - height, limit_1 - no enlarge (default)
- /auto-orient: 1 - auto routate then resize (default?), 0 - resize without auto routate
- /format,jpg: jpg/png/webp/gif (lowercase!)
- https://help.aliyun.com/document_detail/44686.html?spm=5176.doc54739.3.2.kCK7Oh
-static inline NSString *BJLAliIMGURLParams_aspectScale(BOOL fill, NSInteger width, NSInteger height, NSInteger scale, NSString * _Nullable ext) {
-    scale = MAX(1.0, scale <= 0 ? round([UIScreen mainScreen].scale) : scale);
-    width *= scale;
-    height *= scale;
-    static const NSInteger aliIMGMaxSize = 4096;
-    NSInteger max = MAX(width, height);
-    if (max > aliIMGMaxSize) {
-        CGFloat minify = (CGFloat)aliIMGMaxSize / max;
-        width = floor(width * minify);
-        height = floor(height * minify);
-    }
-    width = MAX(1.0, width);
-    height = MAX(1.0, height);
-    ext = ext.lowercaseString;
-    return [NSString stringWithFormat:@
-            "?x-oss-process=image"
-            "/resize,m_%@,w_%td,h_%td,limit_1"
-            "/auto-orient,1"
-            "/format,%@",
-            fill ? @"mfit" : @"lfit", width, height,
-            [@[@"jpg", @"png", @"webp", @"gif"] containsObject:ext] ? ext : @"jpg"];
-} */
-
-static inline NSString *BJLAliIMGURLString_aspectScale(BOOL fill, NSInteger width, NSInteger height, NSInteger scale, NSString *urlString, NSString * _Nullable ext) {
-    NSUInteger atLocation = [urlString rangeOfString:@"@"].location;
-    if (atLocation != NSNotFound) {
-        urlString = [urlString substringToIndex:atLocation];
-    }
-    NSString *params = BJLAliIMGURLParams_aspectScale(fill, width, height, scale, ext ?: [urlString pathExtension]);
-    return urlString.length ? [urlString stringByAppendingString:params] : params;
-}
-
-static inline NSString *BJLAliIMG_aspectFill(CGSize size, CGFloat scale, NSString *urlString, NSString * _Nullable ext) {
-    return BJLAliIMGURLString_aspectScale(YES, round(size.width), round(size.height), scale, urlString, ext);
-}
-
-static inline NSString *BJLAliIMG_aspectFit(CGSize size, CGFloat scale, NSString *urlString, NSString * _Nullable ext) {
-    return BJLAliIMGURLString_aspectScale(NO, round(size.width), round(size.height), scale, urlString, ext);
-}
-
 #pragma mark - AutoLayout Constraints
 
 static inline void BJLConstrains_edgesEqual(id item, id targetItem, UIView *superview) {
@@ -270,6 +187,75 @@ static inline void BJLConstrains_edgesEqual(id item, id targetItem, UIView *supe
                                                        multiplier:1.0
                                                          constant:0.0]
                            ]];
+}
+
+#pragma mark - AliIMG
+
+static const NSInteger BJLAliIMGMaxSize = 4096;
+
+/**
+ Ali image url params
+ x-oss-process=image/resize,m_mfit,w_100,h_100,limit_1/auto-orient,1/format,jpg
+ /resize: m_lfit - aspect fit (default), m_mfit - aspect fill (no cut), w - width, h - height, limit_1 - no enlarge (default)
+ /auto-orient: 1 - auto routate then resize (default?), 0 - resize without auto routate
+ /format,jpg: jpg/png/webp/gif (lowercase!)
+ https://help.aliyun.com/document_detail/44686.html?spm=5176.doc54739.3.2.kCK7Oh
+ */
+static inline NSString *BJLAliIMGURLParams_aspectScale(BOOL fill, NSInteger width, NSInteger height, NSInteger scale, NSString * _Nullable ext) {
+    scale = MAX(1.0, scale <= 0 ? round([UIScreen mainScreen].scale) : scale);
+    width *= scale;
+    height *= scale;
+    NSInteger max = MAX(width, height);
+    if (max > BJLAliIMGMaxSize) {
+        CGFloat minify = (CGFloat)BJLAliIMGMaxSize / max;
+        width = floor(width * minify);
+        height = floor(height * minify);
+    }
+    width = MAX(1.0, width);
+    height = MAX(1.0, height);
+    ext = ext.lowercaseString;
+    return [NSString stringWithFormat:@"image"
+            "/resize,m_%@,w_%td,h_%td,limit_1"
+            "/auto-orient,1"
+            "/format,%@",
+            fill ? @"mfit" : @"lfit", width, height,
+            [@[@"jpg", @"png", @"webp", @"gif"] containsObject:ext] ? ext : @"jpg"];
+}
+
+static inline NSString *BJLAliIMGURLString_aspectScale(BOOL fill, NSInteger width, NSInteger height, NSInteger scale, NSString *urlString, NSString * _Nullable ext) {
+    NSString * const key = @"x-oss-process";
+    
+    NSURLComponents *components = [NSURLComponents componentsWithString:urlString];
+    if (!components) {
+        return urlString;
+    }
+    
+    NSMutableArray *queryItems = [components.queryItems mutableCopy] ?: [NSMutableArray new];
+    for (NSURLQueryItem *queryItem in components.queryItems) {
+        if ([queryItem.name isEqualToString:key]) {
+            [queryItems removeObject:queryItem];
+        }
+    }
+    
+    NSString *value = BJLAliIMGURLParams_aspectScale(fill, width, height, scale, ext ?: [urlString pathExtension]);
+    NSURLQueryItem *queryItem = [NSURLQueryItem queryItemWithName:key value:value];
+    [queryItems addObject:queryItem];
+    components.queryItems = queryItems;
+    
+    NSRange range = [components.path rangeOfString:@"@" options:NSBackwardsSearch];
+    if (range.location != NSNotFound) {
+        components.path = [components.path substringToIndex:range.location];
+    }
+    
+    return components.string;
+}
+
+static inline NSString *BJLAliIMG_aspectFill(CGSize size, CGFloat scale, NSString *urlString, NSString * _Nullable ext) {
+    return BJLAliIMGURLString_aspectScale(YES, round(size.width), round(size.height), scale, urlString, ext);
+}
+
+static inline NSString *BJLAliIMG_aspectFit(CGSize size, CGFloat scale, NSString *urlString, NSString * _Nullable ext) {
+    return BJLAliIMGURLString_aspectScale(NO, round(size.width), round(size.height), scale, urlString, ext);
 }
 
 NS_ASSUME_NONNULL_END
