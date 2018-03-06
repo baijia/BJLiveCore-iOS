@@ -1,18 +1,18 @@
 PODS:
-  - AFNetworking (3.1.0):
-    - AFNetworking/NSURLSession (= 3.1.0)
-    - AFNetworking/Reachability (= 3.1.0)
-    - AFNetworking/Security (= 3.1.0)
-    - AFNetworking/Serialization (= 3.1.0)
-    - AFNetworking/UIKit (= 3.1.0)
-  - AFNetworking/NSURLSession (3.1.0):
+  - AFNetworking (3.2.0):
+    - AFNetworking/NSURLSession (= 3.2.0)
+    - AFNetworking/Reachability (= 3.2.0)
+    - AFNetworking/Security (= 3.2.0)
+    - AFNetworking/Serialization (= 3.2.0)
+    - AFNetworking/UIKit (= 3.2.0)
+  - AFNetworking/NSURLSession (3.2.0):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.1.0)
-  - AFNetworking/Security (3.1.0)
-  - AFNetworking/Serialization (3.1.0)
-  - AFNetworking/UIKit (3.1.0):
+  - AFNetworking/Reachability (3.2.0)
+  - AFNetworking/Security (3.2.0)
+  - AFNetworking/Serialization (3.2.0)
+  - AFNetworking/UIKit (3.2.0):
     - AFNetworking/NSURLSession
   - BJLiveBase (1.2.0):
     - BJLiveBase/Base (= 1.2.0)
@@ -36,7 +36,6 @@ PODS:
     - BJLiveCore/static (= 1.2.0)
     - PocketSocket
     - ReactiveObjC
-    - YYModel
   - BJLiveCore/BJHLMediaPlayer (1.2.0):
     - AFNetworking (~> 3.0)
     - BJLiveBase (~> 1.2.0)
@@ -47,7 +46,6 @@ PODS:
     - BJLiveBase/YYModel
     - PocketSocket
     - ReactiveObjC
-    - YYModel
   - BJLiveCore/static (1.2.0):
     - AFNetworking (~> 3.0)
     - BJLiveBase (~> 1.2.0)
@@ -60,7 +58,6 @@ PODS:
     - BJLLogStat (~> 0.8.0)
     - PocketSocket
     - ReactiveObjC
-    - YYModel
   - BJLLogStat (0.8.0):
     - AFNetworking
     - FMDB
@@ -78,8 +75,7 @@ PODS:
   - PocketSocket/Core (1.0.1)
   - PocketSocket/Server (1.0.1):
     - PocketSocket/Client
-  - ReactiveObjC (3.0.0)
-  - YYModel (1.0.4)
+  - ReactiveObjC (3.1.0)
 
 DEPENDENCIES:
   - BJLiveCore (from `../`)
@@ -91,17 +87,16 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  AFNetworking: 8ac6017b94ea105479f7776e5288e48ae9c59bb4
   BJLiveBase: ccdb7dd3d2c98bcc77a401230f622704243e2b57
-  BJLiveCore: 5662f9bf12e3d422771debb9b0a28fa6d0fe6306
+  BJLiveCore: 335098ca05427cfc580a52db596eeb55ef436a2d
   BJLLogStat: 70010b220b7b4e6508c1f81a28dc433e1c9a55e7
   FLEX: bd1a39e55b56bb413b6f1b34b3c10a0dc44ef079
   FMDB: 6198a90e7b6900cfc046e6bc0ef6ebb7be9236aa
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   PocketSocket: 9c6867d66fb4f962af96b9b07f4b45bb561b2c2a
-  ReactiveObjC: ce79989e8684b9086b5f8d0c74bc7b81a8729c9e
-  YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
+  ReactiveObjC: 2a38ea15335de4119d8b17caf1db1484f61db902
 
 PODFILE CHECKSUM: 98977cfbf403f01433d3f45e618d1487058be214
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.4.0

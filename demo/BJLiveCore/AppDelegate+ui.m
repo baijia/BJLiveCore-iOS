@@ -66,6 +66,8 @@
 #if DEBUG
 
 - (void)setupDeveloperTools {
+    [FLEXManager sharedManager].networkDebuggingEnabled = YES;
+    
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter addObserver:self
                            selector:@selector(didShakeWithNotification:)
