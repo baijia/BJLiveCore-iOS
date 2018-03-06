@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
     s.name          = 'BJLiveCore'
-    s.version       = '1.1.0'
+    s.version       = '1.1.1'
     s.summary       = 'BJLiveCore SDK.'
     s.description   = 'BJLiveCore SDK for iOS.'
 
@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
     s.ios.deployment_target = '8.0'
 
     s.source = {
-        :git => 'https://github.com/baijia/BJLiveCore-iOS.git',
+        :git => 'http://git.baijiashilian.com/open-ios/BJLiveCore.git',
         :tag => s.version.to_s
     }
 
