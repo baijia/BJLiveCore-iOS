@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
     s.name          = 'BJLiveCore'
-    s.version       = '1.0.2'
+    s.version       = '1.0.2-xcode8'
     s.summary       = 'BJLiveCore SDK.'
     s.description   = 'BJLiveCore SDK for iOS.'
 
