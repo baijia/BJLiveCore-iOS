@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'BJLiveCore'
-  s.version = '0.2.4-dylib14-sd'
+  s.version = '0.2.4-dylib15-sd-alpha'
   s.summary = 'BJLiveCore SDK.'
   s.description = 'BJLiveCore SDK for iOS.'
   s.license = 'MIT'
@@ -32,11 +32,21 @@ Pod::Spec.new do |s|
   # s.vendored_libraries = 'BJLiveCore-#{s.version}/**/*.a'
   # # s.resources = 'BJLiveCore-#{s.version}/**/*.bundle'
 
-  s.subspec 'BJHLMediaPlayer' do |ss|
-    ss.frameworks = ['AVFoundation', 'VideoToolbox', 'GLKit']
-    ss.libraries  = ['icucore', 'c++', 'stdc++.6', 'z']
-    ss.vendored_frameworks = "BJLiveCore/BJHLMediaPlayer.framework"
-  end
+# load dynamically
+s.subspec "BJHLMediaPlayer" do |ss|
+    ss.xcconfig = {
+        # "CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES" => "YES",
+        "ENABLE_BITCODE" => "NO" # TODO: "YES"
+    }
+    ss.libraries = ["icucore", "c++", "stdc++.6", "z"]
+    ss.frameworks = ["AVFoundation", "GLKit", "VideoToolbox"]
+    ss.source_files = [
+    "frameworks/BJHLMediaPlayer.framework/**/gsx_rtc_types.h"
+    ]
+    ss.private_header_files = [
+    "frameworks/BJHLMediaPlayer.framework/**/gsx_rtc_types.h"
+    ]
+ end
 
   # s.frameworks = ['AssetsLibrary', 'CoreGraphics', 'Foundation', 'UIKit', 'Photos']
   s.frameworks = ['CoreGraphics', 'Foundation', 'UIKit']
