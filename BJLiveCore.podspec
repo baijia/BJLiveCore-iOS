@@ -61,6 +61,7 @@ Pod::Spec.new do |s|
   s.dependency 'LogStat', '0.6.6'
   s.dependency 'JRSwizzle'
   s.dependency 'YYModel'
+  s.dependency 'M9Dev'
 
   # DEPRECATED
   s.dependency 'BJHL-Foundation-iOS', '1.2.13-nolog'
