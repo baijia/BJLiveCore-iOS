@@ -17,7 +17,7 @@ target 'BJLiveCore' do
     
     # dev
     # pod 'BJHL-AVSDK-iOS', :git => 'http://git.baijiahulian.com/video/BJHL-AVSDK-iOS.git', :branch => 'master'
-    pod 'BJLiveCore', '0.2.4-dylib10-sd'
+    pod 'BJLiveCore', '0.2.4-dylib15-sd'
     # pod 'BJLiveCore', :path => '../'
     
     # demo
