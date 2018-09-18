@@ -14,7 +14,7 @@
 		<div class="container" class="hide-in-xcode">
 			
 			<h1 id="library-title">
-				<a href="../index.html">AppleDoc </a>
+				<a href="../index.html">BJLiveCore </a>
 			</h1>
 
 			<p id="developer-home">
@@ -66,6 +66,8 @@
 		
 		<option value="//api/name/inRoom">inRoom</option>
 		
+		<option value="//api/name/isSwitching">isSwitching</option>
+		
 		<option value="//api/name/loadingVM">loadingVM</option>
 		
 		<option value="//api/name/loginUser">loginUser</option>
@@ -109,6 +111,8 @@
 		<option value="//api/name/roomWithID:apiSign:user:">+ roomWithID:apiSign:user:</option>
 		
 		<option value="//api/name/roomWithSecret:userName:userAvatar:">+ roomWithSecret:userName:userAvatar:</option>
+		
+		<option value="//api/name/setExclusiveSubdomain:">+ setExclusiveSubdomain:</option>
 		
 	</optgroup>
 	
@@ -176,10 +180,63 @@
 						
 
 						
-						
+						<h2 class="task-title">Other Methods</h2>
 
 						<div class="task-list">
 							<div class="section-method">
+	<a name="//api/name/setExclusiveSubdomain:" title="setExclusiveSubdomain:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/setExclusiveSubdomain:">+&nbsp;setExclusiveSubdomain:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>设置客户专属子域名，需要在进教室之前设置</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (void)setExclusiveSubdomain:(nullable NSString *)<em>exclusiveSubdomain</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>exclusiveSubdomain</code></th>
+						<td><p>客户专属子域名</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
 	<a name="//api/name/roomWithID:apiSign:user:" title="roomWithID:apiSign:user:"></a>
 	<h3 class="method-title"><code><a href="#//api/name/roomWithID:apiSign:user:">+&nbsp;roomWithID:apiSign:user:</a></code>
 </h3>
@@ -216,7 +273,7 @@
 				
 					<tr>
 						<th scope="row" class="argument-name"><code>user</code></th>
-						<td><p>用户</p></td>
+						<td><p>用户，参考 <code>BJLUser</code> 的 <code>userWithNumber:name:groupID:avatar:role:</code></p></td>
 					</tr>
 				
 				</table>
@@ -232,6 +289,11 @@
 
 			
 
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>此方法传入的参数、以及创建 BJLUser 时所传参数都会参与 apiSign 的计算</p>
+			</div>
 			
 
 			
@@ -315,7 +377,15 @@
 			
 		</div>
 	</div>
-</div><div class="section-method">
+</div>
+						</div>
+						
+
+						
+						<h2 class="task-title">Other Methods</h2>
+
+						<div class="task-list">
+							<div class="section-method">
 	<a name="//api/name/state" title="state"></a>
 	<h3 class="method-title"><code><a href="#//api/name/state">&nbsp;&nbsp;state</a></code>
 </h3>
@@ -392,6 +462,47 @@
 				<h4 class="method-subtitle">Discussion</h4>
 				<p>在 <a href="#//api/name/enterRoomSuccess"><code>enterRoomSuccess</code></a> 和 <a href="#//api/name/roomDidExitWithError:"><code>roomDidExitWithError:</code></a> 之间是 YES，包括断开重连</p>
 			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/isSwitching" title="isSwitching"></a>
+	<h3 class="method-title"><code><a href="#//api/name/isSwitching">&nbsp;&nbsp;isSwitching</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>是否在切换教室</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL isSwitching</code></div>
+
+		    
+			
+
+			
+
+			
+
 			
 
 			
@@ -574,7 +685,7 @@
 				
 					<tr>
 						<th scope="row" class="argument-name"><code>reloadingBlock</code></th>
-						<td><p>重连回调。reloadingVM：重连 vm；<a href="#//api/name/callback">callback</a>(re<a href="#//api/name/load">load</a>)：调用 <a href="#//api/name/callback">callback</a> 时 re<a href="#//api/name/load">load</a> 参数传 YES 重连，NO 将导致 <code>异常退出</code></p></td>
+						<td><p>重连回调。reloadingVM：重连 vm；<a href="#//api/name/callback">callback</a>(reload)：调用 <a href="#//api/name/callback">callback</a> 时 reload 参数传 YES 重连，NO 将导致 <code>异常退出</code></p></td>
 					</tr>
 				
 				</table>
@@ -1419,7 +1530,7 @@
 			
 			
 			<div class="method-subsection brief-description">
-				<p>禁用 PPT 动画</p>
+				<p>禁用动画课件</p>
 			</div>
 			
 		    
@@ -1436,7 +1547,7 @@
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>是否禁用 PPT 动画由两个参数控制，任意一个值为 YES 就禁止</p><p>1、由服务端通过 <code>BJLFeatureConfig</code> 的 <code>disablePPTAnimation</code> 控制</p><p>2、由上层设置这个 <code>disablePPTAnimation</code></p>
+				<p>是否禁用动画课件由两个参数控制，任意一个值为 YES 就禁止</p><p>1、由服务端通过 <code>BJLFeatureConfig</code> 的 <code>disablePPTAnimation</code> 控制</p><p>2、由上层设置这个 <code>disablePPTAnimation</code></p>
 			</div>
 			
 
@@ -1637,7 +1748,7 @@
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2017 baijiayun. All rights reserved. Updated: 2017-10-16</p>
+						<p class="copyright">Copyright &copy; 2018 baijiayun. All rights reserved. Updated: 2018-09-18</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>

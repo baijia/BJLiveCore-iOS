@@ -14,7 +14,7 @@
 		<div class="container" class="hide-in-xcode">
 			
 			<h1 id="library-title">
-				<a href="../index.html">AppleDoc </a>
+				<a href="../index.html">BJLiveCore </a>
 			</h1>
 
 			<p id="developer-home">
@@ -120,114 +120,10 @@
 						
 
 						
-						
+						<h2 class="task-title">Other Methods</h2>
 
 						<div class="task-list">
 							<div class="section-method">
-	<a name="//api/name/receivedGifts" title="receivedGifts"></a>
-	<h3 class="method-title"><code><a href="#//api/name/receivedGifts">&nbsp;&nbsp;receivedGifts</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>所有打赏记录</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, copy, nullable) NSArray&lt;NSObject&lt;BJLReceivedGift&gt; *&gt; *receivedGifts</code></div>
-
-		    
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>参考 <a href="#//api/name/loadReceivedGifts"><code>loadReceivedGifts</code></a></p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BJLGiftVM.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/receivedGiftsDidOverwrite:" title="receivedGiftsDidOverwrite:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/receivedGiftsDidOverwrite:">&ndash;&nbsp;receivedGiftsDidOverwrite:</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p><a href="#//api/name/receivedGifts"><code>receivedGifts</code></a> 被覆盖更新</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>- (BJLObservable)receivedGiftsDidOverwrite:(nullable NSArray&lt;NSObject&lt;BJLReceivedGift&gt; *&gt; *)<em>receivedGifts</em></code></div>
-
-		    
-			
-			<div class="method-subsection arguments-section parameters">
-				<h4 class="method-subtitle parameter-title">Parameters</h4>
-				<table class="argument-def parameter-def">
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>receivedGifts</code></th>
-						<td><p>打赏记录</p></td>
-					</tr>
-				
-				</table>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>覆盖更新才调用，增量更新不调用</p><p>首次连接 server 或断开重连会导致覆盖更新</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BJLGiftVM.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
 	<a name="//api/name/loadReceivedGifts" title="loadReceivedGifts"></a>
 	<h3 class="method-title"><code><a href="#//api/name/loadReceivedGifts">&ndash;&nbsp;loadReceivedGifts</a></code>
 </h3>
@@ -315,7 +211,7 @@
 			
 			<div class="method-subsection return">
 				<h4 class="method-subtitle parameter-title">Return Value</h4>
-				<p>BJLError：
+				<p>BJLError:
 BJLErrorCode_invalidArguments  错误参数；
 BJLErrorCode_invalidCalling    错误调用，如老师和助教调用此方法、老师不在教室、打赏对象不是老师等；
 BJLErrorCode_invalidUserRole   错误权限，要求学生权限。</p>
@@ -328,6 +224,64 @@ BJLErrorCode_invalidUserRole   错误权限，要求学生权限。</p>
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
 				<p>成功后会收到打赏通知，只支持学生给老师打赏</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLGiftVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/receivedGiftsDidOverwrite:" title="receivedGiftsDidOverwrite:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/receivedGiftsDidOverwrite:">&ndash;&nbsp;receivedGiftsDidOverwrite:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p><a href="#//api/name/receivedGifts"><code>receivedGifts</code></a> 被覆盖更新</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)receivedGiftsDidOverwrite:(nullable NSArray&lt;NSObject&lt;BJLReceivedGift&gt; *&gt; *)<em>receivedGifts</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>receivedGifts</code></th>
+						<td><p>打赏记录</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>覆盖更新才调用，增量更新不调用</p><p>首次连接 server 或断开重连会导致覆盖更新</p>
 			</div>
 			
 
@@ -361,7 +315,7 @@ BJLErrorCode_invalidUserRole   错误权限，要求学生权限。</p>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (BJLObservable)didReceiveGift:(NSObject&lt;BJLReceivedGift&gt; *)<em>receivedGift</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)didReceiveGift:(id&lt;BJLReceivedGift&gt;)<em>receivedGift</em></code></div>
 
 		    
 			
@@ -405,6 +359,60 @@ BJLErrorCode_invalidUserRole   错误权限，要求学生权限。</p>
 </div>
 						</div>
 						
+
+						
+						<h2 class="task-title">Other Methods</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/receivedGifts" title="receivedGifts"></a>
+	<h3 class="method-title"><code><a href="#//api/name/receivedGifts">&nbsp;&nbsp;receivedGifts</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>所有打赏记录</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, copy, nullable) NSArray&lt;NSObject&lt;BJLReceivedGift&gt; *&gt; *receivedGifts</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>参考 <a href="#//api/name/loadReceivedGifts"><code>loadReceivedGifts</code></a></p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLGiftVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
 					</div>
 					
 					
@@ -417,7 +425,7 @@ BJLErrorCode_invalidUserRole   错误权限，要求学生权限。</p>
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2017 baijiayun. All rights reserved. Updated: 2017-10-16</p>
+						<p class="copyright">Copyright &copy; 2018 baijiayun. All rights reserved. Updated: 2018-09-18</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>

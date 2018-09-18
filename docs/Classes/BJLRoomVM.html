@@ -14,7 +14,7 @@
 		<div class="container" class="hide-in-xcode">
 			
 			<h1 id="library-title">
-				<a href="../index.html">AppleDoc </a>
+				<a href="../index.html">BJLiveCore </a>
 			</h1>
 
 			<p id="developer-home">
@@ -58,6 +58,8 @@
 		
 		<option value="//api/name/enteringTimeInterval">enteringTimeInterval</option>
 		
+		<option value="//api/name/lampContent">lampContent</option>
+		
 		<option value="//api/name/liveStarted">liveStarted</option>
 		
 		<option value="//api/name/notice">notice</option>
@@ -74,7 +76,9 @@
 		
 		<option value="//api/name/answerToRollcall">- answerToRollcall</option>
 		
-		<option value="//api/name/didReceiveCustomizedSignal:value:isCache:">- didReceiveCustomizedSignal:value:isCache:</option>
+		<option value="//api/name/didReceiveAnswerSheet:">- didReceiveAnswerSheet:</option>
+		
+		<option value="//api/name/didReceiveCustomizedBroadcast:value:isCache:">- didReceiveCustomizedBroadcast:value:isCache:</option>
 		
 		<option value="//api/name/didReceiveRollcallWithTimeout:">- didReceiveRollcallWithTimeout:</option>
 		
@@ -88,15 +92,23 @@
 		
 		<option value="//api/name/loadSurveyHistory">- loadSurveyHistory</option>
 		
+		<option value="//api/name/requestCustomizedBroadcastCache:">- requestCustomizedBroadcastCache:</option>
+		
 		<option value="//api/name/rollcallDidFinish">- rollcallDidFinish</option>
+		
+		<option value="//api/name/sendCustomizedBroadcast:value:cache:">- sendCustomizedBroadcast:value:cache:</option>
 		
 		<option value="//api/name/sendLiveStarted:">- sendLiveStarted:</option>
 		
 		<option value="//api/name/sendNoticeWithText:linkURL:">- sendNoticeWithText:linkURL:</option>
 		
+		<option value="//api/name/sendQuizMessage:">- sendQuizMessage:</option>
+		
 		<option value="//api/name/sendRollcallWithTimeout:">- sendRollcallWithTimeout:</option>
 		
 		<option value="//api/name/sendSurveyAnswers:result:order:">- sendSurveyAnswers:result:order:</option>
+		
+		<option value="//api/name/submitAnswerSheet:">- submitAnswerSheet:</option>
 		
 	</optgroup>
 	
@@ -266,7 +278,7 @@
 			
 			<div class="method-subsection return">
 				<h4 class="method-subtitle parameter-title">Return Value</h4>
-				<p>BJLError：
+				<p>BJLError:
 BJLErrorCode_invalidUserRole   错误权限，要求老师权限</p>
 			</div>
 			
@@ -422,7 +434,7 @@ BJLErrorCode_invalidUserRole   错误权限，要求老师权限</p>
 			
 			<div class="method-subsection return">
 				<h4 class="method-subtitle parameter-title">Return Value</h4>
-				<p>BJLError：
+				<p>BJLError:
 BJLErrorCode_invalidArguments  错误参数，如字数超过 <code>BJLTextMaxLength_notice</code>；
 BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限。</p>
 			</div>
@@ -435,6 +447,47 @@ BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限。</p>
 				<h4 class="method-subtitle">Discussion</h4>
 				<p>最多 BJLTextMaxLength_<a href="#//api/name/notice">notice</a> 个字符</p><p><code>noticeText</code> = <code>noticeText.length</code> ? <code>noticeText</code> : <code>linkURL.absoluteString</code></p><p>设置成功后修改 <a href="#//api/name/notice"><code>notice</code></a></p>
 			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoomVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/lampContent" title="lampContent"></a>
+	<h3 class="method-title"><code><a href="#//api/name/lampContent">&nbsp;&nbsp;lampContent</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>跑马灯内容</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, copy, nullable) NSString *lampContent</code></div>
+
+		    
+			
+
+			
+
+			
+
 			
 
 			
@@ -625,7 +678,7 @@ BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限。</p>
 			
 			<div class="method-subsection return">
 				<h4 class="method-subtitle parameter-title">Return Value</h4>
-				<p>BJLError：
+				<p>BJLError:
 BJLErrorCode_invalidCalling    错误调用，如老师没有点名或者点名已过期；
 BJLErrorCode_invalidUserRole   错误权限，要求学生权限。</p>
 			</div>
@@ -852,7 +905,7 @@ BJLErrorCode_invalidUserRole   错误权限，要求学生权限。</p>
 			
 			<div class="method-subsection return">
 				<h4 class="method-subtitle parameter-title">Return Value</h4>
-				<p>BJLError：
+				<p>BJLError:
 BJLErrorCode_invalidArguments  错误参数；
 BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限。</p>
 			</div>
@@ -934,8 +987,8 @@ BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限。</p>
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/didReceiveCustomizedSignal:value:isCache:" title="didReceiveCustomizedSignal:value:isCache:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/didReceiveCustomizedSignal:value:isCache:">&ndash;&nbsp;didReceiveCustomizedSignal:value:isCache:</a></code>
+	<a name="//api/name/sendQuizMessage:" title="sendQuizMessage:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/sendQuizMessage:">&ndash;&nbsp;sendQuizMessage:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -945,12 +998,242 @@ BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限。</p>
 			
 			
 			<div class="method-subsection brief-description">
-				<p>收到定制信令</p>
+				<p>BJLError:
+BJLErrorCode_invalidCalling    错误调用</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (BJLObservable)didReceiveCustomizedSignal:(NSString *)<em>key</em> value:(nullable id)<em>value</em> isCache:(BOOL)<em>isCache</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)sendQuizMessage:(NSDictionary&lt;NSString*,id&gt; *)<em>message</em></code></div>
+
+		    
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>BJLError:
+BJLErrorCode_invalidCalling    错误调用</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoomVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/didReceiveAnswerSheet:" title="didReceiveAnswerSheet:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/didReceiveAnswerSheet:">&ndash;&nbsp;didReceiveAnswerSheet:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>答题开始</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)didReceiveAnswerSheet:(BJLAnswerSheet *)<em>answerSheet</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>answerSheet</code></th>
+						<td><p>答题表, 包含答题选项及时限</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoomVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/submitAnswerSheet:" title="submitAnswerSheet:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/submitAnswerSheet:">&ndash;&nbsp;submitAnswerSheet:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>提交答案</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLError *)submitAnswerSheet:(BJLAnswerSheet *)<em>answerSheet</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>answerSheet</code></th>
+						<td><p>答题表：options 数组中的 BJLAnswerSheetOption 实例对应各个选项, 它的 seletced 属性表示该选项是否被选中</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoomVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/sendCustomizedBroadcast:value:cache:" title="sendCustomizedBroadcast:value:cache:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/sendCustomizedBroadcast:value:cache:">&ndash;&nbsp;sendCustomizedBroadcast:value:cache:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>发送定制广播信令</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)sendCustomizedBroadcast:(NSString *)<em>key</em> value:(id)<em>value</em> cache:(BOOL)<em>cache</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>key</code></th>
+						<td><p>信令类型</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>value</code></th>
+						<td><p>信令内容，合法的 JSON 数据类型 - #see <code>[NSJSONSerialization isValidJSONObject:]</code>，序列化成字符串后不能过长，一般不超过 1024 个字符</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>cache</code></th>
+						<td><p>是否缓存，缓存的信令可以通过 <a href="#//api/name/requestCustomizedBroadcastCache:"><code>requestCustomizedBroadcastCache:</code></a> 方法重新请求</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>BJLError:
+BJLErrorCode_invalidUserRole   当前用户不是老师或者助教
+BJLErrorCode_invalidArguments  不支持的 key，内容为空或者内容过长
+BJLErrorCode_areYouRobot       发送频率过快，要求每秒不超过 5 条、并且每分钟不超过 30 条</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>只有老师和助教才能发送定制广播信令</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoomVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/didReceiveCustomizedBroadcast:value:isCache:" title="didReceiveCustomizedBroadcast:value:isCache:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/didReceiveCustomizedBroadcast:value:isCache:">&ndash;&nbsp;didReceiveCustomizedBroadcast:value:isCache:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>收到定制广播信令</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)didReceiveCustomizedBroadcast:(NSString *)<em>key</em> value:(nullable id)<em>value</em> isCache:(BOOL)<em>isCache</em></code></div>
 
 		    
 			
@@ -982,9 +1265,68 @@ BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限。</p>
 			
 
 			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoomVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/requestCustomizedBroadcastCache:" title="requestCustomizedBroadcastCache:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/requestCustomizedBroadcastCache:">&ndash;&nbsp;requestCustomizedBroadcastCache:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>获取定制广播信令</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)requestCustomizedBroadcastCache:(NSString *)<em>key</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>key</code></th>
+						<td><p>信令类型</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>BJLError:
+BJLErrorCode_invalidArguments  不支持的 key</p>
+			</div>
+			
+
+			
+
+			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>定制信令与 SDK 功能无关</p>
+				<p>进教室后调用此方法可以获取定制广播信令的缓存，结果通过回调 <a href="#//api/name/didReceiveCustomizedBroadcast:value:isCache:"><code>didReceiveCustomizedBroadcast:value:isCache:</code></a> 回调</p>
 			</div>
 			
 
@@ -1067,7 +1409,7 @@ BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限。</p>
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2017 baijiayun. All rights reserved. Updated: 2017-10-16</p>
+						<p class="copyright">Copyright &copy; 2018 baijiayun. All rights reserved. Updated: 2018-09-18</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>
