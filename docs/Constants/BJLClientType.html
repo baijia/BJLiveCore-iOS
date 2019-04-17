@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>BJLLoadingStep Constants Reference</title>
+	<title>BJLClientType Constants Reference</title>
 
 	<link rel="stylesheet" href="../css/style.css">
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
@@ -59,13 +59,13 @@
 		<div id="overview_contents" class="container">
 			<div id="content">
 				<main role="main">
-					<h1 class="title">BJLLoadingStep Constants Reference</h1>
+					<h1 class="title">BJLClientType Constants Reference</h1>
 
 					
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
 	<th>Declared in</th>
-	<td>BJLLoadingVM.h</td>
+	<td>BJLConstants.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -75,11 +75,11 @@
 					
 
                     
-                    <h3 class="subsubtitle method-title">BJLLoadingStep</h3>
+                    <h3 class="subsubtitle method-title">BJLClientType</h3>
                     
 					
 					<div class="section section-overview">
-                        <p>加载步骤</p>
+                        <p>客户端类型</p>
 					</div>
 					
 					
@@ -87,21 +87,21 @@
                         <!-- display enum values -->
                         
                         <h4 class="method-subtitle">Definition</h4>
-                        <code>typedef NS_OPTIONS(NSInteger, BJLLoadingStep ) {<br>
+                        <code>typedef NS_ENUM(NSUInteger, BJLClientType ) {<br>
                             
-                            &nbsp;&nbsp; <a href="">BJLLoadingStep_checkNetwork</a> = 1 &lt; &lt; 0,<br>
+                            &nbsp;&nbsp; <a href="">BJLClientType_PCWeb</a> = 0,<br>
                             
-                            &nbsp;&nbsp; <a href="">BJLLoadingStep_loadRoomInfo</a> = 1 &lt; &lt; 1,<br>
+                            &nbsp;&nbsp; <a href="">BJLClientType_PCApp</a> = 1,<br>
                             
-                            &nbsp;&nbsp; <a href="">BJLLoadingStep_connectMasterServer</a> = 1 &lt; &lt; 2,<br>
+                            &nbsp;&nbsp; <a href="">BJLClientType_MobileWeb</a> = 2,<br>
                             
-                            &nbsp;&nbsp; <a href="">BJLLoadingStep_connectRoomServer</a> = 1 &lt; &lt; 3,<br>
+                            &nbsp;&nbsp; <a href="">BJLClientType_iOSApp</a> = 3,<br>
                             
-                            &nbsp;&nbsp; <a href="">BJLLoadingStep_last</a> = BJLLoadingStep_connectRoomServer,<br>
+                            &nbsp;&nbsp; <a href="">BJLClientType_AndroidApp</a> = 4,<br>
                             
-                            &nbsp;&nbsp; <a href="">BJLLoadingStep_all</a> = NSIntegerMax,<br>
+                            &nbsp;&nbsp; <a href="">BJLClientType_MacApp</a> = 5,<br>
                             
-                            &nbsp;&nbsp; <a href="">BJLLoadingStep_reconnect</a> = ( BJLLoadingStep_all ^ ( BJLLoadingStep_loadRoomInfo ) ),<br>
+                            &nbsp;&nbsp; <a href="">BJLClientType_MiniProgram</a> = 6,<br>
                             
                             };</code>
                     
@@ -111,11 +111,11 @@
                         <h4 class="method-subtitle">Constants</h4>
                         <dl class="termdef">
                             
-                            <dt><a name="" title="BJLLoadingStep_checkNetwork"></a><code>BJLLoadingStep_checkNetwork</code></dt>
+                            <dt><a name="" title="BJLClientType_PCWeb"></a><code>BJLClientType_PCWeb</code></dt>
 <dd>
 
 
-<p>检查网络连接</p>
+<p>PC 网页</p>
 
 
 
@@ -123,16 +123,16 @@
 
     
 	<p>
-		Declared In <code class="declared-in-ref">BJLLoadingVM.h</code>.
+		Declared In <code class="declared-in-ref">BJLConstants.h</code>.
 	</p>
 	
 </dd>
                             
-                            <dt><a name="" title="BJLLoadingStep_loadRoomInfo"></a><code>BJLLoadingStep_loadRoomInfo</code></dt>
+                            <dt><a name="" title="BJLClientType_PCApp"></a><code>BJLClientType_PCApp</code></dt>
 <dd>
 
 
-<p>加载房间信息</p>
+<p>PC 客户端</p>
 
 
 
@@ -140,16 +140,16 @@
 
     
 	<p>
-		Declared In <code class="declared-in-ref">BJLLoadingVM.h</code>.
+		Declared In <code class="declared-in-ref">BJLConstants.h</code>.
 	</p>
 	
 </dd>
                             
-                            <dt><a name="" title="BJLLoadingStep_connectMasterServer"></a><code>BJLLoadingStep_connectMasterServer</code></dt>
+                            <dt><a name="" title="BJLClientType_MobileWeb"></a><code>BJLClientType_MobileWeb</code></dt>
 <dd>
 
 
-<p>连接 MasterServer</p>
+<p>M 站</p>
 
 
 
@@ -157,16 +157,16 @@
 
     
 	<p>
-		Declared In <code class="declared-in-ref">BJLLoadingVM.h</code>.
+		Declared In <code class="declared-in-ref">BJLConstants.h</code>.
 	</p>
 	
 </dd>
                             
-                            <dt><a name="" title="BJLLoadingStep_connectRoomServer"></a><code>BJLLoadingStep_connectRoomServer</code></dt>
+                            <dt><a name="" title="BJLClientType_iOSApp"></a><code>BJLClientType_iOSApp</code></dt>
 <dd>
 
 
-<p>连接 RoomServer</p>
+<p>iOS 客户端</p>
 
 
 
@@ -174,16 +174,16 @@
 
     
 	<p>
-		Declared In <code class="declared-in-ref">BJLLoadingVM.h</code>.
+		Declared In <code class="declared-in-ref">BJLConstants.h</code>.
 	</p>
 	
 </dd>
                             
-                            <dt><a name="" title="BJLLoadingStep_last"></a><code>BJLLoadingStep_last</code></dt>
+                            <dt><a name="" title="BJLClientType_AndroidApp"></a><code>BJLClientType_AndroidApp</code></dt>
 <dd>
 
 
-<p>最后一步：连接 RoomServer</p>
+<p>Android 客户端</p>
 
 
 
@@ -191,16 +191,16 @@
 
     
 	<p>
-		Declared In <code class="declared-in-ref">BJLLoadingVM.h</code>.
+		Declared In <code class="declared-in-ref">BJLConstants.h</code>.
 	</p>
 	
 </dd>
                             
-                            <dt><a name="" title="BJLLoadingStep_all"></a><code>BJLLoadingStep_all</code></dt>
+                            <dt><a name="" title="BJLClientType_MacApp"></a><code>BJLClientType_MacApp</code></dt>
 <dd>
 
 
-<p>所有步骤</p>
+<p>Mac 客户端</p>
 
 
 
@@ -208,16 +208,16 @@
 
     
 	<p>
-		Declared In <code class="declared-in-ref">BJLLoadingVM.h</code>.
+		Declared In <code class="declared-in-ref">BJLConstants.h</code>.
 	</p>
 	
 </dd>
                             
-                            <dt><a name="" title="BJLLoadingStep_reconnect"></a><code>BJLLoadingStep_reconnect</code></dt>
+                            <dt><a name="" title="BJLClientType_MiniProgram"></a><code>BJLClientType_MiniProgram</code></dt>
 <dd>
 
 
-<p>重连</p>
+<p>微信小程序</p>
 
 
 
@@ -225,7 +225,7 @@
 
     
 	<p>
-		Declared In <code class="declared-in-ref">BJLLoadingVM.h</code>.
+		Declared In <code class="declared-in-ref">BJLConstants.h</code>.
 	</p>
 	
 </dd>
@@ -242,7 +242,7 @@
                     
                     <div class="method-subsection declared-in-section">
                         <h4 class="method-subtitle">Declared In</h4>
-                        <p><code class="declared-in-ref">BJLLoadingVM.h</code></p>
+                        <p><code class="declared-in-ref">BJLConstants.h</code></p>
                     </div>
                     
                     

@@ -56,15 +56,23 @@
 	
 	<optgroup label="Properties">
 		
+		<option value="//api/name/authorizedPPTUserNumbers">authorizedPPTUserNumbers</option>
+		
 		<option value="//api/name/enteringTimeInterval">enteringTimeInterval</option>
 		
+		<option value="//api/name/fobidQuestionUserNumberList">fobidQuestionUserNumberList</option>
+		
 		<option value="//api/name/lampContent">lampContent</option>
+		
+		<option value="//api/name/likeList">likeList</option>
 		
 		<option value="//api/name/liveStarted">liveStarted</option>
 		
 		<option value="//api/name/notice">notice</option>
 		
 		<option value="//api/name/rollcallTimeRemaining">rollcallTimeRemaining</option>
+		
+		<option value="//api/name/webPageURLString">webPageURLString</option>
 		
 	</optgroup>
 	
@@ -76,9 +84,17 @@
 		
 		<option value="//api/name/answerToRollcall">- answerToRollcall</option>
 		
+		<option value="//api/name/didFinishSurvey">- didFinishSurvey</option>
+		
+		<option value="//api/name/didLoadQuestionHistory:currentPage:totalPage:">- didLoadQuestionHistory:currentPage:totalPage:</option>
+		
+		<option value="//api/name/didPublishQuestion:">- didPublishQuestion:</option>
+		
 		<option value="//api/name/didReceiveAnswerSheet:">- didReceiveAnswerSheet:</option>
 		
 		<option value="//api/name/didReceiveCustomizedBroadcast:value:isCache:">- didReceiveCustomizedBroadcast:value:isCache:</option>
+		
+		<option value="//api/name/didReceiveLikeForUserNumber:records:">- didReceiveLikeForUserNumber:records:</option>
 		
 		<option value="//api/name/didReceiveRollcallWithTimeout:">- didReceiveRollcallWithTimeout:</option>
 		
@@ -88,9 +104,29 @@
 		
 		<option value="//api/name/didReceiveSurveyResults:order:">- didReceiveSurveyResults:order:</option>
 		
+		<option value="//api/name/didReplyQuestion:">- didReplyQuestion:</option>
+		
+		<option value="//api/name/didSendQuestion:">- didSendQuestion:</option>
+		
+		<option value="//api/name/didSwitchQuestionForbidForUser:forbid:">- didSwitchQuestionForbidForUser:forbid:</option>
+		
+		<option value="//api/name/didUnpublishQuestionWithQuestionID:">- didUnpublishQuestionWithQuestionID:</option>
+		
+		<option value="//api/name/didUpdateRoomLayout:">- didUpdateRoomLayout:</option>
+		
+		<option value="//api/name/didUpdateWebPageWithURLString:open:isCache:">- didUpdateWebPageWithURLString:open:isCache:</option>
+		
+		<option value="//api/name/likeRecordsDidOverwrite:">- likeRecordsDidOverwrite:</option>
+		
 		<option value="//api/name/loadNotice">- loadNotice</option>
 		
+		<option value="//api/name/loadQuestionHistoryWithPage:count:">- loadQuestionHistoryWithPage:count:</option>
+		
 		<option value="//api/name/loadSurveyHistory">- loadSurveyHistory</option>
+		
+		<option value="//api/name/publishQuestionWithQuestionID:">- publishQuestionWithQuestionID:</option>
+		
+		<option value="//api/name/replyQuestionWithQuestionID:reply:">- replyQuestionWithQuestionID:reply:</option>
 		
 		<option value="//api/name/requestCustomizedBroadcastCache:">- requestCustomizedBroadcastCache:</option>
 		
@@ -98,17 +134,29 @@
 		
 		<option value="//api/name/sendCustomizedBroadcast:value:cache:">- sendCustomizedBroadcast:value:cache:</option>
 		
+		<option value="//api/name/sendLikeForUserNumber:">- sendLikeForUserNumber:</option>
+		
 		<option value="//api/name/sendLiveStarted:">- sendLiveStarted:</option>
 		
 		<option value="//api/name/sendNoticeWithText:linkURL:">- sendNoticeWithText:linkURL:</option>
 		
-		<option value="//api/name/sendQuizMessage:">- sendQuizMessage:</option>
+		<option value="//api/name/sendQuestion:">- sendQuestion:</option>
 		
-		<option value="//api/name/sendRollcallWithTimeout:">- sendRollcallWithTimeout:</option>
+		<option value="//api/name/sendQuizMessage:">- sendQuizMessage:</option>
 		
 		<option value="//api/name/sendSurveyAnswers:result:order:">- sendSurveyAnswers:result:order:</option>
 		
 		<option value="//api/name/submitAnswerSheet:">- submitAnswerSheet:</option>
+		
+		<option value="//api/name/switchQuestionForbidForUser:forbid:">- switchQuestionForbidForUser:forbid:</option>
+		
+		<option value="//api/name/unpublishQuestionWithQuestionID:">- unpublishQuestionWithQuestionID:</option>
+		
+		<option value="//api/name/updateRoomLayout:">- updateRoomLayout:</option>
+		
+		<option value="//api/name/updateStudentPPTAuthorized:userNumber:">- updateStudentPPTAuthorized:userNumber:</option>
+		
+		<option value="//api/name/updateWebPageWithURLString:open:">- updateWebPageWithURLString:open:</option>
 		
 	</optgroup>
 	
@@ -134,7 +182,7 @@
 	<td>BJLBaseVM : NSObject</td>
 </tr><tr>
 	<th>Declared in</th>
-	<td>BJLRoomVM.h<br />BJLRoomVM.m</td>
+	<td>BJLRoomVM.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -156,7 +204,7 @@
 						
 
 						
-						<h2 class="task-title">Other Methods</h2>
+						
 
 						<div class="task-list">
 							<div class="section-method">
@@ -435,7 +483,7 @@ BJLErrorCode_invalidUserRole   错误权限，要求老师权限</p>
 			<div class="method-subsection return">
 				<h4 class="method-subtitle parameter-title">Return Value</h4>
 				<p>BJLError:
-BJLErrorCode_invalidArguments  错误参数，如字数超过 <code>BJLTextMaxLength_notice</code>；
+<a href="../Constants/BJLErrorCode.html">BJLErrorCode</a>_invalidArguments  错误参数，如字数超过 <code>BJLTextMaxLength_notice</code>；
 BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限。</p>
 			</div>
 			
@@ -679,13 +727,245 @@ BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限。</p>
 			<div class="method-subsection return">
 				<h4 class="method-subtitle parameter-title">Return Value</h4>
 				<p>BJLError:
-BJLErrorCode_invalidCalling    错误调用，如老师没有点名或者点名已过期；
-BJLErrorCode_invalidUserRole   错误权限，要求学生权限。</p>
+<a href="../Constants/BJLErrorCode.html">BJLErrorCode</a><em>invalidCalling    错误调用，如老师没有点名或者点名已过期；
+<a href="../Constants/BJLErrorCode.html">BJLErrorCode</a></em>invalidUserRole   错误权限，要求学生权限。</p>
 			</div>
 			
 
 			
 
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoomVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/likeList" title="likeList"></a>
+	<h3 class="method-title"><code><a href="#//api/name/likeList">&nbsp;&nbsp;likeList</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>点赞字典</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, nullable) NSDictionary&lt;NSString*NSNumber*&gt; *likeList</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>key &ndash;> userNumber</p><p>value &ndash;> 点赞数</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoomVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/sendLikeForUserNumber:" title="sendLikeForUserNumber:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/sendLikeForUserNumber:">&ndash;&nbsp;sendLikeForUserNumber:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>点赞</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)sendLikeForUserNumber:(NSString *)<em>userNumber</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>userNumber</code></th>
+						<td><p>userNumber</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>error:
+<a href="../Constants/BJLErrorCode.html">BJLErrorCode</a><em>invalidCalling    错误调用，如用户不在线；
+<a href="../Constants/BJLErrorCode.html">BJLErrorCode</a></em>invalidUserRole   错误权限，如点赞用户不能是学生，被点赞用户不能是老师，助教。</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>点赞时需要把传历史所有点赞记录，包括本次点赞</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoomVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/likeRecordsDidOverwrite:" title="likeRecordsDidOverwrite:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/likeRecordsDidOverwrite:">&ndash;&nbsp;likeRecordsDidOverwrite:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>点赞覆盖更新</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)likeRecordsDidOverwrite:(NSDictionary&lt;NSString*,NSNumber*&gt; *)<em>records</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>records</code></th>
+						<td><p>点赞记录 key &ndash;> user number, value &ndash;> 点赞数</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>覆盖更新时调用，增量更新时不调用</p><p>首次连接 server，断开重连，下课，会导致覆盖更新</p><p>下课会清空所有点赞</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoomVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/didReceiveLikeForUserNumber:records:" title="didReceiveLikeForUserNumber:records:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/didReceiveLikeForUserNumber:records:">&ndash;&nbsp;didReceiveLikeForUserNumber:records:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>收到点赞</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)didReceiveLikeForUserNumber:(NSString *)<em>userNumber</em> records:(NSDictionary&lt;NSString*,NSNumber*&gt; *)<em>records</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>userNumber</code></th>
+						<td><p>userNumber</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>records</code></th>
+						<td><p>点赞记录 key &ndash;> userNumber，value &ndash;> 点赞数</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>收到的所有点赞都在点赞记录中，包括本次收到的点赞</p>
+			</div>
 			
 
 			
@@ -885,17 +1165,17 @@ BJLErrorCode_invalidUserRole   错误权限，要求学生权限。</p>
 				
 					<tr>
 						<th scope="row" class="argument-name"><code>answers</code></th>
-						<td><p><code>BJLSurveyOption</code> 的 <code>key</code></p></td>
+						<td><p><a href="../Classes/BJLSurveyOption.html"><code>BJLSurveyOption</code></a> 的 <code>key</code></p></td>
 					</tr>
 				
 					<tr>
 						<th scope="row" class="argument-name"><code>result</code></th>
-						<td><p>与每个 <code>BJLSurveyOption</code> 的 <code>isAnswer</code> 比对得出，如果一个题目下所有 <code>BJLSurveyOption</code> 的 <code>isAnswer</code> 都是 NO 表示此题目没有标准答案</p></td>
+						<td><p>与每个 <a href="../Classes/BJLSurveyOption.html"><code>BJLSurveyOption</code></a> 的 <code>isAnswer</code> 比对得出，如果一个题目下所有 <a href="../Classes/BJLSurveyOption.html"><code>BJLSurveyOption</code></a> 的 <code>isAnswer</code> 都是 NO 表示此题目没有标准答案</p></td>
 					</tr>
 				
 					<tr>
 						<th scope="row" class="argument-name"><code>order</code></th>
-						<td><p><code>BJLSurvey</code> 的 <code>order</code></p></td>
+						<td><p><a href="../Classes/BJLSurvey.html"><code>BJLSurvey</code></a> 的 <code>order</code></p></td>
 					</tr>
 				
 				</table>
@@ -906,8 +1186,8 @@ BJLErrorCode_invalidUserRole   错误权限，要求学生权限。</p>
 			<div class="method-subsection return">
 				<h4 class="method-subtitle parameter-title">Return Value</h4>
 				<p>BJLError:
-BJLErrorCode_invalidArguments  错误参数；
-BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限。</p>
+<a href="../Constants/BJLErrorCode.html">BJLErrorCode</a><em>invalidArguments  错误参数；
+<a href="../Constants/BJLErrorCode.html">BJLErrorCode</a></em>invalidUserRole   错误权限，要求老师或助教权限。</p>
 			</div>
 			
 
@@ -955,16 +1235,57 @@ BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限。</p>
 				
 					<tr>
 						<th scope="row" class="argument-name"><code>results</code></th>
-						<td><p><code>NSDictionary</code> 的 key-value 分别是 <code>BJLSurveyOption</code> 的 <code>key</code> 和选择该选项的人数</p></td>
+						<td><p><code>NSDictionary</code> 的 key-value 分别是 <a href="../Classes/BJLSurveyOption.html"><code>BJLSurveyOption</code></a> 的 <code>key</code> 和选择该选项的人数</p></td>
 					</tr>
 				
 					<tr>
 						<th scope="row" class="argument-name"><code>order</code></th>
-						<td><p><code>BJLSurvey</code> 的 <code>order</code></p></td>
+						<td><p><a href="../Classes/BJLSurvey.html"><code>BJLSurvey</code></a> 的 <code>order</code></p></td>
 					</tr>
 				
 				</table>
 			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoomVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/didFinishSurvey" title="didFinishSurvey"></a>
+	<h3 class="method-title"><code><a href="#//api/name/didFinishSurvey">&ndash;&nbsp;didFinishSurvey</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>学生: 收到答题结束</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)didFinishSurvey</code></div>
+
+		    
 			
 
 			
@@ -1061,7 +1382,7 @@ BJLErrorCode_invalidCalling    错误调用</p>
 				
 					<tr>
 						<th scope="row" class="argument-name"><code>answerSheet</code></th>
-						<td><p>答题表, 包含答题选项及时限</p></td>
+						<td><p>答题表，包含答题选项及时限</p></td>
 					</tr>
 				
 				</table>
@@ -1104,7 +1425,7 @@ BJLErrorCode_invalidCalling    错误调用</p>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (BJLError *)submitAnswerSheet:(BJLAnswerSheet *)<em>answerSheet</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)submitAnswerSheet:(BJLAnswerSheet *)<em>answerSheet</em></code></div>
 
 		    
 			
@@ -1114,13 +1435,849 @@ BJLErrorCode_invalidCalling    错误调用</p>
 				
 					<tr>
 						<th scope="row" class="argument-name"><code>answerSheet</code></th>
-						<td><p>答题表：options 数组中的 BJLAnswerSheetOption 实例对应各个选项, 它的 seletced 属性表示该选项是否被选中</p></td>
+						<td><p>答题表：options 数组中的 <a href="../Classes/BJLAnswerSheetOption.html">BJLAnswerSheetOption</a> 实例对应各个选项，它的 seletced 属性表示该选项是否被选中</p></td>
 					</tr>
 				
 				</table>
 			</div>
 			
 
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoomVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/fobidQuestionUserNumberList" title="fobidQuestionUserNumberList"></a>
+	<h3 class="method-title"><code><a href="#//api/name/fobidQuestionUserNumberList">&nbsp;&nbsp;fobidQuestionUserNumberList</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>禁止提出问答的 userNumber 列表</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, nullable) NSDictionary&lt;NSString*NSNumber*&gt; *fobidQuestionUserNumberList</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>列表仅包含禁止提出问答的 userNumber</p><p>key &ndash;> userNumber</p><p>value &ndash;> forbid</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoomVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/loadQuestionHistoryWithPage:count:" title="loadQuestionHistoryWithPage:count:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/loadQuestionHistoryWithPage:count:">&ndash;&nbsp;loadQuestionHistoryWithPage:count:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>加载某一页的问答</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)loadQuestionHistoryWithPage:(NSInteger)<em>page</em> count:(NSInteger)<em>count</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>page</code></th>
+						<td><p>页码，从0开始计数</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>count</code></th>
+						<td><p>每一页的数据量</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>error</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoomVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/didLoadQuestionHistory:currentPage:totalPage:" title="didLoadQuestionHistory:currentPage:totalPage:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/didLoadQuestionHistory:currentPage:totalPage:">&ndash;&nbsp;didLoadQuestionHistory:currentPage:totalPage:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>收到某一页的问答数据</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)didLoadQuestionHistory:(NSArray&lt;BJLQuestion*&gt; *)<em>history</em> currentPage:(NSInteger)<em>currentPage</em> totalPage:(NSInteger)<em>totalPage</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>history</code></th>
+						<td><p>问答数据，可能为空列表</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>currentPage</code></th>
+						<td><p>当前页码，从0开始计数</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>totalPage</code></th>
+						<td><p>总页码</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoomVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/sendQuestion:" title="sendQuestion:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/sendQuestion:">&ndash;&nbsp;sendQuestion:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>创建问答</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)sendQuestion:(NSString *)<em>question</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>question</code></th>
+						<td><p>问题内容</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoomVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/didSendQuestion:" title="didSendQuestion:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/didSendQuestion:">&ndash;&nbsp;didSendQuestion:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>创建问答成功</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)didSendQuestion:(BJLQuestion *)<em>question</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>question</code></th>
+						<td><p>问答，包括问答 ID</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoomVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/publishQuestionWithQuestionID:" title="publishQuestionWithQuestionID:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/publishQuestionWithQuestionID:">&ndash;&nbsp;publishQuestionWithQuestionID:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>发布问答，需要先成功创建问答</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)publishQuestionWithQuestionID:(NSString *)<em>questionID</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>questionID</code></th>
+						<td><p>问答 ID</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoomVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/didPublishQuestion:" title="didPublishQuestion:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/didPublishQuestion:">&ndash;&nbsp;didPublishQuestion:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>问答发布成功</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)didPublishQuestion:(BJLQuestion *)<em>question</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>question</code></th>
+						<td><p>问答全部内容</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>只有在发布没有回答的问答时才会回调此方法</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoomVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/unpublishQuestionWithQuestionID:" title="unpublishQuestionWithQuestionID:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/unpublishQuestionWithQuestionID:">&ndash;&nbsp;unpublishQuestionWithQuestionID:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>取消发布问答</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)unpublishQuestionWithQuestionID:(NSString *)<em>questionID</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>questionID</code></th>
+						<td><p>问答 ID</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoomVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/didUnpublishQuestionWithQuestionID:" title="didUnpublishQuestionWithQuestionID:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/didUnpublishQuestionWithQuestionID:">&ndash;&nbsp;didUnpublishQuestionWithQuestionID:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>取消发布问答成功</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)didUnpublishQuestionWithQuestionID:(NSString *)<em>questionID</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>questionID</code></th>
+						<td><p>问答 ID</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>任何有回答或者没有回答的问题取消发布成功都回调此方法</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoomVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/replyQuestionWithQuestionID:reply:" title="replyQuestionWithQuestionID:reply:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/replyQuestionWithQuestionID:reply:">&ndash;&nbsp;replyQuestionWithQuestionID:reply:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>回复问答</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)replyQuestionWithQuestionID:(NSString *)<em>questionID</em> reply:(NSString *)<em>reply</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>questionID</code></th>
+						<td><p>问答 ID</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>reply</code></th>
+						<td><p>回复内容</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoomVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/didReplyQuestion:" title="didReplyQuestion:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/didReplyQuestion:">&ndash;&nbsp;didReplyQuestion:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>收到问答回复</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)didReplyQuestion:(BJLQuestion *)<em>question</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>question</code></th>
+						<td><p>问答全部内容</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>问答如果已经有了回复，取消发布之后重新发布的情况，只回调此方法，不回调发布成功</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoomVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/switchQuestionForbidForUser:forbid:" title="switchQuestionForbidForUser:forbid:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/switchQuestionForbidForUser:forbid:">&ndash;&nbsp;switchQuestionForbidForUser:forbid:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>改变问答状态</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)switchQuestionForbidForUser:(BJLUser *)<em>user</em> forbid:(BOOL)<em>forbid</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>user</code></th>
+						<td><p>user</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>forbid</code></th>
+						<td><p>是否禁止问答</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoomVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/didSwitchQuestionForbidForUser:forbid:" title="didSwitchQuestionForbidForUser:forbid:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/didSwitchQuestionForbidForUser:forbid:">&ndash;&nbsp;didSwitchQuestionForbidForUser:forbid:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>问答状态被改变</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)didSwitchQuestionForbidForUser:(BJLUser *)<em>user</em> forbid:(BOOL)<em>forbid</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>user</code></th>
+						<td><p>user</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>forbid</code></th>
+						<td><p>禁止问答状态</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoomVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/authorizedPPTUserNumbers" title="authorizedPPTUserNumbers"></a>
+	<h3 class="method-title"><code><a href="#//api/name/authorizedPPTUserNumbers">&nbsp;&nbsp;authorizedPPTUserNumbers</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>课件授权的用户</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, nullable) NSArray&lt;NSString*&gt; *authorizedPPTUserNumbers</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoomVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/updateStudentPPTAuthorized:userNumber:" title="updateStudentPPTAuthorized:userNumber:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/updateStudentPPTAuthorized:userNumber:">&ndash;&nbsp;updateStudentPPTAuthorized:userNumber:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>授权课件</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)updateStudentPPTAuthorized:(BOOL)<em>authorized</em> userNumber:(NSString *)<em>userNumber</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>authorized</code></th>
+						<td><p>authorized</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>userNumber</code></th>
+						<td><p>userNumber</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>BJLErrorCode_invalidUserRole 错误角色，仅老师或助教能授权给学生</p>
+			</div>
 			
 
 			
@@ -1188,8 +2345,8 @@ BJLErrorCode_invalidCalling    错误调用</p>
 			<div class="method-subsection return">
 				<h4 class="method-subtitle parameter-title">Return Value</h4>
 				<p>BJLError:
-BJLErrorCode_invalidUserRole   当前用户不是老师或者助教
-BJLErrorCode_invalidArguments  不支持的 key，内容为空或者内容过长
+<a href="../Constants/BJLErrorCode.html">BJLErrorCode</a><em>invalidUserRole   当前用户不是老师或者助教
+<a href="../Constants/BJLErrorCode.html">BJLErrorCode</a></em>invalidArguments  不支持的 key，内容为空或者内容过长
 BJLErrorCode_areYouRobot       发送频率过快，要求每秒不超过 5 条、并且每分钟不超过 30 条</p>
 			</div>
 			
@@ -1317,7 +2474,8 @@ BJLErrorCode_areYouRobot       发送频率过快，要求每秒不超过 5 条�
 			<div class="method-subsection return">
 				<h4 class="method-subtitle parameter-title">Return Value</h4>
 				<p>BJLError:
-BJLErrorCode_invalidArguments  不支持的 key</p>
+<a href="../Constants/BJLErrorCode.html">BJLErrorCode</a><em>invalidArguments  不支持的 key
+<a href="../Constants/BJLErrorCode.html">BJLErrorCode</a></em>areYouRobot       发送频率过快，要求每秒不超过 5 条、并且每分钟不超过 30 条</p>
 			</div>
 			
 
@@ -1343,17 +2501,9 @@ BJLErrorCode_invalidArguments  不支持的 key</p>
 			
 		</div>
 	</div>
-</div>
-						</div>
-						
-
-						
-						<h2 class="task-title">Other Methods</h2>
-
-						<div class="task-list">
-							<div class="section-method">
-	<a name="//api/name/sendRollcallWithTimeout:" title="sendRollcallWithTimeout:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/sendRollcallWithTimeout:">&ndash;&nbsp;sendRollcallWithTimeout:</a></code>
+</div><div class="section-method">
+	<a name="//api/name/webPageURLString" title="webPageURLString"></a>
+	<h3 class="method-title"><code><a href="#//api/name/webPageURLString">&nbsp;&nbsp;webPageURLString</a></code>
 </h3>
 
 	<div class="method-info">
@@ -1363,14 +2513,12 @@ BJLErrorCode_invalidArguments  不支持的 key</p>
 			
 			
 			<div class="method-subsection brief-description">
-				<p>老师: 发起点名
-学生需要在规定时间内 <code>timeout</code> 答到
-参考 <a href="#//api/name/rollcallTimeRemaining"><code>rollcallTimeRemaining</code></a></p>
+				<p>专业版小班课 - 网页课件 URL</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)sendRollcallWithTimeout:(NSTimeInterval)<em>timeout</em></code></div>
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) NSString *webPageURLString</code></div>
 
 		    
 			
@@ -1388,7 +2536,244 @@ BJLErrorCode_invalidArguments  不支持的 key</p>
 			
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BJLRoomVM.m</code></p>
+				<p><code class="declared-in-ref">BJLRoomVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/updateRoomLayout:" title="updateRoomLayout:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/updateRoomLayout:">&ndash;&nbsp;updateRoomLayout:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>专业版小班课 - 更新教室布局请求</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)updateRoomLayout:(BJLRoomLayout)<em>roomLayout</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>roomLayout</code></th>
+						<td><p>窗口布局类型</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>BJLError: 错误码参考 <a href="../Constants/BJLErrorCode.html">BJLErrorCode</a></p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoomVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/didUpdateRoomLayout:" title="didUpdateRoomLayout:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/didUpdateRoomLayout:">&ndash;&nbsp;didUpdateRoomLayout:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>专业版小班课 - 教室布局更新通知</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)didUpdateRoomLayout:(BJLRoomLayout)<em>roomLayout</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>roomLayout</code></th>
+						<td><p>窗口布局类型</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoomVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/updateWebPageWithURLString:open:" title="updateWebPageWithURLString:open:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/updateWebPageWithURLString:open:">&ndash;&nbsp;updateWebPageWithURLString:open:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>更新网页信息</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)updateWebPageWithURLString:(nullable NSString *)<em>urlString</em> open:(BOOL)<em>open</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>urlString</code></th>
+						<td><p>网址</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>open</code></th>
+						<td><p>是否打开</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>BJLError</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoomVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/didUpdateWebPageWithURLString:open:isCache:" title="didUpdateWebPageWithURLString:open:isCache:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/didUpdateWebPageWithURLString:open:isCache:">&ndash;&nbsp;didUpdateWebPageWithURLString:open:isCache:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>收到网页信息更新</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)didUpdateWebPageWithURLString:(nullable NSString *)<em>urlString</em> open:(BOOL)<em>open</em> isCache:(BOOL)<em>isCache</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>urlString</code></th>
+						<td><p>网址</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>open</code></th>
+						<td><p>是否打开</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>isCache</code></th>
+						<td><p>是否是缓存</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoomVM.h</code></p>
 			</div>
 			
 			
@@ -1409,7 +2794,7 @@ BJLErrorCode_invalidArguments  不支持的 key</p>
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2018 baijiayun. All rights reserved. Updated: 2018-09-18</p>
+						<p class="copyright">Copyright &copy; 2019 baijiayun. All rights reserved. Updated: 2019-04-17</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>

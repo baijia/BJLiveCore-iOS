@@ -56,23 +56,27 @@
 	
 	<optgroup label="Properties">
 		
+		<option value="//api/name/__APPLE_API_UNSTABLE">__APPLE_API_UNSTABLE</option>
+		
 		<option value="//api/name/chatVM">chatVM</option>
 		
 		<option value="//api/name/disablePPTAnimation">disablePPTAnimation</option>
 		
-		<option value="//api/name/featureConfig">featureConfig</option>
+		<option value="//api/name/documentVM">documentVM</option>
+		
+		<option value="//api/name/drawingVM">drawingVM</option>
+		
+		<option value="//api/name/extraPlayingAdapterVM">extraPlayingAdapterVM</option>
 		
 		<option value="//api/name/giftVM">giftVM</option>
-		
-		<option value="//api/name/inRoom">inRoom</option>
-		
-		<option value="//api/name/isSwitching">isSwitching</option>
 		
 		<option value="//api/name/loadingVM">loadingVM</option>
 		
 		<option value="//api/name/loginUser">loginUser</option>
 		
 		<option value="//api/name/loginUserIsPresenter">loginUserIsPresenter</option>
+		
+		<option value="//api/name/mainPlayingAdapterVM">mainPlayingAdapterVM</option>
 		
 		<option value="//api/name/mediaVM">mediaVM</option>
 		
@@ -90,17 +94,13 @@
 		
 		<option value="//api/name/serverRecordingVM">serverRecordingVM</option>
 		
-		<option value="//api/name/slideVM">slideVM</option>
-		
-		<option value="//api/name/slideshowVM">slideshowVM</option>
-		
 		<option value="//api/name/slideshowViewController">slideshowViewController</option>
 		
 		<option value="//api/name/speakingRequestVM">speakingRequestVM</option>
 		
 		<option value="//api/name/state">state</option>
 		
-		<option value="//api/name/vmsAvailable">vmsAvailable</option>
+		<option value="//api/name/switchingRoom">switchingRoom</option>
 		
 	</optgroup>
 	
@@ -112,7 +112,11 @@
 		
 		<option value="//api/name/roomWithSecret:userName:userAvatar:">+ roomWithSecret:userName:userAvatar:</option>
 		
-		<option value="//api/name/setExclusiveSubdomain:">+ setExclusiveSubdomain:</option>
+		<option value="//api/name/setAPIDomainPrefix:">+ setAPIDomainPrefix:</option>
+		
+		<option value="//api/name/setPrivateDomainPrefix:">+ setPrivateDomainPrefix:</option>
+		
+		<option value="//api/name/setPrivateDomainSuffix:">+ setPrivateDomainSuffix:</option>
 		
 	</optgroup>
 	
@@ -158,7 +162,7 @@
 	<td>NSObject</td>
 </tr><tr>
 	<th>Declared in</th>
-	<td>BJLRoom.h<br />BJLRoom.m</td>
+	<td>BJLRoom.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -168,7 +172,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<h3>直播教室</h3><p>可同时存在多个实例，但最多只有一个教室处于进入状态，后执行 <a href="#//api/name/enter"><code>enter</code></a> 的教室会把之前的教室踢掉</p>
+						<h3>直播教室</h3><p>可同时存在多个实例，但最多只有一个教室处于进入状态，后执行 <a href="#//api/name/enter"><code>enter</code></a> 的教室会把之前的教室踢掉</p><p>教室类型为新版小班课的教室，只支持 64-ibit 设备进入教室，32-bit 设备进教室时通过 <a href="#//api/name/enterRoomFailureWithError:"><code>enterRoomFailureWithError:</code></a> 返回错误码 <code>BJLErrorCode_enterRoom_unsupportedDevice</code></p><p>iPad: 1、2、3、4、mini 1 是 32-bit，其它都是 64-bit</p><p>iPhone: 5、5C 之前的设备是 32-bit，5S 开始是 64-bit</p><p>iPod Touch: 1、2、3、4、5 是 32-bit，目前只有 6 是 64-bit</p>
 					</div>
 					
 					
@@ -180,12 +184,12 @@
 						
 
 						
-						<h2 class="task-title">Other Methods</h2>
+						
 
 						<div class="task-list">
 							<div class="section-method">
-	<a name="//api/name/setExclusiveSubdomain:" title="setExclusiveSubdomain:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/setExclusiveSubdomain:">+&nbsp;setExclusiveSubdomain:</a></code>
+	<a name="//api/name/setPrivateDomainPrefix:" title="setPrivateDomainPrefix:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/setPrivateDomainPrefix:">+&nbsp;setPrivateDomainPrefix:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -195,12 +199,12 @@
 			
 			
 			<div class="method-subsection brief-description">
-				<p>设置客户专属子域名，需要在进教室之前设置</p>
+				<p>设置客户专属域名前缀</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>+ (void)setExclusiveSubdomain:(nullable NSString *)<em>exclusiveSubdomain</em></code></div>
+			<div class="method-subsection method-declaration"><code>+ (void)setPrivateDomainPrefix:(nullable NSString *)<em>prefix</em></code></div>
 
 		    
 			
@@ -209,8 +213,8 @@
 				<table class="argument-def parameter-def">
 				
 					<tr>
-						<th scope="row" class="argument-name"><code>exclusiveSubdomain</code></th>
-						<td><p>客户专属子域名</p></td>
+						<th scope="row" class="argument-name"><code>prefix</code></th>
+						<td><p>客户专属域名前缀，例如专属域名为 <code>demo123.at.baijiayun.com</code>，则前缀为 <code>demo123</code></p></td>
 					</tr>
 				
 				</table>
@@ -221,6 +225,127 @@
 
 			
 
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>需要在进教室之前设置，专属域名从百家云账号中心查看</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/setPrivateDomainSuffix:" title="setPrivateDomainSuffix:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/setPrivateDomainSuffix:">+&nbsp;setPrivateDomainSuffix:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>设置客户专属域名</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (void)setPrivateDomainSuffix:(nullable NSString *)<em>suffix</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>suffix</code></th>
+						<td><p>客户专属域名，例如 <code>demo123.com</code></p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>需要在进教室之前设置，用于私有化部署</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/setAPIDomainPrefix:" title="setAPIDomainPrefix:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/setAPIDomainPrefix:">+&nbsp;setAPIDomainPrefix:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>设置客户 API 域名前缀</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (void)setAPIDomainPrefix:(nullable NSString *)<em>prefix</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>prefix</code></th>
+						<td><p>客户 API 域名前缀，例如专属域名为 <code>demo123.baijiayun.com</code>，则前缀为 <code>demo123</code></p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>需要在进教室之前设置，目前仅供内部调用</p>
+			</div>
 			
 
 			
@@ -273,7 +398,7 @@
 				
 					<tr>
 						<th scope="row" class="argument-name"><code>user</code></th>
-						<td><p>用户，参考 <code>BJLUser</code> 的 <code>userWithNumber:name:groupID:avatar:role:</code></p></td>
+						<td><p>用户，参考 <a href="../Classes/BJLUser.html"><code>BJLUser</code></a> 的 <code>userWithNumber:name:groupID:avatar:role:</code></p></td>
 					</tr>
 				
 				</table>
@@ -292,7 +417,7 @@
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>此方法传入的参数、以及创建 BJLUser 时所传参数都会参与 apiSign 的计算</p>
+				<p>此方法传入的参数、以及创建 <a href="../Classes/BJLUser.html">BJLUser</a> 时所传参数都会参与 apiSign 的计算</p>
 			</div>
 			
 
@@ -377,15 +502,7 @@
 			
 		</div>
 	</div>
-</div>
-						</div>
-						
-
-						
-						<h2 class="task-title">Other Methods</h2>
-
-						<div class="task-list">
-							<div class="section-method">
+</div><div class="section-method">
 	<a name="//api/name/state" title="state"></a>
 	<h3 class="method-title"><code><a href="#//api/name/state">&nbsp;&nbsp;state</a></code>
 </h3>
@@ -414,7 +531,7 @@
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>正常流程: initialized > loadingInfo > loadedInfo > connectingServer > connectedServer > exited</p><p>加载教室信息出错: loadingInfo > initialized + loadInfoError</p><p>服务器连接出错/断开: connectingServer > loadedInfo + connectServerError</p><p>随时退出: any > exited</p><p><code>state</code> 属性支持 KVO、各种 <code>error</code> 不支持 KVO，<code>state</code> 发生变化时各 <code>error</code> 可用</p>
+				<p>正常流程: initialized > loadingInfo > loadedInfo > connectingServer > connectedServer > exited</p><p>加载教室信息出错: loadingInfo > initialized + loadInfoError</p><p>服务器连接出错/断开: connectingServer > loadedInfo + connectServerError</p><p>随时退出: any > exited</p><p><code>state</code> 属性支持 KVO、各种 <a href="#//api/name/error"><code>error</code></a> 不支持 KVO，<code>state</code> 发生变化时各 <a href="#//api/name/error"><code>error</code></a> 可用</p>
 			</div>
 			
 
@@ -432,54 +549,8 @@
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/inRoom" title="inRoom"></a>
-	<h3 class="method-title"><code><a href="#//api/name/inRoom">&nbsp;&nbsp;inRoom</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>是否在教室里</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL inRoom</code></div>
-
-		    
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>在 <a href="#//api/name/enterRoomSuccess"><code>enterRoomSuccess</code></a> 和 <a href="#//api/name/roomDidExitWithError:"><code>roomDidExitWithError:</code></a> 之间是 YES，包括断开重连</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BJLRoom.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/isSwitching" title="isSwitching"></a>
-	<h3 class="method-title"><code><a href="#//api/name/isSwitching">&nbsp;&nbsp;isSwitching</a></code>
+	<a name="//api/name/switchingRoom" title="switchingRoom"></a>
+	<h3 class="method-title"><code><a href="#//api/name/switchingRoom">&nbsp;&nbsp;switchingRoom</a></code>
 </h3>
 
 	<div class="method-info">
@@ -494,7 +565,7 @@
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL isSwitching</code></div>
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, getter=isSwitchingRoom) BOOL switchingRoom</code></div>
 
 		    
 			
@@ -503,6 +574,11 @@
 
 			
 
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>大小班切换中</p>
+			</div>
 			
 
 			
@@ -644,6 +720,11 @@
 			
 
 			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>参考 <a href="../Constants/BJLErrorCode.html"><code>BJLErrorCode</code></a></p>
+			</div>
+			
 
 			
 
@@ -685,7 +766,7 @@
 				
 					<tr>
 						<th scope="row" class="argument-name"><code>reloadingBlock</code></th>
-						<td><p>重连回调。reloadingVM：重连 vm；<a href="#//api/name/callback">callback</a>(reload)：调用 <a href="#//api/name/callback">callback</a> 时 reload 参数传 YES 重连，NO 将导致 <code>异常退出</code></p></td>
+						<td><p>重连回调。reloadingVM：重连 vm；callback(reload)：调用 callback 时 reload 参数传 YES 重连，NO 将导致 <code>异常退出</code></p></td>
 					</tr>
 				
 				</table>
@@ -699,7 +780,7 @@
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>网络连接断开时回调，回调 <a href="#//api/name/callback">callback</a> 确认是否重连，YES 重连、NO 退出教室，也可延时或者手动调用 <a href="#//api/name/callback">callback</a></p><p>可通过 <a href="#//api/name/reloadingVM"><code>reloadingVM</code></a> 监听重连的进度和结果</p><p>默认（不设置此回调）在断开时自动重连、重连过程中遇到错误将 <code>异常退出</code></p><p>!!!: 断开重连过程中 vm 的状态、数据没有与服务端同步，调用其它 vm 方法时发起的网络请求会被丢弃、甚至产生不可预期的错误</p>
+				<p>网络连接断开时回调，回调 callback 确认是否重连，YES 重连、NO 退出教室，也可延时或者手动调用 callback</p><p>可通过 <code>re</code>loadingVM<code></code> 监听重连的进度和结果</p><p>默认（不设置此回调）在断开时自动重连、重连过程中遇到错误将 <code>异常退出</code></p><p>!!!: 断开重连过程中 vm 的状态、数据没有与服务端同步，调用其它 vm 方法时发起的网络请求会被丢弃、甚至产生不可预期的错误</p>
 			</div>
 			
 
@@ -798,7 +879,7 @@
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>主动退出 <code>error</code> 为 nil，否则为异常退出</p><p>参考 <code>BJLErrorCode</code></p>
+				<p>主动退出 <code>error</code> 为 nil，否则为异常退出</p><p>参考 <a href="../Constants/BJLErrorCode.html"><code>BJLErrorCode</code></a></p>
 			</div>
 			
 
@@ -856,7 +937,7 @@
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>主动退出 <code>error</code> 为 nil，否则为异常退出</p><p>参考 <code>BJLErrorCode</code></p>
+				<p>主动退出 <code>error</code> 为 nil，否则为异常退出</p><p>参考 <a href="../Constants/BJLErrorCode.html"><code>BJLErrorCode</code></a></p>
 			</div>
 			
 
@@ -1012,8 +1093,8 @@
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/featureConfig" title="featureConfig"></a>
-	<h3 class="method-title"><code><a href="#//api/name/featureConfig">&nbsp;&nbsp;featureConfig</a></code>
+	<a name="//api/name/__APPLE_API_UNSTABLE" title="__APPLE_API_UNSTABLE"></a>
+	<h3 class="method-title"><code><a href="#//api/name/__APPLE_API_UNSTABLE">&nbsp;&nbsp;__APPLE_API_UNSTABLE</a></code>
 </h3>
 
 	<div class="method-info">
@@ -1028,7 +1109,7 @@
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, copy, nullable) BJLFeatureConfig *featureConfig</code></div>
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, copy, nullable) BJLFeatureConfig *__APPLE_API_UNSTABLE</code></div>
 
 		    
 			
@@ -1041,52 +1122,6 @@
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
 				<p>BJLiveCore 内部【不】读取此处 featureConfig</p><p>TODO: MingLQ - if nil</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BJLRoom.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/vmsAvailable" title="vmsAvailable"></a>
-	<h3 class="method-title"><code><a href="#//api/name/vmsAvailable">&nbsp;&nbsp;vmsAvailable</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>vm、view 初始化状态，值为 YES 时 vm 可用</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL vmsAvailable</code></div>
-
-		    
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>在进教室 成功/失败 之前，vm、view 就已经可用，开始监听 vm 的属性、方法调用以及显示 view，但是之后可能进教室成功、也可能失败</p><p>!!!: 但此时 <a href="#//api/name/loadingVM"><code>loadingVM</code></a> 以外的 vm 并没有与 server 建立连接，vm 的状态、数据没有与服务端同步，调用 vm 方法时发起的网络请求会被丢弃、甚至产生不可预期的错误，断开重连时类似</p><p>KVO 此属性时 option 包含 initial(默认)，即使开始 KVO 时值已经是 YES 也会执行 KVO 回调，参考 NSObject+BJLObserving.h</p>
 			</div>
 			
 
@@ -1437,8 +1472,8 @@
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/slideVM" title="slideVM"></a>
-	<h3 class="method-title"><code><a href="#//api/name/slideVM">&nbsp;&nbsp;slideVM</a></code>
+	<a name="//api/name/mainPlayingAdapterVM" title="mainPlayingAdapterVM"></a>
+	<h3 class="method-title"><code><a href="#//api/name/mainPlayingAdapterVM">&nbsp;&nbsp;mainPlayingAdapterVM</a></code>
 </h3>
 
 	<div class="method-info">
@@ -1448,12 +1483,12 @@
 			
 			
 			<div class="method-subsection brief-description">
-				<p>课件管理，参考 <a href="../Classes/BJLSlideVM.html"><code>BJLSlideVM</code></a></p>
+				<p>针对旧版 SDK 的 <a href="#//api/name/playingVM">playingVM</a> 创建的适配层，管理发言用户主摄像头音视频信息</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, nullable) BJLSlideVM *slideVM</code></div>
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, nullable) BJLPlayingAdapterVM *mainPlayingAdapterVM</code></div>
 
 		    
 			
@@ -1478,8 +1513,8 @@
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/slideshowVM" title="slideshowVM"></a>
-	<h3 class="method-title"><code><a href="#//api/name/slideshowVM">&nbsp;&nbsp;slideshowVM</a></code>
+	<a name="//api/name/extraPlayingAdapterVM" title="extraPlayingAdapterVM"></a>
+	<h3 class="method-title"><code><a href="#//api/name/extraPlayingAdapterVM">&nbsp;&nbsp;extraPlayingAdapterVM</a></code>
 </h3>
 
 	<div class="method-info">
@@ -1489,12 +1524,94 @@
 			
 			
 			<div class="method-subsection brief-description">
-				<p>课件显示、控制，参考 <a href="../Classes/BJLSlideshowVM.html"><code>BJLSlideshowVM</code></a></p>
+				<p>针对旧版 SDK 的 <a href="#//api/name/playingVM">playingVM</a> 创建的适配层，管理发言用户主摄像头之外的音视频信息</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, nullable) BJLSlideshowVM *slideshowVM</code></div>
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, nullable) BJLPlayingAdapterVM *extraPlayingAdapterVM</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/documentVM" title="documentVM"></a>
+	<h3 class="method-title"><code><a href="#//api/name/documentVM">&nbsp;&nbsp;documentVM</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>课件管理、显示、控制，参考 <a href="../Classes/BJLDocumentVM.html"><code>BJLDocumentVM</code></a></p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, nullable) BJLDocumentVM *documentVM</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/drawingVM" title="drawingVM"></a>
+	<h3 class="method-title"><code><a href="#//api/name/drawingVM">&nbsp;&nbsp;drawingVM</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>标注</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, nullable) BJLDrawingVM *drawingVM</code></div>
 
 		    
 			
@@ -1547,7 +1664,7 @@
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>是否禁用动画课件由两个参数控制，任意一个值为 YES 就禁止</p><p>1、由服务端通过 <code>BJLFeatureConfig</code> 的 <code>disablePPTAnimation</code> 控制</p><p>2、由上层设置这个 <code>disablePPTAnimation</code></p>
+				<p>是否禁用动画课件由两个参数控制，任意一个值为 YES 就禁止</p><p>1、由服务端通过 <a href="../Classes/BJLFeatureConfig.html"><code>BJLFeatureConfig</code></a> 的 <code>disablePPTAnimation</code> 控制</p><p>2、由上层设置这个 <code>disablePPTAnimation</code></p>
 			</div>
 			
 
@@ -1748,7 +1865,7 @@
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2018 baijiayun. All rights reserved. Updated: 2018-09-18</p>
+						<p class="copyright">Copyright &copy; 2019 baijiayun. All rights reserved. Updated: 2019-04-17</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>

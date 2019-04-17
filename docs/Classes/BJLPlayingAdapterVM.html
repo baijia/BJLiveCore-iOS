@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>BJLPlayingAdapterVM Class Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1333)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">BJLiveCore </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">baijiayun</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+
+	
+	
+	<optgroup label="Properties">
+		
+		<option value="//api/name/autoPlayVideoBlock">autoPlayVideoBlock</option>
+		
+		<option value="//api/name/playingUsers">playingUsers</option>
+		
+		<option value="//api/name/videoPlayingUsers">videoPlayingUsers</option>
+		
+	</optgroup>
+	
+
+	
+
+	
+	<optgroup label="Instance Methods">
+		
+		<option value="//api/name/definitionIndexForUserWithID:">- definitionIndexForUserWithID:</option>
+		
+		<option value="//api/name/playLagWithPlayingUser:">- playLagWithPlayingUser:</option>
+		
+		<option value="//api/name/playingUserDidFinishLoadingVideo:">- playingUserDidFinishLoadingVideo:</option>
+		
+		<option value="//api/name/playingUserDidStartLoadingVideo:">- playingUserDidStartLoadingVideo:</option>
+		
+		<option value="//api/name/playingUserDidUpdate:old:">- playingUserDidUpdate:old:</option>
+		
+		<option value="//api/name/playingUserDidUpdateVideoDefinitions:old:">- playingUserDidUpdateVideoDefinitions:old:</option>
+		
+		<option value="//api/name/playingUserWithID:number:">- playingUserWithID:number:</option>
+		
+		<option value="//api/name/playingUserWithMediaID:">- playingUserWithMediaID:</option>
+		
+		<option value="//api/name/playingUsersDidOverwrite:">- playingUsersDidOverwrite:</option>
+		
+		<option value="//api/name/playingViewAspectRatioChanged:forUser:">- playingViewAspectRatioChanged:forUser:</option>
+		
+		<option value="//api/name/playingViewAspectRatioForUserWithID:">- playingViewAspectRatioForUserWithID:</option>
+		
+		<option value="//api/name/playingViewForUserWithID:">- playingViewForUserWithID:</option>
+		
+		<option value="//api/name/updatePlayingUserWithID:videoOn:">- updatePlayingUserWithID:videoOn:</option>
+		
+		<option value="//api/name/videoPlayingUserWithID:number:">- videoPlayingUserWithID:number:</option>
+		
+	</optgroup>
+	
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">BJLPlayingAdapterVM Class Reference</h1>
+
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<th>Inherits from</th>
+	<td>BJLBaseVM : NSObject</td>
+</tr><tr>
+	<th>Declared in</th>
+	<td>BJLPlayingAdapterVM.h</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<h3>旧版 SDK 音视频模板适配层</h3>
+					</div>
+					
+					
+
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						
+
+						
+						
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/playingUsers" title="playingUsers"></a>
+	<h3 class="method-title"><code><a href="#//api/name/playingUsers">&nbsp;&nbsp;playingUsers</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>音视频用户列表</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, copy, nullable) NSArray&lt;__kindofBJLMediaUser*&gt; *playingUsers</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>包含 <code>videoPlayingUser</code></p><p>所有用户的音频会自动播放，视频需要调用 <a href="#//api/name/updatePlayingUserWithID:videoOn:"><code>updatePlayingUserWithID:videoOn:</code></a> 打开或者通过 <a href="#//api/name/autoPlayVideoBlock"><code>autoPlayVideoBlock</code></a> 控制打开</p><p>SDK 会处理音视频打断、恢复、前后台切换等情况</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLPlayingAdapterVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/playingUserWithID:number:" title="playingUserWithID:number:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/playingUserWithID:number:">&ndash;&nbsp;playingUserWithID:number:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>从 <a href="#//api/name/playingUsers"><code>playingUsers</code></a> 查找用户</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable __kindof BJLMediaUser *)playingUserWithID:(nullable NSString *)<em>userID</em> number:(nullable NSString *)<em>userNumber</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>userID</code></th>
+						<td><p>用户 ID</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>userNumber</code></th>
+						<td><p>用户编号</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLPlayingAdapterVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/playingUserWithMediaID:" title="playingUserWithMediaID:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/playingUserWithMediaID:">&ndash;&nbsp;playingUserWithMediaID:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>查找音视频流对应的用户实例</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable __kindof BJLMediaUser *)playingUserWithMediaID:(nullable NSString *)<em>mediaID</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>mediaID</code></th>
+						<td><p>音视频流标识</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLPlayingAdapterVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/playingUserDidUpdate:old:" title="playingUserDidUpdate:old:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/playingUserDidUpdate:old:">&ndash;&nbsp;playingUserDidUpdate:old:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>用户开关音、视频</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)playingUserDidUpdate:(nullable BJLMediaUser *)<em>now</em> old:(nullable BJLMediaUser *)<em>old</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>now</code></th>
+						<td><p>新用户信息</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>old</code></th>
+						<td><p>旧用户信息
+TODO: 增加方法支持同时监听初始音视频状态</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<ul>
+<li>某个用户主动开关自己的音视频、切换清晰度时发送此通知，但不包含意外掉线等情况</li>
+</ul>
+<ul>
+<li>正在播放的视频用户 关闭视频时 <code>videoPlayingUser</code> 将被设置为 nil、同时发送此通知</li>
+</ul>
+<ul>
+<li>进教室后批量更新 <a href="#//api/name/playingUsers"><code>playingUsers</code></a> 时『不』发送此通知</li>
+</ul>
+<ul>
+<li>音视频开关状态通过 <code>BJLMediaUser</code> 的 <code>audioOn</code>、<code>videoOn</code> 获得</li>
+</ul>
+<ul>
+<li>definitionIndex 可能会发生变化，调用 <a href="#//api/name/definitionIndexForUserWithID:"><code>definitionIndexForUserWithID:</code></a> 可获取最新的取值</li>
+</ul>
+
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLPlayingAdapterVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/playingUserDidUpdateVideoDefinitions:old:" title="playingUserDidUpdateVideoDefinitions:old:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/playingUserDidUpdateVideoDefinitions:old:">&ndash;&nbsp;playingUserDidUpdateVideoDefinitions:old:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>用户开改变视频清晰度</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)playingUserDidUpdateVideoDefinitions:(nullable BJLMediaUser *)<em>now</em> old:(nullable BJLMediaUser *)<em>old</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>now</code></th>
+						<td><p>新用户信息</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>old</code></th>
+						<td><p>旧用户信息</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLPlayingAdapterVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/playingUsersDidOverwrite:" title="playingUsersDidOverwrite:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/playingUsersDidOverwrite:">&ndash;&nbsp;playingUsersDidOverwrite:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p><a href="#//api/name/playingUsers"><code>playingUsers</code></a> 被覆盖更新</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)playingUsersDidOverwrite:(nullable NSArray&lt;BJLMediaUser*&gt; *)<em>playingUsers</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>playingUsers</code></th>
+						<td><p>音视频用户列表</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>进教室后批量更新才调用，增量更新不调用</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLPlayingAdapterVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/playingUserDidStartLoadingVideo:" title="playingUserDidStartLoadingVideo:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/playingUserDidStartLoadingVideo:">&ndash;&nbsp;playingUserDidStartLoadingVideo:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>将要播放视频</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)playingUserDidStartLoadingVideo:(nullable BJLMediaUser *)<em>playingUser</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>playingUser</code></th>
+						<td><p>将要播放视频用户</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>播放或者关闭视频的方法被成功调用</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLPlayingAdapterVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/playingUserDidFinishLoadingVideo:" title="playingUserDidFinishLoadingVideo:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/playingUserDidFinishLoadingVideo:">&ndash;&nbsp;playingUserDidFinishLoadingVideo:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>播放成功</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)playingUserDidFinishLoadingVideo:(nullable BJLMediaUser *)<em>playingUser</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>playingUser</code></th>
+						<td><p>播放视频的用户</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>用户视频开启或者关闭成功</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLPlayingAdapterVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/playLagWithPlayingUser:" title="playLagWithPlayingUser:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/playLagWithPlayingUser:">&ndash;&nbsp;playLagWithPlayingUser:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>播放出现卡顿</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)playLagWithPlayingUser:(BJLMediaUser *)<em>user</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>user</code></th>
+						<td><p>出现卡顿的正在播放的视频用户实例</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLPlayingAdapterVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/autoPlayVideoBlock" title="autoPlayVideoBlock"></a>
+	<h3 class="method-title"><code><a href="#//api/name/autoPlayVideoBlock">&nbsp;&nbsp;autoPlayVideoBlock</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>自动播放视频并指定清晰度回调</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, copy, nullable) BJLAutoPlayVideo ( ^ ) ( BJLMediaUser *user , NSInteger cachedDefinitionIndex ) autoPlayVideoBlock</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>传入参数 user 和 cachedDefinitionIndex 分别为 用户 和 上次播放该用户视频时使用的清晰度</p><p>返回结果 autoPlay 和 definitionIndex 分别为 是否自动播放视频 和 播放视频使用的视频清晰度，例如
+|  self.room.playingVM.autoPlayVideoBlock = ^BJLAutoPlayVideo(BJLMediaUser *user, NSInteger cachedDefinitionIndex) {
+|      BOOL autoPlay = user.number &amp;&amp; ![self.autoPlayVideoBlacklist containsObject:user.number];
+|      NSInteger definitionIndex = cachedDefinitionIndex;
+|      if (autoPlay) {
+|          NSInteger maxDefinitionIndex = MAX(0, (NSInteger)user.definitions.count - 1);
+|          definitionIndex = (cachedDefinitionIndex &lt;= maxDefinitionIndex
+|                             ? cachedDefinitionIndex : maxDefinitionIndex);
+|      }
+|      return BJLAutoPlayVideoMake(autoPlay, definitionIndex);
+|  };</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLPlayingAdapterVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/videoPlayingUsers" title="videoPlayingUsers"></a>
+	<h3 class="method-title"><code><a href="#//api/name/videoPlayingUsers">&nbsp;&nbsp;videoPlayingUsers</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>正在播放的视频用户</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, copy, nullable) NSArray&lt;BJLMediaUser*&gt; *videoPlayingUsers</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p><a href="#//api/name/playingUsers"><code>playingUsers</code></a> 的子集</p><p>断开重连、暂停恢复等操作不自动重置 <code>videoPlayingUsers</code>，除非对方用户掉线、离线等</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLPlayingAdapterVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/videoPlayingUserWithID:number:" title="videoPlayingUserWithID:number:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/videoPlayingUserWithID:number:">&ndash;&nbsp;videoPlayingUserWithID:number:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>从 <a href="#//api/name/videoPlayingUsers"><code>videoPlayingUsers</code></a> 查找用户</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable __kindof BJLMediaUser *)videoPlayingUserWithID:(nullable NSString *)<em>userID</em> number:(nullable NSString *)<em>userNumber</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>userID</code></th>
+						<td><p>用户 ID</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>userNumber</code></th>
+						<td><p>用户编号</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLPlayingAdapterVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/updatePlayingUserWithID:videoOn:" title="updatePlayingUserWithID:videoOn:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/updatePlayingUserWithID:videoOn:">&ndash;&nbsp;updatePlayingUserWithID:videoOn:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>打开／关闭 对象用户的视频</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)updatePlayingUserWithID:(NSString *)<em>userID</em> videoOn:(BOOL)<em>videoOn</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>userID</code></th>
+						<td><p>用户 ID</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>videoOn</code></th>
+						<td><p>YES：打开视频，NO：关闭视频</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>definitionIndex</code></th>
+						<td><p><code>BJLMediaUser</code> 的 <code>definitions</code> 属性的 index，参考 <code>BJLLiveDefinitionKey</code>、<code>BJLLiveDefinitionNameForKey()</code></p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>BJLError:
+<a href="../Constants/BJLErrorCode.html">BJLErrorCode</a><em>invalidArguments  错误参数，如 <code>playingUsers</code> 中不存在此用户；
+<a href="../Constants/BJLErrorCode.html">BJLErrorCode</a></em>invalidCalling    错误调用，如用户视频已经在播放、或用户没有开启摄像头。</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLPlayingAdapterVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/definitionIndexForUserWithID:" title="definitionIndexForUserWithID:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/definitionIndexForUserWithID:">&ndash;&nbsp;definitionIndexForUserWithID:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>获取播放用户的清晰度</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSInteger)definitionIndexForUserWithID:(NSString *)<em>userID</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>userID</code></th>
+						<td><p>用户 ID</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>播放时传入的 <code>definitionIndex</code></p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLPlayingAdapterVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/playingViewForUserWithID:" title="playingViewForUserWithID:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/playingViewForUserWithID:">&ndash;&nbsp;playingViewForUserWithID:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>获取播放用户的视频视图</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable UIView *)playingViewForUserWithID:(NSString *)<em>userID</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>userID</code></th>
+						<td><p>用户 ID</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLPlayingAdapterVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/playingViewAspectRatioForUserWithID:" title="playingViewAspectRatioForUserWithID:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/playingViewAspectRatioForUserWithID:">&ndash;&nbsp;playingViewAspectRatioForUserWithID:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>获取播放用户的视频视图宽高比</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (CGFloat)playingViewAspectRatioForUserWithID:(NSString *)<em>userID</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>userID</code></th>
+						<td><p>用户 ID</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLPlayingAdapterVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/playingViewAspectRatioChanged:forUser:" title="playingViewAspectRatioChanged:forUser:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/playingViewAspectRatioChanged:forUser:">&ndash;&nbsp;playingViewAspectRatioChanged:forUser:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>用户视频宽高比发生变化的通知</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)playingViewAspectRatioChanged:(CGFloat)<em>videoAspectRatio</em> forUser:(BJLMediaUser *)<em>user</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>videoAspectRatio</code></th>
+						<td><p>视频宽高比</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>user</code></th>
+						<td><p>用户实例</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLPlayingAdapterVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+					</div>
+					
+					
+
+                    
+                    
+          
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2019 baijiayun. All rights reserved. Updated: 2019-04-17</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>

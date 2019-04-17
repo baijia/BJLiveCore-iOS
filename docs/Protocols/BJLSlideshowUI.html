@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>BJLSlideshowUI Protocol Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1333)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">BJLiveCore </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">baijiayun</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+
+	
+	
+	<optgroup label="Properties">
+		
+		<option value="//api/name/contentMode">contentMode</option>
+		
+		<option value="//api/name/drawingEnabled">drawingEnabled</option>
+		
+		<option value="//api/name/imageSize">imageSize</option>
+		
+		<option value="//api/name/localPageIndex">localPageIndex</option>
+		
+		<option value="//api/name/nextPageIndicatorImage">nextPageIndicatorImage</option>
+		
+		<option value="//api/name/pageControlButton">pageControlButton</option>
+		
+		<option value="//api/name/pageGestureCanStepBackward">pageGestureCanStepBackward</option>
+		
+		<option value="//api/name/pageGestureCanStepForward">pageGestureCanStepForward</option>
+		
+		<option value="//api/name/placeholderImage">placeholderImage</option>
+		
+		<option value="//api/name/viewType">viewType</option>
+		
+		<option value="//api/name/webPPTInteractable">webPPTInteractable</option>
+		
+	</optgroup>
+	
+
+	
+
+	
+	<optgroup label="Instance Methods">
+		
+		<option value="//api/name/clearDrawing">- clearDrawing</option>
+		
+		<option value="//api/name/updateScaleEnabled:">- updateScaleEnabled:</option>
+		
+		<option value="//api/name/updateScrollEnabled:">- updateScrollEnabled:</option>
+		
+		<option value="//api/name/updateWebPPTInteractable:">- updateWebPPTInteractable:</option>
+		
+	</optgroup>
+	
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">BJLSlideshowUI Protocol Reference</h1>
+
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<th>Conforms to</th>
+	<td>NSObject</td>
+</tr><tr>
+	<th>Declared in</th>
+	<td>BJLSlideshowUI.h</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<h3>课件视图控制器 API</h3>
+					</div>
+					
+					
+
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						
+
+						
+						
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/contentMode" title="contentMode"></a>
+	<h3 class="method-title"><code><a href="#//api/name/contentMode">&nbsp;&nbsp;contentMode</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>静态课件显示模式
+只支持 <a href="../Constants/BJLContentMode.html">BJLContentMode</a><em>scaleAspectFit, <a href="../Constants/BJLContentMode.html">BJLContentMode</a></em>scaleAspectFill
+只对静态课件生效，参考 <a href="../Classes/BJLRoom.html"><code>BJLRoom</code></a> 的 <code>disablePPTAnimation</code></p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic) BJLContentMode contentMode</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLSlideshowUI.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/imageSize" title="imageSize"></a>
+	<h3 class="method-title"><code><a href="#//api/name/imageSize">&nbsp;&nbsp;imageSize</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>静态课件尺寸
+加载课件图片时对图片做等比缩放，长边小于/等于 <code>imageSize</code>，放大时加载 1.5 倍尺寸的图片
+单位为像素，默认初始加载 720、放大加载 1080，取值在 <code>BJLAliIMGMinSize</code> 到 <code>BJLAliIMGMaxSize</code> 之间 (1 ~ 4096)
+不建议进教室成功后设置此参数，因为会导致已经加载过的图片缓存失效
+只对静态课件生效，参考 <a href="../Classes/BJLRoom.html"><code>BJLRoom</code></a> 的 <code>disablePPTAnimation</code></p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic) NSInteger imageSize</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLSlideshowUI.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/placeholderImage" title="placeholderImage"></a>
+	<h3 class="method-title"><code><a href="#//api/name/placeholderImage">&nbsp;&nbsp;placeholderImage</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>静态课件占位图
+只对静态课件生效，参考 <a href="../Classes/BJLRoom.html"><code>BJLRoom</code></a> 的 <code>disablePPTAnimation</code></p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic) UIImage *placeholderImage</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLSlideshowUI.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/nextPageIndicatorImage" title="nextPageIndicatorImage"></a>
+	<h3 class="method-title"><code><a href="#//api/name/nextPageIndicatorImage">&nbsp;&nbsp;nextPageIndicatorImage</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>动画课件翻页指示图标
+只对动画课件，参考 <a href="../Classes/BJLRoom.html"><code>BJLRoom</code></a> 的 <code>disablePPTAnimation</code></p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic) UIImage *, *nextPageIndicatorImage</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLSlideshowUI.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/pageControlButton" title="pageControlButton"></a>
+	<h3 class="method-title"><code><a href="#//api/name/pageControlButton">&nbsp;&nbsp;pageControlButton</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>页面控制按钮</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic) UIButton *pageControlButton</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLSlideshowUI.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/localPageIndex" title="localPageIndex"></a>
+	<h3 class="method-title"><code><a href="#//api/name/localPageIndex">&nbsp;&nbsp;localPageIndex</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>本地当前页、可能与教室内的页数不同
+参考 <a href="../Classes/BJLDocumentVM.html"><code>BJLDocumentVM</code></a> 的 <code>currentSlidePage.documentPageIndex</code></p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic) NSInteger localPageIndex</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLSlideshowUI.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/drawingEnabled" title="drawingEnabled"></a>
+	<h3 class="method-title"><code><a href="#//api/name/drawingEnabled">&nbsp;&nbsp;drawingEnabled</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>画笔开关状态</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL drawingEnabled</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLSlideshowUI.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/webPPTInteractable" title="webPPTInteractable"></a>
+	<h3 class="method-title"><code><a href="#//api/name/webPPTInteractable">&nbsp;&nbsp;webPPTInteractable</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>动态课件交互状态</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL webPPTInteractable</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLSlideshowUI.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/viewType" title="viewType"></a>
+	<h3 class="method-title"><code><a href="#//api/name/viewType">&nbsp;&nbsp;viewType</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>课件类型，不固定，可能发生改变</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BJLPPTViewType viewType</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLSlideshowUI.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/pageGestureCanStepForward" title="pageGestureCanStepForward"></a>
+	<h3 class="method-title"><code><a href="#//api/name/pageGestureCanStepForward">&nbsp;&nbsp;pageGestureCanStepForward</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>动态课件手势触发的翻页是否能够向前翻页，默认能翻页</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic) BOOL pageGestureCanStepForward</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLSlideshowUI.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/pageGestureCanStepBackward" title="pageGestureCanStepBackward"></a>
+	<h3 class="method-title"><code><a href="#//api/name/pageGestureCanStepBackward">&nbsp;&nbsp;pageGestureCanStepBackward</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>动态课件手势触发的翻页是否能够向后翻页，默认能翻页</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic) BOOL pageGestureCanStepBackward</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLSlideshowUI.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/clearDrawing" title="clearDrawing"></a>
+	<h3 class="method-title"><code><a href="#//api/name/clearDrawing">&ndash;&nbsp;clearDrawing</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>清除白板</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)clearDrawing</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLSlideshowUI.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/updateScrollEnabled:" title="updateScrollEnabled:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/updateScrollEnabled:">&ndash;&nbsp;updateScrollEnabled:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>是否可以滑动翻页，默认可滑动翻页</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)updateScrollEnabled:(BOOL)<em>scrollEnabled</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>scrollEnabled</code></th>
+						<td><p>是否可滑动翻页</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>对于动态课件，优先级低于画笔状态和动态课件交互状态</p><p>开启画笔或者动态课件可交互的情况下，仍然不能滑动翻页</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLSlideshowUI.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/updateScaleEnabled:" title="updateScaleEnabled:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/updateScaleEnabled:">&ndash;&nbsp;updateScaleEnabled:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>静态课件是否支持缩放</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)updateScaleEnabled:(BOOL)<em>scaleEnabled</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>scaleEnabled</code></th>
+						<td><p>是否支持缩放</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>默认支持缩放</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLSlideshowUI.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/updateWebPPTInteractable:" title="updateWebPPTInteractable:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/updateWebPPTInteractable:">&ndash;&nbsp;updateWebPPTInteractable:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>动态课件是否可以交互</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)updateWebPPTInteractable:(BOOL)<em>interactable</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>interactable</code></th>
+						<td><p>是否可交互</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>默认不能交互，目前仅专业小班课支持h交互</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLSlideshowUI.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+					</div>
+					
+					
+
+                    
+                    
+          
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2019 baijiayun. All rights reserved. Updated: 2019-04-17</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>

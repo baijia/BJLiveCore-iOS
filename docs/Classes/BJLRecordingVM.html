@@ -56,6 +56,10 @@
 	
 	<optgroup label="Properties">
 		
+		<option value="//api/name/forbidAllRecordingAudio">forbidAllRecordingAudio</option>
+		
+		<option value="//api/name/forbidRecordingAudio">forbidRecordingAudio</option>
+		
 		<option value="//api/name/inputVideoAspectRatio">inputVideoAspectRatio</option>
 		
 		<option value="//api/name/inputVolumeLevel">inputVolumeLevel</option>
@@ -65,8 +69,6 @@
 		<option value="//api/name/usingRearCamera">usingRearCamera</option>
 		
 		<option value="//api/name/videoBeautifyLevel">videoBeautifyLevel</option>
-		
-		<option value="//api/name/videoDefinition">videoDefinition</option>
 		
 		<option value="//api/name/videoOrientation">videoOrientation</option>
 		
@@ -78,6 +80,10 @@
 	
 	<optgroup label="Instance Methods">
 		
+		<option value="//api/name/didReceiveMuteAllRecordingAudio">- didReceiveMuteAllRecordingAudio</option>
+		
+		<option value="//api/name/didReceiveUnmuteAllRecordingAudio">- didReceiveUnmuteAllRecordingAudio</option>
+		
 		<option value="//api/name/recordingAudioPCMDataDidUpdate:length:">- recordingAudioPCMDataDidUpdate:length:</option>
 		
 		<option value="//api/name/recordingDidDeny">- recordingDidDeny</option>
@@ -88,9 +94,19 @@
 		
 		<option value="//api/name/remoteChangeRecordingWithUser:audioOn:videoOn:">- remoteChangeRecordingWithUser:audioOn:videoOn:</option>
 		
-		<option value="//api/name/restartRecording">- restartRecording</option>
+		<option value="//api/name/sendForbidAllRecordingAudio:">- sendForbidAllRecordingAudio:</option>
 		
 		<option value="//api/name/setRecordingAudio:recordingVideo:">- setRecordingAudio:recordingVideo:</option>
+		
+		<option value="//api/name/updateAllRecordingAudioMute:">- updateAllRecordingAudioMute:</option>
+		
+		<option value="//api/name/updateUsingRearCamera:">- updateUsingRearCamera:</option>
+		
+		<option value="//api/name/updateVideoBeautifyLevel:">- updateVideoBeautifyLevel:</option>
+		
+		<option value="//api/name/updateVideoDefinition:">- updateVideoDefinition:</option>
+		
+		<option value="//api/name/updateVideoOrientation:">- updateVideoOrientation:</option>
 		
 	</optgroup>
 	
@@ -116,7 +132,7 @@
 	<td>BJLBaseVM : NSObject</td>
 </tr><tr>
 	<th>Declared in</th>
-	<td>BJLRecordingVM.h<br />BJLRecordingVM.m</td>
+	<td>BJLRecordingVM.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -138,425 +154,7 @@
 						
 
 						
-						<h2 class="task-title">Other Methods</h2>
-
-						<div class="task-list">
-							<div class="section-method">
-	<a name="//api/name/setRecordingAudio:recordingVideo:" title="setRecordingAudio:recordingVideo:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/setRecordingAudio:recordingVideo:">&ndash;&nbsp;setRecordingAudio:recordingVideo:</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>开关音视频</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)setRecordingAudio:(BOOL)<em>recordingAudio</em> recordingVideo:(BOOL)<em>recordingVideo</em></code></div>
-
-		    
-			
-			<div class="method-subsection arguments-section parameters">
-				<h4 class="method-subtitle parameter-title">Parameters</h4>
-				<table class="argument-def parameter-def">
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>recordingAudio</code></th>
-						<td><p>YES：打开音频采集，NO：关闭音频采集</p></td>
-					</tr>
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>recordingVideo</code></th>
-						<td><p>YES：打开视频采集，NO：关闭视频采集</p></td>
-					</tr>
-				
-				</table>
-			</div>
-			
-
-			
-			<div class="method-subsection return">
-				<h4 class="method-subtitle parameter-title">Return Value</h4>
-				<p>BJLError:
-BJLErrorCode_invalidCalling    错误调用，如学生在非上课状态下开启音视频、在音频教室开启摄像头</p>
-			</div>
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>上课状态才能打开音视频，参考 <code>roomVM.liveStarted</code></p><p>上层自行检查麦克风、摄像头开关权限</p><p>上层可通过 <a href="../Classes/BJLSpeakingRequestVM.html">BJLSpeakingRequestVM</a> 实现学生发言需要举手的逻辑</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BJLRecordingVM.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/restartRecording" title="restartRecording"></a>
-	<h3 class="method-title"><code><a href="#//api/name/restartRecording">&ndash;&nbsp;restartRecording</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>重新开始采集</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>- (void)restartRecording</code></div>
-
-		    
-			
-
-			
-
-			
-
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BJLRecordingVM.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/recordingDidDeny" title="recordingDidDeny"></a>
-	<h3 class="method-title"><code><a href="#//api/name/recordingDidDeny">&ndash;&nbsp;recordingDidDeny</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>开启音视频被自动拒绝，因为上麦路数达到上限</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>- (BJLObservable)recordingDidDeny</code></div>
-
-		    
-			
-
-			
-
-			
-
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BJLRecordingVM.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/recordingAudioPCMDataDidUpdate:length:" title="recordingAudioPCMDataDidUpdate:length:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/recordingAudioPCMDataDidUpdate:length:">&ndash;&nbsp;recordingAudioPCMDataDidUpdate:length:</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>采集到的音频数据</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>- (BJLObservable)recordingAudioPCMDataDidUpdate:(int16_t [ ])<em>data</em> length:(int)<em>length</em></code></div>
-
-		    
-			
-			<div class="method-subsection arguments-section parameters">
-				<h4 class="method-subtitle parameter-title">Parameters</h4>
-				<table class="argument-def parameter-def">
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>data</code></th>
-						<td><p>pcm数据</p></td>
-					</tr>
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>length</code></th>
-						<td><p>音频数据长度</p></td>
-					</tr>
-				
-				</table>
-			</div>
-			
-
-			
-
-			
-
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BJLRecordingVM.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/recordingDidRemoteChangedRecordingAudio:recordingVideo:recordingAudioChanged:recordingVideoChanged:" title="recordingDidRemoteChangedRecordingAudio:recordingVideo:recordingAudioChanged:recordingVideoChanged:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/recordingDidRemoteChangedRecordingAudio:recordingVideo:recordingAudioChanged:recordingVideoChanged:">&ndash;&nbsp;recordingDidRemoteChangedRecordingAudio:recordingVideo:recordingAudioChanged:recordingVideoChanged:</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>音视频被远程开关通知</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>- (BJLObservable)recordingDidRemoteChangedRecordingAudio:(BOOL)<em>recordingAudio</em> recordingVideo:(BOOL)<em>recordingVideo</em> recordingAudioChanged:(BOOL)<em>recordingAudioChanged</em> recordingVideoChanged:(BOOL)<em>recordingVideoChanged</em></code></div>
-
-		    
-			
-			<div class="method-subsection arguments-section parameters">
-				<h4 class="method-subtitle parameter-title">Parameters</h4>
-				<table class="argument-def parameter-def">
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>recordingAudio</code></th>
-						<td><p>YES：打开音频采集，NO：关闭音频采集</p></td>
-					</tr>
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>recordingVideo</code></th>
-						<td><p>YES：打开视频采集，NO：关闭视频采集</p></td>
-					</tr>
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>recordingAudioChanged</code></th>
-						<td><p>音频采集状态是否发生变化</p></td>
-					</tr>
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>recordingVideoChanged</code></th>
-						<td><p>视频采集状态是否发生变化</p></td>
-					</tr>
-				
-				</table>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>对于学生，音、视频有一个打开就开启发言、全部关闭就结束发言</p><p>参考 <a href="../Classes/BJLSpeakingRequestVM.html"><code>BJLSpeakingRequestVM</code></a> 的 <code>speakingDidRemoteControl:</code></p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BJLRecordingVM.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/remoteChangeRecordingWithUser:audioOn:videoOn:" title="remoteChangeRecordingWithUser:audioOn:videoOn:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/remoteChangeRecordingWithUser:audioOn:videoOn:">&ndash;&nbsp;remoteChangeRecordingWithUser:audioOn:videoOn:</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>老师: 远程开关学生音、视频</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)remoteChangeRecordingWithUser:(BJLUser *)<em>user</em> audioOn:(BOOL)<em>audioOn</em> videoOn:(BOOL)<em>videoOn</em></code></div>
-
-		    
-			
-			<div class="method-subsection arguments-section parameters">
-				<h4 class="method-subtitle parameter-title">Parameters</h4>
-				<table class="argument-def parameter-def">
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>user</code></th>
-						<td><p>对象用户，不能是老师</p></td>
-					</tr>
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>audioOn</code></th>
-						<td><p>YES：打开音频采集，NO：关闭音频采集</p></td>
-					</tr>
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>videoOn</code></th>
-						<td><p>YES：打开视频采集，NO：关闭视频采集</p></td>
-					</tr>
-				
-				</table>
-			</div>
-			
-
-			
-			<div class="method-subsection return">
-				<h4 class="method-subtitle parameter-title">Return Value</h4>
-				<p>BJLError:
-BJLErrorCode_invalidArguments  错误参数；
-BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限。</p>
-			</div>
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>打开音频、视频会导致对方发言状态开启</p><p>同时关闭音频、视频会导致对方发言状态终止</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BJLRecordingVM.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/remoteChangeRecordingDidDenyForUser:" title="remoteChangeRecordingDidDenyForUser:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/remoteChangeRecordingDidDenyForUser:">&ndash;&nbsp;remoteChangeRecordingDidDenyForUser:</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>老师: 远程开启学生音、视频被自动拒绝，因为上麦路数达到上限</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>- (BJLObservable)remoteChangeRecordingDidDenyForUser:(BJLUser *)<em>user</em></code></div>
-
-		    
-			
-			<div class="method-subsection arguments-section parameters">
-				<h4 class="method-subtitle parameter-title">Parameters</h4>
-				<table class="argument-def parameter-def">
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>user</code></th>
-						<td><p>开启失败的学生</p></td>
-					</tr>
-				
-				</table>
-			</div>
-			
-
-			
-
-			
-
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BJLRecordingVM.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div>
-						</div>
 						
-
-						
-						<h2 class="task-title">Other Methods</h2>
 
 						<div class="task-list">
 							<div class="section-method">
@@ -683,6 +281,692 @@ BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限。</p>
 		</div>
 	</div>
 </div><div class="section-method">
+	<a name="//api/name/forbidRecordingAudio" title="forbidRecordingAudio"></a>
+	<h3 class="method-title"><code><a href="#//api/name/forbidRecordingAudio">&nbsp;&nbsp;forbidRecordingAudio</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>学生: 是否禁止当前用户打开音频 - 个人实际状态</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL forbidRecordingAudio</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>用于判断当前用户是否能打开音频</p><p>参考 <a href="#//api/name/forbidAllRecordingAudio"><code>forbidAllRecordingAudio</code></a></p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRecordingVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/forbidAllRecordingAudio" title="forbidAllRecordingAudio"></a>
+	<h3 class="method-title"><code><a href="#//api/name/forbidAllRecordingAudio">&nbsp;&nbsp;forbidAllRecordingAudio</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>是否禁止所有人打开音频 - 全局开关状态</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL forbidAllRecordingAudio</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>用于判断教室内开关状态</p><p>如果学生正在采集音频，收到此事件时会被自动关闭</p><p>课程类型为小班课、新版小班课、双师课时可用，参考 <code>room.roomInfo.roomType</code>、<a href="../Constants/BJLRoomType.html"><code>BJLRoomType</code></a></p><ol>
+<li>当老师禁止所有人打开音频时，<code>forbidAllRecordingAudio</code> 和 <a href="#//api/name/forbidRecordingAudio"><code>forbidRecordingAudio</code></a> 同时被设置为 YES，</li>
+</ol>
+<ol>
+<li>当老师取消禁止所有人打开音频时，<code>forbidAllRecordingAudio</code> 和 <a href="#//api/name/forbidRecordingAudio"><code>forbidRecordingAudio</code></a> 同时被设置为 NO，</li>
+</ol>
+<ol>
+<li>当老师邀请/强制当前用户发言时，<code>forbidAllRecordingAudio</code> 被设置成 NO，<a href="#//api/name/forbidRecordingAudio"><code>forbidRecordingAudio</code></a> 依然是 YES，</li>
+</ol>
+<ol>
+<li>当老师取消邀请/强制结束当前用户发言时，<code>forbidAllRecordingAudio</code> 会被设置为与 <a href="#//api/name/forbidRecordingAudio"><code>forbidRecordingAudio</code></a> 一样的取值</li>
+</ol>
+
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRecordingVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/sendForbidAllRecordingAudio:" title="sendForbidAllRecordingAudio:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/sendForbidAllRecordingAudio:">&ndash;&nbsp;sendForbidAllRecordingAudio:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>老师: 设置全体禁音状态</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)sendForbidAllRecordingAudio:(BOOL)<em>forbidAll</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>forbidAll</code></th>
+						<td><p>YES：全体禁音，NO：取消禁音</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>BJLError:
+BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>设置成功后修改 <a href="#//api/name/forbidAllRecordingAudio"><code>forbidAllRecordingAudio</code></a>、<a href="#//api/name/forbidRecordingAudio"><code>forbidRecordingAudio</code></a></p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRecordingVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/setRecordingAudio:recordingVideo:" title="setRecordingAudio:recordingVideo:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/setRecordingAudio:recordingVideo:">&ndash;&nbsp;setRecordingAudio:recordingVideo:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>开关音视频</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)setRecordingAudio:(BOOL)<em>recordingAudio</em> recordingVideo:(BOOL)<em>recordingVideo</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>recordingAudio</code></th>
+						<td><p>YES：打开音频采集，NO：关闭音频采集</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>recordingVideo</code></th>
+						<td><p>YES：打开视频采集，NO：关闭视频采集</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>BJLError:
+BJLErrorCode_invalidCalling    错误调用，以下情况下开启音视频、在音频教室开启摄像头均会返回此错误
+登录用户分组 ID 不为 0，参考 <code>room.loginUser.groupID</code>
+非上课状态，参考 <code>room.roomVM.liveStarted</code>
+教室禁止打开音频，参考 <code>self.</code>forbidRecordingAudio<code></code>
+音频禁止打开视频，参考 <code>featureConfig.mediaLimit</code></p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>上层自行检查麦克风、摄像头开关权限</p><p>上层可通过 <a href="../Classes/BJLSpeakingRequestVM.html"><code>BJLSpeakingRequestVM</code></a> 实现学生发言需要举手的逻辑</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRecordingVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/recordingDidDeny" title="recordingDidDeny"></a>
+	<h3 class="method-title"><code><a href="#//api/name/recordingDidDeny">&ndash;&nbsp;recordingDidDeny</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>开启音视频被服务端拒绝</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)recordingDidDeny</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>可能因为上麦路数达到上限</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRecordingVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/recordingAudioPCMDataDidUpdate:length:" title="recordingAudioPCMDataDidUpdate:length:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/recordingAudioPCMDataDidUpdate:length:">&ndash;&nbsp;recordingAudioPCMDataDidUpdate:length:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>采集到的音频数据</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)recordingAudioPCMDataDidUpdate:(uint8_t [ _Nullable ])<em>data</em> length:(int)<em>length</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>data</code></th>
+						<td><p>pcm数据</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>length</code></th>
+						<td><p>音频数据长度</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRecordingVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/recordingDidRemoteChangedRecordingAudio:recordingVideo:recordingAudioChanged:recordingVideoChanged:" title="recordingDidRemoteChangedRecordingAudio:recordingVideo:recordingAudioChanged:recordingVideoChanged:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/recordingDidRemoteChangedRecordingAudio:recordingVideo:recordingAudioChanged:recordingVideoChanged:">&ndash;&nbsp;recordingDidRemoteChangedRecordingAudio:recordingVideo:recordingAudioChanged:recordingVideoChanged:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>音视频被远程开关通知</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)recordingDidRemoteChangedRecordingAudio:(BOOL)<em>recordingAudio</em> recordingVideo:(BOOL)<em>recordingVideo</em> recordingAudioChanged:(BOOL)<em>recordingAudioChanged</em> recordingVideoChanged:(BOOL)<em>recordingVideoChanged</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>recordingAudio</code></th>
+						<td><p>YES：打开音频采集，NO：关闭音频采集</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>recordingVideo</code></th>
+						<td><p>YES：打开视频采集，NO：关闭视频采集</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>recordingAudioChanged</code></th>
+						<td><p>音频采集状态是否发生变化</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>recordingVideoChanged</code></th>
+						<td><p>视频采集状态是否发生变化</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>对于学生，音、视频有一个打开就开启发言、全部关闭就结束发言</p><p>参考 <a href="../Classes/BJLSpeakingRequestVM.html"><code>BJLSpeakingRequestVM</code></a> 的 <code>speakingDidRemoteControl:</code></p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRecordingVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/updateAllRecordingAudioMute:" title="updateAllRecordingAudioMute:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/updateAllRecordingAudioMute:">&ndash;&nbsp;updateAllRecordingAudioMute:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>开关全体学生麦克风</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)updateAllRecordingAudioMute:(BOOL)<em>mute</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>mute</code></th>
+						<td><p>YES：关闭，NO：打开</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>BJLError</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRecordingVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/didReceiveMuteAllRecordingAudio" title="didReceiveMuteAllRecordingAudio"></a>
+	<h3 class="method-title"><code><a href="#//api/name/didReceiveMuteAllRecordingAudio">&ndash;&nbsp;didReceiveMuteAllRecordingAudio</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>收到一键关麦</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)didReceiveMuteAllRecordingAudio</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRecordingVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/didReceiveUnmuteAllRecordingAudio" title="didReceiveUnmuteAllRecordingAudio"></a>
+	<h3 class="method-title"><code><a href="#//api/name/didReceiveUnmuteAllRecordingAudio">&ndash;&nbsp;didReceiveUnmuteAllRecordingAudio</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>收到一键开麦</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)didReceiveUnmuteAllRecordingAudio</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRecordingVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/remoteChangeRecordingWithUser:audioOn:videoOn:" title="remoteChangeRecordingWithUser:audioOn:videoOn:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/remoteChangeRecordingWithUser:audioOn:videoOn:">&ndash;&nbsp;remoteChangeRecordingWithUser:audioOn:videoOn:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>老师: 远程开关学生音、视频</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)remoteChangeRecordingWithUser:(BJLUser *)<em>user</em> audioOn:(BOOL)<em>audioOn</em> videoOn:(BOOL)<em>videoOn</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>user</code></th>
+						<td><p>对象用户，不能是老师</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>audioOn</code></th>
+						<td><p>YES：打开音频采集，NO：关闭音频采集</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>videoOn</code></th>
+						<td><p>YES：打开视频采集，NO：关闭视频采集</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>BJLError:
+<a href="../Constants/BJLErrorCode.html">BJLErrorCode</a><em>invalidArguments  错误参数；
+<a href="../Constants/BJLErrorCode.html">BJLErrorCode</a></em>invalidUserRole   错误权限，要求老师或助教权限。</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>打开音频、视频会导致对方发言状态开启</p><p>同时关闭音频、视频会导致对方发言状态终止</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRecordingVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/remoteChangeRecordingDidDenyForUser:" title="remoteChangeRecordingDidDenyForUser:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/remoteChangeRecordingDidDenyForUser:">&ndash;&nbsp;remoteChangeRecordingDidDenyForUser:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>老师: 远程开启学生音、视频被自动拒绝，因为上麦路数达到上限</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)remoteChangeRecordingDidDenyForUser:(BJLUser *)<em>user</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>user</code></th>
+						<td><p>开启失败的学生</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRecordingVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
 	<a name="//api/name/usingRearCamera" title="usingRearCamera"></a>
 	<h3 class="method-title"><code><a href="#//api/name/usingRearCamera">&nbsp;&nbsp;usingRearCamera</a></code>
 </h3>
@@ -694,16 +978,75 @@ BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限。</p>
 			
 			
 			<div class="method-subsection brief-description">
-				<p>使用后置摄像头，默认使用前置摄像头</p>
+				<p>当前使用的摄像头，默认使用前置摄像头</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>@property (nonatomic) BOOL usingRearCamera</code></div>
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL usingRearCamera</code></div>
 
 		    
 			
 
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRecordingVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/updateUsingRearCamera:" title="updateUsingRearCamera:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/updateUsingRearCamera:">&ndash;&nbsp;updateUsingRearCamera:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>是否使用后置摄像头</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)updateUsingRearCamera:(BOOL)<em>usingRearCamera</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>usingRearCamera</code></th>
+						<td><p>使用后置摄像头</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>BJLError:
+BJLErrorCode_invalidCalling  错误调用</p>
+			</div>
 			
 
 			
@@ -740,7 +1083,7 @@ BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限。</p>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>@property (nonatomic) BJLVideoOrientation videoOrientation</code></div>
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BJLVideoOrientation videoOrientation</code></div>
 
 		    
 			
@@ -765,8 +1108,8 @@ BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限。</p>
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/videoDefinition" title="videoDefinition"></a>
-	<h3 class="method-title"><code><a href="#//api/name/videoDefinition">&nbsp;&nbsp;videoDefinition</a></code>
+	<a name="//api/name/updateVideoOrientation:" title="updateVideoOrientation:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/updateVideoOrientation:">&ndash;&nbsp;updateVideoOrientation:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -776,16 +1119,93 @@ BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限。</p>
 			
 			
 			<div class="method-subsection brief-description">
-				<p>清晰度，默认标清</p>
+				<p>改变视频方向</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>@property (nonatomic) BJLVideoDefinition videoDefinition</code></div>
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)updateVideoOrientation:(BJLVideoOrientation)<em>videoOrientation</em></code></div>
 
 		    
 			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>videoOrientation</code></th>
+						<td><p>方向</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
 
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>BJLError:
+BJLErrorCode_invalidCalling  错误调用</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRecordingVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/updateVideoDefinition:" title="updateVideoDefinition:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/updateVideoDefinition:">&ndash;&nbsp;updateVideoDefinition:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>改变视频清晰度</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)updateVideoDefinition:(BJLVideoDefinition)<em>videoDefinition</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>videoDefinition</code></th>
+						<td><p>清晰度</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>BJLError:
+BJLErrorCode_invalidCalling  错误调用</p>
+			</div>
 			
 
 			
@@ -822,11 +1242,70 @@ BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限。</p>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>@property (nonatomic) BJLVideoBeautifyLevel videoBeautifyLevel</code></div>
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BJLVideoBeautifyLevel videoBeautifyLevel</code></div>
 
 		    
 			
 
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRecordingVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/updateVideoBeautifyLevel:" title="updateVideoBeautifyLevel:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/updateVideoBeautifyLevel:">&ndash;&nbsp;updateVideoBeautifyLevel:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>改变美颜等级</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)updateVideoBeautifyLevel:(BJLVideoBeautifyLevel)<em>videoBeautifyLevel</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>videoBeautifyLevel</code></th>
+						<td><p><a href="#//api/name/videoBeautifyLevel">videoBeautifyLevel</a></p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>BJLError:
+BJLErrorCode_invalidCalling  错误调用</p>
+			</div>
 			
 
 			
@@ -861,7 +1340,7 @@ BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限。</p>
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2018 baijiayun. All rights reserved. Updated: 2018-09-18</p>
+						<p class="copyright">Copyright &copy; 2019 baijiayun. All rights reserved. Updated: 2019-04-17</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>

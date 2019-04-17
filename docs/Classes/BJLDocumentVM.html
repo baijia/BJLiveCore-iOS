@@ -1,0 +1,2251 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>BJLDocumentVM Class Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1333)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">BJLiveCore </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">baijiayun</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+
+	
+	
+	<optgroup label="Properties">
+		
+		<option value="//api/name/allDocuments">allDocuments</option>
+		
+		<option value="//api/name/blackboardImage">blackboardImage</option>
+		
+		<option value="//api/name/currentSlidePage">currentSlidePage</option>
+		
+		<option value="//api/name/totalPageCount">totalPageCount</option>
+		
+		<option value="//api/name/writingBoardImage">writingBoardImage</option>
+		
+	</optgroup>
+	
+
+	
+
+	
+	<optgroup label="Instance Methods">
+		
+		<option value="//api/name/addDocument:">- addDocument:</option>
+		
+		<option value="//api/name/allDocumentsDidOverwrite:">- allDocumentsDidOverwrite:</option>
+		
+		<option value="//api/name/allSlidePages">- allSlidePages</option>
+		
+		<option value="//api/name/deleteDocumentWithID:">- deleteDocumentWithID:</option>
+		
+		<option value="//api/name/didAddDocument:">- didAddDocument:</option>
+		
+		<option value="//api/name/didDeleteDocument:">- didDeleteDocument:</option>
+		
+		<option value="//api/name/didParticipateWritingBoard:">- didParticipateWritingBoard:</option>
+		
+		<option value="//api/name/didPublishWritingBoard:">- didPublishWritingBoard:</option>
+		
+		<option value="//api/name/didPullWritingBoard:">- didPullWritingBoard:</option>
+		
+		<option value="//api/name/didSubmitWritingBoard:">- didSubmitWritingBoard:</option>
+		
+		<option value="//api/name/didUpdateDocument:">- didUpdateDocument:</option>
+		
+		<option value="//api/name/didUpdateDocumentWindowWithModel:shouldReset:">- didUpdateDocumentWindowWithModel:shouldReset:</option>
+		
+		<option value="//api/name/didUpdateWritingBoradWindowWithModel:shouldReset:">- didUpdateWritingBoradWindowWithModel:shouldReset:</option>
+		
+		<option value="//api/name/documentViewControllerWithID:">- documentViewControllerWithID:</option>
+		
+		<option value="//api/name/documentWithID:">- documentWithID:</option>
+		
+		<option value="//api/name/loadAllDocuments">- loadAllDocuments</option>
+		
+		<option value="//api/name/participateWritingBoard:">- participateWritingBoard:</option>
+		
+		<option value="//api/name/publishWritingBoardWithID:operate:duraton:">- publishWritingBoardWithID:operate:duraton:</option>
+		
+		<option value="//api/name/pullWritingBoard:">- pullWritingBoard:</option>
+		
+		<option value="//api/name/requestDocumentListWithFileIDList:completion:">- requestDocumentListWithFileIDList:completion:</option>
+		
+		<option value="//api/name/requestTranscodingProgressWithFileIDList:completion:">- requestTranscodingProgressWithFileIDList:completion:</option>
+		
+		<option value="//api/name/requestTurnToDocumentID:pageIndex:">- requestTurnToDocumentID:pageIndex:</option>
+		
+		<option value="//api/name/slidePageWithDocumentID:pageIndex:">- slidePageWithDocumentID:pageIndex:</option>
+		
+		<option value="//api/name/slidePagesWithDocumentID:">- slidePagesWithDocumentID:</option>
+		
+		<option value="//api/name/submitWritingBoard:">- submitWritingBoard:</option>
+		
+		<option value="//api/name/updateDocumentWindowWithID:action:displayInfos:">- updateDocumentWindowWithID:action:displayInfos:</option>
+		
+		<option value="//api/name/updateDocumentWithID:displayInfo:">- updateDocumentWithID:displayInfo:</option>
+		
+		<option value="//api/name/updateWritingBoardWindow:layerID:action:displayInfos:">- updateWritingBoardWindow:layerID:action:displayInfos:</option>
+		
+		<option value="//api/name/uploadFile:mimeType:fileName:isAnimated:progress:finish:">- uploadFile:mimeType:fileName:isAnimated:progress:finish:</option>
+		
+		<option value="//api/name/uploadImageFile:progress:finish:">- uploadImageFile:progress:finish:</option>
+		
+		<option value="//api/name/writingBoardViewControllerWithWritingBoard:">- writingBoardViewControllerWithWritingBoard:</option>
+		
+	</optgroup>
+	
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">BJLDocumentVM Class Reference</h1>
+
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<th>Inherits from</th>
+	<td>BJLBaseVM : NSObject</td>
+</tr><tr>
+	<th>Declared in</th>
+	<td>BJLDocumentVM.h</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<h3>课件管理、显示</h3><p>BJLDocument：课件，教室内默认至少有一个白板课件，老师可能会上传多个课件，每个课件有一页或多页，每个课件内的 pageIndex 单独计算、从 0 开始</p><p>BJLSlidePage：幻灯片，将所有课件拆散、组成成幻灯片序列，课件的每一页对应一个幻灯片，所有幻灯片 slidePageIndex 整体计算、从 0 开始</p><p>参考 <a href="#//api/name/loadAllDocuments"><code>loadAllDocuments</code></a></p>
+					</div>
+					
+					
+
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						
+
+						
+						
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/requestTurnToDocumentID:pageIndex:" title="requestTurnToDocumentID:pageIndex:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/requestTurnToDocumentID:pageIndex:">&ndash;&nbsp;requestTurnToDocumentID:pageIndex:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>翻页课件</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)requestTurnToDocumentID:(NSString *)<em>documentID</em> pageIndex:(NSInteger)<em>pageIndex</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>documentID</code></th>
+						<td><p>课件 ID</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>pageIndex</code></th>
+						<td><p>目标页在课件中的序号</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>BJLError:
+BJLErrorCode_invalidArguments  错误参数</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDocumentVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/addDocument:" title="addDocument:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/addDocument:">&ndash;&nbsp;addDocument:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>添加课件</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)addDocument:(BJLDocument *)<em>document</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>document</code></th>
+						<td><p>课件</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>BJLError:
+BJLErrorCode_invalidArguments  错误参数</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>添加成功将调用 <code>BJLDocumentVM</code> 的 <a href="#//api/name/didAddDocument:"><code>didAddDocument:</code></a></p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDocumentVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/deleteDocumentWithID:" title="deleteDocumentWithID:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/deleteDocumentWithID:">&ndash;&nbsp;deleteDocumentWithID:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>删除课件</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)deleteDocumentWithID:(NSString *)<em>documentID</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>documentID</code></th>
+						<td><p>课件 ID</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>BJLError:
+BJLErrorCode_invalidArguments  错误参数</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>删除成功将调用 <code>BJLDocumentVM</code> 的 <a href="#//api/name/didDeleteDocument:"><code>didDeleteDocument:</code></a></p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDocumentVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/uploadImageFile:progress:finish:" title="uploadImageFile:progress:finish:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/uploadImageFile:progress:finish:">&ndash;&nbsp;uploadImageFile:progress:finish:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>上传图片，用于添加课件</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSURLSessionUploadTask *)uploadImageFile:(NSURL *)<em>fileURL</em> progress:(nullable void ( ^ ) ( CGFloat progress ))<em>progress</em> finish:(void ( ^ ) ( BJLDocument *_Nullable document , BJLError *_Nullable error ))<em>finish</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>fileURL</code></th>
+						<td><p>图片文件路径</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>progress</code></th>
+						<td><p>上传进度，非主线程回调、可能过于频繁
+- progress         0.0 ~ 1.0</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>finish</code></th>
+						<td><p>结束回调：
+- document         非 nil 即为成功，用于 <a href="#//api/name/addDocument:"><code>addDocument:</code></a>
+- error            错误</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>upload task</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDocumentVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/uploadFile:mimeType:fileName:isAnimated:progress:finish:" title="uploadFile:mimeType:fileName:isAnimated:progress:finish:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/uploadFile:mimeType:fileName:isAnimated:progress:finish:">&ndash;&nbsp;uploadFile:mimeType:fileName:isAnimated:progress:finish:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>上传文档</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSURLSessionUploadTask *)uploadFile:(NSURL *)<em>fileURL</em> mimeType:(NSString *)<em>mimeType</em> fileName:(NSString *)<em>fileName</em> isAnimated:(BOOL)<em>isAnimated</em> progress:(nullable void ( ^ ) ( CGFloat progress ))<em>progress</em> finish:(void ( ^ ) ( BJLDocument *_Nullable document , BJLError *_Nullable error ))<em>finish</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>fileURL</code></th>
+						<td><p>文档路径</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>mimeType</code></th>
+						<td><p>文档类型</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>fileName</code></th>
+						<td><p>文件名</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>isAnimated</code></th>
+						<td><p>是否有动画</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>progress</code></th>
+						<td><p>进度 0.0 ~ 1.0</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>finish</code></th>
+						<td><p>结束回调</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>task</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>图片作为文档上传没有转码过程，其余的PPT等文档需要等待转码过程</p><p>转码服务器主动进行，不需要调用其他接口</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDocumentVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/requestTranscodingProgressWithFileIDList:completion:" title="requestTranscodingProgressWithFileIDList:completion:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/requestTranscodingProgressWithFileIDList:completion:">&ndash;&nbsp;requestTranscodingProgressWithFileIDList:completion:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>文档转码进度</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable NSURLSessionDataTask *)requestTranscodingProgressWithFileIDList:(NSArray&lt;NSString*&gt; *)<em>fileIDList</em> completion:(nullable void ( ^ ) ( NSArray&lt;BJLDocumentTranscodeModel*&gt; *_Nullable transcodeModelArray , BJLError *_Nullable error ))<em>completion</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>fileIDList</code></th>
+						<td><p>file ID 数组</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>completion</code></th>
+						<td><p>transcodeArray</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>task</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>可以通过这个接口查询文档转码进度</p><p>转码完成后，需要去获取转码后的新的文档</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDocumentVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/requestDocumentListWithFileIDList:completion:" title="requestDocumentListWithFileIDList:completion:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/requestDocumentListWithFileIDList:completion:">&ndash;&nbsp;requestDocumentListWithFileIDList:completion:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>获取文档转码后的新的文档</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable NSURLSessionDataTask *)requestDocumentListWithFileIDList:(NSArray&lt;NSString*&gt; *)<em>fileIDList</em> completion:(nullable void ( ^ ) ( NSArray&lt;BJLDocument*&gt; *_Nullable documentArray , BJLError *_Nullable error ))<em>completion</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>fileIDList</code></th>
+						<td><p>file ID 数组</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>completion</code></th>
+						<td><p><a href="../Classes/BJLDocument.html">BJLDocument</a> 数组</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>task</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>根据文档ID获取转码后的新的文档数据</p><p>需要将获取到的文档列表添加到教室</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDocumentVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/allDocuments" title="allDocuments"></a>
+	<h3 class="method-title"><code><a href="#//api/name/allDocuments">&nbsp;&nbsp;allDocuments</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>所有课件</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, copy, nullable) NSArray&lt;BJLDocument*&gt; *allDocuments</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDocumentVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/allDocumentsDidOverwrite:" title="allDocumentsDidOverwrite:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/allDocumentsDidOverwrite:">&ndash;&nbsp;allDocumentsDidOverwrite:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p><a href="#//api/name/allDocuments"><code>allDocuments</code></a> 被覆盖更新</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)allDocumentsDidOverwrite:(nullable NSArray&lt;BJLDocument*&gt; *)<em>allDocuments</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>allDocuments</code></th>
+						<td><p>所有课件</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>覆盖更新才调用，增量更新不调用</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDocumentVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/loadAllDocuments" title="loadAllDocuments"></a>
+	<h3 class="method-title"><code><a href="#//api/name/loadAllDocuments">&ndash;&nbsp;loadAllDocuments</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>加载所有课件</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)loadAllDocuments</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>连接教室后、掉线重新连接后自动调用加载</p><p>加载成功后更新 <a href="#//api/name/allDocuments"><code>allDocuments</code></a>、调用 <a href="#//api/name/allDocumentsDidOverwrite:"><code>allDocumentsDidOverwrite:</code></a></p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDocumentVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/didAddDocument:" title="didAddDocument:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/didAddDocument:">&ndash;&nbsp;didAddDocument:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>添加课件通知</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)didAddDocument:(BJLDocument *)<em>document</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>document</code></th>
+						<td><p>课件</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>同时更新 <a href="#//api/name/allDocuments"><code>allDocuments</code></a></p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDocumentVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/didDeleteDocument:" title="didDeleteDocument:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/didDeleteDocument:">&ndash;&nbsp;didDeleteDocument:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>删除课件通知</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)didDeleteDocument:(BJLDocument *)<em>document</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>document</code></th>
+						<td><p>课件</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>同时更新 <a href="#//api/name/allDocuments"><code>allDocuments</code></a></p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDocumentVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/totalPageCount" title="totalPageCount"></a>
+	<h3 class="method-title"><code><a href="#//api/name/totalPageCount">&nbsp;&nbsp;totalPageCount</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>课件总页数</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) NSInteger totalPageCount</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDocumentVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/currentSlidePage" title="currentSlidePage"></a>
+	<h3 class="method-title"><code><a href="#//api/name/currentSlidePage">&nbsp;&nbsp;currentSlidePage</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>课件当前页信息</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, nullable) BJLSlidePage *currentSlidePage</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDocumentVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/documentWithID:" title="documentWithID:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/documentWithID:">&ndash;&nbsp;documentWithID:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>通过 documentID 获取 document</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLDocument *)documentWithID:(NSString *)<em>documentID</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>documentID</code></th>
+						<td><p>课件 ID</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDocumentVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/slidePageWithDocumentID:pageIndex:" title="slidePageWithDocumentID:pageIndex:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/slidePageWithDocumentID:pageIndex:">&ndash;&nbsp;slidePageWithDocumentID:pageIndex:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>通过 documentID、pageIndex 获取 slide page</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLSlidePage *)slidePageWithDocumentID:(NSString *)<em>documentID</em> pageIndex:(NSInteger)<em>pageIndex</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>documentID</code></th>
+						<td><p>课件 ID</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>pageIndex</code></th>
+						<td><p>目标页在课件中的序号</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDocumentVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/slidePagesWithDocumentID:" title="slidePagesWithDocumentID:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/slidePagesWithDocumentID:">&ndash;&nbsp;slidePagesWithDocumentID:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>指定 documentID，获取对应课件的所有页面</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSArray&lt;BJLSlidePage*&gt; *)slidePagesWithDocumentID:(NSString *)<em>documentID</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>documentID</code></th>
+						<td><p>课件 ID</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDocumentVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/allSlidePages" title="allSlidePages"></a>
+	<h3 class="method-title"><code><a href="#//api/name/allSlidePages">&ndash;&nbsp;allSlidePages</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>获取 slide pages</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSArray&lt;BJLSlidePage*&gt; *)allSlidePages</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDocumentVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/blackboardImage" title="blackboardImage"></a>
+	<h3 class="method-title"><code><a href="#//api/name/blackboardImage">&nbsp;&nbsp;blackboardImage</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>设置黑板视图（blackboardViewController）的默认背景图</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic) UIImage *blackboardImage</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDocumentVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/documentViewControllerWithID:" title="documentViewControllerWithID:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/documentViewControllerWithID:">&ndash;&nbsp;documentViewControllerWithID:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>指定文档 ID 创建对应的视图控制器</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (UIViewController&lt;BJLSlideshowUI&gt; *)documentViewControllerWithID:(NSString *)<em>documentID</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>documentID</code></th>
+						<td><p>文档 ID，通过 <a href="../Classes/BJLDocument.html">BJLDocument</a> 的 documentID 获得</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>对应文档的视图控制器</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDocumentVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/updateDocumentWithID:displayInfo:" title="updateDocumentWithID:displayInfo:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/updateDocumentWithID:displayInfo:">&ndash;&nbsp;updateDocumentWithID:displayInfo:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>更新文档显示信息</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)updateDocumentWithID:(NSString *)<em>documentID</em> displayInfo:(BJLDocumentDisplayInfo *)<em>displayInfo</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>documentID</code></th>
+						<td><p>文档 ID</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>displayInfo</code></th>
+						<td><p>文档显示信息</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDocumentVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/didUpdateDocument:" title="didUpdateDocument:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/didUpdateDocument:">&ndash;&nbsp;didUpdateDocument:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>更新文档显示信息的通知</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)didUpdateDocument:(BJLDocument *)<em>document</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>document</code></th>
+						<td><p>更新后的文档信息</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDocumentVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/updateDocumentWindowWithID:action:displayInfos:" title="updateDocumentWindowWithID:action:displayInfos:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/updateDocumentWindowWithID:action:displayInfos:">&ndash;&nbsp;updateDocumentWindowWithID:action:displayInfos:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>更新文档窗口</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)updateDocumentWindowWithID:(NSString *)<em>documentID</em> action:(NSString *)<em>action</em> displayInfos:(NSArray&lt;BJLWindowDisplayInfo*&gt; *)<em>displayInfos</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>documentID</code></th>
+						<td><p>文档 ID</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>action</code></th>
+						<td><p>更新类型，参考 BJLWindowsUpdateModel 的 BJLWindowsUpdateAction</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>displayInfos</code></th>
+						<td><p>教室内所有文档窗口显示信息</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>调用错误, 参考 <a href="../Constants/BJLErrorCode.html">BJLErrorCode</a></p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDocumentVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/didUpdateDocumentWindowWithModel:shouldReset:" title="didUpdateDocumentWindowWithModel:shouldReset:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/didUpdateDocumentWindowWithModel:shouldReset:">&ndash;&nbsp;didUpdateDocumentWindowWithModel:shouldReset:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>文档窗口更新通知</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)didUpdateDocumentWindowWithModel:(BJLWindowUpdateModel *)<em>updateModel</em> shouldReset:(BOOL)<em>shouldReset</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>updateModel</code></th>
+						<td><p>更新信息</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>shouldReset</code></th>
+						<td><p>是否重置</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDocumentVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/writingBoardViewControllerWithWritingBoard:" title="writingBoardViewControllerWithWritingBoard:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/writingBoardViewControllerWithWritingBoard:">&ndash;&nbsp;writingBoardViewControllerWithWritingBoard:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>根据writingBoard 创建对应的小黑板控制器</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (UIViewController&lt;BJLWritingBoardUI&gt; *)writingBoardViewControllerWithWritingBoard:(BJLWritingBoard *)<em>writingBoard</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>writingBoard</code></th>
+						<td><p>小黑板信息</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>对应小黑板的视图控制器</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDocumentVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/writingBoardImage" title="writingBoardImage"></a>
+	<h3 class="method-title"><code><a href="#//api/name/writingBoardImage">&nbsp;&nbsp;writingBoardImage</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>设置小黑板视图（writingboardViewController）的默认背景图</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic) UIImage *writingBoardImage</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDocumentVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/publishWritingBoardWithID:operate:duraton:" title="publishWritingBoardWithID:operate:duraton:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/publishWritingBoardWithID:operate:duraton:">&ndash;&nbsp;publishWritingBoardWithID:operate:duraton:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>老师发布小黑板</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)publishWritingBoardWithID:(NSString *)<em>boardID</em> operate:(BJLWritingBoardPublishOperate)<em>operate</em> duraton:(NSInteger)<em>duration</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>boardID</code></th>
+						<td><p>小黑板 ID</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>operate</code></th>
+						<td><p>发布小黑板的操作: 结束, 开始, 撤销</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>duration</code></th>
+						<td><p>小黑板持续时间</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDocumentVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/didPublishWritingBoard:" title="didPublishWritingBoard:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/didPublishWritingBoard:">&ndash;&nbsp;didPublishWritingBoard:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>发布小黑板的通知</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)didPublishWritingBoard:(BJLWritingBoard *)<em>writingBoard</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>writingBoard</code></th>
+						<td><p>小黑板信息, 此时writingBoard的<code>submitedUsers</code>和<code>participatedUsers</code>为空,此处不做统计</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDocumentVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/submitWritingBoard:" title="submitWritingBoard:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/submitWritingBoard:">&ndash;&nbsp;submitWritingBoard:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>提交小黑板作答内容</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)submitWritingBoard:(NSString *)<em>boardID</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>boardID</code></th>
+						<td><p>小黑板 ID</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDocumentVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/didSubmitWritingBoard:" title="didSubmitWritingBoard:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/didSubmitWritingBoard:">&ndash;&nbsp;didSubmitWritingBoard:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>提交小黑板作答内容的通知</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)didSubmitWritingBoard:(BJLWritingBoard *)<em>writingBoard</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>writingBoard</code></th>
+						<td><p>小黑板信息, 此时writingBoard的<code>submitedUsers</code>和<code>participatedUsers</code>为空,此处不做统计</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDocumentVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/participateWritingBoard:" title="participateWritingBoard:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/participateWritingBoard:">&ndash;&nbsp;participateWritingBoard:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>参与作答小黑板</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)participateWritingBoard:(NSString *)<em>boardID</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>boardID</code></th>
+						<td><p>小黑板 ID</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDocumentVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/didParticipateWritingBoard:" title="didParticipateWritingBoard:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/didParticipateWritingBoard:">&ndash;&nbsp;didParticipateWritingBoard:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>参与作答小黑板的通知</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)didParticipateWritingBoard:(BJLWritingBoard *)<em>writingBoard</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>writingBoard</code></th>
+						<td><p>小黑板信息, 此时writingBoard的<code>submitedUsers</code>和<code>participatedUsers</code>为空,此处不做统计</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDocumentVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/pullWritingBoard:" title="pullWritingBoard:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/pullWritingBoard:">&ndash;&nbsp;pullWritingBoard:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>拉取小黑板状态</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)pullWritingBoard:(nullable NSString *)<em>boardID</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>boardID</code></th>
+						<td><p>小黑板ID, 为空则获取当前教室的小黑板信息, 否则获取指定boardID信息</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDocumentVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/didPullWritingBoard:" title="didPullWritingBoard:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/didPullWritingBoard:">&ndash;&nbsp;didPullWritingBoard:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>拉取小黑板状态的通知</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)didPullWritingBoard:(nullable BJLWritingBoard *)<em>writingBoard</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>writingBoard</code></th>
+						<td><p>小黑板信息</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDocumentVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/updateWritingBoardWindow:layerID:action:displayInfos:" title="updateWritingBoardWindow:layerID:action:displayInfos:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/updateWritingBoardWindow:layerID:action:displayInfos:">&ndash;&nbsp;updateWritingBoardWindow:layerID:action:displayInfos:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>更新小黑板窗口</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)updateWritingBoardWindow:(BJLWritingBoard *)<em>writingBoard</em> layerID:(NSString *)<em>layerID</em> action:(NSString *)<em>action</em> displayInfos:(NSArray&lt;BJLWindowDisplayInfo*&gt; *)<em>displayInfos</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>writingBoard</code></th>
+						<td><p>小黑板信息</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>layerID</code></th>
+						<td><p>确保其唯一性,使用<a href="../Classes/BJLUser.html">BJLUser</a> <code>number</code>属性</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>action</code></th>
+						<td><p>更新类型，参考 BJLWindowsUpdateModel 的 BJLWindowsUpdateAction</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>displayInfos</code></th>
+						<td><p>教室内所有文档窗口显示信息</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>调用错误, 参考 <a href="../Constants/BJLErrorCode.html">BJLErrorCode</a></p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDocumentVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/didUpdateWritingBoradWindowWithModel:shouldReset:" title="didUpdateWritingBoradWindowWithModel:shouldReset:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/didUpdateWritingBoradWindowWithModel:shouldReset:">&ndash;&nbsp;didUpdateWritingBoradWindowWithModel:shouldReset:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>小黑板窗口更新通知</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)didUpdateWritingBoradWindowWithModel:(BJLWindowUpdateModel *)<em>updateModel</em> shouldReset:(BOOL)<em>shouldReset</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>updateModel</code></th>
+						<td><p>更新信息</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>shouldReset</code></th>
+						<td><p>是否重置</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDocumentVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+					</div>
+					
+					
+
+                    
+                    
+          
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2019 baijiayun. All rights reserved. Updated: 2019-04-17</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>

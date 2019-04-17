@@ -76,11 +76,29 @@
 	
 	<optgroup label="Instance Methods">
 		
+		<option value="//api/name/blockUserWithUserID:">- blockUserWithUserID:</option>
+		
+		<option value="//api/name/didReceiveBlockedUserAllFreed">- didReceiveBlockedUserAllFreed</option>
+		
+		<option value="//api/name/didReceiveBlockedUserFreed:">- didReceiveBlockedUserFreed:</option>
+		
+		<option value="//api/name/didReceiveBlockedUserList:">- didReceiveBlockedUserList:</option>
+		
+		<option value="//api/name/didReceiveUserBlocked:">- didReceiveUserBlocked:</option>
+		
+		<option value="//api/name/freeAllBlockedUser">- freeAllBlockedUser</option>
+		
+		<option value="//api/name/freeBlockedUserWithUserNumber:">- freeBlockedUserWithUserNumber:</option>
+		
+		<option value="//api/name/loadBlockedUserList">- loadBlockedUserList</option>
+		
 		<option value="//api/name/loadMoreOnlineUsersWithCount:">- loadMoreOnlineUsersWithCount:</option>
 		
 		<option value="//api/name/onlineUserDidEnter:">- onlineUserDidEnter:</option>
 		
 		<option value="//api/name/onlineUserDidExit:">- onlineUserDidExit:</option>
+		
+		<option value="//api/name/onlineUserWillAdd:">- onlineUserWillAdd:</option>
 		
 		<option value="//api/name/requestChangePresenterWithUserID:">- requestChangePresenterWithUserID:</option>
 		
@@ -108,7 +126,7 @@
 	<td>BJLBaseVM : NSObject</td>
 </tr><tr>
 	<th>Declared in</th>
-	<td>BJLOnlineUsersVM.h<br />BJLOnlineUsersVM.m</td>
+	<td>BJLOnlineUsersVM.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -191,7 +209,7 @@
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, copy, nullable) NSArray&lt;BJLUser*&gt; *onlineUsers</code></div>
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, copy, nullable) NSArray&lt;__kindofBJLUser*&gt; *onlineUsers</code></div>
 
 		    
 			
@@ -386,8 +404,8 @@
 			<div class="method-subsection return">
 				<h4 class="method-subtitle parameter-title">Return Value</h4>
 				<p>BJLError:
-BJLErrorCode_invalidCalling    不支持切换主讲，参考 <code>room.featureConfig.canChangePresenter</code>
-BJLErrorCode_invalidArguments  错误参数
+<a href="../Constants/BJLErrorCode.html">BJLErrorCode</a><em>invalidCalling    不支持切换主讲，参考 <code>room.featureConfig.canChangePresenter</code>
+<a href="../Constants/BJLErrorCode.html">BJLErrorCode</a></em>invalidArguments  错误参数
 BJLErrorCode_invalidUserRole   错误权限，要求老师权限</p>
 			</div>
 			
@@ -523,6 +541,47 @@ BJLErrorCode_invalidCalling    错误调用，如 <a href="#//api/name/hasMoreOn
 		</div>
 	</div>
 </div><div class="section-method">
+	<a name="//api/name/onlineUserWillAdd:" title="onlineUserWillAdd:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/onlineUserWillAdd:">&ndash;&nbsp;onlineUserWillAdd:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>TODO: 内部使用</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)onlineUserWillAdd:(BJLUser *)<em>user</em></code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLOnlineUsersVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
 	<a name="//api/name/onlineUserDidEnter:" title="onlineUserDidEnter:"></a>
 	<h3 class="method-title"><code><a href="#//api/name/onlineUserDidEnter:">&ndash;&nbsp;onlineUserDidEnter:</a></code>
 </h3>
@@ -638,6 +697,423 @@ BJLErrorCode_invalidCalling    错误调用，如 <a href="#//api/name/hasMoreOn
 			
 		</div>
 	</div>
+</div><div class="section-method">
+	<a name="//api/name/blockUserWithUserID:" title="blockUserWithUserID:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/blockUserWithUserID:">&ndash;&nbsp;blockUserWithUserID:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>将学生加入黑名单列表</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)blockUserWithUserID:(NSString *)<em>userID</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>userID</code></th>
+						<td><p>学生ID</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>BJLError:
+<a href="../Constants/BJLErrorCode.html">BJLErrorCode</a><em>invalidArguments  错误参数；
+<a href="../Constants/BJLErrorCode.html">BJLErrorCode</a></em>invalidCalling    错误调用，如要踢出的用户是老师或助教；
+BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限。</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLOnlineUsersVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/didReceiveUserBlocked:" title="didReceiveUserBlocked:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/didReceiveUserBlocked:">&ndash;&nbsp;didReceiveUserBlocked:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>学生被黑名单列表</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)didReceiveUserBlocked:(BJLUser *)<em>blockedUser</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>blockedUser</code></th>
+						<td><p>被踢出的学生</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>被踢出的用户非当前用户</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLOnlineUsersVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/loadBlockedUserList" title="loadBlockedUserList"></a>
+	<h3 class="method-title"><code><a href="#//api/name/loadBlockedUserList">&ndash;&nbsp;loadBlockedUserList</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>加载黑名单列表</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)loadBlockedUserList</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLOnlineUsersVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/didReceiveBlockedUserList:" title="didReceiveBlockedUserList:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/didReceiveBlockedUserList:">&ndash;&nbsp;didReceiveBlockedUserList:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>返回黑名单列表</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)didReceiveBlockedUserList:(NSArray&lt;BJLUser*&gt; *)<em>userList</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>userList</code></th>
+						<td><p>用户列表</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLOnlineUsersVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/freeBlockedUserWithUserNumber:" title="freeBlockedUserWithUserNumber:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/freeBlockedUserWithUserNumber:">&ndash;&nbsp;freeBlockedUserWithUserNumber:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>解除用户黑名单</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)freeBlockedUserWithUserNumber:(NSString *)<em>userNumber</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>userNumber</code></th>
+						<td><p>userNumber</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>BJLError:
+<a href="../Constants/BJLErrorCode.html">BJLErrorCode</a><em>invalidArguments  错误参数；
+<a href="../Constants/BJLErrorCode.html">BJLErrorCode</a></em>invalidCalling    错误调用，如要踢出的用户是老师或助教；
+BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限。</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLOnlineUsersVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/didReceiveBlockedUserFreed:" title="didReceiveBlockedUserFreed:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/didReceiveBlockedUserFreed:">&ndash;&nbsp;didReceiveBlockedUserFreed:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>用户黑名单被解除</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)didReceiveBlockedUserFreed:(NSString *)<em>userNumber</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>userNumber</code></th>
+						<td><p>userNumber</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLOnlineUsersVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/freeAllBlockedUser" title="freeAllBlockedUser"></a>
+	<h3 class="method-title"><code><a href="#//api/name/freeAllBlockedUser">&ndash;&nbsp;freeAllBlockedUser</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>解除全部用户黑名单</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)freeAllBlockedUser</code></div>
+
+		    
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>BJLError:
+<a href="../Constants/BJLErrorCode.html">BJLErrorCode</a><em>invalidArguments  错误参数；
+<a href="../Constants/BJLErrorCode.html">BJLErrorCode</a></em>invalidCalling    错误调用，如要踢出的用户是老师或助教；
+BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限。</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLOnlineUsersVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/didReceiveBlockedUserAllFreed" title="didReceiveBlockedUserAllFreed"></a>
+	<h3 class="method-title"><code><a href="#//api/name/didReceiveBlockedUserAllFreed">&ndash;&nbsp;didReceiveBlockedUserAllFreed</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>所有黑名单被解除</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)didReceiveBlockedUserAllFreed</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLOnlineUsersVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
 </div>
 						</div>
 						
@@ -653,7 +1129,7 @@ BJLErrorCode_invalidCalling    错误调用，如 <a href="#//api/name/hasMoreOn
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2018 baijiayun. All rights reserved. Updated: 2018-09-18</p>
+						<p class="copyright">Copyright &copy; 2019 baijiayun. All rights reserved. Updated: 2019-04-17</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>

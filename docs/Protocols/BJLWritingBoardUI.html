@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>BJLLoadingVM Class Reference</title>
+	<title>BJLWritingBoardUI Protocol Reference</title>
 
 	<link rel="stylesheet" href="../css/style.css">
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
@@ -54,23 +54,17 @@
 
 	
 	
-	<optgroup label="Properties">
-		
-		<option value="//api/name/suspendBlock">suspendBlock</option>
-		
-	</optgroup>
-	
 
 	
 
 	
 	<optgroup label="Instance Methods">
 		
-		<option value="//api/name/loadingFailureWithError:">- loadingFailureWithError:</option>
+		<option value="//api/name/clearShapes">- clearShapes</option>
 		
-		<option value="//api/name/loadingSuccess">- loadingSuccess</option>
+		<option value="//api/name/updateShapesWithLayerID:">- updateShapesWithLayerID:</option>
 		
-		<option value="//api/name/loadingUpdateProgress:">- loadingUpdateProgress:</option>
+		<option value="//api/name/updateWritingBoardEnable:">- updateWritingBoardEnable:</option>
 		
 	</optgroup>
 	
@@ -87,16 +81,16 @@
 		<div id="overview_contents" class="container">
 			<div id="content">
 				<main role="main">
-					<h1 class="title">BJLLoadingVM Class Reference</h1>
+					<h1 class="title">BJLWritingBoardUI Protocol Reference</h1>
 
 					
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
-	<th>Inherits from</th>
-	<td>BJLBaseVM : NSObject</td>
+	<th>Conforms to</th>
+	<td>NSObject</td>
 </tr><tr>
 	<th>Declared in</th>
-	<td>BJLLoadingVM.h</td>
+	<td>BJLWritingBoardUI.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -106,7 +100,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<h3>进教室的加载状态</h3>
+						<h3>专业版小班课小黑板 API</h3>
 					</div>
 					
 					
@@ -122,9 +116,9 @@
 
 						<div class="task-list">
 							<div class="section-method">
-	<a name="//api/name/suspendBlock" title="suspendBlock"></a>
-	<h3 class="method-title"><code><a href="#//api/name/suspendBlock">&nbsp;&nbsp;suspendBlock</a></code>
-</h3>
+	<a name="//api/name/clearShapes" title="clearShapes"></a>
+	<h3 class="method-title"><code><a href="#//api/name/clearShapes">&ndash;&nbsp;clearShapes</a></code>
+<span class="task-item-suffix">required method</span></h3>
 
 	<div class="method-info">
 		<div class="pointy-thing"></div>
@@ -133,12 +127,53 @@
 			
 			
 			<div class="method-subsection brief-description">
-				<p>加载任务回调，在 suspendBlock 中调用 callback(BOOL isContinue) 决定是否继续</p>
+				<p>清除当前页面小黑板所有shapes</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>@property (nonatomic, copy, nullable) BJLLoadingSuspendBlock suspendBlock</code></div>
+			<div class="method-subsection method-declaration"><code>- (void)clearShapes</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLWritingBoardUI.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/updateWritingBoardEnable:" title="updateWritingBoardEnable:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/updateWritingBoardEnable:">&ndash;&nbsp;updateWritingBoardEnable:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>更新小黑板画笔权限</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)updateWritingBoardEnable:(BOOL)<em>writingBoardEnable</em></code></div>
 
 		    
 			
@@ -147,25 +182,8 @@
 				<table class="argument-def parameter-def">
 				
 					<tr>
-						<th scope="row" class="argument-name"><code>step</code></th>
-						<td><p>步骤</p></td>
-					</tr>
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>reason</code></th>
-						<td><p>暂停原因</p></td>
-					</tr>
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>error</code></th>
-						<td><p>具体错误</p></td>
-					</tr>
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>callback</code></th>
-						<td><p>callback(BOOL isContinue)回调
-isContinue: reason 为 <code>BJLLoadingSuspendReason_errorOccurred</code> 时 isContinue 表示是否重试当前步骤，否则表示是否执行下一步骤
-suspendBlock 为 nil 时使用 isContinue = (reason != BJLLoadingSuspendReason_errorOccurred)</p></td>
+						<th scope="row" class="argument-name"><code>writingBoardEnable</code></th>
+						<td><p>是否开启小黑板画笔</p></td>
 					</tr>
 				
 				</table>
@@ -185,16 +203,16 @@ suspendBlock 为 nil 时使用 isContinue = (reason != BJLLoadingSuspendReason_e
 			
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BJLLoadingVM.h</code></p>
+				<p><code class="declared-in-ref">BJLWritingBoardUI.h</code></p>
 			</div>
 			
 			
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/loadingUpdateProgress:" title="loadingUpdateProgress:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/loadingUpdateProgress:">&ndash;&nbsp;loadingUpdateProgress:</a></code>
-</h3>
+	<a name="//api/name/updateShapesWithLayerID:" title="updateShapesWithLayerID:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/updateShapesWithLayerID:">&ndash;&nbsp;updateShapesWithLayerID:</a></code>
+<span class="task-item-suffix">required method</span></h3>
 
 	<div class="method-info">
 		<div class="pointy-thing"></div>
@@ -203,12 +221,12 @@ suspendBlock 为 nil 时使用 isContinue = (reason != BJLLoadingSuspendReason_e
 			
 			
 			<div class="method-subsection brief-description">
-				<p>加载进度</p>
+				<p>更新 layerID 对应的shapes</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (BJLObservable)loadingUpdateProgress:(CGFloat)<em>progress</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (void)updateShapesWithLayerID:(NSString *)<em>layerID</em></code></div>
 
 		    
 			
@@ -217,8 +235,8 @@ suspendBlock 为 nil 时使用 isContinue = (reason != BJLLoadingSuspendReason_e
 				<table class="argument-def parameter-def">
 				
 					<tr>
-						<th scope="row" class="argument-name"><code>progress</code></th>
-						<td><p>进度</p></td>
+						<th scope="row" class="argument-name"><code>layerID</code></th>
+						<td><p>小黑板layerID</p></td>
 					</tr>
 				
 				</table>
@@ -238,102 +256,7 @@ suspendBlock 为 nil 时使用 isContinue = (reason != BJLLoadingSuspendReason_e
 			
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BJLLoadingVM.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/loadingSuccess" title="loadingSuccess"></a>
-	<h3 class="method-title"><code><a href="#//api/name/loadingSuccess">&ndash;&nbsp;loadingSuccess</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>加载成功</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>- (BJLObservable)loadingSuccess</code></div>
-
-		    
-			
-
-			
-
-			
-
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BJLLoadingVM.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/loadingFailureWithError:" title="loadingFailureWithError:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/loadingFailureWithError:">&ndash;&nbsp;loadingFailureWithError:</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>加载失败
-参考 <a href="../Constants/BJLErrorCode.html"><code>BJLErrorCode</code></a></p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>- (BJLObservable)loadingFailureWithError:(nullable BJLError *)<em>error</em></code></div>
-
-		    
-			
-			<div class="method-subsection arguments-section parameters">
-				<h4 class="method-subtitle parameter-title">Parameters</h4>
-				<table class="argument-def parameter-def">
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>error</code></th>
-						<td><p>错误信息</p></td>
-					</tr>
-				
-				</table>
-			</div>
-			
-
-			
-
-			
-
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BJLLoadingVM.h</code></p>
+				<p><code class="declared-in-ref">BJLWritingBoardUI.h</code></p>
 			</div>
 			
 			

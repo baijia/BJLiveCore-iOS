@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>BJLDrawingVM Class Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1333)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">BJLiveCore </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">baijiayun</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+
+	
+	
+	<optgroup label="Properties">
+		
+		<option value="//api/name/drawingGranted">drawingGranted</option>
+		
+	</optgroup>
+	
+
+	
+
+	
+	<optgroup label="Instance Methods">
+		
+		<option value="//api/name/addImageShapeWithURL:relativeFrame:toDocumentID:pageIndex:isWritingBoard:">- addImageShapeWithURL:relativeFrame:toDocumentID:pageIndex:isWritingBoard:</option>
+		
+		<option value="//api/name/deleteColorRecordWithUserNumber:">- deleteColorRecordWithUserNumber:</option>
+		
+		<option value="//api/name/deleteShapeWithID:documentID:pageIndex:isWritingBoard:layerID:">- deleteShapeWithID:documentID:pageIndex:isWritingBoard:layerID:</option>
+		
+		<option value="//api/name/didLaserPointMoveToLocation:documentID:pageIndex:">- didLaserPointMoveToLocation:documentID:pageIndex:</option>
+		
+		<option value="//api/name/moveLaserPointToLocation:documentID:pageIndex:">- moveLaserPointToLocation:documentID:pageIndex:</option>
+		
+		<option value="//api/name/updateBrushOperateMode:">- updateBrushOperateMode:</option>
+		
+		<option value="//api/name/updateDrawingEnabled:">- updateDrawingEnabled:</option>
+		
+		<option value="//api/name/updateDrawingGranted:userNumber:color:">- updateDrawingGranted:userNumber:color:</option>
+		
+		<option value="//api/name/updateWritingBoardEnabled:">- updateWritingBoardEnabled:</option>
+		
+	</optgroup>
+	
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">BJLDrawingVM Class Reference</h1>
+
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<th>Inherits from</th>
+	<td>BJLBaseVM : NSObject</td>
+</tr><tr>
+	<th>Declared in</th>
+	<td>BJLDrawingVM.h</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<h3>画笔管理</h3>
+					</div>
+					
+					
+
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						
+
+						
+						
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/updateDrawingEnabled:" title="updateDrawingEnabled:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/updateDrawingEnabled:">&ndash;&nbsp;updateDrawingEnabled:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>开启、关闭画笔</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)updateDrawingEnabled:(BOOL)<em>drawingEnabled</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>drawingEnabled</code></th>
+						<td><p>YES：开启，NO：关闭</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>BJLError:</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>BJLErrorCode_invalidCalling    错误调用，当前用户是学生、<a href="#//api/name/drawingGranted"><code>drawingGranted</code></a> 是 NO</p><p>开启画笔时，单文档实例情况下如果本地页数与服务端页数不同步则无法绘制</p><p><a href="#//api/name/drawingGranted"><code>drawingGranted</code></a> 是 YES 时才可以开启，<a href="#//api/name/drawingGranted"><code>drawingGranted</code></a> 是 NO 时会被自动关闭</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDrawingVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/updateBrushOperateMode:" title="updateBrushOperateMode:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/updateBrushOperateMode:">&ndash;&nbsp;updateBrushOperateMode:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>更新画笔操作模式</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)updateBrushOperateMode:(BJLBrushOperateMode)<em>operateMode</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>operateMode</code></th>
+						<td><p>操作模式</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>BJLError:</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>BJLErrorCode_invalidCalling drawingEnabled 是 NO</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDrawingVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/addImageShapeWithURL:relativeFrame:toDocumentID:pageIndex:isWritingBoard:" title="addImageShapeWithURL:relativeFrame:toDocumentID:pageIndex:isWritingBoard:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/addImageShapeWithURL:relativeFrame:toDocumentID:pageIndex:isWritingBoard:">&ndash;&nbsp;addImageShapeWithURL:relativeFrame:toDocumentID:pageIndex:isWritingBoard:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>添加图片画笔</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)addImageShapeWithURL:(NSString *)<em>imageURL</em> relativeFrame:(CGRect)<em>relativeFrame</em> toDocumentID:(NSString *)<em>documentID</em> pageIndex:(NSUInteger)<em>pageIndex</em> isWritingBoard:(BOOL)<em>isWritingBoard</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>imageURL</code></th>
+						<td><p>图片 url</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>relativeFrame</code></th>
+						<td><p>图片相对于画布的 frame</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>documentID</code></th>
+						<td><p>目标文档 ID</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>pageIndex</code></th>
+						<td><p>目标页</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>isWritingBoard</code></th>
+						<td><p>是否为小黑板</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>BJLErrorCode_invalidCalling drawingEnabled 是 NO</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDrawingVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/drawingGranted" title="drawingGranted"></a>
+	<h3 class="method-title"><code><a href="#//api/name/drawingGranted">&nbsp;&nbsp;drawingGranted</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>学生是否被授权使用画笔</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL drawingGranted</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDrawingVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/updateDrawingGranted:userNumber:color:" title="updateDrawingGranted:userNumber:color:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/updateDrawingGranted:userNumber:color:">&ndash;&nbsp;updateDrawingGranted:userNumber:color:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>老师、助教: 给学生授权/取消画笔</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)updateDrawingGranted:(BOOL)<em>granted</em> userNumber:(NSString *)<em>userNumber</em> color:(nullable NSString *)<em>color</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>granted</code></th>
+						<td><p>是否授权</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>userNumber</code></th>
+						<td><p>要操作的用户</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>color</code></th>
+						<td><p>分配的画笔颜色</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>BJLError:
+<a href="../Constants/BJLErrorCode.html">BJLErrorCode</a><em>invalidUserRole   当前用户不是老师或者助教
+<a href="../Constants/BJLErrorCode.html">BJLErrorCode</a></em>invalidArguments  参数错误</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDrawingVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/deleteColorRecordWithUserNumber:" title="deleteColorRecordWithUserNumber:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/deleteColorRecordWithUserNumber:">&ndash;&nbsp;deleteColorRecordWithUserNumber:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>删除 drawingGrantedColors 中某一位学生的画笔颜色分配记录</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)deleteColorRecordWithUserNumber:(NSString *)<em>userNumber</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>userNumber</code></th>
+						<td><p>用户 number</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>BJLError</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDrawingVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/updateWritingBoardEnabled:" title="updateWritingBoardEnabled:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/updateWritingBoardEnabled:">&ndash;&nbsp;updateWritingBoardEnabled:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>开启/关闭小黑板画笔</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)updateWritingBoardEnabled:(BOOL)<em>writingBoardEnabled</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>writingBoardEnabled</code></th>
+						<td><p>是否开启小黑板画笔</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDrawingVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/deleteShapeWithID:documentID:pageIndex:isWritingBoard:layerID:" title="deleteShapeWithID:documentID:pageIndex:isWritingBoard:layerID:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/deleteShapeWithID:documentID:pageIndex:isWritingBoard:layerID:">&ndash;&nbsp;deleteShapeWithID:documentID:pageIndex:isWritingBoard:layerID:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>删除画笔</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)deleteShapeWithID:(NSString *)<em>shapeID</em> documentID:(NSString *)<em>documentID</em> pageIndex:(NSUInteger)<em>pageIndex</em> isWritingBoard:(BOOL)<em>isWritingBoard</em> layerID:(nullable NSString *)<em>layerID</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>shapeID</code></th>
+						<td><p>画笔 ID，批量删除时可将多个 shapeID 拼接在一起，用 &ldquo;,&rdquo; 隔开</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>documentID</code></th>
+						<td><p>画笔所在文档的 ID</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>pageIndex</code></th>
+						<td><p>画笔所在页码</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>isWritingBoard</code></th>
+						<td><p>小黑板</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>layerID</code></th>
+						<td><p>小黑板layerID, layerID 为all时, 表示清除次页面上所有学生画笔</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>BJLError:
+BJLErrorCode_invalidArguments  参数错误</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDrawingVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/moveLaserPointToLocation:documentID:pageIndex:" title="moveLaserPointToLocation:documentID:pageIndex:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/moveLaserPointToLocation:documentID:pageIndex:">&ndash;&nbsp;moveLaserPointToLocation:documentID:pageIndex:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>专业版小班课 - 激光笔位置移动请求</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)moveLaserPointToLocation:(CGPoint)<em>location</em> documentID:(nonnull NSString *)<em>documentID</em> pageIndex:(NSUInteger)<em>pageIndex</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>location</code></th>
+						<td><p>激光笔目标位置</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>documentID</code></th>
+						<td><p>激光笔所在文档的 ID</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>pageIndex</code></th>
+						<td><p>激光笔所在文档页码</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDrawingVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/didLaserPointMoveToLocation:documentID:pageIndex:" title="didLaserPointMoveToLocation:documentID:pageIndex:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/didLaserPointMoveToLocation:documentID:pageIndex:">&ndash;&nbsp;didLaserPointMoveToLocation:documentID:pageIndex:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>专业版小班课 - 激光笔位置移动监听</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)didLaserPointMoveToLocation:(CGPoint)<em>location</em> documentID:(NSString *)<em>documentID</em> pageIndex:(NSUInteger)<em>pageIndex</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>location</code></th>
+						<td><p>激光笔位置</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>documentID</code></th>
+						<td><p>激光笔所在文档的 ID</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>pageIndex</code></th>
+						<td><p>激光笔所在文档页码</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDrawingVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+					</div>
+					
+					
+
+                    
+                    
+          
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2019 baijiayun. All rights reserved. Updated: 2019-04-17</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>BJLLoadingStep Constants Reference</title>
+	<title>BJLBrushOperateMode Constants Reference</title>
 
 	<link rel="stylesheet" href="../css/style.css">
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
@@ -59,13 +59,13 @@
 		<div id="overview_contents" class="container">
 			<div id="content">
 				<main role="main">
-					<h1 class="title">BJLLoadingStep Constants Reference</h1>
+					<h1 class="title">BJLBrushOperateMode Constants Reference</h1>
 
 					
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
 	<th>Declared in</th>
-	<td>BJLLoadingVM.h</td>
+	<td>BJLDrawingVM.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -75,11 +75,11 @@
 					
 
                     
-                    <h3 class="subsubtitle method-title">BJLLoadingStep</h3>
+                    <h3 class="subsubtitle method-title">BJLBrushOperateMode</h3>
                     
 					
 					<div class="section section-overview">
-                        <p>加载步骤</p>
+                        <p>画笔操作模式</p>
 					</div>
 					
 					
@@ -87,21 +87,15 @@
                         <!-- display enum values -->
                         
                         <h4 class="method-subtitle">Definition</h4>
-                        <code>typedef NS_OPTIONS(NSInteger, BJLLoadingStep ) {<br>
+                        <code>typedef NS_ENUM(NSInteger, BJLBrushOperateMode ) {<br>
                             
-                            &nbsp;&nbsp; <a href="">BJLLoadingStep_checkNetwork</a> = 1 &lt; &lt; 0,<br>
+                            &nbsp;&nbsp; <a href="">BJLBrushOperateMode_defaut</a>,<br>
                             
-                            &nbsp;&nbsp; <a href="">BJLLoadingStep_loadRoomInfo</a> = 1 &lt; &lt; 1,<br>
+                            &nbsp;&nbsp; <a href="">BJLBrushOperateMode_select</a>,<br>
                             
-                            &nbsp;&nbsp; <a href="">BJLLoadingStep_connectMasterServer</a> = 1 &lt; &lt; 2,<br>
+                            &nbsp;&nbsp; <a href="">BJLBrushOperateMode_draw</a>,<br>
                             
-                            &nbsp;&nbsp; <a href="">BJLLoadingStep_connectRoomServer</a> = 1 &lt; &lt; 3,<br>
-                            
-                            &nbsp;&nbsp; <a href="">BJLLoadingStep_last</a> = BJLLoadingStep_connectRoomServer,<br>
-                            
-                            &nbsp;&nbsp; <a href="">BJLLoadingStep_all</a> = NSIntegerMax,<br>
-                            
-                            &nbsp;&nbsp; <a href="">BJLLoadingStep_reconnect</a> = ( BJLLoadingStep_all ^ ( BJLLoadingStep_loadRoomInfo ) ),<br>
+                            &nbsp;&nbsp; <a href="">BJLBrushOperateMode_erase</a>,<br>
                             
                             };</code>
                     
@@ -111,11 +105,11 @@
                         <h4 class="method-subtitle">Constants</h4>
                         <dl class="termdef">
                             
-                            <dt><a name="" title="BJLLoadingStep_checkNetwork"></a><code>BJLLoadingStep_checkNetwork</code></dt>
+                            <dt><a name="" title="BJLBrushOperateMode_defaut"></a><code>BJLBrushOperateMode_defaut</code></dt>
 <dd>
 
 
-<p>检查网络连接</p>
+<p>默认状态，无操作</p>
 
 
 
@@ -123,16 +117,16 @@
 
     
 	<p>
-		Declared In <code class="declared-in-ref">BJLLoadingVM.h</code>.
+		Declared In <code class="declared-in-ref">BJLDrawingVM.h</code>.
 	</p>
 	
 </dd>
                             
-                            <dt><a name="" title="BJLLoadingStep_loadRoomInfo"></a><code>BJLLoadingStep_loadRoomInfo</code></dt>
+                            <dt><a name="" title="BJLBrushOperateMode_select"></a><code>BJLBrushOperateMode_select</code></dt>
 <dd>
 
 
-<p>加载房间信息</p>
+<p>选中，选中后可进行拖动、缩放</p>
 
 
 
@@ -140,16 +134,16 @@
 
     
 	<p>
-		Declared In <code class="declared-in-ref">BJLLoadingVM.h</code>.
+		Declared In <code class="declared-in-ref">BJLDrawingVM.h</code>.
 	</p>
 	
 </dd>
                             
-                            <dt><a name="" title="BJLLoadingStep_connectMasterServer"></a><code>BJLLoadingStep_connectMasterServer</code></dt>
+                            <dt><a name="" title="BJLBrushOperateMode_draw"></a><code>BJLBrushOperateMode_draw</code></dt>
 <dd>
 
 
-<p>连接 MasterServer</p>
+<p>画</p>
 
 
 
@@ -157,16 +151,16 @@
 
     
 	<p>
-		Declared In <code class="declared-in-ref">BJLLoadingVM.h</code>.
+		Declared In <code class="declared-in-ref">BJLDrawingVM.h</code>.
 	</p>
 	
 </dd>
                             
-                            <dt><a name="" title="BJLLoadingStep_connectRoomServer"></a><code>BJLLoadingStep_connectRoomServer</code></dt>
+                            <dt><a name="" title="BJLBrushOperateMode_erase"></a><code>BJLBrushOperateMode_erase</code></dt>
 <dd>
 
 
-<p>连接 RoomServer</p>
+<p>擦除</p>
 
 
 
@@ -174,58 +168,7 @@
 
     
 	<p>
-		Declared In <code class="declared-in-ref">BJLLoadingVM.h</code>.
-	</p>
-	
-</dd>
-                            
-                            <dt><a name="" title="BJLLoadingStep_last"></a><code>BJLLoadingStep_last</code></dt>
-<dd>
-
-
-<p>最后一步：连接 RoomServer</p>
-
-
-
-
-
-    
-	<p>
-		Declared In <code class="declared-in-ref">BJLLoadingVM.h</code>.
-	</p>
-	
-</dd>
-                            
-                            <dt><a name="" title="BJLLoadingStep_all"></a><code>BJLLoadingStep_all</code></dt>
-<dd>
-
-
-<p>所有步骤</p>
-
-
-
-
-
-    
-	<p>
-		Declared In <code class="declared-in-ref">BJLLoadingVM.h</code>.
-	</p>
-	
-</dd>
-                            
-                            <dt><a name="" title="BJLLoadingStep_reconnect"></a><code>BJLLoadingStep_reconnect</code></dt>
-<dd>
-
-
-<p>重连</p>
-
-
-
-
-
-    
-	<p>
-		Declared In <code class="declared-in-ref">BJLLoadingVM.h</code>.
+		Declared In <code class="declared-in-ref">BJLDrawingVM.h</code>.
 	</p>
 	
 </dd>
@@ -242,7 +185,7 @@
                     
                     <div class="method-subsection declared-in-section">
                         <h4 class="method-subtitle">Declared In</h4>
-                        <p><code class="declared-in-ref">BJLLoadingVM.h</code></p>
+                        <p><code class="declared-in-ref">BJLDrawingVM.h</code></p>
                     </div>
                     
                     

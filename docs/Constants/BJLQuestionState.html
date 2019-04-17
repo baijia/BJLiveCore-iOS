@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>BJLLoadingStep Constants Reference</title>
+	<title>BJLQuestionState Constants Reference</title>
 
 	<link rel="stylesheet" href="../css/style.css">
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
@@ -59,13 +59,13 @@
 		<div id="overview_contents" class="container">
 			<div id="content">
 				<main role="main">
-					<h1 class="title">BJLLoadingStep Constants Reference</h1>
+					<h1 class="title">BJLQuestionState Constants Reference</h1>
 
 					
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
 	<th>Declared in</th>
-	<td>BJLLoadingVM.h</td>
+	<td>BJLQuestion.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -75,11 +75,11 @@
 					
 
                     
-                    <h3 class="subsubtitle method-title">BJLLoadingStep</h3>
+                    <h3 class="subsubtitle method-title">BJLQuestionState</h3>
                     
 					
 					<div class="section section-overview">
-                        <p>加载步骤</p>
+                        <p>问答状态</p>
 					</div>
 					
 					
@@ -87,21 +87,17 @@
                         <!-- display enum values -->
                         
                         <h4 class="method-subtitle">Definition</h4>
-                        <code>typedef NS_OPTIONS(NSInteger, BJLLoadingStep ) {<br>
+                        <code>typedef NS_ENUM(NSInteger, BJLQuestionState ) {<br>
                             
-                            &nbsp;&nbsp; <a href="">BJLLoadingStep_checkNetwork</a> = 1 &lt; &lt; 0,<br>
+                            &nbsp;&nbsp; <a href="">BJLQuestionPublished</a> = 1 &lt; &lt; 0,<br>
                             
-                            &nbsp;&nbsp; <a href="">BJLLoadingStep_loadRoomInfo</a> = 1 &lt; &lt; 1,<br>
+                            &nbsp;&nbsp; <a href="">BJLQuestionUnpublished</a> = 1 &lt; &lt; 1,<br>
                             
-                            &nbsp;&nbsp; <a href="">BJLLoadingStep_connectMasterServer</a> = 1 &lt; &lt; 2,<br>
+                            &nbsp;&nbsp; <a href="">BJLQuestionReplied</a> = 1 &lt; &lt; 2,<br>
                             
-                            &nbsp;&nbsp; <a href="">BJLLoadingStep_connectRoomServer</a> = 1 &lt; &lt; 3,<br>
+                            &nbsp;&nbsp; <a href="">BJLQuestionUnreplied</a> = 1 &lt; &lt; 3,<br>
                             
-                            &nbsp;&nbsp; <a href="">BJLLoadingStep_last</a> = BJLLoadingStep_connectRoomServer,<br>
-                            
-                            &nbsp;&nbsp; <a href="">BJLLoadingStep_all</a> = NSIntegerMax,<br>
-                            
-                            &nbsp;&nbsp; <a href="">BJLLoadingStep_reconnect</a> = ( BJLLoadingStep_all ^ ( BJLLoadingStep_loadRoomInfo ) ),<br>
+                            &nbsp;&nbsp; <a href="">BJLQuestionAllState</a> = ( 1 &lt; &lt; 4 ) - 1,<br>
                             
                             };</code>
                     
@@ -111,11 +107,11 @@
                         <h4 class="method-subtitle">Constants</h4>
                         <dl class="termdef">
                             
-                            <dt><a name="" title="BJLLoadingStep_checkNetwork"></a><code>BJLLoadingStep_checkNetwork</code></dt>
+                            <dt><a name="" title="BJLQuestionPublished"></a><code>BJLQuestionPublished</code></dt>
 <dd>
 
 
-<p>检查网络连接</p>
+<p>已发布</p>
 
 
 
@@ -123,16 +119,16 @@
 
     
 	<p>
-		Declared In <code class="declared-in-ref">BJLLoadingVM.h</code>.
+		Declared In <code class="declared-in-ref">BJLQuestion.h</code>.
 	</p>
 	
 </dd>
                             
-                            <dt><a name="" title="BJLLoadingStep_loadRoomInfo"></a><code>BJLLoadingStep_loadRoomInfo</code></dt>
+                            <dt><a name="" title="BJLQuestionUnpublished"></a><code>BJLQuestionUnpublished</code></dt>
 <dd>
 
 
-<p>加载房间信息</p>
+<p>未发布</p>
 
 
 
@@ -140,16 +136,16 @@
 
     
 	<p>
-		Declared In <code class="declared-in-ref">BJLLoadingVM.h</code>.
+		Declared In <code class="declared-in-ref">BJLQuestion.h</code>.
 	</p>
 	
 </dd>
                             
-                            <dt><a name="" title="BJLLoadingStep_connectMasterServer"></a><code>BJLLoadingStep_connectMasterServer</code></dt>
+                            <dt><a name="" title="BJLQuestionReplied"></a><code>BJLQuestionReplied</code></dt>
 <dd>
 
 
-<p>连接 MasterServer</p>
+<p>已回复</p>
 
 
 
@@ -157,16 +153,16 @@
 
     
 	<p>
-		Declared In <code class="declared-in-ref">BJLLoadingVM.h</code>.
+		Declared In <code class="declared-in-ref">BJLQuestion.h</code>.
 	</p>
 	
 </dd>
                             
-                            <dt><a name="" title="BJLLoadingStep_connectRoomServer"></a><code>BJLLoadingStep_connectRoomServer</code></dt>
+                            <dt><a name="" title="BJLQuestionUnreplied"></a><code>BJLQuestionUnreplied</code></dt>
 <dd>
 
 
-<p>连接 RoomServer</p>
+<p>未回复</p>
 
 
 
@@ -174,16 +170,16 @@
 
     
 	<p>
-		Declared In <code class="declared-in-ref">BJLLoadingVM.h</code>.
+		Declared In <code class="declared-in-ref">BJLQuestion.h</code>.
 	</p>
 	
 </dd>
                             
-                            <dt><a name="" title="BJLLoadingStep_last"></a><code>BJLLoadingStep_last</code></dt>
+                            <dt><a name="" title="BJLQuestionAllState"></a><code>BJLQuestionAllState</code></dt>
 <dd>
 
 
-<p>最后一步：连接 RoomServer</p>
+<p>所有状态</p>
 
 
 
@@ -191,41 +187,7 @@
 
     
 	<p>
-		Declared In <code class="declared-in-ref">BJLLoadingVM.h</code>.
-	</p>
-	
-</dd>
-                            
-                            <dt><a name="" title="BJLLoadingStep_all"></a><code>BJLLoadingStep_all</code></dt>
-<dd>
-
-
-<p>所有步骤</p>
-
-
-
-
-
-    
-	<p>
-		Declared In <code class="declared-in-ref">BJLLoadingVM.h</code>.
-	</p>
-	
-</dd>
-                            
-                            <dt><a name="" title="BJLLoadingStep_reconnect"></a><code>BJLLoadingStep_reconnect</code></dt>
-<dd>
-
-
-<p>重连</p>
-
-
-
-
-
-    
-	<p>
-		Declared In <code class="declared-in-ref">BJLLoadingVM.h</code>.
+		Declared In <code class="declared-in-ref">BJLQuestion.h</code>.
 	</p>
 	
 </dd>
@@ -242,7 +204,7 @@
                     
                     <div class="method-subsection declared-in-section">
                         <h4 class="method-subtitle">Declared In</h4>
-                        <p><code class="declared-in-ref">BJLLoadingVM.h</code></p>
+                        <p><code class="declared-in-ref">BJLQuestion.h</code></p>
                     </div>
                     
                     

@@ -86,9 +86,9 @@
 		
 		<option value="//api/name/speakingDidRemoteControl:">- speakingDidRemoteControl:</option>
 		
-		<option value="//api/name/speakingRequestDidDeny">- speakingRequestDidDeny</option>
-		
 		<option value="//api/name/speakingRequestDidReplyEnabled:isUserCancelled:user:">- speakingRequestDidReplyEnabled:isUserCancelled:user:</option>
+		
+		<option value="//api/name/speakingRequestDidReplyToUserID:allowed:success:">- speakingRequestDidReplyToUserID:allowed:success:</option>
 		
 		<option value="//api/name/stopSpeakingRequest">- stopSpeakingRequest</option>
 		
@@ -116,7 +116,7 @@
 	<td>BJLBaseVM : NSObject</td>
 </tr><tr>
 	<th>Declared in</th>
-	<td>BJLSpeakingRequestVM.h<br />BJLSpeakingRequestVM.m</td>
+	<td>BJLSpeakingRequestVM.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -138,10 +138,51 @@
 						
 
 						
-						<h2 class="task-title">Other Methods</h2>
+						
 
 						<div class="task-list">
 							<div class="section-method">
+	<a name="//api/name/forbidSpeakingRequest" title="forbidSpeakingRequest"></a>
+	<h3 class="method-title"><code><a href="#//api/name/forbidSpeakingRequest">&nbsp;&nbsp;forbidSpeakingRequest</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>老师禁止学生举手状态</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL forbidSpeakingRequest</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLSpeakingRequestVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
 	<a name="//api/name/requestForbidSpeakingRequest:" title="requestForbidSpeakingRequest:"></a>
 	<h3 class="method-title"><code><a href="#//api/name/requestForbidSpeakingRequest:">&ndash;&nbsp;requestForbidSpeakingRequest:</a></code>
 </h3>
@@ -201,6 +242,98 @@ BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限</p>
 		</div>
 	</div>
 </div><div class="section-method">
+	<a name="//api/name/speakingEnabled" title="speakingEnabled"></a>
+	<h3 class="method-title"><code><a href="#//api/name/speakingEnabled">&nbsp;&nbsp;speakingEnabled</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>学生: 发言状态</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL speakingEnabled</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>举手、邀请发言、远程开关音视频等事件会改变此状态</p><p>上层需要根据这个状态开启/关闭音视频，上层开关音视频前需要判断当前音视频状态</p><p>因为 <a href="#//api/name/speakingDidRemoteControl:"><code>speakingDidRemoteControl:</code></a> 会直接开关音视频、然后再更新学生的 <code>speakingEnabled</code></p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLSpeakingRequestVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/speakingRequestTimeRemaining" title="speakingRequestTimeRemaining"></a>
+	<h3 class="method-title"><code><a href="#//api/name/speakingRequestTimeRemaining">&nbsp;&nbsp;speakingRequestTimeRemaining</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>举手自动取消倒计时总时长、更新间隔、剩余时间</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) NSTimeInterval speakingRequestTimeoutInterval , speakingRequestCountdownStep , speakingRequestTimeRemaining</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>调用 <a href="#//api/name/sendSpeakingRequest"><code>sendSpeakingRequest</code></a> 举手时设置为 <code>speakingRequestTimeoutInterval</code> 秒</p><p>每 <code>speakingRequestCountdownStep</code> 秒更新，变为 0.0 表示举手超时，变为 - 1.0 表示计时被取消</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLSpeakingRequestVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
 	<a name="//api/name/sendSpeakingRequest" title="sendSpeakingRequest"></a>
 	<h3 class="method-title"><code><a href="#//api/name/sendSpeakingRequest">&ndash;&nbsp;sendSpeakingRequest</a></code>
 </h3>
@@ -226,8 +359,8 @@ BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限</p>
 			<div class="method-subsection return">
 				<h4 class="method-subtitle parameter-title">Return Value</h4>
 				<p>BJLError:
-BJLErrorCode_invalidCalling    错误调用，如在非上课状态、或者禁止举手等情况下调用此方法；
-BJLErrorCode_invalidUserRole   错误权限，要求学生权限。</p>
+<a href="../Constants/BJLErrorCode.html">BJLErrorCode</a><em>invalidCalling    错误调用，如在非上课状态、或者禁止举手等情况下调用此方法；
+<a href="../Constants/BJLErrorCode.html">BJLErrorCode</a></em>invalidUserRole   错误权限，要求学生权限。</p>
 			</div>
 			
 
@@ -284,6 +417,47 @@ BJLErrorCode_invalidUserRole   错误权限，要求学生权限。</p>
 				<h4 class="method-subtitle">Discussion</h4>
 				<p><a href="#//api/name/speakingEnabled"><code>speakingEnabled</code></a> = NO<code>时调用，取消发言申请，不更新</code><a href="#//api/name/speakingEnabled"><code>speakingEnabled</code></a></p><p><a href="#//api/name/speakingEnabled"><code>speakingEnabled</code></a> = YES<code>时调用，结束发言，更新</code><a href="#//api/name/speakingEnabled"><code>speakingEnabled</code></a></p>
 			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLSpeakingRequestVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/speakingRequestUsers" title="speakingRequestUsers"></a>
+	<h3 class="method-title"><code><a href="#//api/name/speakingRequestUsers">&nbsp;&nbsp;speakingRequestUsers</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>老师: 正在申请发言的学生</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, copy, nullable) NSArray&lt;BJLUser*&gt; *speakingRequestUsers</code></div>
+
+		    
+			
+
+			
+
+			
+
 			
 
 			
@@ -404,7 +578,75 @@ BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限</p>
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>允许发言后，关闭发言需要调用 <a href="../Classes/BJLPlayingVM.html"><code>BJLPlayingVM</code></a> 的 <code>remoteUpdatePlayingUserWithID:audioOn:videoOn:</code> 方法</p>
+				<p>允许发言后，关闭发言需要调用 <a href="../Classes/BJLRecordingVM.html"><code>BJLRecordingVM</code></a> 的 <code>remoteChangeRecordingWithUser:audioOn:videoOn:</code> 方法</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLSpeakingRequestVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/speakingRequestDidReplyToUserID:allowed:success:" title="speakingRequestDidReplyToUserID:allowed:success:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/speakingRequestDidReplyToUserID:allowed:success:">&ndash;&nbsp;speakingRequestDidReplyToUserID:allowed:success:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>老师: 收到允许/拒绝发言申请的结果</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)speakingRequestDidReplyToUserID:(NSString *)<em>userID</em> allowed:(BOOL)<em>allowed</em> success:(BOOL)<em>success</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>userID</code></th>
+						<td><p>申请用户 ID</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>allowed</code></th>
+						<td><p>YES：允许，NO：拒绝 - 目前拒绝结果不会回调，只要 <a href="#//api/name/replySpeakingRequestToUserID:allowed:">replySpeakingRequestToUserID:allowed:</a> 方法没返回 error 就一定会成功</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>success</code></th>
+						<td><p>YES：成功，NO：失败 - 因为上麦路数达到上限，需要先将某些学生下麦、然后重新同意</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>允许发言的结果</p>
 			</div>
 			
 
@@ -474,47 +716,6 @@ BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限</p>
 				<h4 class="method-subtitle">Discussion</h4>
 				<p>更新学生的 <a href="#//api/name/speakingEnabled"><code>speakingEnabled</code></a></p><p>老师可以收到所有人发言状态的变更，比如学生自己取消、助教协助允许/拒绝</p>
 			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BJLSpeakingRequestVM.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/speakingRequestDidDeny" title="speakingRequestDidDeny"></a>
-	<h3 class="method-title"><code><a href="#//api/name/speakingRequestDidDeny">&ndash;&nbsp;speakingRequestDidDeny</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>学生: 举手发言申请被自动拒绝，因为上麦路数达到上限</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>- (BJLObservable)speakingRequestDidDeny</code></div>
-
-		    
-			
-
-			
-
-			
-
 			
 
 			
@@ -708,188 +909,6 @@ BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限</p>
 </div>
 						</div>
 						
-
-						
-						<h2 class="task-title">Other Methods</h2>
-
-						<div class="task-list">
-							<div class="section-method">
-	<a name="//api/name/forbidSpeakingRequest" title="forbidSpeakingRequest"></a>
-	<h3 class="method-title"><code><a href="#//api/name/forbidSpeakingRequest">&nbsp;&nbsp;forbidSpeakingRequest</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>老师禁止学生举手状态</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL forbidSpeakingRequest</code></div>
-
-		    
-			
-
-			
-
-			
-
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BJLSpeakingRequestVM.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/speakingEnabled" title="speakingEnabled"></a>
-	<h3 class="method-title"><code><a href="#//api/name/speakingEnabled">&nbsp;&nbsp;speakingEnabled</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>学生: 发言状态</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL speakingEnabled</code></div>
-
-		    
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>举手、邀请发言、远程开关音视频等事件会改变此状态</p><p>上层需要根据这个状态开启/关闭音视频，上层开关音视频前需要判断当前音视频状态</p><p>因为 <a href="#//api/name/speakingDidRemoteControl:"><code>speakingDidRemoteControl:</code></a> 会直接开关音视频、然后再更新学生的 <code>speakingEnabled</code></p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BJLSpeakingRequestVM.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/speakingRequestTimeRemaining" title="speakingRequestTimeRemaining"></a>
-	<h3 class="method-title"><code><a href="#//api/name/speakingRequestTimeRemaining">&nbsp;&nbsp;speakingRequestTimeRemaining</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>举手自动取消倒计时总时长、更新间隔、剩余时间</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) NSTimeInterval speakingRequestTimeoutInterval , speakingRequestCountdownStep , speakingRequestTimeRemaining</code></div>
-
-		    
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>调用 <a href="#//api/name/sendSpeakingRequest"><code>sendSpeakingRequest</code></a> 举手时设置为 <code>speakingRequestTimeoutInterval</code> 秒</p><p>每 <code>speakingRequestCountdownStep</code> 秒更新，变为 0.0 表示举手超时，变为 - 1.0 表示计时被取消</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BJLSpeakingRequestVM.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/speakingRequestUsers" title="speakingRequestUsers"></a>
-	<h3 class="method-title"><code><a href="#//api/name/speakingRequestUsers">&nbsp;&nbsp;speakingRequestUsers</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>老师: 正在申请发言的学生</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, copy, nullable) NSArray&lt;BJLUser*&gt; *speakingRequestUsers</code></div>
-
-		    
-			
-
-			
-
-			
-
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BJLSpeakingRequestVM.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div>
-						</div>
-						
 					</div>
 					
 					
@@ -902,7 +921,7 @@ BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限</p>
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2018 baijiayun. All rights reserved. Updated: 2018-09-18</p>
+						<p class="copyright">Copyright &copy; 2019 baijiayun. All rights reserved. Updated: 2019-04-17</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>

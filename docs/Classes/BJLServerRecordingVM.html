@@ -58,6 +58,8 @@
 		
 		<option value="//api/name/serverRecording">serverRecording</option>
 		
+		<option value="//api/name/state">state</option>
+		
 	</optgroup>
 	
 
@@ -68,7 +70,17 @@
 		
 		<option value="//api/name/requestServerRecording:">- requestServerRecording:</option>
 		
+		<option value="//api/name/requestServerRecordingChangeResolution:">- requestServerRecordingChangeResolution:</option>
+		
+		<option value="//api/name/requestServerRecordingChangeResolutionAccept">- requestServerRecordingChangeResolutionAccept</option>
+		
 		<option value="//api/name/requestServerRecordingDidFailed:">- requestServerRecordingDidFailed:</option>
+		
+		<option value="//api/name/requestServerRecordingState:">- requestServerRecordingState:</option>
+		
+		<option value="//api/name/requestServerRecordingTranscode">- requestServerRecordingTranscode</option>
+		
+		<option value="//api/name/requestServerRecordingTranscodeAccept">- requestServerRecordingTranscodeAccept</option>
 		
 	</optgroup>
 	
@@ -94,7 +106,7 @@
 	<td>BJLBaseVM : NSObject</td>
 </tr><tr>
 	<th>Declared in</th>
-	<td>BJLServerRecordingVM.h<br />BJLServerRecordingVM.m</td>
+	<td>BJLServerRecordingVM.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -131,12 +143,53 @@
 			
 			
 			<div class="method-subsection brief-description">
-				<p>云端录课状态</p>
+				<p>云端录课状态，只当前云端录课是否开启以这个属性为准</p>
 			</div>
 			
 		    
 
 			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL serverRecording</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLServerRecordingVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/state" title="state"></a>
+	<h3 class="method-title"><code><a href="#//api/name/state">&nbsp;&nbsp;state</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>云端录制详细状态，具体的云端录课状态</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BJLServerRecordingState state</code></div>
 
 		    
 			
@@ -198,8 +251,8 @@
 			<div class="method-subsection return">
 				<h4 class="method-subtitle parameter-title">Return Value</h4>
 				<p>BJLError:
-BJLErrorCode_invalidCalling    错误调用，如在非上课状态下调用此方法；
-BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限。</p>
+<a href="../Constants/BJLErrorCode.html">BJLErrorCode</a><em>invalidCalling    错误调用，如在非上课状态下调用此方法；
+<a href="../Constants/BJLErrorCode.html">BJLErrorCode</a></em>invalidUserRole   错误权限，要求老师或助教权限。</p>
 			</div>
 			
 
@@ -216,6 +269,248 @@ BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限。</p>
 </ul>
 
 			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLServerRecordingVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/requestServerRecordingState:" title="requestServerRecordingState:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/requestServerRecordingState:">&ndash;&nbsp;requestServerRecordingState:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>请求当前云端录制转码状态</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)requestServerRecordingState:(void ( ^ __nullable ) ( void ))<em>completion</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>completion</code></th>
+						<td><p>状态更新完成，可以根据状态来进行云端录制</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLServerRecordingVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/requestServerRecordingTranscode" title="requestServerRecordingTranscode"></a>
+	<h3 class="method-title"><code><a href="#//api/name/requestServerRecordingTranscode">&ndash;&nbsp;requestServerRecordingTranscode</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>请求立刻转码回放</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)requestServerRecordingTranscode</code></div>
+
+		    
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>BJLError:
+BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限。</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLServerRecordingVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/requestServerRecordingTranscodeAccept" title="requestServerRecordingTranscodeAccept"></a>
+	<h3 class="method-title"><code><a href="#//api/name/requestServerRecordingTranscodeAccept">&ndash;&nbsp;requestServerRecordingTranscodeAccept</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>转码回放请求被接受</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)requestServerRecordingTranscodeAccept</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLServerRecordingVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/requestServerRecordingChangeResolution:" title="requestServerRecordingChangeResolution:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/requestServerRecordingChangeResolution:">&ndash;&nbsp;requestServerRecordingChangeResolution:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>通知清晰度改变</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)requestServerRecordingChangeResolution:(CGSize)<em>size</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>size</code></th>
+						<td><p>分辨率</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>BJLError:
+<a href="../Constants/BJLErrorCode.html">BJLErrorCode</a><em>invalidCalling    错误调用，如在非上课状态下调用此方法；
+<a href="../Constants/BJLErrorCode.html">BJLErrorCode</a></em>invalidUserRole   错误权限，要求老师或助教权限。</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLServerRecordingVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/requestServerRecordingChangeResolutionAccept" title="requestServerRecordingChangeResolutionAccept"></a>
+	<h3 class="method-title"><code><a href="#//api/name/requestServerRecordingChangeResolutionAccept">&ndash;&nbsp;requestServerRecordingChangeResolutionAccept</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>通知清晰度改变被接收</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)requestServerRecordingChangeResolutionAccept</code></div>
+
+		    
+			
+
+			
+
+			
+
 			
 
 			
@@ -304,7 +599,7 @@ BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限。</p>
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2018 baijiayun. All rights reserved. Updated: 2018-09-18</p>
+						<p class="copyright">Copyright &copy; 2019 baijiayun. All rights reserved. Updated: 2019-04-17</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>

@@ -60,8 +60,6 @@
 		
 		<option value="//api/name/forbidMe">forbidMe</option>
 		
-		<option value="//api/name/receivedMessages">receivedMessages</option>
-		
 	</optgroup>
 	
 
@@ -72,7 +70,9 @@
 		
 		<option value="//api/name/didReceiveForbidUser:fromUser:duration:">- didReceiveForbidUser:fromUser:duration:</option>
 		
-		<option value="//api/name/didReceiveMessage:">- didReceiveMessage:</option>
+		<option value="//api/name/didReceiveMessageTranslation:messageUUID:">- didReceiveMessageTranslation:messageUUID:</option>
+		
+		<option value="//api/name/didReceiveMessages:">- didReceiveMessages:</option>
 		
 		<option value="//api/name/receivedMessagesDidOverwrite:">- receivedMessagesDidOverwrite:</option>
 		
@@ -91,6 +91,8 @@
 		<option value="//api/name/sendMessageData:channel:">- sendMessageData:channel:</option>
 		
 		<option value="//api/name/sendMessageData:toUser:">- sendMessageData:toUser:</option>
+		
+		<option value="//api/name/translateMessage:messageUUID:translateType:">- translateMessage:messageUUID:translateType:</option>
 		
 		<option value="//api/name/uploadImageFile:progress:finish:">- uploadImageFile:progress:finish:</option>
 		
@@ -118,7 +120,7 @@
 	<td>BJLBaseVM : NSObject</td>
 </tr><tr>
 	<th>Declared in</th>
-	<td>BJLChatVM.h<br />BJLChatVM.m</td>
+	<td>BJLChatVM.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -140,10 +142,121 @@
 						
 
 						
-						<h2 class="task-title">Other Methods</h2>
+						
 
 						<div class="task-list">
 							<div class="section-method">
+	<a name="//api/name/receivedMessagesDidOverwrite:" title="receivedMessagesDidOverwrite:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/receivedMessagesDidOverwrite:">&ndash;&nbsp;receivedMessagesDidOverwrite:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>收到历史消息 - 需要覆盖更新本地缓存的消息</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)receivedMessagesDidOverwrite:(nullable NSArray&lt;BJLMessage*&gt; *)<em>receivedMessages</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>receivedMessages</code></th>
+						<td><p>收到的所有消息</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>首次进教室或断开重连会收到此回调</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLChatVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/didReceiveMessages:" title="didReceiveMessages:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/didReceiveMessages:">&ndash;&nbsp;didReceiveMessages:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>收到消息</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)didReceiveMessages:(NSArray&lt;BJLMessage*&gt; *)<em>messages</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>messages</code></th>
+						<td><p>消息</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLChatVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
 	<a name="//api/name/sendMessage:" title="sendMessage:"></a>
 	<h3 class="method-title"><code><a href="#//api/name/sendMessage:">&ndash;&nbsp;sendMessage:</a></code>
 </h3>
@@ -181,8 +294,8 @@
 			<div class="method-subsection return">
 				<h4 class="method-subtitle parameter-title">Return Value</h4>
 				<p>BJLError:
-BJLErrorCode_invalidArguments  参数错误；
-BJLErrorCode_invalidCalling    错误调用，如禁言状态时调用此方法发送消息。</p>
+<a href="../Constants/BJLErrorCode.html">BJLErrorCode</a><em>invalidArguments  参数错误；
+<a href="../Constants/BJLErrorCode.html">BJLErrorCode</a></em>invalidCalling    错误调用，如禁言状态时调用此方法发送消息。</p>
 			</div>
 			
 
@@ -224,7 +337,31 @@ BJLErrorCode_invalidCalling    错误调用，如禁言状态时调用此方法�
 
 		    
 			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>text</code></th>
+						<td><p>文字消息内容</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>user</code></th>
+						<td><p>发送对象</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
 
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>BJLError:
+<a href="../Constants/BJLErrorCode.html">BJLErrorCode</a><em>invalidArguments  参数错误；
+<a href="../Constants/BJLErrorCode.html">BJLErrorCode</a></em>invalidCalling    错误调用，如禁言状态时调用此方法发送消息。</p>
+			</div>
 			
 
 			
@@ -290,7 +427,7 @@ BJLErrorCode_invalidCalling    错误调用，如禁言状态时调用此方法�
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>最多 BJLTextMaxLength_chat 个字符</p><p>成功后会收到消息通知</p><p>学生在禁言状态不能发送消息，参考 <a href="#//api/name/forbidMe"><code>forbidMe</code></a>、<a href="#//api/name/forbidAll"><code>forbidAll</code></a></p><p>参考 <code>BJLMessage</code></p>
+				<p>最多 BJLTextMaxLength_chat 个字符</p><p>成功后会收到消息通知</p><p>学生在禁言状态不能发送消息，参考 <a href="#//api/name/forbidMe"><code>forbidMe</code></a>、<a href="#//api/name/forbidAll"><code>forbidAll</code></a></p><p>参考 <a href="../Classes/BJLMessage.html"><code>BJLMessage</code></a></p>
 			</div>
 			
 
@@ -348,7 +485,7 @@ BJLErrorCode_invalidCalling    错误调用，如禁言状态时调用此方法�
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>发送图片需事先调用 <a href="#//api/name/uploadImageFile:progress:finish:"><code>uploadImageFile:progress:finish:</code></a> 方法上传</p><p>发送表情和图片需将 <code>(NSString *)emoticon.key</code> 或 <code>(NSString *)imageURLString</code> 转换成 (NSDictionary *)data，参考 <code>BJLMessage</code> 的 <code>messageDataWithEmoticonKey:</code> 和 <code>messageDataWithImageURLString:imageWidth:imageHeight:</code> 方法</p>
+				<p>发送图片需事先调用 <a href="#//api/name/uploadImageFile:progress:finish:"><code>uploadImageFile:progress:finish:</code></a> 方法上传</p><p>发送表情和图片需将 <code>(NSString *)emoticon.key</code> 或 <code>(NSString *)imageURLString</code> 转换成 (NSDictionary *)data，参考 <a href="../Classes/BJLMessage.html"><code>BJLMessage</code></a> 的 <code>messageDataWithEmoticonKey:</code> 和 <code>messageDataWithImageURLString:imageWidth:imageHeight:</code> 方法</p>
 			</div>
 			
 
@@ -385,6 +522,23 @@ BJLErrorCode_invalidCalling    错误调用，如禁言状态时调用此方法�
 			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)sendMessageData:(NSDictionary *)<em>data</em> toUser:(nullable BJLUser *)<em>user</em></code></div>
 
 		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>data</code></th>
+						<td><p>消息数据</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>user</code></th>
+						<td><p>发送对象</p></td>
+					</tr>
+				
+				</table>
+			</div>
 			
 
 			
@@ -536,8 +690,8 @@ BJLErrorCode_invalidCalling    错误调用，如禁言状态时调用此方法�
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/receivedMessagesDidOverwrite:" title="receivedMessagesDidOverwrite:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/receivedMessagesDidOverwrite:">&ndash;&nbsp;receivedMessagesDidOverwrite:</a></code>
+	<a name="//api/name/translateMessage:messageUUID:translateType:" title="translateMessage:messageUUID:translateType:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/translateMessage:messageUUID:translateType:">&ndash;&nbsp;translateMessage:messageUUID:translateType:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -547,12 +701,12 @@ BJLErrorCode_invalidCalling    错误调用，如禁言状态时调用此方法�
 			
 			
 			<div class="method-subsection brief-description">
-				<p><a href="#//api/name/receivedMessages"><code>receivedMessages</code></a> 被覆盖更新</p>
+				<p>聊天消息英汉互译，每秒最多仅允许发送一条</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (BJLObservable)receivedMessagesDidOverwrite:(nullable NSArray&lt;BJLMessage*&gt; *)<em>receivedMessages</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)translateMessage:(BJLMessage *)<em>message</em> messageUUID:(nullable NSString *)<em>messageUUID</em> translateType:(BJLMessageTranslateType)<em>translateType</em></code></div>
 
 		    
 			
@@ -561,8 +715,18 @@ BJLErrorCode_invalidCalling    错误调用，如禁言状态时调用此方法�
 				<table class="argument-def parameter-def">
 				
 					<tr>
-						<th scope="row" class="argument-name"><code>receivedMessages</code></th>
-						<td><p>收到的所有消息</p></td>
+						<th scope="row" class="argument-name"><code>message</code></th>
+						<td><p>消息</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>messageUUID</code></th>
+						<td><p>用于区分消息的唯一ID,不建议使用<a href="../Classes/BJLMessage.html">BJLMessage</a>.ID, 不保证其唯一性</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>translateType</code></th>
+						<td><p>英->汉 or 汉->英</p></td>
 					</tr>
 				
 				</table>
@@ -573,11 +737,6 @@ BJLErrorCode_invalidCalling    错误调用，如禁言状态时调用此方法�
 
 			
 
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>覆盖更新才调用，增量更新不调用</p><p>首次连接 server 或断开重连会导致覆盖更新</p>
-			</div>
 			
 
 			
@@ -594,8 +753,8 @@ BJLErrorCode_invalidCalling    错误调用，如禁言状态时调用此方法�
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/didReceiveMessage:" title="didReceiveMessage:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/didReceiveMessage:">&ndash;&nbsp;didReceiveMessage:</a></code>
+	<a name="//api/name/didReceiveMessageTranslation:messageUUID:" title="didReceiveMessageTranslation:messageUUID:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/didReceiveMessageTranslation:messageUUID:">&ndash;&nbsp;didReceiveMessageTranslation:messageUUID:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -605,12 +764,12 @@ BJLErrorCode_invalidCalling    错误调用，如禁言状态时调用此方法�
 			
 			
 			<div class="method-subsection brief-description">
-				<p>收到消息</p>
+				<p>收到翻译结果</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (BJLObservable)didReceiveMessage:(BJLMessage *)<em>message</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)didReceiveMessageTranslation:(NSString *)<em>translation</em> messageUUID:(nullable NSString *)<em>messageUUID</em></code></div>
 
 		    
 			
@@ -619,8 +778,13 @@ BJLErrorCode_invalidCalling    错误调用，如禁言状态时调用此方法�
 				<table class="argument-def parameter-def">
 				
 					<tr>
-						<th scope="row" class="argument-name"><code>message</code></th>
-						<td><p>消息</p></td>
+						<th scope="row" class="argument-name"><code>translation</code></th>
+						<td><p>消息翻译结果</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>messageUUID</code></th>
+						<td><p>消息唯一ID</p></td>
 					</tr>
 				
 				</table>
@@ -632,9 +796,50 @@ BJLErrorCode_invalidCalling    错误调用，如禁言状态时调用此方法�
 			
 
 			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLChatVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/forbidAll" title="forbidAll"></a>
+	<h3 class="method-title"><code><a href="#//api/name/forbidAll">&nbsp;&nbsp;forbidAll</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>全体禁言状态</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL forbidAll</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>同时更新 <a href="#//api/name/receivedMessages"><code>receivedMessages</code></a></p>
+				<p>全体或个人被禁言都不能发送聊天消息，参考 <a href="#//api/name/forbidMe"><code>forbidMe</code></a></p>
 			</div>
 			
 
@@ -699,6 +904,52 @@ BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限</p>
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
 				<p>设置成功后修改 <a href="#//api/name/forbidAll"><code>forbidAll</code></a></p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLChatVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/forbidMe" title="forbidMe"></a>
+	<h3 class="method-title"><code><a href="#//api/name/forbidMe">&nbsp;&nbsp;forbidMe</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>学生: 当前用户被禁言状态</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL forbidMe</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>全体或个人被禁言都不能发送聊天消息，参考 <a href="#//api/name/forbidAll"><code>forbidAll</code></a></p>
 			</div>
 			
 
@@ -855,137 +1106,6 @@ BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限</p>
 </div>
 						</div>
 						
-
-						
-						<h2 class="task-title">Other Methods</h2>
-
-						<div class="task-list">
-							<div class="section-method">
-	<a name="//api/name/receivedMessages" title="receivedMessages"></a>
-	<h3 class="method-title"><code><a href="#//api/name/receivedMessages">&nbsp;&nbsp;receivedMessages</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>所有消息</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, copy, nullable) NSArray&lt;BJLMessage*&gt; *receivedMessages</code></div>
-
-		    
-			
-
-			
-
-			
-
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BJLChatVM.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/forbidAll" title="forbidAll"></a>
-	<h3 class="method-title"><code><a href="#//api/name/forbidAll">&nbsp;&nbsp;forbidAll</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>全体禁言状态</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL forbidAll</code></div>
-
-		    
-			
-
-			
-
-			
-
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BJLChatVM.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/forbidMe" title="forbidMe"></a>
-	<h3 class="method-title"><code><a href="#//api/name/forbidMe">&nbsp;&nbsp;forbidMe</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>学生: 当前用户被禁言状态</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL forbidMe</code></div>
-
-		    
-			
-
-			
-
-			
-
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BJLChatVM.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div>
-						</div>
-						
 					</div>
 					
 					
@@ -998,7 +1118,7 @@ BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限</p>
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2018 baijiayun. All rights reserved. Updated: 2018-09-18</p>
+						<p class="copyright">Copyright &copy; 2019 baijiayun. All rights reserved. Updated: 2019-04-17</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>

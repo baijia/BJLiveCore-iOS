@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>BJLRoomState Constants Reference</title>
+	<title>BJLCameraType Constants Reference</title>
 
 	<link rel="stylesheet" href="../css/style.css">
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
@@ -59,13 +59,13 @@
 		<div id="overview_contents" class="container">
 			<div id="content">
 				<main role="main">
-					<h1 class="title">BJLRoomState Constants Reference</h1>
+					<h1 class="title">BJLCameraType Constants Reference</h1>
 
 					
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
 	<th>Declared in</th>
-	<td>BJLRoom.h</td>
+	<td>BJLConstants.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -75,11 +75,11 @@
 					
 
                     
-                    <h3 class="subsubtitle method-title">BJLRoomState</h3>
+                    <h3 class="subsubtitle method-title">BJLCameraType</h3>
                     
 					
 					<div class="section section-overview">
-                        <p>教室状态</p>
+                        <p>视频在大班课中占据的摄像头位置</p>
 					</div>
 					
 					
@@ -87,13 +87,11 @@
                         <!-- display enum values -->
                         
                         <h4 class="method-subtitle">Definition</h4>
-                        <code>typedef NS_ENUM(NSInteger, BJLRoomState ) {<br>
+                        <code>typedef NS_ENUM(NSInteger, BJLCameraType ) {<br>
                             
-                            &nbsp;&nbsp; <a href="">BJLRoomState_disconnected</a>,<br>
+                            &nbsp;&nbsp; <a href="">BJLCameraType_main</a>,<br>
                             
-                            &nbsp;&nbsp; <a href="">BJLRoomState_connecting</a>,<br>
-                            
-                            &nbsp;&nbsp; <a href="">BJLRoomState_connected</a>,<br>
+                            &nbsp;&nbsp; <a href="">BJLCameraType_extra</a>,<br>
                             
                             };</code>
                     
@@ -103,12 +101,11 @@
                         <h4 class="method-subtitle">Constants</h4>
                         <dl class="termdef">
                             
-                            <dt><a name="" title="BJLRoomState_disconnected"></a><code>BJLRoomState_disconnected</code></dt>
+                            <dt><a name="" title="BJLCameraType_main"></a><code>BJLCameraType_main</code></dt>
 <dd>
 
 
-<p>初始状态、连接失败、连接断开等
-     参考 <code>error</code></p>
+<p>主摄像头位置</p>
 
 
 
@@ -116,16 +113,16 @@
 
     
 	<p>
-		Declared In <code class="declared-in-ref">BJLRoom.h</code>.
+		Declared In <code class="declared-in-ref">BJLConstants.h</code>.
 	</p>
 	
 </dd>
                             
-                            <dt><a name="" title="BJLRoomState_connecting"></a><code>BJLRoomState_connecting</code></dt>
+                            <dt><a name="" title="BJLCameraType_extra"></a><code>BJLCameraType_extra</code></dt>
 <dd>
 
 
-<p>连接中</p>
+<p>扩展摄像头位置</p>
 
 
 
@@ -133,24 +130,7 @@
 
     
 	<p>
-		Declared In <code class="declared-in-ref">BJLRoom.h</code>.
-	</p>
-	
-</dd>
-                            
-                            <dt><a name="" title="BJLRoomState_connected"></a><code>BJLRoomState_connected</code></dt>
-<dd>
-
-
-<p>已连接</p>
-
-
-
-
-
-    
-	<p>
-		Declared In <code class="declared-in-ref">BJLRoom.h</code>.
+		Declared In <code class="declared-in-ref">BJLConstants.h</code>.
 	</p>
 	
 </dd>
@@ -167,7 +147,7 @@
                     
                     <div class="method-subsection declared-in-section">
                         <h4 class="method-subtitle">Declared In</h4>
-                        <p><code class="declared-in-ref">BJLRoom.h</code></p>
+                        <p><code class="declared-in-ref">BJLConstants.h</code></p>
                     </div>
                     
                     

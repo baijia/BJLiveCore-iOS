@@ -56,9 +56,25 @@
 	
 	<optgroup label="Properties">
 		
+		<option value="//api/name/availableDownLinkCDNCount">availableDownLinkCDNCount</option>
+		
+		<option value="//api/name/availableUpLinkCDNCount">availableUpLinkCDNCount</option>
+		
+		<option value="//api/name/downLinkCDNIndex">downLinkCDNIndex</option>
+		
 		<option value="//api/name/downLinkType">downLinkType</option>
 		
 		<option value="//api/name/downLinkTypeReadOnly">downLinkTypeReadOnly</option>
+		
+		<option value="//api/name/isAudioSessionActive">isAudioSessionActive</option>
+		
+		<option value="//api/name/needMutePlayingAudio">needMutePlayingAudio</option>
+		
+		<option value="//api/name/supportBackgroundAudio">supportBackgroundAudio</option>
+		
+		<option value="//api/name/supportBackgroundRecordingAudio">supportBackgroundRecordingAudio</option>
+		
+		<option value="//api/name/upLinkCDNIndex">upLinkCDNIndex</option>
 		
 	</optgroup>
 	
@@ -69,6 +85,18 @@
 	<optgroup label="Instance Methods">
 		
 		<option value="//api/name/avDebugInfo">- avDebugInfo</option>
+		
+		<option value="//api/name/didLiveChannelDisconnectWithError:">- didLiveChannelDisconnectWithError:</option>
+		
+		<option value="//api/name/mediaLossRateDidUpdateWithUser:videoLossRate:audioLossRate:">- mediaLossRateDidUpdateWithUser:videoLossRate:audioLossRate:</option>
+		
+		<option value="//api/name/mediaNetworkStatusDidUpdateWithUser:status:">- mediaNetworkStatusDidUpdateWithUser:status:</option>
+		
+		<option value="//api/name/updateTCPDownLinkCDNWithIndex:">- updateTCPDownLinkCDNWithIndex:</option>
+		
+		<option value="//api/name/updateTCPUpLinkCDNWithIndex:">- updateTCPUpLinkCDNWithIndex:</option>
+		
+		<option value="//api/name/volumeDidUpdateWithUser:volume:">- volumeDidUpdateWithUser:volume:</option>
 		
 	</optgroup>
 	
@@ -94,7 +122,7 @@
 	<td>BJLBaseVM : NSObject</td>
 </tr><tr>
 	<th>Declared in</th>
-	<td>BJLMediaVM.h<br />BJLMediaVM.m</td>
+	<td>BJLMediaVM.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -116,56 +144,7 @@
 						
 
 						
-						<h2 class="task-title">Other Methods</h2>
-
-						<div class="task-list">
-							<div class="section-method">
-	<a name="//api/name/avDebugInfo" title="avDebugInfo"></a>
-	<h3 class="method-title"><code><a href="#//api/name/avDebugInfo">&ndash;&nbsp;avDebugInfo</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>调试: 获取音视频流信息</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>- (NSArray&lt;NSString*&gt; *)avDebugInfo</code></div>
-
-		    
-			
-
-			
-
-			
-
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BJLMediaVM.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div>
-						</div>
 						
-
-						
-						<h2 class="task-title">Other Methods</h2>
 
 						<div class="task-list">
 							<div class="section-method">
@@ -199,6 +178,170 @@
 				<h4 class="method-subtitle">Discussion</h4>
 				<p><code>upLinkTypeReadOnly</code>/<code>downLinkTypeReadOnly</code> 为 YES 时设置 <code>upLinkType</code>/<a href="#//api/name/downLinkType"><code>downLinkType</code></a> 无效</p>
 			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLMediaVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/isAudioSessionActive" title="isAudioSessionActive"></a>
+	<h3 class="method-title"><code><a href="#//api/name/isAudioSessionActive">&nbsp;&nbsp;isAudioSessionActive</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>当前是否控制音频</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL isAudioSessionActive</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLMediaVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/supportBackgroundAudio" title="supportBackgroundAudio"></a>
+	<h3 class="method-title"><code><a href="#//api/name/supportBackgroundAudio">&nbsp;&nbsp;supportBackgroundAudio</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>是否支持后台音频, 默认支持</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL supportBackgroundAudio</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLMediaVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/supportBackgroundRecordingAudio" title="supportBackgroundRecordingAudio"></a>
+	<h3 class="method-title"><code><a href="#//api/name/supportBackgroundRecordingAudio">&nbsp;&nbsp;supportBackgroundRecordingAudio</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>是否支持后台采集声音, 默认不支持</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL supportBackgroundRecordingAudio</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLMediaVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/needMutePlayingAudio" title="needMutePlayingAudio"></a>
+	<h3 class="method-title"><code><a href="#//api/name/needMutePlayingAudio">&nbsp;&nbsp;needMutePlayingAudio</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>是否播放视频静音, 默认不静音</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL needMutePlayingAudio</code></div>
+
+		    
+			
+
+			
+
+			
+
 			
 
 			
@@ -255,6 +398,569 @@
 			
 		</div>
 	</div>
+</div><div class="section-method">
+	<a name="//api/name/avDebugInfo" title="avDebugInfo"></a>
+	<h3 class="method-title"><code><a href="#//api/name/avDebugInfo">&ndash;&nbsp;avDebugInfo</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>调试: 获取音视频流信息</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSArray&lt;NSString*&gt; *)avDebugInfo</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLMediaVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/availableUpLinkCDNCount" title="availableUpLinkCDNCount"></a>
+	<h3 class="method-title"><code><a href="#//api/name/availableUpLinkCDNCount">&nbsp;&nbsp;availableUpLinkCDNCount</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>TCP 上行线路可用 CDN 数</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) NSUInteger availableUpLinkCDNCount</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLMediaVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/upLinkCDNIndex" title="upLinkCDNIndex"></a>
+	<h3 class="method-title"><code><a href="#//api/name/upLinkCDNIndex">&nbsp;&nbsp;upLinkCDNIndex</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>TCP 上行线路优先使用的 CDN index</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) NSInteger upLinkCDNIndex</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>调用用 updatePrefferedCDNWithIndex: 设置该值</p><p>指定线路推流时可设置该值为范围 [0, availableCDN] 内的整数，每一个数对应一个 CDN 线路。指定 CDN 不可用时，服务器将自动分配。</p><p>设置该值为 [0, availableCDN] 外的任意值代表不指定 CDN，由服务器自动分配。</p><p>默认值为 NSNotFound, 即服务器自动分配。</p><p>改变该值将导致重新推流</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLMediaVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/updateTCPUpLinkCDNWithIndex:" title="updateTCPUpLinkCDNWithIndex:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/updateTCPUpLinkCDNWithIndex:">&ndash;&nbsp;updateTCPUpLinkCDNWithIndex:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>设置 <a href="#//api/name/upLinkCDNIndex">upLinkCDNIndex</a> 并重新推流</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)updateTCPUpLinkCDNWithIndex:(NSInteger)<em>index</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>index</code></th>
+						<td><p>CDN 序号，取值范围参考 <a href="#//api/name/availableDownLinkCDNCount">availableDownLinkCDNCount</a></p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>调用该方法会将上行链路切换到 TCP</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLMediaVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/availableDownLinkCDNCount" title="availableDownLinkCDNCount"></a>
+	<h3 class="method-title"><code><a href="#//api/name/availableDownLinkCDNCount">&nbsp;&nbsp;availableDownLinkCDNCount</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>TCP 下行线路可用 CDN 数</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) NSUInteger availableDownLinkCDNCount</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLMediaVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/downLinkCDNIndex" title="downLinkCDNIndex"></a>
+	<h3 class="method-title"><code><a href="#//api/name/downLinkCDNIndex">&nbsp;&nbsp;downLinkCDNIndex</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>TCP 下行线路优先使用的 CDN index</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) NSInteger downLinkCDNIndex</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>调用 <a href="#//api/name/updateTCPDownLinkCDNWithIndex:">updateTCPDownLinkCDNWithIndex:</a> 设置该值</p><p>指定线路推流时可设置该值为范围 [0, availableCDN] 内的整数，每一个数对应一个 CDN 线路。指定 CDN 不可用时，服务器将自动分配。</p><p>设置该值为 [0, availableCDN] 外的任意值代表不指定 CDN，由服务器自动分配。</p><p>默认值为 NSNotFound, 即服务器自动分配。</p><p>改变该值将导致重新推流</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLMediaVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/updateTCPDownLinkCDNWithIndex:" title="updateTCPDownLinkCDNWithIndex:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/updateTCPDownLinkCDNWithIndex:">&ndash;&nbsp;updateTCPDownLinkCDNWithIndex:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>设置  <a href="#//api/name/downLinkCDNIndex">downLinkCDNIndex</a> 并重新拉流</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)updateTCPDownLinkCDNWithIndex:(NSInteger)<em>index</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>index</code></th>
+						<td><p>CDN 序号，取值范围参考 <a href="#//api/name/availableDownLinkCDNCount">availableDownLinkCDNCount</a></p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>调用该方法会将下行链路切换到 TCP</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLMediaVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/didLiveChannelDisconnectWithError:" title="didLiveChannelDisconnectWithError:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/didLiveChannelDisconnectWithError:">&ndash;&nbsp;didLiveChannelDisconnectWithError:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>webRTC：直播频道断开连接</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)didLiveChannelDisconnectWithError:(nullable NSError *)<em>error</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>error</code></th>
+						<td><p>断开连接的错误信息</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLMediaVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/mediaNetworkStatusDidUpdateWithUser:status:" title="mediaNetworkStatusDidUpdateWithUser:status:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/mediaNetworkStatusDidUpdateWithUser:status:">&ndash;&nbsp;mediaNetworkStatusDidUpdateWithUser:status:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>音视频网络状态更新回调</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)mediaNetworkStatusDidUpdateWithUser:(BJLMediaUser *)<em>user</em> status:(BJLMediaNetworkStatus)<em>status</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>user</code></th>
+						<td><p>用户实例</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>status</code></th>
+						<td><p>网络状态</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLMediaVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/mediaLossRateDidUpdateWithUser:videoLossRate:audioLossRate:" title="mediaLossRateDidUpdateWithUser:videoLossRate:audioLossRate:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/mediaLossRateDidUpdateWithUser:videoLossRate:audioLossRate:">&ndash;&nbsp;mediaLossRateDidUpdateWithUser:videoLossRate:audioLossRate:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>音视频丢包率更新回调</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)mediaLossRateDidUpdateWithUser:(BJLMediaUser *)<em>user</em> videoLossRate:(CGFloat)<em>videoLossRate</em> audioLossRate:(CGFloat)<em>audioLossRate</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>user</code></th>
+						<td><p>用户</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>videoLossRate</code></th>
+						<td><p>视频丢包率</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>audioLossRate</code></th>
+						<td><p>音频丢包率</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLMediaVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/volumeDidUpdateWithUser:volume:" title="volumeDidUpdateWithUser:volume:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/volumeDidUpdateWithUser:volume:">&ndash;&nbsp;volumeDidUpdateWithUser:volume:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>音量更新回调</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)volumeDidUpdateWithUser:(BJLMediaUser *)<em>user</em> volume:(CGFloat)<em>volume</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>user</code></th>
+						<td><p>用户</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>volume</code></th>
+						<td><p>音量, 取值范围 0~255</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLMediaVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
 </div>
 						</div>
 						
@@ -270,7 +976,7 @@
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2018 baijiayun. All rights reserved. Updated: 2018-09-18</p>
+						<p class="copyright">Copyright &copy; 2019 baijiayun. All rights reserved. Updated: 2019-04-17</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>

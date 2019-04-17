@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>BJLErrorCode Constants Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1333)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">BJLiveCore </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">baijiayun</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+
+	
+
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">BJLErrorCode Constants Reference</h1>
+
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<th>Declared in</th>
+	<td>NSError+BJLError.h</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+
+					
+
+                    
+                    <h3 class="subsubtitle method-title">BJLErrorCode</h3>
+                    
+					
+					<div class="section section-overview">
+                        <p>BJLError 可用属性
+.domain                    BJLErrorDomain
+.code                      BJLErrorCode - 错误码
+.localizedDescription      NSString * - 错误描述
+.localizedFailureReason    NSString * - 错误原因，可能为空 - TODO: 干掉，如果有具体错误信息则替换调默认的错误描述
+.bjl_sourceError           NSError * - 引起当前错误的错误，可能为空
+TODO: server errorCode, message</p>
+					</div>
+					
+					
+                    <div class="section">
+                        <!-- display enum values -->
+                        
+                        <h4 class="method-subtitle">Definition</h4>
+                        <code>typedef NS_ENUM(NSInteger, BJLErrorCode ) {<br>
+                            
+                            &nbsp;&nbsp; <a href="">BJLErrorCode_success</a> = 0,<br>
+                            
+                            &nbsp;&nbsp; <a href="">BJLErrorCode_networkError</a>,<br>
+                            
+                            &nbsp;&nbsp; <a href="">BJLErrorCode_cancelled</a>,<br>
+                            
+                            &nbsp;&nbsp; <a href="">BJLErrorCode_invalidUserRole</a>,<br>
+                            
+                            &nbsp;&nbsp; <a href="">BJLErrorCode_invalidCalling</a>,<br>
+                            
+                            &nbsp;&nbsp; <a href="">BJLErrorCode_invalidArguments</a>,<br>
+                            
+                            &nbsp;&nbsp; <a href="">BJLErrorCode_areYouRobot</a>,<br>
+                            
+                            &nbsp;&nbsp; <a href="">BJLErrorCode_enterRoom_roomIsFull</a>,<br>
+                            
+                            &nbsp;&nbsp; <a href="">BJLErrorCode_enterRoom_unsupportedClient</a>,<br>
+                            
+                            &nbsp;&nbsp; <a href="">BJLErrorCode_enterRoom_unsupportedDevice</a>,<br>
+                            
+                            &nbsp;&nbsp; <a href="">BJLErrorCode_enterRoom_forbidden</a>,<br>
+                            
+                            &nbsp;&nbsp; <a href="">BJLErrorCode_exitRoom_disconnected</a>,<br>
+                            
+                            &nbsp;&nbsp; <a href="">BJLErrorCode_exitRoom_loginConflict</a>,<br>
+                            
+                            &nbsp;&nbsp; <a href="">BJLErrorCode_exitRoom_kickout</a>,<br>
+                            
+                            &nbsp;&nbsp; <a href="">BJLErrorCode_unknown</a>,<br>
+                            
+                            };</code>
+                    
+                    </div>
+                    
+                    <div class="section section-methods">
+                        <h4 class="method-subtitle">Constants</h4>
+                        <dl class="termdef">
+                            
+                            <dt><a name="" title="BJLErrorCode_success"></a><code>BJLErrorCode_success</code></dt>
+<dd>
+
+
+<p>成功</p>
+
+
+
+
+
+    
+	<p>
+		Declared In <code class="declared-in-ref">NSError+BJLError.h</code>.
+	</p>
+	
+</dd>
+                            
+                            <dt><a name="" title="BJLErrorCode_networkError"></a><code>BJLErrorCode_networkError</code></dt>
+<dd>
+
+
+<p>网络请求出错</p>
+
+
+
+
+
+    
+	<p>
+		Declared In <code class="declared-in-ref">NSError+BJLError.h</code>.
+	</p>
+	
+</dd>
+                            
+                            <dt><a name="" title="BJLErrorCode_cancelled"></a><code>BJLErrorCode_cancelled</code></dt>
+<dd>
+
+
+<p>主动调用取消</p>
+
+
+
+
+
+    
+	<p>
+		Declared In <code class="declared-in-ref">NSError+BJLError.h</code>.
+	</p>
+	
+</dd>
+                            
+                            <dt><a name="" title="BJLErrorCode_invalidUserRole"></a><code>BJLErrorCode_invalidUserRole</code></dt>
+<dd>
+
+
+<p>非法用户角色</p>
+
+
+
+
+
+    
+	<p>
+		Declared In <code class="declared-in-ref">NSError+BJLError.h</code>.
+	</p>
+	
+</dd>
+                            
+                            <dt><a name="" title="BJLErrorCode_invalidCalling"></a><code>BJLErrorCode_invalidCalling</code></dt>
+<dd>
+
+
+<p>非法调用</p>
+
+
+
+
+
+    
+	<p>
+		Declared In <code class="declared-in-ref">NSError+BJLError.h</code>.
+	</p>
+	
+</dd>
+                            
+                            <dt><a name="" title="BJLErrorCode_invalidArguments"></a><code>BJLErrorCode_invalidArguments</code></dt>
+<dd>
+
+
+<p>参数错误</p>
+
+
+
+
+
+    
+	<p>
+		Declared In <code class="declared-in-ref">NSError+BJLError.h</code>.
+	</p>
+	
+</dd>
+                            
+                            <dt><a name="" title="BJLErrorCode_areYouRobot"></a><code>BJLErrorCode_areYouRobot</code></dt>
+<dd>
+
+
+<p>操作过于频繁</p>
+
+
+
+
+
+    
+	<p>
+		Declared In <code class="declared-in-ref">NSError+BJLError.h</code>.
+	</p>
+	
+</dd>
+                            
+                            <dt><a name="" title="BJLErrorCode_enterRoom_roomIsFull"></a><code>BJLErrorCode_enterRoom_roomIsFull</code></dt>
+<dd>
+
+
+<p>教室已满</p>
+
+
+
+
+
+    
+	<p>
+		Declared In <code class="declared-in-ref">NSError+BJLError.h</code>.
+	</p>
+	
+</dd>
+                            
+                            <dt><a name="" title="BJLErrorCode_enterRoom_unsupportedClient"></a><code>BJLErrorCode_enterRoom_unsupportedClient</code></dt>
+<dd>
+
+
+<p>不支持 iOS 端进入教室</p>
+
+
+
+
+
+    
+	<p>
+		Declared In <code class="declared-in-ref">NSError+BJLError.h</code>.
+	</p>
+	
+</dd>
+                            
+                            <dt><a name="" title="BJLErrorCode_enterRoom_unsupportedDevice"></a><code>BJLErrorCode_enterRoom_unsupportedDevice</code></dt>
+<dd>
+
+
+<p>不支持当前设备进入教室</p>
+
+
+
+
+
+    
+	<p>
+		Declared In <code class="declared-in-ref">NSError+BJLError.h</code>.
+	</p>
+	
+</dd>
+                            
+                            <dt><a name="" title="BJLErrorCode_enterRoom_forbidden"></a><code>BJLErrorCode_enterRoom_forbidden</code></dt>
+<dd>
+
+
+<p>用户被禁止进入教室</p>
+
+
+
+
+
+    
+	<p>
+		Declared In <code class="declared-in-ref">NSError+BJLError.h</code>.
+	</p>
+	
+</dd>
+                            
+                            <dt><a name="" title="BJLErrorCode_exitRoom_disconnected"></a><code>BJLErrorCode_exitRoom_disconnected</code></dt>
+<dd>
+
+
+<p>连接断开</p>
+
+
+
+
+
+    
+	<p>
+		Declared In <code class="declared-in-ref">NSError+BJLError.h</code>.
+	</p>
+	
+</dd>
+                            
+                            <dt><a name="" title="BJLErrorCode_exitRoom_loginConflict"></a><code>BJLErrorCode_exitRoom_loginConflict</code></dt>
+<dd>
+
+
+<p>用户在其它设备登录</p>
+
+
+
+
+
+    
+	<p>
+		Declared In <code class="declared-in-ref">NSError+BJLError.h</code>.
+	</p>
+	
+</dd>
+                            
+                            <dt><a name="" title="BJLErrorCode_exitRoom_kickout"></a><code>BJLErrorCode_exitRoom_kickout</code></dt>
+<dd>
+
+
+<p>用户被请出教室</p>
+
+
+
+
+
+    
+	<p>
+		Declared In <code class="declared-in-ref">NSError+BJLError.h</code>.
+	</p>
+	
+</dd>
+                            
+                            <dt><a name="" title="BJLErrorCode_unknown"></a><code>BJLErrorCode_unknown</code></dt>
+<dd>
+
+
+<p>未知错误</p>
+
+
+
+
+
+    
+	<p>
+		Declared In <code class="declared-in-ref">NSError+BJLError.h</code>.
+	</p>
+	
+</dd>
+                            
+                        </dl>
+                    </div>
+                    
+
+                    
+                    
+
+                    
+
+                    
+                    <div class="method-subsection declared-in-section">
+                        <h4 class="method-subtitle">Declared In</h4>
+                        <p><code class="declared-in-ref">NSError+BJLError.h</code></p>
+                    </div>
+                    
+                    
+                    
+                    
+          
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2019 baijiayun. All rights reserved. Updated: 2019-04-17</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>
