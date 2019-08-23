@@ -56,9 +56,15 @@
 	
 	<optgroup label="Properties">
 		
+		<option value="//api/name/canStepBackward">canStepBackward</option>
+		
+		<option value="//api/name/canStepForward">canStepForward</option>
+		
 		<option value="//api/name/contentMode">contentMode</option>
 		
 		<option value="//api/name/drawingEnabled">drawingEnabled</option>
+		
+		<option value="//api/name/imageFrameInPPTView">imageFrameInPPTView</option>
 		
 		<option value="//api/name/imageSize">imageSize</option>
 		
@@ -74,6 +80,8 @@
 		
 		<option value="//api/name/placeholderImage">placeholderImage</option>
 		
+		<option value="//api/name/showPPTRemarkInfo">showPPTRemarkInfo</option>
+		
 		<option value="//api/name/viewType">viewType</option>
 		
 		<option value="//api/name/webPPTInteractable">webPPTInteractable</option>
@@ -88,9 +96,15 @@
 		
 		<option value="//api/name/clearDrawing">- clearDrawing</option>
 		
+		<option value="//api/name/pageStepBackward">- pageStepBackward</option>
+		
+		<option value="//api/name/pageStepForward">- pageStepForward</option>
+		
 		<option value="//api/name/updateScaleEnabled:">- updateScaleEnabled:</option>
 		
 		<option value="//api/name/updateScrollEnabled:">- updateScrollEnabled:</option>
+		
+		<option value="//api/name/updateShowPPTRemarkInfo:">- updateShowPPTRemarkInfo:</option>
 		
 		<option value="//api/name/updateWebPPTInteractable:">- updateWebPPTInteractable:</option>
 		
@@ -440,6 +454,47 @@
 		</div>
 	</div>
 </div><div class="section-method">
+	<a name="//api/name/showPPTRemarkInfo" title="showPPTRemarkInfo"></a>
+	<h3 class="method-title"><code><a href="#//api/name/showPPTRemarkInfo">&nbsp;&nbsp;showPPTRemarkInfo</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>是否显示 PPT 备注</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL showPPTRemarkInfo</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLSlideshowUI.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
 	<a name="//api/name/webPPTInteractable" title="webPPTInteractable"></a>
 	<h3 class="method-title"><code><a href="#//api/name/webPPTInteractable">&nbsp;&nbsp;webPPTInteractable</a></code>
 <span class="task-item-suffix">required method</span></h3>
@@ -451,7 +506,7 @@
 			
 			
 			<div class="method-subsection brief-description">
-				<p>动态课件交互状态</p>
+				<p>动态课件交互状态，已废弃，始终为 NO</p>
 			</div>
 			
 		    
@@ -604,6 +659,47 @@
 		</div>
 	</div>
 </div><div class="section-method">
+	<a name="//api/name/imageFrameInPPTView" title="imageFrameInPPTView"></a>
+	<h3 class="method-title"><code><a href="#//api/name/imageFrameInPPTView">&nbsp;&nbsp;imageFrameInPPTView</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>课件当前页图像在 PPT 视图中的布局信息</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic) CGRect imageFrameInPPTView</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLSlideshowUI.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
 	<a name="//api/name/clearDrawing" title="clearDrawing"></a>
 	<h3 class="method-title"><code><a href="#//api/name/clearDrawing">&ndash;&nbsp;clearDrawing</a></code>
 <span class="task-item-suffix">required method</span></h3>
@@ -685,7 +781,7 @@
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>对于动态课件，优先级低于画笔状态和动态课件交互状态</p><p>开启画笔或者动态课件可交互的情况下，仍然不能滑动翻页</p>
+				<p>对于动态课件，优先级低于画笔状态和动态课件交互状态</p><p>开启画笔或者动态课件可交互的情况下，仍然不能滑动翻页</p><p>学生 <code></code>BJLDocumentVM<code>.forbidStudentChangePPT</code> 被禁用时，无法滑动翻页</p>
 			</div>
 			
 
@@ -801,8 +897,225 @@
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>默认不能交互，目前仅专业小班课支持h交互</p>
+				<p>API 已废弃，不支持交互</p>
 			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLSlideshowUI.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/updateShowPPTRemarkInfo:" title="updateShowPPTRemarkInfo:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/updateShowPPTRemarkInfo:">&ndash;&nbsp;updateShowPPTRemarkInfo:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>设置是否显示 PPT 备注</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)updateShowPPTRemarkInfo:(BOOL)<em>show</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>show</code></th>
+						<td><p>是否显示</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLSlideshowUI.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/canStepForward" title="canStepForward"></a>
+	<h3 class="method-title"><code><a href="#//api/name/canStepForward">&nbsp;&nbsp;canStepForward</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>能否向前翻页</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL canStepForward</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLSlideshowUI.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/canStepBackward" title="canStepBackward"></a>
+	<h3 class="method-title"><code><a href="#//api/name/canStepBackward">&nbsp;&nbsp;canStepBackward</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>能否向后翻页</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL canStepBackward</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLSlideshowUI.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/pageStepForward" title="pageStepForward"></a>
+	<h3 class="method-title"><code><a href="#//api/name/pageStepForward">&ndash;&nbsp;pageStepForward</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>向前翻页</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)pageStepForward</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLSlideshowUI.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/pageStepBackward" title="pageStepBackward"></a>
+	<h3 class="method-title"><code><a href="#//api/name/pageStepBackward">&ndash;&nbsp;pageStepBackward</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>向后翻页</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)pageStepBackward</code></div>
+
+		    
+			
+
+			
+
+			
+
 			
 
 			
@@ -833,7 +1146,7 @@
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2019 baijiayun. All rights reserved. Updated: 2019-04-17</p>
+						<p class="copyright">Copyright &copy; 2019 baijiayun. All rights reserved. Updated: 2019-08-23</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>

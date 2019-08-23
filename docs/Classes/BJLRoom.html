@@ -60,6 +60,8 @@
 		
 		<option value="//api/name/chatVM">chatVM</option>
 		
+		<option value="//api/name/deployType">deployType</option>
+		
 		<option value="//api/name/disablePPTAnimation">disablePPTAnimation</option>
 		
 		<option value="//api/name/documentVM">documentVM</option>
@@ -112,11 +114,7 @@
 		
 		<option value="//api/name/roomWithSecret:userName:userAvatar:">+ roomWithSecret:userName:userAvatar:</option>
 		
-		<option value="//api/name/setAPIDomainPrefix:">+ setAPIDomainPrefix:</option>
-		
 		<option value="//api/name/setPrivateDomainPrefix:">+ setPrivateDomainPrefix:</option>
-		
-		<option value="//api/name/setPrivateDomainSuffix:">+ setPrivateDomainSuffix:</option>
 		
 	</optgroup>
 	
@@ -125,6 +123,8 @@
 	<optgroup label="Instance Methods">
 		
 		<option value="//api/name/enter">- enter</option>
+		
+		<option value="//api/name/enterByValidatingConflict:">- enterByValidatingConflict:</option>
 		
 		<option value="//api/name/enterRoomFailureWithError:">- enterRoomFailureWithError:</option>
 		
@@ -229,122 +229,6 @@
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
 				<p>需要在进教室之前设置，专属域名从百家云账号中心查看</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BJLRoom.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/setPrivateDomainSuffix:" title="setPrivateDomainSuffix:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/setPrivateDomainSuffix:">+&nbsp;setPrivateDomainSuffix:</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>设置客户专属域名</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>+ (void)setPrivateDomainSuffix:(nullable NSString *)<em>suffix</em></code></div>
-
-		    
-			
-			<div class="method-subsection arguments-section parameters">
-				<h4 class="method-subtitle parameter-title">Parameters</h4>
-				<table class="argument-def parameter-def">
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>suffix</code></th>
-						<td><p>客户专属域名，例如 <code>demo123.com</code></p></td>
-					</tr>
-				
-				</table>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>需要在进教室之前设置，用于私有化部署</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BJLRoom.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/setAPIDomainPrefix:" title="setAPIDomainPrefix:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/setAPIDomainPrefix:">+&nbsp;setAPIDomainPrefix:</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>设置客户 API 域名前缀</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>+ (void)setAPIDomainPrefix:(nullable NSString *)<em>prefix</em></code></div>
-
-		    
-			
-			<div class="method-subsection arguments-section parameters">
-				<h4 class="method-subtitle parameter-title">Parameters</h4>
-				<table class="argument-def parameter-def">
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>prefix</code></th>
-						<td><p>客户 API 域名前缀，例如专属域名为 <code>demo123.baijiayun.com</code>，则前缀为 <code>demo123</code></p></td>
-					</tr>
-				
-				</table>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>需要在进教室之前设置，目前仅供内部调用</p>
 			</div>
 			
 
@@ -620,6 +504,64 @@
 
 			
 
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/enterByValidatingConflict:" title="enterByValidatingConflict:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/enterByValidatingConflict:">&ndash;&nbsp;enterByValidatingConflict:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>进入教室</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)enterByValidatingConflict:(BOOL)<em>validateConflict</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>validateConflict</code></th>
+						<td><p>传 YES 检查是否有相同用户在教室、如果有则回调错误 <code>BJLErrorCode_enterRoom_loginConflict</code>，传 NO 直接进入教室、相同用户将被踢出</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>目前此参数只对老师起作用、其他角色相当于 <code>validateConflict</code> 传 NO</p><p>直接调用 <a href="#//api/name/enter"><code>enter</code></a> 也相当于 <code>validateConflict</code> 传 NO</p>
+			</div>
 			
 
 			
@@ -1483,7 +1425,7 @@
 			
 			
 			<div class="method-subsection brief-description">
-				<p>针对旧版 SDK 的 <a href="#//api/name/playingVM">playingVM</a> 创建的适配层，管理发言用户主摄像头音视频信息</p>
+				<p>针对旧版 SDK 的 <a href="#//api/name/playingVM">playingVM</a> 创建的适配层，管理发言用户大班课主摄像头位置的音视频信息</p>
 			</div>
 			
 		    
@@ -1524,7 +1466,7 @@
 			
 			
 			<div class="method-subsection brief-description">
-				<p>针对旧版 SDK 的 <a href="#//api/name/playingVM">playingVM</a> 创建的适配层，管理发言用户主摄像头之外的音视频信息</p>
+				<p>针对旧版 SDK 的 <a href="#//api/name/playingVM">playingVM</a> 创建的适配层，管理发言用户大班课扩展摄像头位置的音视频信息</p>
 			</div>
 			
 		    
@@ -1606,7 +1548,7 @@
 			
 			
 			<div class="method-subsection brief-description">
-				<p>标注</p>
+				<p>画笔管理</p>
 			</div>
 			
 		    
@@ -1850,6 +1792,48 @@
 			
 		</div>
 	</div>
+</div><div class="section-method">
+	<a name="//api/name/deployType" title="deployType"></a>
+	<h3 class="method-title"><code><a href="#//api/name/deployType">&nbsp;&nbsp;deployType</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>部署环境(内部使用)，需要在进教室之前设置
+设置 <code>deployType</code> 将导致 <code>privateDomainPrefix</code> 被重置</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (class, nonatomic) BJLDeployType deployType</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRoom.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
 </div>
 						</div>
 						
@@ -1865,7 +1849,7 @@
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2019 baijiayun. All rights reserved. Updated: 2019-04-17</p>
+						<p class="copyright">Copyright &copy; 2019 baijiayun. All rights reserved. Updated: 2019-08-23</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>

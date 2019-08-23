@@ -58,9 +58,13 @@
 		
 		<option value="//api/name/allDocuments">allDocuments</option>
 		
+		<option value="//api/name/authorizedPPTUserNumbers">authorizedPPTUserNumbers</option>
+		
 		<option value="//api/name/blackboardImage">blackboardImage</option>
 		
 		<option value="//api/name/currentSlidePage">currentSlidePage</option>
+		
+		<option value="//api/name/forbidStudentChangePPT">forbidStudentChangePPT</option>
 		
 		<option value="//api/name/totalPageCount">totalPageCount</option>
 		
@@ -76,15 +80,23 @@
 		
 		<option value="//api/name/addDocument:">- addDocument:</option>
 		
+		<option value="//api/name/addWhiteboardPage">- addWhiteboardPage</option>
+		
 		<option value="//api/name/allDocumentsDidOverwrite:">- allDocumentsDidOverwrite:</option>
 		
 		<option value="//api/name/allSlidePages">- allSlidePages</option>
 		
 		<option value="//api/name/deleteDocumentWithID:">- deleteDocumentWithID:</option>
 		
+		<option value="//api/name/deleteWhiteboardPageWithIndex:">- deleteWhiteboardPageWithIndex:</option>
+		
 		<option value="//api/name/didAddDocument:">- didAddDocument:</option>
 		
+		<option value="//api/name/didAddWhiteboardPage:">- didAddWhiteboardPage:</option>
+		
 		<option value="//api/name/didDeleteDocument:">- didDeleteDocument:</option>
+		
+		<option value="//api/name/didDeleteWhiteboardPageWithIndex:">- didDeleteWhiteboardPageWithIndex:</option>
 		
 		<option value="//api/name/didParticipateWritingBoard:">- didParticipateWritingBoard:</option>
 		
@@ -120,6 +132,8 @@
 		
 		<option value="//api/name/slidePageWithDocumentID:pageIndex:">- slidePageWithDocumentID:pageIndex:</option>
 		
+		<option value="//api/name/slidePageWithDocumentID:pageIndex:step:">- slidePageWithDocumentID:pageIndex:step:</option>
+		
 		<option value="//api/name/slidePagesWithDocumentID:">- slidePagesWithDocumentID:</option>
 		
 		<option value="//api/name/submitWritingBoard:">- submitWritingBoard:</option>
@@ -128,7 +142,9 @@
 		
 		<option value="//api/name/updateDocumentWithID:displayInfo:">- updateDocumentWithID:displayInfo:</option>
 		
-		<option value="//api/name/updateWritingBoardWindow:layerID:action:displayInfos:">- updateWritingBoardWindow:layerID:action:displayInfos:</option>
+		<option value="//api/name/updateStudentPPTAuthorized:userNumber:">- updateStudentPPTAuthorized:userNumber:</option>
+		
+		<option value="//api/name/updateWritingBoardWindow:userNumber:action:displayInfos:">- updateWritingBoardWindow:userNumber:action:displayInfos:</option>
 		
 		<option value="//api/name/uploadFile:mimeType:fileName:isAnimated:progress:finish:">- uploadFile:mimeType:fileName:isAnimated:progress:finish:</option>
 		
@@ -362,6 +378,110 @@ BJLErrorCode_invalidArguments  错误参数</p>
 				<h4 class="method-subtitle">Discussion</h4>
 				<p>删除成功将调用 <code>BJLDocumentVM</code> 的 <a href="#//api/name/didDeleteDocument:"><code>didDeleteDocument:</code></a></p>
 			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDocumentVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/addWhiteboardPage" title="addWhiteboardPage"></a>
+	<h3 class="method-title"><code><a href="#//api/name/addWhiteboardPage">&ndash;&nbsp;addWhiteboardPage</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>添加白板</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)addWhiteboardPage</code></div>
+
+		    
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>BJLError</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDocumentVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/deleteWhiteboardPageWithIndex:" title="deleteWhiteboardPageWithIndex:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/deleteWhiteboardPageWithIndex:">&ndash;&nbsp;deleteWhiteboardPageWithIndex:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>删除白板</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)deleteWhiteboardPageWithIndex:(NSInteger)<em>pageIndex</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>pageIndex</code></th>
+						<td><p>白板页码，使用 <a href="../Classes/BJLSlidePage.html">BJLSlidePage</a> 的 <code>slidePageIndex</code></p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>BJLError</p>
+			</div>
+			
+
+			
+
 			
 
 			
@@ -934,6 +1054,122 @@ BJLErrorCode_invalidArguments  错误参数</p>
 		</div>
 	</div>
 </div><div class="section-method">
+	<a name="//api/name/didAddWhiteboardPage:" title="didAddWhiteboardPage:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/didAddWhiteboardPage:">&ndash;&nbsp;didAddWhiteboardPage:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>添加白板通知</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)didAddWhiteboardPage:(NSInteger)<em>pageIndex</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>pageIndex</code></th>
+						<td><p>白板页码</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>同时更新 <a href="#//api/name/allDocuments"><code>allDocuments</code></a></p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDocumentVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/didDeleteWhiteboardPageWithIndex:" title="didDeleteWhiteboardPageWithIndex:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/didDeleteWhiteboardPageWithIndex:">&ndash;&nbsp;didDeleteWhiteboardPageWithIndex:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>删除白板通知</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)didDeleteWhiteboardPageWithIndex:(NSInteger)<em>pageIndex</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>pageIndex</code></th>
+						<td><p>白板页码</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>同时更新 <a href="#//api/name/allDocuments"><code>allDocuments</code></a></p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDocumentVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
 	<a name="//api/name/totalPageCount" title="totalPageCount"></a>
 	<h3 class="method-title"><code><a href="#//api/name/totalPageCount">&nbsp;&nbsp;totalPageCount</a></code>
 </h3>
@@ -992,6 +1228,47 @@ BJLErrorCode_invalidArguments  错误参数</p>
 		    
 
 			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, nullable) BJLSlidePage *currentSlidePage</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDocumentVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/forbidStudentChangePPT" title="forbidStudentChangePPT"></a>
+	<h3 class="method-title"><code><a href="#//api/name/forbidStudentChangePPT">&nbsp;&nbsp;forbidStudentChangePPT</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>是否禁止学生翻页</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL forbidStudentChangePPT</code></div>
 
 		    
 			
@@ -1101,6 +1378,69 @@ BJLErrorCode_invalidArguments  错误参数</p>
 					<tr>
 						<th scope="row" class="argument-name"><code>pageIndex</code></th>
 						<td><p>目标页在课件中的序号</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDocumentVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/slidePageWithDocumentID:pageIndex:step:" title="slidePageWithDocumentID:pageIndex:step:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/slidePageWithDocumentID:pageIndex:step:">&ndash;&nbsp;slidePageWithDocumentID:pageIndex:step:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>通过 documentID、pageIndex 获取 slide page</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLSlidePage *)slidePageWithDocumentID:(NSString *)<em>documentID</em> pageIndex:(NSInteger)<em>pageIndex</em> step:(NSInteger)<em>step</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>documentID</code></th>
+						<td><p>课件 ID</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>pageIndex</code></th>
+						<td><p>目标页在课件中的序号</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>step</code></th>
+						<td><p>具体动画步数</p></td>
 					</tr>
 				
 				</table>
@@ -1557,6 +1897,110 @@ BJLErrorCode_invalidArguments  错误参数</p>
 		</div>
 	</div>
 </div><div class="section-method">
+	<a name="//api/name/authorizedPPTUserNumbers" title="authorizedPPTUserNumbers"></a>
+	<h3 class="method-title"><code><a href="#//api/name/authorizedPPTUserNumbers">&nbsp;&nbsp;authorizedPPTUserNumbers</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>课件授权的用户</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, nullable) NSArray&lt;NSString*&gt; *authorizedPPTUserNumbers</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDocumentVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/updateStudentPPTAuthorized:userNumber:" title="updateStudentPPTAuthorized:userNumber:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/updateStudentPPTAuthorized:userNumber:">&ndash;&nbsp;updateStudentPPTAuthorized:userNumber:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>授权课件</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)updateStudentPPTAuthorized:(BOOL)<em>authorized</em> userNumber:(NSString *)<em>userNumber</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>authorized</code></th>
+						<td><p>authorized</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>userNumber</code></th>
+						<td><p>userNumber</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>BJLErrorCode_invalidUserRole 错误角色，仅老师或助教能授权给学生</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLDocumentVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
 	<a name="//api/name/writingBoardViewControllerWithWritingBoard:" title="writingBoardViewControllerWithWritingBoard:"></a>
 	<h3 class="method-title"><code><a href="#//api/name/writingBoardViewControllerWithWritingBoard:">&ndash;&nbsp;writingBoardViewControllerWithWritingBoard:</a></code>
 </h3>
@@ -1756,6 +2200,11 @@ BJLErrorCode_invalidArguments  错误参数</p>
 
 			
 
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>直播间内所有用户不区分角色都会收到此信令</p>
+			</div>
 			
 
 			
@@ -2090,8 +2539,8 @@ BJLErrorCode_invalidArguments  错误参数</p>
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/updateWritingBoardWindow:layerID:action:displayInfos:" title="updateWritingBoardWindow:layerID:action:displayInfos:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/updateWritingBoardWindow:layerID:action:displayInfos:">&ndash;&nbsp;updateWritingBoardWindow:layerID:action:displayInfos:</a></code>
+	<a name="//api/name/updateWritingBoardWindow:userNumber:action:displayInfos:" title="updateWritingBoardWindow:userNumber:action:displayInfos:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/updateWritingBoardWindow:userNumber:action:displayInfos:">&ndash;&nbsp;updateWritingBoardWindow:userNumber:action:displayInfos:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -2106,7 +2555,7 @@ BJLErrorCode_invalidArguments  错误参数</p>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)updateWritingBoardWindow:(BJLWritingBoard *)<em>writingBoard</em> layerID:(NSString *)<em>layerID</em> action:(NSString *)<em>action</em> displayInfos:(NSArray&lt;BJLWindowDisplayInfo*&gt; *)<em>displayInfos</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)updateWritingBoardWindow:(BJLWritingBoard *)<em>writingBoard</em> userNumber:(NSString *)<em>userNumber</em> action:(NSString *)<em>action</em> displayInfos:(NSArray&lt;BJLWindowDisplayInfo*&gt; *)<em>displayInfos</em></code></div>
 
 		    
 			
@@ -2120,8 +2569,8 @@ BJLErrorCode_invalidArguments  错误参数</p>
 					</tr>
 				
 					<tr>
-						<th scope="row" class="argument-name"><code>layerID</code></th>
-						<td><p>确保其唯一性,使用<a href="../Classes/BJLUser.html">BJLUser</a> <code>number</code>属性</p></td>
+						<th scope="row" class="argument-name"><code>userNumber</code></th>
+						<td><p><a href="../Classes/BJLUser.html">BJLUser</a> -> number</p></td>
 					</tr>
 				
 					<tr>
@@ -2235,7 +2684,7 @@ BJLErrorCode_invalidArguments  错误参数</p>
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2019 baijiayun. All rights reserved. Updated: 2019-04-17</p>
+						<p class="copyright">Copyright &copy; 2019 baijiayun. All rights reserved. Updated: 2019-08-23</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>

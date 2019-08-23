@@ -78,7 +78,7 @@
 		
 		<option value="//api/name/didAddActiveUser:">- didAddActiveUser:</option>
 		
-		<option value="//api/name/didAddActiveUserDeny:">- didAddActiveUserDeny:</option>
+		<option value="//api/name/didAddActiveUserDeny:responseCode:">- didAddActiveUserDeny:responseCode:</option>
 		
 		<option value="//api/name/didRemoveActiveUser:">- didRemoveActiveUser:</option>
 		
@@ -194,7 +194,7 @@
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>包含教室内推送主音视频流的用户，数组内 BJLMediaUser 实例的音视频信息为主音视频流的信息，每个用户在 playingUsers 中只有一个 BJLMediaUser 实例</p><p>在 webRTC 教室中，数组内的 BJLMediaUser 实例的 mediaSource 为 BJLMediaSource_mainCamera</p><p>在非 webRTC 教室中，数组内的 BJLMediaUser 实例的 mediaSource 为 <a href="../Constants/BJLMediaSource.html">BJLMediaSource</a><em>mainCamera、<a href="../Constants/BJLMediaSource.html">BJLMediaSource</a></em>screenShare 或 BJLMediaSource_mediaFile</p><p>所有用户的音频会自动播放，视频需要调用 <a href="#//api/name/updatePlayingUserWithID:videoOn:mediaSource:"><code>updatePlayingUserWithID:videoOn:mediaSource:</code></a> 打开或者通过 <a href="#//api/name/autoPlayVideoBlock"><code>autoPlayVideoBlock</code></a> 控制打开</p><p>SDK 会处理音视频打断、恢复、前后台切换等情况</p>
+				<p>包含教室内推送主音视频流的用户，数组内 <a href="../Classes/BJLMediaUser.html">BJLMediaUser</a> 实例的音视频信息为主音视频流的信息，每个用户在 playingUsers 中只有一个 <a href="../Classes/BJLMediaUser.html">BJLMediaUser</a> 实例</p><p>在 webRTC 教室中，数组内的 <a href="../Classes/BJLMediaUser.html">BJLMediaUser</a> 实例的 mediaSource 为 BJLMediaSource_mainCamera</p><p>在非 webRTC 教室中，数组内的 <a href="../Classes/BJLMediaUser.html">BJLMediaUser</a> 实例的 mediaSource 为 <a href="../Constants/BJLMediaSource.html">BJLMediaSource</a><em>mainCamera、<a href="../Constants/BJLMediaSource.html">BJLMediaSource</a></em>screenShare 或 BJLMediaSource_mediaFile</p><p>所有用户的音频会自动播放，视频需要调用 <a href="#//api/name/updatePlayingUserWithID:videoOn:mediaSource:"><code>updatePlayingUserWithID:videoOn:mediaSource:</code></a> 打开或者通过 <a href="#//api/name/autoPlayVideoBlock"><code>autoPlayVideoBlock</code></a> 控制打开</p><p>SDK 会处理音视频打断、恢复、前后台切换等情况</p>
 			</div>
 			
 
@@ -240,7 +240,7 @@
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>包含教室内推送扩展音视频流的用户，音视频信息为扩展音视频流的信息，每个用户在 extraPlayingUsers 中可以有多个 BJLMediaUser 实例</p><p>在 webRTC 教室中，数组内的 BJLMediaUser 实例的 mediaSource 为除 BJLMediaSource_mainCamera 之外的音视频流类型</p><p>在非 webRTC 教室中，数组内 BJLMediaUser 实例的 mediaSource 为 <a href="../Constants/BJLMediaSource.html">BJLMediaSource</a><em>extraCamera 或 <a href="../Constants/BJLMediaSource.html">BJLMediaSource</a></em>extraScreenShare</p><p>所有用户的音频会自动播放，视频需要调用 <a href="#//api/name/updatePlayingUserWithID:videoOn:mediaSource:"><code>updatePlayingUserWithID:videoOn:mediaSource:</code></a> 打开或者通过 <a href="#//api/name/autoPlayVideoBlock"><code>autoPlayVideoBlock</code></a> 控制打开</p><p>打开了扩展音视频流的用户将同时包含在 <a href="#//api/name/playingUsers">playingUsers</a> 和 extraPlayingUsers 中，但两个列表中的 BJLMediaUser 实例的音视频信息不同</p>
+				<p>包含教室内推送扩展音视频流的用户，音视频信息为扩展音视频流的信息，每个用户在 extraPlayingUsers 中可以有多个 <a href="../Classes/BJLMediaUser.html">BJLMediaUser</a> 实例</p><p>在 webRTC 教室中，数组内的 <a href="../Classes/BJLMediaUser.html">BJLMediaUser</a> 实例的 mediaSource 为除 BJLMediaSource_mainCamera 之外的音视频流类型</p><p>在非 webRTC 教室中，数组内 <a href="../Classes/BJLMediaUser.html">BJLMediaUser</a> 实例的 mediaSource 为 <a href="../Constants/BJLMediaSource.html">BJLMediaSource</a><em>extraCamera 或 <a href="../Constants/BJLMediaSource.html">BJLMediaSource</a></em>extraScreenShare</p><p>所有用户的音频会自动播放，视频需要调用 <a href="#//api/name/updatePlayingUserWithID:videoOn:mediaSource:"><code>updatePlayingUserWithID:videoOn:mediaSource:</code></a> 打开或者通过 <a href="#//api/name/autoPlayVideoBlock"><code>autoPlayVideoBlock</code></a> 控制打开</p><p>打开了扩展音视频流的用户将同时包含在 <a href="#//api/name/playingUsers">playingUsers</a> 和 extraPlayingUsers 中，但两个列表中的 <a href="../Classes/BJLMediaUser.html">BJLMediaUser</a> 实例的音视频信息不同</p>
 			</div>
 			
 
@@ -308,7 +308,7 @@
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>不同的 mediaSource 取到的 BJLMediaUser 实例可能用户信息相同，但音视频信息是不同的</p>
+				<p>不同的 mediaSource 取到的 <a href="../Classes/BJLMediaUser.html">BJLMediaUser</a> 实例可能用户信息相同，但音视频信息是不同的</p>
 			</div>
 			
 
@@ -435,7 +435,7 @@ TODO: 增加方法支持同时监听初始音视频状态</p></td>
 <li>进教室后批量更新 <a href="#//api/name/playingUsers"><code>playingUsers</code></a> 时『不』发送此通知</li>
 </ul>
 <ul>
-<li>音视频开关状态通过 <code>BJLMediaUser</code> 的 <code>audioOn</code>、<code>videoOn</code> 获得</li>
+<li>音视频开关状态通过 <a href="../Classes/BJLMediaUser.html"><code>BJLMediaUser</code></a> 的 <code>audioOn</code>、<code>videoOn</code> 获得</li>
 </ul>
 <ul>
 <li>definitionIndex 可能会发生变化，调用 <code>definitionIndexForUserWithID:</code> 可获取最新的取值</li>
@@ -963,7 +963,7 @@ TODO: 改进此方法，使之与监听 <a href="#//api/name/playingUsers">playi
 				
 					<tr>
 						<th scope="row" class="argument-name"><code>definitionIndex</code></th>
-						<td><p><code>BJLMediaUser</code> 的 <code>definitions</code> 属性的 index，参考 <code>BJLLiveDefinitionKey</code>、<code>BJLLiveDefinitionNameForKey()</code></p></td>
+						<td><p><a href="../Classes/BJLMediaUser.html"><code>BJLMediaUser</code></a> 的 <code>definitions</code> 属性的 index，参考 <code>BJLLiveDefinitionKey</code>、<code>BJLLiveDefinitionNameForKey()</code></p></td>
 					</tr>
 				
 				</table>
@@ -1575,8 +1575,8 @@ TODO: 改进此方法，使之与监听 <a href="#//api/name/playingUsers">playi
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/didAddActiveUserDeny:" title="didAddActiveUserDeny:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/didAddActiveUserDeny:">&ndash;&nbsp;didAddActiveUserDeny:</a></code>
+	<a name="//api/name/didAddActiveUserDeny:responseCode:" title="didAddActiveUserDeny:responseCode:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/didAddActiveUserDeny:responseCode:">&ndash;&nbsp;didAddActiveUserDeny:responseCode:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -1591,7 +1591,7 @@ TODO: 改进此方法，使之与监听 <a href="#//api/name/playingUsers">playi
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (BJLObservable)didAddActiveUserDeny:(BJLUser *)<em>user</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)didAddActiveUserDeny:(BJLUser *)<em>user</em> responseCode:(NSInteger)<em>responseCode</em></code></div>
 
 		    
 			
@@ -1604,6 +1604,11 @@ TODO: 改进此方法，使之与监听 <a href="#//api/name/playingUsers">playi
 						<td><p>上台对象信息</p></td>
 					</tr>
 				
+					<tr>
+						<th scope="row" class="argument-name"><code>responseCode:</code></th>
+						<td><p>拒绝原因对应的状态码：1.上台人数达到上限; 2.用户已离开教室</p></td>
+					</tr>
+				
 				</table>
 			</div>
 			
@@ -1612,11 +1617,6 @@ TODO: 改进此方法，使之与监听 <a href="#//api/name/playingUsers">playi
 
 			
 
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>拒绝原因：上台人数达到上限</p>
-			</div>
 			
 
 			
@@ -1700,7 +1700,7 @@ TODO: 改进此方法，使之与监听 <a href="#//api/name/playingUsers">playi
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2019 baijiayun. All rights reserved. Updated: 2019-04-17</p>
+						<p class="copyright">Copyright &copy; 2019 baijiayun. All rights reserved. Updated: 2019-08-23</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>

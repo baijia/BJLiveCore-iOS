@@ -60,6 +60,8 @@
 		
 		<option value="//api/name/currentPresenter">currentPresenter</option>
 		
+		<option value="//api/name/groupList">groupList</option>
+		
 		<option value="//api/name/hasMoreOnlineUsers">hasMoreOnlineUsers</option>
 		
 		<option value="//api/name/onlineTeacher">onlineTeacher</option>
@@ -76,27 +78,35 @@
 	
 	<optgroup label="Instance Methods">
 		
-		<option value="//api/name/blockUserWithUserID:">- blockUserWithUserID:</option>
+		<option value="//api/name/blockUserWithID:">- blockUserWithID:</option>
 		
-		<option value="//api/name/didReceiveBlockedUserAllFreed">- didReceiveBlockedUserAllFreed</option>
+		<option value="//api/name/didBlockUser:">- didBlockUser:</option>
 		
-		<option value="//api/name/didReceiveBlockedUserFreed:">- didReceiveBlockedUserFreed:</option>
+		<option value="//api/name/didFreeAllBlockedUsers">- didFreeAllBlockedUsers</option>
+		
+		<option value="//api/name/didFreeBlockedUserWithNumber:">- didFreeBlockedUserWithNumber:</option>
 		
 		<option value="//api/name/didReceiveBlockedUserList:">- didReceiveBlockedUserList:</option>
 		
-		<option value="//api/name/didReceiveUserBlocked:">- didReceiveUserBlocked:</option>
+		<option value="//api/name/freeAllBlockedUsers">- freeAllBlockedUsers</option>
 		
-		<option value="//api/name/freeAllBlockedUser">- freeAllBlockedUser</option>
+		<option value="//api/name/freeBlockedUserWithNumber:">- freeBlockedUserWithNumber:</option>
 		
-		<option value="//api/name/freeBlockedUserWithUserNumber:">- freeBlockedUserWithUserNumber:</option>
+		<option value="//api/name/getGroupColorWithID:">- getGroupColorWithID:</option>
+		
+		<option value="//api/name/hasMoreOnlineUsersofGroup:">- hasMoreOnlineUsersofGroup:</option>
 		
 		<option value="//api/name/loadBlockedUserList">- loadBlockedUserList</option>
 		
 		<option value="//api/name/loadMoreOnlineUsersWithCount:">- loadMoreOnlineUsersWithCount:</option>
 		
+		<option value="//api/name/loadMoreOnlineUsersWithCount:groupID:">- loadMoreOnlineUsersWithCount:groupID:</option>
+		
 		<option value="//api/name/onlineUserDidEnter:">- onlineUserDidEnter:</option>
 		
 		<option value="//api/name/onlineUserDidExit:">- onlineUserDidExit:</option>
+		
+		<option value="//api/name/onlineUserGroupCountDidChange:">- onlineUserGroupCountDidChange:</option>
 		
 		<option value="//api/name/onlineUserWillAdd:">- onlineUserWillAdd:</option>
 		
@@ -447,12 +457,53 @@ BJLErrorCode_invalidUserRole   错误权限，要求老师权限</p>
 			
 			
 			<div class="method-subsection brief-description">
-				<p>是否有更多在线用户未加载</p>
+				<p>获取当前登录用户所在group是否有更多在线用户未加载</p>
 			</div>
 			
 		    
 
 			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL hasMoreOnlineUsers</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLOnlineUsersVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/hasMoreOnlineUsersofGroup:" title="hasMoreOnlineUsersofGroup:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/hasMoreOnlineUsersofGroup:">&ndash;&nbsp;hasMoreOnlineUsersofGroup:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>获取某一个分组是否有更多在线用户未加载</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)hasMoreOnlineUsersofGroup:(NSInteger)<em>groupID</em></code></div>
 
 		    
 			
@@ -524,6 +575,70 @@ BJLErrorCode_invalidCalling    错误调用，如 <a href="#//api/name/hasMoreOn
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
 				<p>连接教室后、掉线重新连接后自动调用加载</p><p>加载成功更新 <a href="#//api/name/onlineUsers"><code>onlineUsers</code></a></p><p>参考 <a href="#//api/name/hasMoreOnlineUsers"><code>hasMoreOnlineUsers</code></a></p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLOnlineUsersVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/loadMoreOnlineUsersWithCount:groupID:" title="loadMoreOnlineUsersWithCount:groupID:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/loadMoreOnlineUsersWithCount:groupID:">&ndash;&nbsp;loadMoreOnlineUsersWithCount:groupID:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>加载更多在线用户</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)loadMoreOnlineUsersWithCount:(NSInteger)<em>count</em> groupID:(NSInteger)<em>groupID</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>count</code></th>
+						<td><p>传 0 默认 20、最多 30</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>BJLError:
+BJLErrorCode_invalidCalling    错误调用，如 <a href="#//api/name/hasMoreOnlineUsersofGroup:"><code>hasMoreOnlineUsersofGroup:</code></a> 为 NO 时调用此方法</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>加载成功更新 <a href="#//api/name/onlineUsers"><code>onlineUsers</code></a></p><p>参考 <a href="#//api/name/hasMoreOnlineUsersofGroup:"><code>hasMoreOnlineUsersofGroup:</code></a>来获取某一个group是否可以加载更多</p>
 			</div>
 			
 
@@ -698,8 +813,160 @@ BJLErrorCode_invalidCalling    错误调用，如 <a href="#//api/name/hasMoreOn
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/blockUserWithUserID:" title="blockUserWithUserID:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/blockUserWithUserID:">&ndash;&nbsp;blockUserWithUserID:</a></code>
+	<a name="//api/name/groupList" title="groupList"></a>
+	<h3 class="method-title"><code><a href="#//api/name/groupList">&nbsp;&nbsp;groupList</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>教室内分组信息</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, copy, nullable) NSArray&lt;BJLUserGroup*&gt; *groupList</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLOnlineUsersVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/getGroupColorWithID:" title="getGroupColorWithID:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/getGroupColorWithID:">&ndash;&nbsp;getGroupColorWithID:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>教室内分组颜色</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable NSString *)getGroupColorWithID:(NSInteger)<em>groupID</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>groupID</code></th>
+						<td><p>对应分组的 ID</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>十六进制 RGB 色值字符串，如 <code>#FFFFFF</code></p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLOnlineUsersVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/onlineUserGroupCountDidChange:" title="onlineUserGroupCountDidChange:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/onlineUserGroupCountDidChange:">&ndash;&nbsp;onlineUserGroupCountDidChange:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>学生分组人数变化</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)onlineUserGroupCountDidChange:(NSDictionary *)<em>groupCountDic</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>groupCountDic</code></th>
+						<td><p>&lt;groupID, count> 提供分组及其人数变化</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLOnlineUsersVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/blockUserWithID:" title="blockUserWithID:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/blockUserWithID:">&ndash;&nbsp;blockUserWithID:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -714,7 +981,7 @@ BJLErrorCode_invalidCalling    错误调用，如 <a href="#//api/name/hasMoreOn
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)blockUserWithUserID:(NSString *)<em>userID</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)blockUserWithID:(NSString *)<em>userID</em></code></div>
 
 		    
 			
@@ -759,8 +1026,8 @@ BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限。</p>
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/didReceiveUserBlocked:" title="didReceiveUserBlocked:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/didReceiveUserBlocked:">&ndash;&nbsp;didReceiveUserBlocked:</a></code>
+	<a name="//api/name/didBlockUser:" title="didBlockUser:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/didBlockUser:">&ndash;&nbsp;didBlockUser:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -775,7 +1042,7 @@ BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限。</p>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (BJLObservable)didReceiveUserBlocked:(BJLUser *)<em>blockedUser</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)didBlockUser:(BJLUser *)<em>blockedUser</em></code></div>
 
 		    
 			
@@ -911,8 +1178,8 @@ BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限。</p>
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/freeBlockedUserWithUserNumber:" title="freeBlockedUserWithUserNumber:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/freeBlockedUserWithUserNumber:">&ndash;&nbsp;freeBlockedUserWithUserNumber:</a></code>
+	<a name="//api/name/freeBlockedUserWithNumber:" title="freeBlockedUserWithNumber:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/freeBlockedUserWithNumber:">&ndash;&nbsp;freeBlockedUserWithNumber:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -927,7 +1194,7 @@ BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限。</p>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)freeBlockedUserWithUserNumber:(NSString *)<em>userNumber</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)freeBlockedUserWithNumber:(NSString *)<em>userNumber</em></code></div>
 
 		    
 			
@@ -972,8 +1239,8 @@ BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限。</p>
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/didReceiveBlockedUserFreed:" title="didReceiveBlockedUserFreed:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/didReceiveBlockedUserFreed:">&ndash;&nbsp;didReceiveBlockedUserFreed:</a></code>
+	<a name="//api/name/didFreeBlockedUserWithNumber:" title="didFreeBlockedUserWithNumber:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/didFreeBlockedUserWithNumber:">&ndash;&nbsp;didFreeBlockedUserWithNumber:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -988,7 +1255,7 @@ BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限。</p>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (BJLObservable)didReceiveBlockedUserFreed:(NSString *)<em>userNumber</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)didFreeBlockedUserWithNumber:(NSString *)<em>userNumber</em></code></div>
 
 		    
 			
@@ -1025,8 +1292,8 @@ BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限。</p>
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/freeAllBlockedUser" title="freeAllBlockedUser"></a>
-	<h3 class="method-title"><code><a href="#//api/name/freeAllBlockedUser">&ndash;&nbsp;freeAllBlockedUser</a></code>
+	<a name="//api/name/freeAllBlockedUsers" title="freeAllBlockedUsers"></a>
+	<h3 class="method-title"><code><a href="#//api/name/freeAllBlockedUsers">&ndash;&nbsp;freeAllBlockedUsers</a></code>
 </h3>
 
 	<div class="method-info">
@@ -1041,7 +1308,7 @@ BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限。</p>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)freeAllBlockedUser</code></div>
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)freeAllBlockedUsers</code></div>
 
 		    
 			
@@ -1074,8 +1341,8 @@ BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限。</p>
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/didReceiveBlockedUserAllFreed" title="didReceiveBlockedUserAllFreed"></a>
-	<h3 class="method-title"><code><a href="#//api/name/didReceiveBlockedUserAllFreed">&ndash;&nbsp;didReceiveBlockedUserAllFreed</a></code>
+	<a name="//api/name/didFreeAllBlockedUsers" title="didFreeAllBlockedUsers"></a>
+	<h3 class="method-title"><code><a href="#//api/name/didFreeAllBlockedUsers">&ndash;&nbsp;didFreeAllBlockedUsers</a></code>
 </h3>
 
 	<div class="method-info">
@@ -1090,7 +1357,7 @@ BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限。</p>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (BJLObservable)didReceiveBlockedUserAllFreed</code></div>
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)didFreeAllBlockedUsers</code></div>
 
 		    
 			
@@ -1129,7 +1396,7 @@ BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限。</p>
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2019 baijiayun. All rights reserved. Updated: 2019-04-17</p>
+						<p class="copyright">Copyright &copy; 2019 baijiayun. All rights reserved. Updated: 2019-08-23</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>

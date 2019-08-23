@@ -80,9 +80,7 @@
 	
 	<optgroup label="Instance Methods">
 		
-		<option value="//api/name/didReceiveMuteAllRecordingAudio">- didReceiveMuteAllRecordingAudio</option>
-		
-		<option value="//api/name/didReceiveUnmuteAllRecordingAudio">- didReceiveUnmuteAllRecordingAudio</option>
+		<option value="//api/name/didUpadateAllRecordingAudioMute:">- didUpadateAllRecordingAudioMute:</option>
 		
 		<option value="//api/name/recordingAudioPCMDataDidUpdate:length:">- recordingAudioPCMDataDidUpdate:length:</option>
 		
@@ -97,6 +95,10 @@
 		<option value="//api/name/sendForbidAllRecordingAudio:">- sendForbidAllRecordingAudio:</option>
 		
 		<option value="//api/name/setRecordingAudio:recordingVideo:">- setRecordingAudio:recordingVideo:</option>
+		
+		<option value="//api/name/startCameraPreview">- startCameraPreview</option>
+		
+		<option value="//api/name/stopCameraPreview">- stopCameraPreview</option>
 		
 		<option value="//api/name/updateAllRecordingAudioMute:">- updateAllRecordingAudioMute:</option>
 		
@@ -491,7 +493,8 @@ BJLErrorCode_invalidUserRole   错误权限，要求老师或助教权限</p>
 			<div class="method-subsection return">
 				<h4 class="method-subtitle parameter-title">Return Value</h4>
 				<p>BJLError:
-BJLErrorCode_invalidCalling    错误调用，以下情况下开启音视频、在音频教室开启摄像头均会返回此错误
+<a href="../Constants/BJLErrorCode.html">BJLErrorCode</a><em>invalidUserRole   错误权限，要求非试听学生权限
+<a href="../Constants/BJLErrorCode.html">BJLErrorCode</a></em>invalidCalling    错误调用，以下情况下开启音视频、在音频教室开启摄像头均会返回此错误
 登录用户分组 ID 不为 0，参考 <code>room.loginUser.groupID</code>
 非上课状态，参考 <code>room.roomVM.liveStarted</code>
 教室禁止打开音频，参考 <code>self.</code>forbidRecordingAudio<code></code>
@@ -757,8 +760,8 @@ BJLErrorCode_invalidCalling    错误调用，以下情况下开启音视频、�
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/didReceiveMuteAllRecordingAudio" title="didReceiveMuteAllRecordingAudio"></a>
-	<h3 class="method-title"><code><a href="#//api/name/didReceiveMuteAllRecordingAudio">&ndash;&nbsp;didReceiveMuteAllRecordingAudio</a></code>
+	<a name="//api/name/didUpadateAllRecordingAudioMute:" title="didUpadateAllRecordingAudioMute:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/didUpadateAllRecordingAudioMute:">&ndash;&nbsp;didUpadateAllRecordingAudioMute:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -768,55 +771,26 @@ BJLErrorCode_invalidCalling    错误调用，以下情况下开启音视频、�
 			
 			
 			<div class="method-subsection brief-description">
-				<p>收到一键关麦</p>
+				<p>收到一键开关麦克风</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (BJLObservable)didReceiveMuteAllRecordingAudio</code></div>
+			<div class="method-subsection method-declaration"><code>- (BJLObservable)didUpadateAllRecordingAudioMute:(BOOL)<em>mute</em></code></div>
 
 		    
 			
-
-			
-
-			
-
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">BJLRecordingVM.h</code></p>
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>mute</code></th>
+						<td><p>YES &ndash;> 关闭麦克风，NO &ndash;> 开启麦克风</p></td>
+					</tr>
+				
+				</table>
 			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/didReceiveUnmuteAllRecordingAudio" title="didReceiveUnmuteAllRecordingAudio"></a>
-	<h3 class="method-title"><code><a href="#//api/name/didReceiveUnmuteAllRecordingAudio">&ndash;&nbsp;didReceiveUnmuteAllRecordingAudio</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>收到一键开麦</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>- (BJLObservable)didReceiveUnmuteAllRecordingAudio</code></div>
-
-		    
 			
 
 			
@@ -1325,6 +1299,105 @@ BJLErrorCode_invalidCalling  错误调用</p>
 			
 		</div>
 	</div>
+</div><div class="section-method">
+	<a name="//api/name/startCameraPreview" title="startCameraPreview"></a>
+	<h3 class="method-title"><code><a href="#//api/name/startCameraPreview">&ndash;&nbsp;startCameraPreview</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>开启摄像头预览</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)startCameraPreview</code></div>
+
+		    
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>BJLError:
+BJLErrorCode_invalidCalling  错误调用</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>在进入直播频道后调用，参考 <a href="../Classes/BJLMediaVM.html"><code>BJLMediaVM</code></a> 的 <code>inLiveChannel</code> 属性</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRecordingVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/stopCameraPreview" title="stopCameraPreview"></a>
+	<h3 class="method-title"><code><a href="#//api/name/stopCameraPreview">&ndash;&nbsp;stopCameraPreview</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>关闭摄像头预览</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (nullable BJLError *)stopCameraPreview</code></div>
+
+		    
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>BJError:
+BJLErrorCode_invalidCalling  错误调用</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BJLRecordingVM.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
 </div>
 						</div>
 						
@@ -1340,7 +1413,7 @@ BJLErrorCode_invalidCalling  错误调用</p>
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2019 baijiayun. All rights reserved. Updated: 2019-04-17</p>
+						<p class="copyright">Copyright &copy; 2019 baijiayun. All rights reserved. Updated: 2019-08-23</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>
